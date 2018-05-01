@@ -3,14 +3,15 @@ defmodule Crux.Structs.MixProject do
 
   def project do
     [
+      start_permanent: Mix.env() == :prod,
+      package: package(),
       app: :crux_structs,
       version: "0.1.0",
       elixir: "~> 1.6",
-      start_permanent: Mix.env() == :prod,
-      package: package(),
+      description: "Package providing Discord API structs for crux.",
       source_url: "https://github.com/SpaceEEC/crux_structs/",
       homepage_url: "https://github.com/SpaceEEC/crux_structs/",
-      deps: deps(),
+      deps: deps()
     ]
   end
 
@@ -25,7 +26,8 @@ defmodule Crux.Structs.MixProject do
       }
     ]
   end
+
   def application, do: []
 
-  defp deps, do: [{:ex_doc, "~> 0.18.3", only: :dev}]
+  defp deps, do: [{:ex_doc, git: "https://github.com/spaceeec/ex_doc", only: :dev}]
 end
