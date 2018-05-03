@@ -3,6 +3,8 @@ defmodule Crux.Structs.Reaction do
     Represents a Discord [Reaction Object](https://discordapp.com/developers/docs/resources/channel#reaction-object).
   """
 
+  @behaviour Crux.Structs
+
   alias Crux.Structs
   alias Crux.Structs.{Util, Emoji}
 
@@ -13,12 +15,16 @@ defmodule Crux.Structs.Reaction do
   )
 
   @type t :: %__MODULE__{
-    count: integer(),
-    me: boolean,
-    emoji: Emoji.t()
-  }
+          count: integer(),
+          me: boolean,
+          emoji: Emoji.t()
+        }
 
-  @doc false
+  @doc """
+    Creates a `Crux.Structs.Presence` struct from raw data.
+
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
   def create(data) do
     data =
       data

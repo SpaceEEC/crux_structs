@@ -5,6 +5,8 @@ defmodule Crux.Structs.Attachment do
     Height and width are only present for images.
   """
 
+  @behaviour Crux.Structs
+
   alias Crux.Structs.Util
 
   defstruct(
@@ -27,7 +29,11 @@ defmodule Crux.Structs.Attachment do
           width: integer() | nil
         }
 
-  @doc false
+  @doc """
+    Creates a `Crux.Structs.Attachment` struct from raw data.
+    
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
   def create(data) do
     data =
       data
@@ -35,5 +41,9 @@ defmodule Crux.Structs.Attachment do
       |> Map.update(:id, nil, &Util.id_to_int/1)
 
     struct(__MODULE__, data)
+  end
+
+  defimpl String.Chars, for: Crux.Structs.Attachment do
+    def to_string(%Crux.Structs.Attachment{url: url}), do: url
   end
 end

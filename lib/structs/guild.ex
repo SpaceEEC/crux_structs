@@ -8,6 +8,8 @@ defmodule Crux.Structs.Guild do
   - `:presences` does not exists at all
   """
 
+  @behaviour Crux.Structs
+
   alias Crux.Structs.{Member, Role, Util, VoiceState}
 
   defstruct(
@@ -23,9 +25,9 @@ defmodule Crux.Structs.Guild do
     verification_level: nil,
     default_message_notifications: nil,
     explicit_content_filter: nil,
-    roles: %MapSet{},
-    emojis: [],
-    features: [],
+    roles: %{},
+    emojis: %MapSet{},
+    features: %MapSet{},
     mfa_level: nil,
     application_id: nil,
     widget_enabled: nil,
@@ -67,7 +69,12 @@ defmodule Crux.Structs.Guild do
           # presences: %{optional(integer()) => Presence.t()}
         }
 
-  @doc false
+  @doc """
+    Creates a `Crux.Structs.Guild` struct from raw data.
+
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
+  # TODO: Write a doctest
   def create(data) do
     data =
       data
@@ -78,10 +85,10 @@ defmodule Crux.Structs.Guild do
       data
       |> Map.update(:owner_id, nil, &Util.id_to_int/1)
       |> Map.update(:afk_channel_id, nil, &Util.id_to_int/1)
-      |> Map.update(:roles, [], &Util.raw_data_to_map(&1, Role))
+      |> Map.update(:roles, %{}, &Util.raw_data_to_map(&1, Role))
       |> Map.update(
         :emojis,
-        [],
+        %MapSet{},
         &MapSet.new(&1, fn emoji -> Map.get(emoji, :id) |> Util.id_to_int() end)
       )
       |> Map.update(:features, [], &MapSet.new/1)
@@ -89,21 +96,25 @@ defmodule Crux.Structs.Guild do
       |> Map.update(
         :voice_states,
         [],
-        &Enum.map(&1, fn voice_state -> Map.put(voice_state, :guild_id, data.id) end)
+        &Map.new(&1, fn voice_state -> Map.put(voice_state, :guild_id, data.id) end)
       )
-      |> Map.update(:voice_states, [], &Util.raw_data_to_map(&1, VoiceState, :user_id))
+      |> Map.update!(:voice_states, &Util.raw_data_to_map(&1, VoiceState, :user_id))
       |> Map.update(
         :members,
         [],
-        &Enum.map(&1, fn member -> Map.put(member, :guild_id, data.id) end)
+        &Map.new(&1, fn member -> Map.put(member, :guild_id, data.id) end)
       )
-      |> Map.update(:members, [], &Util.raw_data_to_map(&1, Member, :user))
+      |> Map.update!(:members, &Util.raw_data_to_map(&1, Member, :user))
       |> Map.update(
         :channels,
-        [],
+        %MapSet{},
         &MapSet.new(&1, fn channel -> Map.get(channel, :id) |> Util.id_to_int() end)
       )
 
     struct(__MODULE__, data)
+  end
+
+  defimpl String.Chars, for: Crux.Structs.Guild do
+    def to_string(%Crux.Structs.Guild{name: name}), do: name
   end
 end

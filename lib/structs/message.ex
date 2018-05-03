@@ -2,6 +2,9 @@ defmodule Crux.Structs.Message do
   @moduledoc """
     Represents a Discord [Message Object](https://discordapp.com/developers/docs/resources/channel#message-object-message-structure).
   """
+
+  @behaviour Crux.Structs
+
   alias Crux.Structs
   alias Crux.Structs.{Attachment, Embed, Reaction, User, Util}
 
@@ -48,7 +51,11 @@ defmodule Crux.Structs.Message do
           type: integer()
         }
 
-  @doc false
+  @doc """
+    Creates a `Crux.Structs.Message` struct from raw data.
+
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
   def create(data) do
     data =
       data
@@ -59,19 +66,19 @@ defmodule Crux.Structs.Message do
       |> Map.update(:guild_id, nil, &Util.id_to_int/1)
       |> Map.update(
         :mentions,
-        [],
+        %MapSet{},
         &MapSet.new(&1, fn user -> Map.get(user, :id) |> Util.id_to_int() end)
       )
       |> Map.update(
         :mention_roles,
-        [],
+        %MapSet{},
         &MapSet.new(&1, fn role_id -> Util.id_to_int(role_id) end)
       )
       |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update(:embeds, [], &Structs.create(&1, Embed))
       |> Map.update(
         :reactions,
-        [],
+        %{},
         &Map.new(&1, fn reaction ->
           reaction = Structs.create(reaction, Reaction)
           id = reaction.emoji.id || reaction.emoji.name
@@ -82,5 +89,9 @@ defmodule Crux.Structs.Message do
       |> Map.update(:webhook_id, nil, &Util.id_to_int/1)
 
     struct(__MODULE__, data)
+  end
+
+  defimpl String.Chars, for: Crux.Structs.Message do
+    def to_string(%Crux.Structs.Message{content: content}), do: content
   end
 end

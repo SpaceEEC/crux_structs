@@ -26,6 +26,8 @@ defmodule Crux.Structs.Invite do
   > You can, if applicable, fetch the full structs from cache.
   """
 
+  @behaviour Crux.Structs
+
   alias Crux.Structs
   alias Crux.Structs.{Channel, Guild, User, Util}
 
@@ -61,7 +63,11 @@ defmodule Crux.Structs.Invite do
           approximate_member_count: integer() | nil
         }
 
-  @doc false
+  @doc """
+    Creates a `Crux.Structs.Invite` struct from raw data.
+
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
   def create(data) do
     data =
       data

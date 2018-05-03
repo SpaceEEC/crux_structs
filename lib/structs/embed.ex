@@ -5,6 +5,8 @@ defmodule Crux.Structs.Embed do
   Every property except type is optional, and thus may have default value.
   """
 
+  @behaviour Crux.Structs
+
   defstruct(
     title: nil,
     type: "rich",

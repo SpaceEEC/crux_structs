@@ -4,10 +4,7 @@ Package providing structures representing objects from the [Discord API](https:/
 
 ## Installation
 
-TODO:
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `crux_structs` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `crux_structs` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -17,7 +14,5 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/crux_structs](https://hexdocs.pm/crux_structs).
-
+The docs for the latest release can be found at [hexdocs](https://hexdocs.pm/crux_structs).  
+Unified docs of all libraries for their respective latest commits can be found [here](https://crux.randomly.space).

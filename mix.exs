@@ -22,7 +22,7 @@ defmodule Crux.Structs.MixProject do
       maintainers: ["SpaceEEC"],
       links: %{
         "GitHub" => "https://github.com/SpaceEEC/crux_structs/",
-        "Docs" => "https://hexdocs.pm/crux_structs"
+        "Unified Dev Documentation" => "https://hexdocs.pm/crux_structs"
       }
     ]
   end

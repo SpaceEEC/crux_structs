@@ -3,6 +3,8 @@ defmodule Crux.Structs.Overwrite do
     Represents a Discord [Overwrite Object](https://discordapp.com/developers/docs/resources/channel#overwrite-object-overwrite-structure).
   """
 
+  @behaviour Crux.Structs
+
   alias Crux.Structs.Util
 
   defstruct(
@@ -19,7 +21,11 @@ defmodule Crux.Structs.Overwrite do
           deny: integer()
         }
 
-  @doc false
+  @doc """
+    Creates a `Crux.Structs.Overwrite` struct from raw data.
+
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
   def create(data) do
     data =
       data

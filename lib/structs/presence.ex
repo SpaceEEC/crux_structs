@@ -2,6 +2,9 @@ defmodule Crux.Structs.Presence do
   @moduledoc """
     Represents a Discord [Presence Object](https://discordapp.com/developers/docs/topics/gateway#presence-update-presence-update-event-fields).
   """
+
+  @behaviour Crux.Structs
+
   alias Crux.Structs.Util
 
   defstruct(
@@ -20,7 +23,11 @@ defmodule Crux.Structs.Presence do
           status: String.t()
         }
 
-  @doc false
+  @doc """
+    Creates a `Crux.Structs.Presence` struct from raw data.
+
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
   def create(data) do
     data =
       data
