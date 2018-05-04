@@ -6,7 +6,7 @@ defmodule Crux.Structs.MixProject do
       start_permanent: Mix.env() == :prod,
       package: package(),
       app: :crux_structs,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.6",
       description: "Package providing Discord API structs for crux.",
       source_url: "https://github.com/SpaceEEC/crux_structs/",
