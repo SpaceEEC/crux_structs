@@ -9,7 +9,7 @@ The package can be installed by adding `crux_structs` to your list of dependenci
 ```elixir
 def deps do
   [
-    {:crux_structs, "~> 0.1.1"}
+    {:crux_structs, "~> 0.1.2"}
   ]
 end
 ```
