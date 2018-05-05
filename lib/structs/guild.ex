@@ -96,13 +96,13 @@ defmodule Crux.Structs.Guild do
       |> Map.update(
         :voice_states,
         [],
-        &Map.new(&1, fn voice_state -> Map.put(voice_state, :guild_id, data.id) end)
+        &Enum.map(&1, fn voice_state -> Map.put(voice_state, :guild_id, data.id) end)
       )
       |> Map.update!(:voice_states, &Util.raw_data_to_map(&1, VoiceState, :user_id))
       |> Map.update(
         :members,
         [],
-        &Map.new(&1, fn member -> Map.put(member, :guild_id, data.id) end)
+        &Enum.map(&1, fn member -> Map.put(member, :guild_id, data.id) end)
       )
       |> Map.update!(:members, &Util.raw_data_to_map(&1, Member, :user))
       |> Map.update(
