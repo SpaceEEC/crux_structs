@@ -43,7 +43,7 @@ defmodule Crux.Structs.Permissions do
   @permission_all @permissions |> Map.values() |> Enum.reduce(&|||/2)
 
   @typedoc """
-    Union type of all valid single permission_name atoms
+    Union type of all valid single permission atoms
   """
   @type permission_name ::
           :create_instant_invite
@@ -264,7 +264,7 @@ defmodule Crux.Structs.Permissions do
   end
 
   @doc """
-    Resolves permissions for a user in a guild, optionally including channel permission_name overwrites.
+    Resolves permissions for a user in a guild, optionally including channel permission overwrites.
 
   > Raises when the member is not cached.
 
