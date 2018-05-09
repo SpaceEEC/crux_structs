@@ -195,7 +195,7 @@ defmodule Crux.Structs.Permissions do
     ```elixir
   iex> :administrator
   ...> |> Crux.Structs.Permissions.add(:manage_guild)
-  0x28
+  %Crux.Structs.Permissions{bitfield: 0x28}
 
     ```
   """
@@ -216,7 +216,7 @@ defmodule Crux.Structs.Permissions do
     ```elixir
   iex> [0x8, 0x10, 0x20]
   ...> |> Crux.Structs.Permissions.remove([0x10, 0x20])
-  0x8
+  %Crux.Structs.Permissions{bitfield: 0x8}
 
     ```
   """
