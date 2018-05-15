@@ -39,11 +39,28 @@ defmodule Crux.Structs.Permissions do
     manage_webhooks: 1 <<< 29,
     manage_emojis: 1 <<< 30
   }
+  @doc """
+    Returns a map of permissions, keyed under their permission name with the bit value.
+  """
+  @spec permissions() :: %{permission_name() => non_neg_integer()}
+  def permissions, do: @permissions
+  
   @permission_names @permissions |> Map.keys()
+  @doc """
+  Returns a list of permission keys.
+  """
+  @spec permission_names() :: [permission_name()]
+  def permission_names, do: @permission_names
+
   @permission_all @permissions |> Map.values() |> Enum.reduce(&|||/2)
+  @doc """
+    Returns the integer value of all permissions together.
+  """
+  @spec permission_all :: pos_integer()
+  def permission_all, do: @permission_all
 
   @typedoc """
-    Union type of all valid single permission atoms
+    Union type of all valid permission name atoms
   """
   @type permission_name ::
           :create_instant_invite
@@ -77,6 +94,9 @@ defmodule Crux.Structs.Permissions do
 
   defstruct(bitfield: 0)
 
+  @typedoc """
+    Represents a `Crux.Struct.Permissions`.
+  """
   @type t :: %__MODULE__{
           bitfield: non_neg_integer()
         }
