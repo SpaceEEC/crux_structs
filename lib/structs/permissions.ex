@@ -44,7 +44,7 @@ defmodule Crux.Structs.Permissions do
   """
   @spec permissions() :: %{permission_name() => non_neg_integer()}
   def permissions, do: @permissions
-  
+
   @permission_names @permissions |> Map.keys()
   @doc """
   Returns a list of permission keys.
