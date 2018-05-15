@@ -373,38 +373,4 @@ defmodule Crux.Structs.Permissions do
 
     permissions
   end
-
-  defimpl Enumerable do
-    def count(%Crux.Structs.Permissions{} = permissions) do
-      {:ok,
-       permissions
-       |> Crux.Structs.Permissions.to_list()
-       |> Enum.count()}
-    end
-
-    def member?(%Crux.Structs.Permissions{bitfield: bitfield}, permission_name)
-        when is_integer(permission_name) and permission_name >= 0 do
-      {:ok, (bitfield &&& permission_name) == permission_name}
-    end
-
-    def member?(%Crux.Structs.Permissions{bitfield: bitfield}, permission_name) do
-      permission_name = Crux.Structs.Permissions.resolve(permission_name)
-
-      {:ok, (bitfield &&& permission_name) == permission_name}
-    end
-
-    def slice(%Crux.Structs.Permissions{} = permissions) do
-      # TODO: Return {:error, Crux.Structs.Permissions} and provide a valid slice/3 function.
-      # Whenever I figure out how this works
-      {:ok, count(permissions),
-       &Enumerable.List.slice(Crux.Structs.Permissions.to_list(permissions), &1, &2)}
-    end
-
-    def reduce(%Crux.Structs.Permissions{} = permissions, acc, fun) do
-      # TODO: See above
-      permissions
-      |> Crux.Structs.Permissions.to_list()
-      |> Enumerable.List.reduce(acc, fun)
-    end
-  end
 end
