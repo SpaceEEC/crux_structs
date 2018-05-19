@@ -16,7 +16,7 @@ defmodule Crux.Structs.Permissions do
     add_reactions: 1 <<< 6,
     view_audit_log: 1 <<< 7,
     # 8
-    # 9 
+    # 9
     view_channel: 1 <<< 10,
     send_messages: 1 <<< 11,
     send_tts_message: 1 <<< 12,
@@ -355,7 +355,7 @@ defmodule Crux.Structs.Permissions do
          user_id,
          %Structs.Guild{id: guild_id, members: members},
          %Structs.Channel{permission_overwrites: overwrites},
-         permissions
+         %__MODULE__{bitfield: permissions}
        ) do
     permissions =
       overwrites
