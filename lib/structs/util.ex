@@ -138,10 +138,16 @@ defmodule Crux.Structs.Util do
   ...> |> Crux.Structs.Util.atomify()
   [[%{foo: "bar"}], %{bar: "foo"}]
 
+  # A struct
+  iex> %Crux.Structs.Overwrite{id: 448394877194076161, type: "role", allow: 0, deny: 0}
+  ...> |> Crux.Structs.Util.atomify()
+  %{id: 448394877194076161, type: "role", allow: 0, deny: 0}
+
     ```
   """
   @spec atomify(input :: map() | list()) :: map() | list()
   def atomify(input)
+  def atomify(%{__struct__: _struct} = struct), do: struct |> Map.from_struct() |> atomify()
   def atomify(%{} = map), do: Map.new(map, &atomify_kv/1)
   def atomify(list) when is_list(list), do: Enum.map(list, &atomify/1)
   def atomify(other), do: other
