@@ -1,6 +1,9 @@
 defmodule Crux.Structs.MixProject do
   use Mix.Project
 
+  @vsn "0.1.3"
+  @name :crux_structs
+
   def project do
     [
       start_permanent: Mix.env() == :prod,
@@ -17,11 +20,13 @@ defmodule Crux.Structs.MixProject do
 
   def package do
     [
-      name: :crux_structs,
+      name: @name,
       licenses: ["MIT"],
       maintainers: ["SpaceEEC"],
       links: %{
-        "GitHub" => "https://github.com/SpaceEEC/crux_structs/",
+        "GitHub" => "https://github.com/SpaceEEC/#{@name}/",
+        "Changelog" => "https://github.com/SpaceEEC/#{@name}/releases/tag/#{@vsn}/",
+        "Documentation" => "https://hexdocs.pm/#{@name}/",
         "Unified Development Documentation" => "https://crux.randomly.space/"
       }
     ]
