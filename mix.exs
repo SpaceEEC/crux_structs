@@ -1,15 +1,15 @@
 defmodule Crux.Structs.MixProject do
   use Mix.Project
 
-  @vsn "0.1.3"
+  @vsn "0.1.4"
   @name :crux_structs
 
   def project do
     [
       start_permanent: Mix.env() == :prod,
       package: package(),
-      app: :crux_structs,
-      version: "0.1.3",
+      app: @name,
+      version: @vsn,
       elixir: "~> 1.6",
       description: "Package providing Discord API structs for crux.",
       source_url: "https://github.com/SpaceEEC/crux_structs/",
