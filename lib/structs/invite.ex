@@ -8,7 +8,7 @@ defmodule Crux.Structs.Invite do
   |          |                     | `Rest.get_channel_invites/1` |                          |
   |          |                     | `Rest.get_guild_invites/1`   |                          |
   | code     | yes                 | yes                          | yes                      |
-  | guild    | yes                 | yes                          | yes                      |
+  | guild    | if not group dm     | if not group dm              | if not group dm          |
   | channel  | yes                 | yes                          | yes                      |
   | inviter  | yes                 | yes                          | yes                      |
   | uses     | no                  | yes                          | no                       |
