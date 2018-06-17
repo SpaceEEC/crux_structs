@@ -68,6 +68,8 @@ defmodule Crux.Structs do
     Enum.map(data, &create(&1, target))
   end
 
+  def create(%{__struct__: target} = data, target), do: data
+
   def create(data, target) do
     if Keyword.has_key?(target.__info__(:functions), :create) do
       target.create(data)
