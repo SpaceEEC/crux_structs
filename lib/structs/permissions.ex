@@ -15,7 +15,7 @@ defmodule Crux.Structs.Permissions do
     manage_guild: 1 <<< 5,
     add_reactions: 1 <<< 6,
     view_audit_log: 1 <<< 7,
-    # 8
+    priority_speaker: 1 <<< 8,
     # 9
     view_channel: 1 <<< 10,
     send_messages: 1 <<< 11,
@@ -71,6 +71,7 @@ defmodule Crux.Structs.Permissions do
           | :manage_guild
           | :add_reactions
           | :view_audit_log
+          | :priority_speaker
           | :view_channel
           | :send_messages
           | :send_tts_message
