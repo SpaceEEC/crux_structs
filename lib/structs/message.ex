@@ -6,49 +6,51 @@ defmodule Crux.Structs.Message do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Attachment, Embed, Reaction, User, Util}
+  alias Crux.Structs.{Attachment, Embed, Member, Reaction, User, Util}
 
   defstruct(
-    id: nil,
-    channel_id: nil,
-    author: nil,
-    content: nil,
-    timestamp: nil,
-    edited_timestamp: nil,
-    guild_id: nil,
-    tts: false,
-    mention_everyone: false,
-    mentions: [],
-    mention_roles: [],
     attachments: [],
+    author: nil,
+    channel_id: nil,
+    content: nil,
+    edited_timestamp: nil,
     embeds: [],
-    reactions: [],
+    guild_id: nil,
+    id: nil,
+    member: nil,
+    mention_everyone: false,
+    mention_roles: [],
+    mentions: [],
     nonce: nil,
     pinned: false,
-    webhook_id: nil,
-    type: 0
+    timestamp: nil,
+    tts: false,
+    type: 0,
+    reactions: [],
+    webhook_id: nil
   )
 
   @type t :: %__MODULE__{
-          id: integer(),
-          channel_id: integer(),
+          attachments: [Attachment.t()],
           # Might be webhook
           author: User.t(),
+          channel_id: integer(),
           content: String.t(),
-          timestamp: String.t(),
           edited_timestamp: String.t(),
-          guild_id: integer() | nil,
-          tts: boolean(),
-          mention_everyone: boolean(),
-          mentions: MapSet.t(integer()),
-          mention_roles: MapSet.t(integer()),
-          attachments: [Attachment.t()],
           embeds: [Embed.t()],
-          reactions: %{String.t() => Reaction.t()},
+          guild_id: integer() | nil,
+          id: integer(),
+          member: Member.t() | nil,
+          mention_everyone: boolean(),
+          mention_roles: MapSet.t(integer()),
+          mentions: MapSet.t(integer()),
           nonce: String.t() | nil,
           pinned: boolean(),
-          webhook_id: integer() | nil,
-          type: integer()
+          timestamp: String.t(),
+          tts: boolean(),
+          type: integer(),
+          reactions: %{String.t() => Reaction.t()},
+          webhook_id: integer() | nil
         }
 
   @doc """
@@ -60,22 +62,29 @@ defmodule Crux.Structs.Message do
     data =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
-      |> Map.update!(:channel_id, &Util.id_to_int/1)
+      |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update!(:author, &Structs.create(&1, User))
+      |> Map.update!(:channel_id, &Util.id_to_int/1)
+      |> Map.update(:embeds, [], &Structs.create(&1, Embed))
       |> Map.update(:guild_id, nil, &Util.id_to_int/1)
-      |> Map.update(
-        :mentions,
-        %MapSet{},
-        &MapSet.new(&1, fn user -> Map.get(user, :id) |> Util.id_to_int() end)
-      )
+      |> Map.update!(:id, &Util.id_to_int/1)
+
+    data =
+      data
+      |> Map.update(:member, nil, fn member ->
+        Map.put(member, :user, %{id: data.id})
+        |> Structs.create(Member)
+      end)
       |> Map.update(
         :mention_roles,
         %MapSet{},
         &MapSet.new(&1, fn role_id -> Util.id_to_int(role_id) end)
       )
-      |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
-      |> Map.update(:embeds, [], &Structs.create(&1, Embed))
+      |> Map.update(
+        :mentions,
+        %MapSet{},
+        &MapSet.new(&1, fn user -> Map.get(user, :id) |> Util.id_to_int() end)
+      )
       |> Map.update(
         :reactions,
         %{},
