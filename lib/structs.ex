@@ -53,6 +53,10 @@ defmodule Crux.Structs do
     %Crux.Structs.User{username: "Drahcirius", discriminator: "1336", id: 130175406673231873, avatar: "c896aebec82c90f590b08cfebcdc4e3b"}
   ]
 
+  # Does not alter already structs
+  iex> Crux.Structs.create(%Crux.Structs.Member{}, Crux.Structs.Member)
+  %Crux.Structs.Member{}
+
   # Fallback
   iex> Crux.Structs.create(nil, nil)
   nil
