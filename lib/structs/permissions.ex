@@ -98,7 +98,7 @@ defmodule Crux.Structs.Permissions do
   @typedoc """
     All valid types which can be directly resolved into a permissions bitfield.
   """
-  @type permission_resolvable :: t() | non_neg_integer() | name() | [permission_resolvable()]
+  @type resolvable :: t() | non_neg_integer() | name() | [resolvable()]
 
   @typedoc """
     Represents a `Crux.Structs.Permissions`.
@@ -112,11 +112,11 @@ defmodule Crux.Structs.Permissions do
   @doc """
     Creates a new `Crux.Structs.Permissions` struct from a valid `t:permissions/0`.
   """
-  @spec new(permissions :: permission_resolvable()) :: t()
+  @spec new(permissions :: resolvable()) :: t()
   def new(permissions), do: %__MODULE__{bitfield: resolve(permissions)}
 
   @doc ~S"""
-    Resolves a `t:permission_resolvable/0` into a bitfield representing the set permissions.
+    Resolves a `t:resolvable/0` into a bitfield representing the set permissions.
 
   ## Examples
     ```elixir
@@ -147,7 +147,7 @@ defmodule Crux.Structs.Permissions do
 
     ```
   """
-  @spec resolve(permissions :: permission_resolvable()) :: non_neg_integer()
+  @spec resolve(permissions :: resolvable()) :: non_neg_integer()
   def resolve(permissions)
 
   def resolve(%__MODULE__{bitfield: bitfield}), do: bitfield
@@ -182,7 +182,7 @@ defmodule Crux.Structs.Permissions do
   > The administrator flag optionally implicitly grants all permissions.
   """
   @spec to_map(
-          permissions :: permission_resolvable(),
+          permissions :: resolvable(),
           implicit :: boolean()
         ) :: %{name() => boolean()}
   def to_map(permissions, implicit \\ false) do
@@ -204,7 +204,7 @@ defmodule Crux.Structs.Permissions do
 
     ```
   """
-  @spec to_list(permissions :: permission_resolvable(), implicit :: boolean()) :: [name()]
+  @spec to_list(permissions :: resolvable(), implicit :: boolean()) :: [name()]
   def to_list(permissions, implicit \\ false) do
     permissions = resolve(permissions)
 
@@ -224,7 +224,7 @@ defmodule Crux.Structs.Permissions do
 
     ```
   """
-  @spec add(base :: permission_resolvable(), to_add :: permission_resolvable()) :: t()
+  @spec add(base :: resolvable(), to_add :: resolvable()) :: t()
   def add(base, to_add) do
     to_add = to_add |> resolve()
 
@@ -245,7 +245,7 @@ defmodule Crux.Structs.Permissions do
 
     ```
   """
-  @spec remove(base :: permission_resolvable(), to_remove :: permission_resolvable()) :: t()
+  @spec remove(base :: resolvable(), to_remove :: resolvable()) :: t()
   def remove(base, to_remove) do
     to_remove = to_remove |> resolve() |> bnot()
 
@@ -285,8 +285,8 @@ defmodule Crux.Structs.Permissions do
     ```
   """
   @spec has(
-          have :: permission_resolvable(),
-          want :: permission_resolvable(),
+          have :: resolvable(),
+          want :: resolvable(),
           implicit :: boolean()
         ) :: boolean()
   def has(have, want, implicit \\ false) do
