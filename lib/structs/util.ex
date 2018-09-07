@@ -152,21 +152,5 @@ defmodule Crux.Structs.Util do
   def atomify(list) when is_list(list), do: Enum.map(list, &atomify/1)
   def atomify(other), do: other
 
-  defp atomify_kv({k, v}) do
-    k = string_to_atom(k)
-
-    v =
-      case v do
-        list when is_list(list) ->
-          atomify(list)
-
-        %{} = map ->
-          atomify(map)
-
-        v ->
-          v
-      end
-
-    {k, v}
-  end
+  defp atomify_kv({k, v}), do: {string_to_atom(k), atomify(v)}
 end
