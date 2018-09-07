@@ -40,29 +40,29 @@ defmodule Crux.Structs.Permissions do
     manage_emojis: 1 <<< 30
   }
   @doc """
-    Returns a map of permissions, keyed under their permission name with the bit value.
+    Returns a map of all permissions.
   """
-  @spec permissions() :: %{permission_name() => non_neg_integer()}
-  def permissions, do: @permissions
+  @spec flags() :: %{name() => non_neg_integer()}
+  def flags, do: @permissions
 
-  @permission_names @permissions |> Map.keys()
+  @names @permissions |> Map.keys()
   @doc """
-  Returns a list of permission keys.
+  Returns a list of all permission keys.
   """
-  @spec permission_names() :: [permission_name()]
-  def permission_names, do: @permission_names
+  @spec names() :: [name()]
+  def names, do: @names
 
-  @permission_all @permissions |> Map.values() |> Enum.reduce(&|||/2)
+  @all @permissions |> Map.values() |> Enum.reduce(&|||/2)
   @doc """
-    Returns the integer value of all permissions together.
+    Returns the integer value of all permissions summed up.
   """
-  @spec permission_all :: pos_integer()
-  def permission_all, do: @permission_all
+  @spec all :: pos_integer()
+  def all, do: @all
 
   @typedoc """
-    Union type of all valid permission name atoms
+    Union type of all valid permission name atoms.
   """
-  @type permission_name ::
+  @type name ::
           :create_instant_invite
           | :kick_members
           | :ban_members
@@ -96,19 +96,27 @@ defmodule Crux.Structs.Permissions do
   defstruct(bitfield: 0)
 
   @typedoc """
-    Represents a `Crux.Struct.Permissions`.
+    All valid types which can be directly resolved into a permissions bitfield.
+  """
+  @type permission_resolvable :: t() | non_neg_integer() | name() | [permission_resolvable()]
+
+  @typedoc """
+    Represents a `Crux.Structs.Permissions`.
+
+    * `:bitfield`: The raw bitfield of permission flags.
   """
   @type t :: %__MODULE__{
           bitfield: non_neg_integer()
         }
 
-  @typedoc """
-    All valid types which can be directly resolved into a permissions bitfield.
+  @doc """
+    Creates a new `Crux.Structs.Permissions` struct from a valid `t:permissions/0`.
   """
-  @type permissions :: t() | [permission_name()] | non_neg_integer() | permission_name()
+  @spec new(permissions :: permission_resolvable()) :: t()
+  def new(permissions), do: %__MODULE__{bitfield: resolve(permissions)}
 
   @doc ~S"""
-    Resolves a `t:permissions/0` into a bitfield representing the set permissions.
+    Resolves a `t:permission_resolvable/0` into a bitfield representing the set permissions.
 
   ## Examples
     ```elixir
@@ -117,7 +125,7 @@ defmodule Crux.Structs.Permissions do
   ...> |> Crux.Structs.Permissions.resolve()
   0x8
 
-  # A single permissions constant
+  # A single name
   iex> :administrator
   ...> |> Crux.Structs.Permissions.resolve()
   0x8
@@ -127,18 +135,19 @@ defmodule Crux.Structs.Permissions do
   ...> |> Crux.Structs.Permissions.resolve()
   0xC
 
-  # A list of permissions constants
+  # A list of names
   iex> [:administrator, :ban_members]
   ...> |> Crux.Structs.Permissions.resolve()
   0xC
 
+  # A mixture of both
   iex> [:manage_roles, 0x400, 0x800, :add_reactions]
   ...> |> Crux.Structs.Permissions.resolve()
   0x10000C40
 
   ```
   """
-  @spec resolve(permissions :: permissions()) :: non_neg_integer()
+  @spec resolve(permissions :: permission_resolvable()) :: non_neg_integer()
   def resolve(permissions)
 
   def resolve(%__MODULE__{bitfield: bitfield}), do: bitfield
@@ -149,7 +158,7 @@ defmodule Crux.Structs.Permissions do
     end)
   end
 
-  def resolve(permissions) when permissions in @permission_names do
+  def resolve(permissions) when permissions in @names do
     Map.get(@permissions, permissions)
   end
 
@@ -160,37 +169,32 @@ defmodule Crux.Structs.Permissions do
 
   def resolve(permissions) do
     raise """
-    Expected a permission_name atom, a non negative integer, or a list of them.
+    Expected a name atom, a non negative integer, or a list of them.
 
     Received:
     #{inspect(permissions)}
     """
   end
 
-  @doc """
-    Creates a new `Crux.Structs.Permissions` struct from a valid `t:permissions/0`.
-  """
-  @spec new(permissions :: permissions()) :: t()
-  def new(permissions), do: %__MODULE__{bitfield: resolve(permissions)}
+  @doc ~S"""
+    Serializes permissions into a map keyed by `t:name/0` with a boolean indicating whether the name is set.
 
-  @doc """
-    Serializes permissions into a map keyed by `t:permission_name/0` with a boolean indicating whether the permission_name is set.
-
-  > The administrator flag implicitly grants all permissions.
+  > The administrator flag optionally implicitly grants all permissions.
   """
-  @spec to_map(permissions :: permissions()) :: %{permission_name() => boolean()}
-  def to_map(permissions) do
+  @spec to_map(
+          permissions :: permission_resolvable(),
+          implicit :: boolean()
+        ) :: %{name() => boolean()}
+  def to_map(permissions, implicit \\ false) do
     permissions = resolve(permissions)
 
-    Enum.reduce(@permissions, %{}, fn {name, val}, acc ->
-      acc |> Map.put(name, has(permissions, val))
-    end)
+    Enum.into(@names, %{}, &{&1, has(permissions, &1, implicit)})
   end
 
   @doc ~S"""
-    Serializes permissions into a list of set `t:permission_name/0`s.
+    Serializes permissions into a list of set `t:name/0`s.
 
-  > The administrator flag implicitly grants all permissions.
+  > The administrator flag optionally implicitly grants all permissions.
 
   ## Examples
     ```elixir
@@ -198,14 +202,14 @@ defmodule Crux.Structs.Permissions do
   ...> |> Crux.Structs.Permissions.to_list()
   [:manage_guild, :manage_channels]
 
-    ```
+  ```
   """
-  @spec to_list(permissions :: permissions()) :: [permission_name()]
-  def to_list(permissions) do
+  @spec to_list(permissions :: permission_resolvable(), implicit :: boolean()) :: [name()]
+  def to_list(permissions, implicit \\ false) do
     permissions = resolve(permissions)
 
     Enum.reduce(@permissions, [], fn {name, val}, acc ->
-      if has(permissions, val), do: [name | acc], else: acc
+      if has(permissions, val, implicit), do: [name | acc], else: acc
     end)
   end
 
@@ -220,7 +224,7 @@ defmodule Crux.Structs.Permissions do
 
     ```
   """
-  @spec add(base :: permissions(), to_add :: permissions()) :: t()
+  @spec add(base :: permission_resolvable(), to_add :: permission_resolvable()) :: t()
   def add(base, to_add) do
     to_add = to_add |> resolve()
 
@@ -241,7 +245,7 @@ defmodule Crux.Structs.Permissions do
 
     ```
   """
-  @spec remove(base :: permissions(), to_remove :: permissions()) :: t()
+  @spec remove(base :: permission_resolvable(), to_remove :: permission_resolvable()) :: t()
   def remove(base, to_remove) do
     to_remove = to_remove |> resolve() |> bnot()
 
@@ -254,33 +258,46 @@ defmodule Crux.Structs.Permissions do
   @doc ~S"""
     Check whether the second permissions are all present in the first.
 
+  > The administrator flag optionally implicitly grants all permissions.
+
   ## Examples
     ```elixir
-  # All permissions except administrator set, but administrator overrides
-  iex> Crux.Structs.Permissions.has(0x8, 0x7ff7fcf7)
+  # If implicit is set, administrator will grant all permissions
+  iex> Crux.Structs.Permissions.has(0x8, 0x7ff7fcf7, true)
   true
 
+  # If implicit is not set, administrator won't grant any other permissions
+  iex> Crux.Structs.Permissions.has(0x8, 0x7ff7fcf7)
+  false
+
+  # Resolving a list of `permissions_name`s
   iex> Crux.Structs.Permissions.has([:send_messages, :view_channel, :read_message_history], [:send_messages, :view_channel])
   true
 
+  # Resolving different types of `permissions`s
   iex> Crux.Structs.Permissions.has(:administrator, 0x8)
   true
 
+  # In different order
   iex> Crux.Structs.Permissions.has(0x8, :administrator)
   true
 
     ```
   """
-  @spec has(permissions(), permissions()) :: boolean()
-  def has(current, want) do
-    current = resolve(current)
+  @spec has(
+          have :: permission_resolvable(),
+          want :: permission_resolvable(),
+          implicit :: boolean()
+        ) :: boolean()
+  def has(have, want, implicit \\ false) do
+    have = resolve(have)
 
-    if (current &&& 0x8) == 0x8 do
+    if implicit and (have &&& 0x8) == 0x8 do
       true
     else
       want = resolve(want)
 
-      (current &&& want) == want
+      (have &&& want) == want
     end
   end
 
@@ -300,16 +317,34 @@ defmodule Crux.Structs.Permissions do
   def from(%Structs.Member{user: user_id}, guild, channel), do: from(user_id, guild, channel)
   def from(%Structs.User{id: user_id}, guild, channel), do: from(user_id, guild, channel)
 
-  def from(user_id, %Structs.Guild{owner_id: owner_id, members: members} = guild, nil) do
-    cond do
-      user_id == owner_id ->
-        @permission_all
+  # from/2 -> compute_base_permissions from
+  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
+  def from(user_id, %Structs.Guild{owner_id: user_id}, _), do: @all |> new()
+
+  def from(user_id, %Structs.Guild{id: guild_id, members: members, roles: roles}, nil) do
+    case members do
+      %{^user_id => member} ->
+        permissions =
+          roles
+          |> Map.get(guild_id)
+          |> Map.get(:permissions)
+
+        permissions =
+          roles
+          |> Map.take(member.roles)
+          |> Map.values()
+          |> Enum.reduce(permissions, fn %{permissions: permissions}, acc ->
+            acc ||| permissions
+          end)
+
+        if has(permissions, :administrator) do
+          @all
+        else
+          permissions
+        end
         |> new()
 
-      Map.has_key?(members, user_id) ->
-        _from(user_id, guild, nil)
-
-      true ->
+      _ ->
         raise """
           There is no member with the ID "#{user_id}" in the cache of the guild.
           The member is uncached or not in the guild.
@@ -317,47 +352,27 @@ defmodule Crux.Structs.Permissions do
     end
   end
 
+  # from/3 -> compute_permissions from
+  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
   def from(user_id, %Structs.Guild{} = guild, %Structs.Channel{} = channel) do
-    permissions = from(user_id, guild)
-
-    if has(permissions, :administrator) do
-      @permission_all
-      |> new()
-    else
-      _from(user_id, guild, channel, permissions)
-    end
+    from(user_id, guild)
+    |> _from(user_id, guild, channel)
   end
 
-  defp _from(user_id, %{id: guild_id, members: members, roles: roles}, nil) do
-    member = Map.get(members, user_id)
-
-    permissions =
-      roles
-      |> Map.get(guild_id)
-      |> Map.get(:permissions)
-
-    permissions =
-      roles
-      |> Map.take(member.roles)
-      |> Map.values()
-      |> Enum.reduce(permissions, fn %{permissions: permissions}, acc ->
-        acc ||| permissions
-      end)
-
-    if has(permissions, :administrator) do
-      @permission_all
-    else
-      permissions
-    end
+  # _from/4 -> compuate_overwrites from
+  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
+  defp _from(%__MODULE__{bitfield: permissions}, _, _, _) when (permissions &&& 0x8) == 0x8 do
+    @all
     |> new()
   end
 
   defp _from(
+         %__MODULE__{bitfield: permissions},
          user_id,
          %Structs.Guild{id: guild_id, members: members},
-         %Structs.Channel{permission_overwrites: overwrites},
-         %__MODULE__{bitfield: permissions}
+         %Structs.Channel{permission_overwrites: overwrites}
        ) do
+    # apply @everyone overwrite
     permissions =
       overwrites
       |> Map.get(guild_id)
@@ -365,13 +380,17 @@ defmodule Crux.Structs.Permissions do
 
     role_ids = members |> Map.get(user_id) |> Map.get(:roles)
 
+    # apply all other overwrites
     permissions =
       overwrites
       |> Map.take(role_ids)
       |> Map.values()
+      # reduce all relevant overwrites into a single dummy one
       |> Enum.reduce(%{allow: 0, deny: 0}, &acc_overwrite/2)
+      # apply it to the base permissions
       |> apply_overwrite(permissions)
 
+    # apply user overwrite
     overwrites
     |> Map.get(user_id)
     |> apply_overwrite(permissions)
@@ -380,10 +399,8 @@ defmodule Crux.Structs.Permissions do
 
   defp acc_overwrite(nil, acc), do: acc
 
-  defp acc_overwrite(%{allow: allow, deny: deny}, %{} = acc) do
-    acc
-    |> Map.update!(:allow, &(&1 ||| allow))
-    |> Map.update!(:deny, &(&1 ||| deny))
+  defp acc_overwrite(%{allow: cur_allow, deny: cur_deny}, %{allow: allow, deny: deny}) do
+    %{allow: cur_allow ||| allow, deny: cur_deny ||| deny}
   end
 
   defp apply_overwrite(nil, permissions), do: permissions
