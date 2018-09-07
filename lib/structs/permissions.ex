@@ -145,7 +145,7 @@ defmodule Crux.Structs.Permissions do
   ...> |> Crux.Structs.Permissions.resolve()
   0x10000C40
 
-  ```
+    ```
   """
   @spec resolve(permissions :: permission_resolvable()) :: non_neg_integer()
   def resolve(permissions)
@@ -202,7 +202,7 @@ defmodule Crux.Structs.Permissions do
   ...> |> Crux.Structs.Permissions.to_list()
   [:manage_guild, :manage_channels]
 
-  ```
+    ```
   """
   @spec to_list(permissions :: permission_resolvable(), implicit :: boolean()) :: [name()]
   def to_list(permissions, implicit \\ false) do
