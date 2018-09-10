@@ -72,7 +72,9 @@ defmodule Crux.Structs.Message do
     data =
       data
       |> Map.update(:member, nil, fn member ->
-        Map.put(member, :user, %{id: data.id})
+        member
+        |> Map.put(:guild_id, data.guild_id)
+        |> Map.put(:user, %{id: data.id})
         |> Structs.create(Member)
       end)
       |> Map.update(
