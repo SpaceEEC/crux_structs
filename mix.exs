@@ -34,5 +34,6 @@ defmodule Crux.Structs.MixProject do
 
   def application, do: []
 
-  defp deps, do: [{:ex_doc, git: "https://github.com/spaceeec/ex_doc", only: :dev}]
+  defp deps,
+    do: [{:ex_doc, git: "https://github.com/spaceeec/ex_doc", only: :dev, runtime: false}]
 end
