@@ -4,25 +4,26 @@ defmodule Crux.Structs.Channel do
 
   List of where every property can be present:
 
-  | Property | Text (0) | DM (1) | Voice (2) | Group (3) | Category (4) |
-  | :------: | :------: | :----: | :-------: | :-------: | :----------: |
-  | id       | yes      | yes    | yes       | yes       | yes          |
-  | type     | `0`      | `1`    | `2`       | `3`       | `4`          |
-  | guild_id | yes      | no     | yes       | no        | yes          |
-  | position | yes      | no     | yes       | no        | yes          |
-  | permission_overwrites | yes  | no  | yes | no        | yes          |
-  | name     | yes      | no     | yes       | yes       | yes          |
-  | topic    | yes      | no     | yes       | no        | yes          |
-  | nsfw     | yes      | no     | no        | no        | no           |
-  | last_message_id | yes | yes  | no        | yes       | no           |
-  | bitrate  | no       | no     | yes       | no        | no           |
-  | user_limit | no     | no     | yes       | no        | no           |
-  | recipients | no     | yes<br>(One Element) | no | yes | no          |
-  | icon     | no       | no     | no        | yes       | no           |
-  | owner_id | no       | no     | no        | yes       | no           |
-  | application_id | no | no     | no        | yes       | no           |
-  | parent_id | yes     | no     | yes       | no        | no           |
-  | last_pin_timestamp | yes | yes | no      | yes       | no           |
+  | Property              | Text (0) | DM (1)               | Voice (2) | Group (3) | Category (4) |
+  | :-------------------: | :------: | :------------------: | :-------: | :-------: | :----------: |
+  | application_id        | no       | no                   | no        | yes       | no           |
+  | bitrate               | no       | no                   | yes       | no        | no           |
+  | guild_id              | yes      | no                   | yes       | no        | yes          |
+  | icon                  | no       | no                   | no        | yes       | no           |
+  | id                    | yes      | yes                  | yes       | yes       | yes          |
+  | last_message_id       | yes      | yes                  | no        | yes       | no           |
+  | last_pin_timestamp    | yes      | yes                  | no        | yes       | no           |
+  | name                  | yes      | no                   | yes       | yes       | yes          |
+  | nsfw                  | yes      | no                   | no        | no        | no           |
+  | owner_id              | no       | no                   | no        | yes       | no           |
+  | parent_id             | yes      | no                   | yes       | no        | no           |
+  | permission_overwrites | yes      | no                   | yes       | no        | yes          |
+  | position              | yes      | no                   | yes       | no        | yes          |
+  | rate_limit_per_user   | yes      | no                   | no       | no         | no           |
+  | recipients            | no       | yes<br>(One Element) | no        | yes       | no           |
+  | topic                 | yes      | no                   | yes       | no        | yes          |
+  | type                  | `0`      | `1`                  | `2`       | `3`       | `4`          |
+  | user_limit            | no       | no                   | yes       | no        | no           |
 
   Differences opposed to the Discord API Object:
     - `:recipients` is a MapSet of user ids
@@ -33,41 +34,45 @@ defmodule Crux.Structs.Channel do
   alias Crux.Structs.{Overwrite, Util}
 
   defstruct(
-    id: nil,
-    type: nil,
-    guild_id: nil,
-    position: nil,
-    permission_overwrites: %{},
-    name: nil,
-    topic: nil,
-    nsfw: nil,
-    last_message_id: nil,
-    bitrate: nil,
-    user_limit: nil,
-    recipients: %MapSet{},
-    icon: nil,
-    owner_id: nil,
     application_id: nil,
+    bitrate: nil,
+    guild_id: nil,
+    icon: nil,
+    id: nil,
+    last_message_id: nil,
+    last_pin_timestamp: nil,
+    name: nil,
+    nsfw: nil,
+    owner_id: nil,
     parent_id: nil,
-    last_pin_timestamp: nil
+    permission_overwrites: %{},
+    position: nil,
+    rate_limit_per_user: nil,
+    recipients: %MapSet{},
+    topic: nil,
+    type: nil,
+    user_limit: nil
   )
 
   @type t :: %__MODULE__{
-          id: integer(),
-          type: integer(),
-          guild_id: integer(),
-          position: integer(),
-          permission_overwrites: %{optional(integer()) => Overwrite.t()},
-          name: String.t(),
-          topic: String.t(),
-          nsfw: boolean(),
-          user_limit: non_neg_integer(),
-          recipients: MapSet.t(integer()),
+          application_id: Crux.Rest.snowflake(),
+          bitrate: integer(),
+          guild_id: Crux.Rest.snowflake(),
           icon: String.t(),
-          owner_id: integer(),
-          application_id: integer(),
-          parent_id: integer(),
-          last_pin_timestamp: String.t()
+          id: Crux.Rest.snowflake(),
+          last_message_id: Crux.Rest.snowflake(),
+          last_pin_timestamp: String.t(),
+          name: String.t(),
+          nsfw: boolean(),
+          owner_id: Crux.Rest.snowflake(),
+          parent_id: Crux.Rest.snowflake(),
+          permission_overwrites: %{optional(Crux.Rest.snowflake()) => Overwrite.t()},
+          position: integer(),
+          rate_limit_per_user: integer(),
+          recipients: MapSet.t(Crux.Rest.snowflake()),
+          topic: String.t(),
+          type: integer(),
+          user_limit: non_neg_integer()
         }
 
   @doc """
