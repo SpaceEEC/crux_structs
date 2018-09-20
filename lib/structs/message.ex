@@ -19,14 +19,14 @@ defmodule Crux.Structs.Message do
     id: nil,
     member: nil,
     mention_everyone: false,
-    mention_roles: [],
-    mentions: [],
+    mention_roles: MapSet.new(),
+    mentions: MapSet.new(),
     nonce: nil,
     pinned: false,
     timestamp: nil,
     tts: false,
     type: 0,
-    reactions: [],
+    reactions: %{},
     webhook_id: nil
   )
 
