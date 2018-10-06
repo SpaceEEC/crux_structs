@@ -178,23 +178,16 @@ defmodule Crux.Structs.Permissions do
 
   @doc ~S"""
     Serializes permissions into a map keyed by `t:name/0` with a boolean indicating whether the name is set.
-
-  > The administrator flag optionally implicitly grants all permissions.
   """
-  @spec to_map(
-          permissions :: resolvable(),
-          implicit :: boolean()
-        ) :: %{name() => boolean()}
-  def to_map(permissions, implicit \\ false) do
+  @spec to_map(permissions :: resolvable()) :: %{name() => boolean()}
+  def to_map(permissions) do
     permissions = resolve(permissions)
 
-    Enum.into(@names, %{}, &{&1, has(permissions, &1, implicit)})
+    Enum.into(@names, %{}, &{&1, has(permissions, &1)})
   end
 
   @doc ~S"""
     Serializes permissions into a list of set `t:name/0`s.
-
-  > The administrator flag optionally implicitly grants all permissions.
 
   ## Examples
     ```elixir
@@ -204,12 +197,12 @@ defmodule Crux.Structs.Permissions do
 
     ```
   """
-  @spec to_list(permissions :: resolvable(), implicit :: boolean()) :: [name()]
-  def to_list(permissions, implicit \\ false) do
+  @spec to_list(permissions :: resolvable()) :: [name()]
+  def to_list(permissions) do
     permissions = resolve(permissions)
 
     Enum.reduce(@permissions, [], fn {name, val}, acc ->
-      if has(permissions, val, implicit), do: [name | acc], else: acc
+      if has(permissions, val), do: [name | acc], else: acc
     end)
   end
 
@@ -258,15 +251,9 @@ defmodule Crux.Structs.Permissions do
   @doc ~S"""
     Check whether the second permissions are all present in the first.
 
-  > The administrator flag optionally implicitly grants all permissions.
-
   ## Examples
     ```elixir
-  # If implicit is set, administrator will grant all permissions
-  iex> Crux.Structs.Permissions.has(0x8, 0x7ff7fcf7, true)
-  true
-
-  # If implicit is not set, administrator won't grant any other permissions
+  # Administrator won't grant any other permissions
   iex> Crux.Structs.Permissions.has(0x8, 0x7ff7fcf7)
   false
 
@@ -286,18 +273,48 @@ defmodule Crux.Structs.Permissions do
   """
   @spec has(
           have :: resolvable(),
-          want :: resolvable(),
-          implicit :: boolean()
+          want :: resolvable()
         ) :: boolean()
-  def has(have, want, implicit \\ false) do
+  def has(have, want) do
     have = resolve(have)
+    want = resolve(want)
 
-    if implicit and (have &&& 0x8) == 0x8 do
-      true
-    else
-      want = resolve(want)
+    (have &&& want) == want
+  end
 
-      (have &&& want) == want
+  @doc """
+    Resolves permissions for a user in a guild, optionally including channel permission overwrites.
+
+  > Raises when the member is not cached.
+
+  > The guild-wide administrator flag or being owner implicitly grants all permissions, see `explicit/3`.
+  """
+  @spec implicit(
+          member :: Structs.Member.t() | Structs.User.t() | Crux.Rest.snowflake(),
+          guild :: Structs.Guild.t(),
+          channel :: Structs.Channel.t() | nil
+        ) :: t()
+  def implicit(member, guild, channel \\ nil)
+
+  def implicit(%Structs.User{id: user_id}, guild, channel), do: implicit(user_id, guild, channel)
+
+  def implicit(%Structs.Member{user: user_id}, guild, channel),
+    do: implicit(user_id, guild, channel)
+
+  def implicit(user_id, %Structs.Guild{owner_id: user_id}, _), do: @all |> new()
+
+  def implicit(user_id, guild, channel) do
+    permissions = explicit(user_id, guild)
+
+    cond do
+      has(permissions, :administrator) ->
+        @all |> new()
+
+      channel ->
+        explicit(user_id, guild, channel)
+
+      true ->
+        permissions
     end
   end
 
@@ -306,72 +323,53 @@ defmodule Crux.Structs.Permissions do
 
   > Raises when the member is not cached.
 
-  > The administrator flag or being owner implicitly grants all permissions.
+  > The administrator flag or being owner implicitly does not grant permissions, see `implicit/3`.
   """
-  @spec from(
+  @spec explicit(
           member :: Structs.Member.t() | Structs.User.t() | Crux.Rest.snowflake(),
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
-  def from(member, guild, channel \\ nil)
-  def from(%Structs.Member{user: user_id}, guild, channel), do: from(user_id, guild, channel)
-  def from(%Structs.User{id: user_id}, guild, channel), do: from(user_id, guild, channel)
+  def explicit(member, guild, channel \\ nil)
 
-  # from/2 -> compute_base_permissions from
+  def explicit(%Structs.Member{user: user_id}, guild, channel),
+    do: explicit(user_id, guild, channel)
+
+  def explicit(%Structs.User{id: user_id}, guild, channel), do: explicit(user_id, guild, channel)
+
+  # -> compute_base_permissions from
   # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
-  def from(user_id, %Structs.Guild{owner_id: user_id}, _), do: @all |> new()
-
-  def from(user_id, %Structs.Guild{id: guild_id, members: members, roles: roles}, nil) do
-    case members do
-      %{^user_id => member} ->
-        permissions =
-          roles
-          |> Map.get(guild_id)
-          |> Map.get(:permissions)
-
-        permissions =
-          roles
-          |> Map.take(member.roles)
-          |> Map.values()
-          |> Enum.reduce(permissions, fn %{permissions: permissions}, acc ->
-            acc ||| permissions
-          end)
-
-        if has(permissions, :administrator) do
-          @all
-        else
-          permissions
-        end
-        |> new()
-
-      _ ->
+  def explicit(user_id, %Structs.Guild{id: guild_id, members: members, roles: roles}, nil) do
+    member =
+      Map.get(members, user_id) ||
         raise """
           There is no member with the ID "#{user_id}" in the cache of the guild.
           The member is uncached or not in the guild.
         """
-    end
-  end
 
-  # from/3 -> compute_permissions from
-  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
-  def from(user_id, %Structs.Guild{} = guild, %Structs.Channel{} = channel) do
-    from(user_id, guild)
-    |> _from(user_id, guild, channel)
-  end
+    permissions =
+      roles
+      |> Map.get(guild_id)
+      |> Map.get(:permissions)
 
-  # _from/4 -> compuate_overwrites from
-  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
-  defp _from(%__MODULE__{bitfield: permissions}, _, _, _) when (permissions &&& 0x8) == 0x8 do
-    @all
+    member_roles = member.roles |> MapSet.put(guild_id)
+
+    roles
+    |> Map.take(member_roles)
+    |> Enum.map(fn {_id, %{permissions: permissions}} -> permissions end)
+    |> List.insert_at(0, permissions)
     |> new()
   end
 
-  defp _from(
-         %__MODULE__{bitfield: permissions},
-         user_id,
-         %Structs.Guild{id: guild_id, members: members},
-         %Structs.Channel{permission_overwrites: overwrites}
-       ) do
+  # -> compute_permissions and compute_overwrites from
+  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
+  def explicit(
+        user_id,
+        %Structs.Guild{id: guild_id, members: members} = guild,
+        %Structs.Channel{permission_overwrites: overwrites}
+      ) do
+    %{bitfield: permissions} = explicit(user_id, guild)
+
     # apply @everyone overwrite
     permissions =
       overwrites
