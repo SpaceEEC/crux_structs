@@ -5,7 +5,6 @@ defmodule Crux.Structs.AuditLog do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs
   alias Crux.Structs.{AuditLogEntry, User, Util, Webhook}
 
   defstruct(

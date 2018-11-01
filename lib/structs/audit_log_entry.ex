@@ -37,6 +37,9 @@ defmodule Crux.Structs.AuditLogEntry do
     message_delete: 72
   }
 
+  @typedoc """
+    Union type of audit log event name atoms.
+  """
   @type event_name ::
           :guild_update
           | :channel_create

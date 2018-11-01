@@ -1,8 +1,6 @@
 defmodule Crux.Structs.AuditLogChange do
   @moduledoc """
     Represents a Discord [Audit Log Change Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-change)
-
-  > Note that the Role object returned by Discord in audit logs is a partial role that only contains id and string.
   """
 
   @behaviour Crux.Structs
@@ -16,6 +14,11 @@ defmodule Crux.Structs.AuditLogChange do
     key: nil
   )
 
+  @typedoc """
+    Represents a value before or after a change.
+
+  > Note that the Role object returned by Discord in audit logs is a partial role that only contains id and name.
+  """
   @type audit_log_change_value ::
           String.t()
           | Crux.Rest.snowflake()
