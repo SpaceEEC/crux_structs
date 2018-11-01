@@ -5,7 +5,6 @@ defmodule Crux.Structs.AuditLogEntry do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs
   alias Crux.Structs.{AuditLogChange, Util}
 
   @audit_log_events %{
@@ -85,7 +84,7 @@ defmodule Crux.Structs.AuditLogEntry do
   defstruct(
     id: nil,
     target_id: nil,
-    changes: [],
+    changes: %{},
     user_id: nil,
     action_type: nil,
     options: nil,
@@ -95,7 +94,7 @@ defmodule Crux.Structs.AuditLogEntry do
   @type t :: %__MODULE__{
           id: Crux.Rest.snowflake(),
           target_id: Crux.Rest.snowflake(),
-          changes: [AuditLogChange.t()],
+          changes: %{String.t() => AuditLogChange.t()},
           user_id: Crux.Rest.snowflake(),
           action_type: non_neg_integer(),
           options: %{} | nil,
@@ -113,7 +112,7 @@ defmodule Crux.Structs.AuditLogEntry do
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
       |> Map.update!(:target_id, &Util.id_to_int/1)
-      |> Map.update(:changes, [], &Structs.create(&1, AuditLogChange))
+      |> Map.update(:changes, %{}, &Util.raw_data_to_map(&1, AuditLogChange, :key))
       |> Map.update!(:user_id, &Util.id_to_int/1)
 
     struct(__MODULE__, data)
