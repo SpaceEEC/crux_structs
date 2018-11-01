@@ -9,15 +9,15 @@ defmodule Crux.Structs.AuditLog do
   alias Crux.Structs.{AuditLogEntry, User, Util, Webhook}
 
   defstruct(
-    webhooks: nil,
-    users: nil,
-    audit_log_entries: nil
+    webhooks: %{},
+    users: %{},
+    audit_log_entries: %{}
   )
 
   @type t :: %__MODULE__{
-          webhooks: [Webhook.t()],
-          users: [User.t()],
-          audit_log_entries: [AuditLogEntry.t()]
+          webhooks: %{Crux.Rest.snowflake() => Webhook.t()},
+          users: %{Crux.Rest.snowflake() => User.t()},
+          audit_log_entries: %{Crux.Rest.snowflake() => AuditLogEntry.t()}
         }
 
   @doc """
@@ -29,21 +29,9 @@ defmodule Crux.Structs.AuditLog do
     data =
       data
       |> Util.atomify()
-      |> Map.update(
-        :webhooks,
-        [],
-        &Enum.map(&1, fn webhook -> Structs.create(webhook, Webhook) end)
-      )
-      |> Map.update(
-        :users,
-        [],
-        &Enum.map(&1, fn user -> Structs.create(user, User) end)
-      )
-      |> Map.update(
-        :audit_log_entries,
-        [],
-        &Enum.map(&1, fn entry -> Structs.create(entry, AuditLogEntry) end)
-      )
+      |> Map.update(:webhooks, [], &Util.raw_data_to_map(&1, Webhook))
+      |> Map.update(:users, [], &Util.raw_data_to_map(&1, User))
+      |> Map.update(:audit_log_entries, [], &Util.raw_data_to_map(&1, AuditLogEntry))
 
     struct(__MODULE__, data)
   end

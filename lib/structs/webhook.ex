@@ -22,12 +22,12 @@ defmodule Crux.Structs.Webhook do
 
   @type t :: %__MODULE__{
           avatar: String.t() | nil,
-          id: integer(),
-          channel_id: integer(),
-          guild_id: integer() | nil,
+          id: Crux.Rest.snowflake(),
+          channel_id: Crux.Rest.snowflake(),
+          guild_id: Crux.Rest.snowflake() | nil,
           name: String.t() | nil,
           token: String.t(),
-          user: integer() | nil
+          user: Crux.Rest.snowflake() | nil
         }
 
   @doc """

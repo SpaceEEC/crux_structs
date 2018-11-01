@@ -1,7 +1,10 @@
 defmodule Crux.Structs.AuditLogChange do
   @moduledoc """
     Represents a Discord [Audit Log Change Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-change)
+
+  > Note that the Role object returned by Discord in audit logs is a partial role that only contains id and string.
   """
+
   @behaviour Crux.Structs
 
   alias Crux.Structs
@@ -13,7 +16,13 @@ defmodule Crux.Structs.AuditLogChange do
     key: nil
   )
 
-  @type audit_log_change_value :: String.t() | integer() | boolean() | [Role] | [Overwrite]
+  @type audit_log_change_value ::
+          String.t()
+          | Crux.Rest.snowflake()
+          | integer()
+          | boolean()
+          | [Role.t()]
+          | [Overwrite.t()]
 
   @type t :: %__MODULE__{
           new_value: audit_log_change_value() | nil,
@@ -35,26 +44,25 @@ defmodule Crux.Structs.AuditLogChange do
       case data.key do
         "$add" ->
           data
-          |> Map.update(:new_value, nil, &Enum.map(&1, fn role -> Structs.create(role, Role) end))
-          |> Map.update(:old_value, nil, &Enum.map(&1, fn role -> Structs.create(role, Role) end))
+          |> Map.update(:new_value, nil, &Structs.create(&1, Role))
+          |> Map.update(:old_value, nil, &Structs.create(&1, Role))
 
         "$remove" ->
           data
-          |> Map.update(:new_value, nil, &Enum.map(&1, fn role -> Structs.create(role, Role) end))
-          |> Map.update(:old_value, nil, &Enum.map(&1, fn role -> Structs.create(role, Role) end))
+          |> Map.update(:new_value, nil, &Structs.create(&1, Role))
+          |> Map.update(:old_value, nil, &Structs.create(&1, Role))
 
         "permission_overwrites" ->
           data
-          |> Map.update(
-            :new_value,
-            nil,
-            &Enum.map(&1, fn overwrite -> Structs.create(overwrite, Overwrite) end)
-          )
-          |> Map.update(
-            :old_value,
-            nil,
-            &Enum.map(&1, fn overwrite -> Structs.create(overwrite, Overwrite) end)
-          )
+          |> Map.update(:new_value, nil, &Structs.create(&1, Overwrite))
+          |> Map.update(:old_value, nil, &Structs.create(&1, Overwrite))
+
+        # Any key that ends with id is a snowflake
+        # Guard is a bit more strict just to be safe
+        key when key == "id" or binary_part(key, byte_size(key), -3) == "_id" ->
+          data
+          |> Map.update(:new_value, nil, &Util.id_to_int/1)
+          |> Map.update(:old_value, nil, &Util.id_to_int/1)
 
         _ ->
           data

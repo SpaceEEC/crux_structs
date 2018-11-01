@@ -70,7 +70,6 @@ defmodule Crux.Structs.AuditLogEntry do
   @doc """
     Returns a map of all audit log event names with their id
   """
-  @event_names Map.keys(@audit_log_events)
   @spec events() :: %{event_name => non_neg_integer()}
   def events, do: @audit_log_events
 
@@ -83,7 +82,7 @@ defmodule Crux.Structs.AuditLogEntry do
   defstruct(
     id: nil,
     target_id: nil,
-    changes: nil,
+    changes: [],
     user_id: nil,
     action_type: nil,
     options: nil,
@@ -91,12 +90,12 @@ defmodule Crux.Structs.AuditLogEntry do
   )
 
   @type t :: %__MODULE__{
-          id: integer(),
-          target_id: integer(),
-          changes: [AuditLogChange.t()] | nil,
-          user_id: integer(),
-          action_type: integer(),
-          options: AuditLogOptionalEntry.t() | nil,
+          id: Crux.Rest.snowflake(),
+          target_id: Crux.Rest.snowflake(),
+          changes: [AuditLogChange.t()],
+          user_id: Crux.Rest.snowflake(),
+          action_type: non_neg_integer(),
+          options: %{} | nil,
           reason: String.t() | nil
         }
 
@@ -111,11 +110,7 @@ defmodule Crux.Structs.AuditLogEntry do
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
       |> Map.update!(:target_id, &Util.id_to_int/1)
-      |> Map.update(
-        :changes,
-        nil,
-        fn changes -> Enum.map(changes, &Structs.create(&1, AuditLogChange)) end
-      )
+      |> Map.update(:changes, [], &Structs.create(&1, AuditLogChange))
       |> Map.update!(:user_id, &Util.id_to_int/1)
 
     struct(__MODULE__, data)
