@@ -20,7 +20,7 @@ defmodule Crux.Structs.Role do
   )
 
   @type t :: %__MODULE__{
-          id: integer(),
+          id: Crux.Rest.snowflake(),
           name: String.t(),
           color: integer(),
           hoist: boolean(),
@@ -28,7 +28,7 @@ defmodule Crux.Structs.Role do
           permissions: integer(),
           managed: boolean(),
           mentionable: boolean(),
-          guild_id: integer()
+          guild_id: Crux.Rest.snowflake()
         }
 
   @doc """

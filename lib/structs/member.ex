@@ -21,13 +21,13 @@ defmodule Crux.Structs.Member do
   )
 
   @type t :: %__MODULE__{
-          user: integer(),
+          user: Crux.Rest.snowflake(),
           nick: String.t() | nil,
-          roles: MapSet.t(integer()),
+          roles: MapSet.t(Crux.Rest.snowflake()),
           joined_at: String.t(),
           deaf: boolean() | nil,
           mute: boolean() | nil,
-          guild_id: integer() | nil
+          guild_id: Crux.Rest.snowflake() | nil
         }
 
   @doc """

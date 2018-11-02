@@ -42,31 +42,31 @@ defmodule Crux.Structs.Guild do
   )
 
   @type t :: %__MODULE__{
-          id: integer(),
+          id: Crux.Rest.snowflake(),
           name: String.t(),
           icon: String.t() | nil,
           owner_id: String.t(),
           region: String.t(),
-          afk_channel_id: integer() | nil,
+          afk_channel_id: Crux.Rest.snowflake() | nil,
           afk_timeout: integer(),
           embed_enabled: boolean(),
           verification_level: integer(),
           default_message_notifications: integer(),
           explicit_content_filter: integer(),
-          roles: %{optional(integer()) => Role.t()},
-          emojis: MapSet.t(integer()),
+          roles: %{optional(Crux.Rest.snowflake()) => Role.t()},
+          emojis: MapSet.t(Crux.Rest.snowflake()),
           features: MapSet.t(String.t()),
           mfa_level: integer(),
-          application_id: integer() | nil,
+          application_id: Crux.Rest.snowflake() | nil,
           widget_enabled: boolean(),
           joined_at: String.t(),
           large: boolean(),
           unavailable: boolean(),
           member_count: integer(),
-          voice_states: %{optional(integer()) => VoiceState.t()},
-          members: %{optional(integer()) => Member.t()},
-          channels: MapSet.t(integer())
-          # presences: %{optional(integer()) => Presence.t()}
+          voice_states: %{optional(Crux.Rest.snowflake()) => VoiceState.t()},
+          members: %{optional(Crux.Rest.snowflake()) => Member.t()},
+          channels: MapSet.t(Crux.Rest.snowflake())
+          # presences: %{optional(Crux.Rest.snowflake()) => Presence.t()}
         }
 
   @doc """

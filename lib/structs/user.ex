@@ -19,7 +19,7 @@ defmodule Crux.Structs.User do
           avatar: String.t() | nil,
           bot: boolean(),
           discriminator: String.t(),
-          id: integer(),
+          id: Crux.Rest.snowflake(),
           username: String.t()
         }
 

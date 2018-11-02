@@ -20,7 +20,7 @@ defmodule Crux.Structs.Attachment do
   )
 
   @type t :: %__MODULE__{
-          id: integer(),
+          id: Crux.Rest.snowflake(),
           filename: String.t(),
           size: integer(),
           url: String.t(),
@@ -31,7 +31,7 @@ defmodule Crux.Structs.Attachment do
 
   @doc """
     Creates a `Crux.Structs.Attachment` struct from raw data.
-    
+
   > Automatically invoked by `Crux.Structs.create/2`.
   """
   def create(data) do

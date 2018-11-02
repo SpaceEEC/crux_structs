@@ -1,6 +1,9 @@
 defmodule Crux.Structs.Message do
   @moduledoc """
     Represents a Discord [Message Object](https://discordapp.com/developers/docs/resources/channel#message-object-message-structure).
+
+    Differences opposed to the Discord API Object:
+    - `:mentions` is a MapSet of user ids
   """
 
   @behaviour Crux.Structs
@@ -34,23 +37,23 @@ defmodule Crux.Structs.Message do
           attachments: [Attachment.t()],
           # Might be webhook
           author: User.t(),
-          channel_id: integer(),
+          channel_id: Crux.Rest.snowflake(),
           content: String.t(),
           edited_timestamp: String.t(),
           embeds: [Embed.t()],
-          guild_id: integer() | nil,
-          id: integer(),
+          guild_id: Crux.Rest.snowflake() | nil,
+          id: Crux.Rest.snowflake(),
           member: Member.t() | nil,
           mention_everyone: boolean(),
-          mention_roles: MapSet.t(integer()),
-          mentions: MapSet.t(integer()),
+          mention_roles: MapSet.t(Crux.Rest.snowflake()),
+          mentions: MapSet.t(Crux.Rest.snowflake()),
           nonce: String.t() | nil,
           pinned: boolean(),
           timestamp: String.t(),
           tts: boolean(),
           type: integer(),
           reactions: %{String.t() => Reaction.t()},
-          webhook_id: integer() | nil
+          webhook_id: Crux.Rest.snowflake() | nil
         }
 
   @doc """

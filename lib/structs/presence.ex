@@ -1,6 +1,9 @@
 defmodule Crux.Structs.Presence do
   @moduledoc """
     Represents a Discord [Presence Object](https://discordapp.com/developers/docs/topics/gateway#presence-update-presence-update-event-fields).
+
+  Differences opposed to the Discord API Object:
+    - `:user` is just the user id
   """
 
   @behaviour Crux.Structs
@@ -16,10 +19,10 @@ defmodule Crux.Structs.Presence do
   )
 
   @type t :: %__MODULE__{
-          user: integer(),
-          # roles: [integer()],
+          user: Crux.Rest.snowflake(),
+          # roles: [Crux.Rest.snowflake()],
           game: map() | nil,
-          # guild_id: integer() | nil,
+          # guild_id: Crux.Rest.snowflake() | nil,
           status: String.t()
         }
 

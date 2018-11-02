@@ -1,6 +1,9 @@
 defmodule Crux.Structs.Emoji do
   @moduledoc """
   Represents a Discord [Emoji Object](https://discordapp.com/developers/docs/resources/emoji#emoji-object-emoji-structure).
+
+  Differences opposed to the Discord API Object:
+    - `:user` is just the user id
   """
 
   @behaviour Crux.Structs
@@ -19,10 +22,10 @@ defmodule Crux.Structs.Emoji do
 
   @type t :: %__MODULE__{
           animated: boolean() | nil,
-          id: integer() | nil,
+          id: Crux.Rest.snowflake() | nil,
           name: String.t(),
-          roles: MapSet.t(integer()),
-          user: integer() | nil,
+          roles: MapSet.t(Crux.Rest.snowflake()),
+          user: Crux.Rest.snowflake() | nil,
           require_colons: boolean() | nil,
           managed: boolean() | nil
         }

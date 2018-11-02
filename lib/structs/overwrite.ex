@@ -15,7 +15,7 @@ defmodule Crux.Structs.Overwrite do
   )
 
   @type t :: %__MODULE__{
-          id: integer(),
+          id: Crux.Rest.snowflake(),
           type: String.t(),
           allow: integer(),
           deny: integer()

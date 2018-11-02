@@ -21,9 +21,9 @@ defmodule Crux.Structs.VoiceState do
   )
 
   @type t :: %__MODULE__{
-          guild_id: integer(),
-          channel_id: integer() | nil,
-          user_id: integer(),
+          guild_id: Crux.Rest.snowflake(),
+          channel_id: Crux.Rest.snowflake() | nil,
+          user_id: Crux.Rest.snowflake(),
           session_id: String.t(),
           deaf: boolean(),
           mute: boolean(),
