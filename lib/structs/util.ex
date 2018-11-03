@@ -1,7 +1,9 @@
 defmodule Crux.Structs.Util do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Collection of util functions.
   """
+
   alias Crux.Structs
 
   @doc ~s"""
@@ -25,6 +27,7 @@ defmodule Crux.Structs.Util do
     ```
   """
   @spec id_to_int(id :: String.t() | integer() | nil) :: integer() | nil | no_return()
+  @doc since: "0.1.0"
   def id_to_int(str) when is_bitstring(str), do: String.to_integer(str)
   def id_to_int(already) when is_integer(already), do: already
   def id_to_int(nil), do: nil
@@ -79,6 +82,7 @@ defmodule Crux.Structs.Util do
 
   """
   @spec raw_data_to_map(data :: list, target :: module(), key :: atom()) :: map()
+  @doc since: "0.1.0"
   def raw_data_to_map(data, target, key \\ :id) do
     Structs.create(data, target)
     |> Map.new(fn struct -> {Map.fetch!(struct, key), struct} end)
@@ -102,7 +106,8 @@ defmodule Crux.Structs.Util do
 
     ```
   """
-  @spec string_to_atom(string :: String.t() | atom()) :: atom()
+  @spec string_to_atom(input :: String.t() | atom()) :: atom()
+  @doc since: "0.1.0"
   def string_to_atom(string) when is_bitstring(string), do: String.to_atom(string)
   def string_to_atom(atom) when is_atom(atom), do: atom
 
@@ -146,6 +151,7 @@ defmodule Crux.Structs.Util do
     ```
   """
   @spec atomify(input :: map() | list()) :: map() | list()
+  @doc since: "0.1.0"
   def atomify(input)
   def atomify(%{__struct__: _struct} = struct), do: struct |> Map.from_struct() |> atomify()
   def atomify(%{} = map), do: Map.new(map, &atomify_kv/1)

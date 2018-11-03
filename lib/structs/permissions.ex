@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Permissions do
+  @moduledoc since: "0.1.3"
   @moduledoc """
     Custom non discord api struct to help with working with permissions.
   """
@@ -43,25 +44,29 @@ defmodule Crux.Structs.Permissions do
     Returns a map of permissions, keyed under their permission name with the bit value.
   """
   @spec permissions() :: %{permission_name() => non_neg_integer()}
-  def permissions, do: @permissions
+  @doc since: "0.1.3"
+  def permissions(), do: @permissions
 
   @permission_names @permissions |> Map.keys()
   @doc """
   Returns a list of permission keys.
   """
   @spec permission_names() :: [permission_name()]
-  def permission_names, do: @permission_names
+  @doc since: "0.1.3"
+  def permission_names(), do: @permission_names
 
   @permission_all @permissions |> Map.values() |> Enum.reduce(&|||/2)
   @doc """
     Returns the integer value of all permissions together.
   """
   @spec permission_all :: pos_integer()
-  def permission_all, do: @permission_all
+  @doc since: "0.1.3"
+  def permission_all(), do: @permission_all
 
   @typedoc """
     Union type of all valid permission name atoms
   """
+  @typedoc since: "0.1.3"
   @type permission_name ::
           :create_instant_invite
           | :kick_members
@@ -98,6 +103,7 @@ defmodule Crux.Structs.Permissions do
   @typedoc """
     Represents a `Crux.Struct.Permissions`.
   """
+  @typedoc since: "0.1.3"
   @type t :: %__MODULE__{
           bitfield: non_neg_integer()
         }
@@ -105,6 +111,7 @@ defmodule Crux.Structs.Permissions do
   @typedoc """
     All valid types which can be directly resolved into a permissions bitfield.
   """
+  @typedoc since: "0.1.3"
   @type permissions :: t() | [permission_name()] | non_neg_integer() | permission_name()
 
   @doc ~S"""
@@ -139,6 +146,7 @@ defmodule Crux.Structs.Permissions do
   ```
   """
   @spec resolve(permissions :: permissions()) :: non_neg_integer()
+  @doc since: "0.1.3"
   def resolve(permissions)
 
   def resolve(%__MODULE__{bitfield: bitfield}), do: bitfield
@@ -171,6 +179,7 @@ defmodule Crux.Structs.Permissions do
     Creates a new `Crux.Structs.Permissions` struct from a valid `t:permissions/0`.
   """
   @spec new(permissions :: permissions()) :: t()
+  @doc since: "0.1.3"
   def new(permissions), do: %__MODULE__{bitfield: resolve(permissions)}
 
   @doc """
@@ -179,6 +188,7 @@ defmodule Crux.Structs.Permissions do
   > The administrator flag implicitly grants all permissions.
   """
   @spec to_map(permissions :: permissions()) :: %{permission_name() => boolean()}
+  @doc since: "0.1.3"
   def to_map(permissions) do
     permissions = resolve(permissions)
 
@@ -201,6 +211,7 @@ defmodule Crux.Structs.Permissions do
     ```
   """
   @spec to_list(permissions :: permissions()) :: [permission_name()]
+  @doc since: "0.1.3"
   def to_list(permissions) do
     permissions = resolve(permissions)
 
@@ -221,6 +232,7 @@ defmodule Crux.Structs.Permissions do
     ```
   """
   @spec add(base :: permissions(), to_add :: permissions()) :: t()
+  @doc since: "0.1.3"
   def add(base, to_add) do
     to_add = to_add |> resolve()
 
@@ -242,6 +254,7 @@ defmodule Crux.Structs.Permissions do
     ```
   """
   @spec remove(base :: permissions(), to_remove :: permissions()) :: t()
+  @doc since: "0.1.3"
   def remove(base, to_remove) do
     to_remove = to_remove |> resolve() |> bnot()
 
@@ -272,6 +285,7 @@ defmodule Crux.Structs.Permissions do
     ```
   """
   @spec has(permissions(), permissions()) :: boolean()
+  @doc since: "0.1.3"
   def has(current, want) do
     current = resolve(current)
 
@@ -296,6 +310,7 @@ defmodule Crux.Structs.Permissions do
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
+  @doc since: "0.1.3"
   def from(member, guild, channel \\ nil)
   def from(%Structs.Member{user: user_id}, guild, channel), do: from(user_id, guild, channel)
   def from(%Structs.User{id: user_id}, guild, channel), do: from(user_id, guild, channel)

@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Presence do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Presence Object](https://discordapp.com/developers/docs/topics/gateway#presence-update-presence-update-event-fields).
 
@@ -18,6 +19,7 @@ defmodule Crux.Structs.Presence do
     status: "offline"
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           user: Crux.Rest.snowflake(),
           # roles: [Crux.Rest.snowflake()],
@@ -31,6 +33,7 @@ defmodule Crux.Structs.Presence do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   def create(data) do
     data =
       data

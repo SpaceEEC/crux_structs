@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Overwrite do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Overwrite Object](https://discordapp.com/developers/docs/resources/channel#overwrite-object-overwrite-structure).
   """
@@ -14,6 +15,7 @@ defmodule Crux.Structs.Overwrite do
     deny: 0
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Crux.Rest.snowflake(),
           type: String.t(),
@@ -26,6 +28,7 @@ defmodule Crux.Structs.Overwrite do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   def create(data) do
     data =
       data

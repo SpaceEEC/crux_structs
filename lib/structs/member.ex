@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Member do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Guild Member Object](https://discordapp.com/developers/docs/resources/guild#guild-member-object-guild-member-structure).
 
@@ -20,6 +21,7 @@ defmodule Crux.Structs.Member do
     guild_id: nil
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           user: Crux.Rest.snowflake(),
           nick: String.t() | nil,
@@ -35,6 +37,7 @@ defmodule Crux.Structs.Member do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   def create(data) do
     data =
       data
@@ -65,6 +68,7 @@ defmodule Crux.Structs.Member do
     ```
   """
   @spec to_mention(user :: Crux.Structs.Member.t()) :: String.t()
+  @doc since: "0.1.1"
   def to_mention(%__MODULE__{user: id, nick: nil}), do: "<@#{id}>"
   def to_mention(%__MODULE__{user: id}), do: "<@!#{id}>"
 

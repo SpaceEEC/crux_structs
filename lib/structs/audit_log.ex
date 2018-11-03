@@ -1,4 +1,5 @@
 defmodule Crux.Structs.AuditLog do
+  @moduledoc since: "0.1.6"
   @moduledoc """
     Represents a Discord [Audit Log Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-object)
   """
@@ -13,6 +14,7 @@ defmodule Crux.Structs.AuditLog do
     audit_log_entries: %{}
   )
 
+  @typedoc since: "0.1.6"
   @type t :: %__MODULE__{
           webhooks: %{Crux.Rest.snowflake() => Webhook.t()},
           users: %{Crux.Rest.snowflake() => User.t()},
@@ -24,6 +26,7 @@ defmodule Crux.Structs.AuditLog do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.6"
   def create(data) do
     data =
       data

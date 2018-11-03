@@ -1,4 +1,5 @@
 defmodule Crux.Structs.VoiceState do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Voice State Object](https://discordapp.com/developers/docs/resources/voice#voice-state-object-voice-state-structure)
   """
@@ -20,6 +21,7 @@ defmodule Crux.Structs.VoiceState do
     suppress: nil
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           guild_id: Crux.Rest.snowflake(),
           channel_id: Crux.Rest.snowflake() | nil,
@@ -37,6 +39,7 @@ defmodule Crux.Structs.VoiceState do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   def create(data) do
     data =
       data

@@ -65,6 +65,7 @@ defmodule Crux.Structs do
   """
   @spec create(data :: map(), target :: module()) :: struct()
   @spec create(data :: list(), target :: module()) :: list(struct())
+  @doc since: "0.1.0"
   def create(data, target)
   def create(nil, _target), do: nil
 

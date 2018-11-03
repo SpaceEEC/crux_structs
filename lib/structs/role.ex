@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Role do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Role Object](https://discordapp.com/developers/docs/topics/permissions#role-object-role-structure).
   """
@@ -19,6 +20,7 @@ defmodule Crux.Structs.Role do
     guild_id: nil
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Crux.Rest.snowflake(),
           name: String.t(),
@@ -36,6 +38,7 @@ defmodule Crux.Structs.Role do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   def create(data) do
     data =
       data
@@ -58,6 +61,7 @@ defmodule Crux.Structs.Role do
     ```
   """
   @spec to_mention(user :: Crux.Structs.Role.t()) :: String.t()
+  @doc since: "0.1.1"
   def to_mention(%__MODULE__{id: id}), do: "<@&#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Role do

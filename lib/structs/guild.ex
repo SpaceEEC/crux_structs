@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Guild do
+  @moduledoc since: "0.1.0"
   @moduledoc """
   Represents a Discord [Guild Object](https://discordapp.com/developers/docs/resources/guild#guild-object-guild-structure).
 
@@ -41,6 +42,7 @@ defmodule Crux.Structs.Guild do
     # presences: %{}
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Crux.Rest.snowflake(),
           name: String.t(),
@@ -74,7 +76,8 @@ defmodule Crux.Structs.Guild do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  # TODO: Write a doctest
+  # TODO: Write a test
+  @doc since: "0.1.0"
   def create(data) do
     data =
       data

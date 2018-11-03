@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Embed do
+  @moduledoc since: "0.1.0"
   @moduledoc """
   Represents a Discord [Embed Object](https://discordapp.com/developers/docs/resources/channel#embed-object-embed-structure).
 
@@ -23,6 +24,7 @@ defmodule Crux.Structs.Embed do
     fields: []
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           title: String.t() | nil,
           type: String.t() | nil,

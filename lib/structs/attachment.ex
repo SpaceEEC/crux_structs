@@ -1,4 +1,5 @@
 defmodule Crux.Structs.Attachment do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Attachment Object](https://discordapp.com/developers/docs/resources/channel#attachment-object-attachment-structure)
 
@@ -19,6 +20,7 @@ defmodule Crux.Structs.Attachment do
     width: nil
   )
 
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Crux.Rest.snowflake(),
           filename: String.t(),
