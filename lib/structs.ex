@@ -1,4 +1,5 @@
 defmodule Crux.Structs do
+  @moduledoc since: "0.1.0"
   @moduledoc """
     Provides a unified function to create one or a list of structs, invoking their `create/1` function if available.
   """
