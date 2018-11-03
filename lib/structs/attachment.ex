@@ -1,5 +1,4 @@
 defmodule Crux.Structs.Attachment do
-  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Attachment Object](https://discordapp.com/developers/docs/resources/channel#attachment-object-attachment-structure)
 
@@ -9,6 +8,9 @@ defmodule Crux.Structs.Attachment do
   @behaviour Crux.Structs
 
   alias Crux.Structs.Util
+  require Util
+
+  Util.modulesince("0.1.0")
 
   defstruct(
     id: nil,
@@ -20,7 +22,8 @@ defmodule Crux.Structs.Attachment do
     width: nil
   )
 
-  @typedoc since: "0.1.0"
+  Util.typesince("0.1.0")
+
   @type t :: %__MODULE__{
           id: Crux.Rest.snowflake(),
           filename: String.t(),
@@ -36,6 +39,8 @@ defmodule Crux.Structs.Attachment do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  Util.since("0.1.0")
+
   def create(data) do
     data =
       data

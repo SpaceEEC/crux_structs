@@ -1,10 +1,13 @@
 defmodule Crux.Structs.Util do
-  @moduledoc since: "0.1.0"
   @moduledoc """
     Collection of util functions.
   """
 
   alias Crux.Structs
+
+  if Version.compare(System.version(), "1.7.0") != :lt do
+    @moduledoc since: "0.1.0"
+  end
 
   @doc ~s"""
     Converts a string, likely Discord snowflake, to an integer
@@ -27,7 +30,12 @@ defmodule Crux.Structs.Util do
     ```
   """
   @spec id_to_int(id :: String.t() | integer() | nil) :: integer() | nil | no_return()
-  @doc since: "0.1.0"
+  if Version.compare(System.version(), "1.7.0") != :lt do
+    @doc since: "0.1.0"
+  else
+    @since "0.1.0"
+  end
+
   def id_to_int(str) when is_bitstring(str), do: String.to_integer(str)
   def id_to_int(already) when is_integer(already), do: already
   def id_to_int(nil), do: nil
@@ -82,7 +90,12 @@ defmodule Crux.Structs.Util do
 
   """
   @spec raw_data_to_map(data :: list, target :: module(), key :: atom()) :: map()
-  @doc since: "0.1.0"
+  if Version.compare(System.version(), "1.7.0") != :lt do
+    @doc since: "0.1.0"
+  else
+    @since "0.1.0"
+  end
+
   def raw_data_to_map(data, target, key \\ :id) do
     Structs.create(data, target)
     |> Map.new(fn struct -> {Map.fetch!(struct, key), struct} end)
@@ -107,7 +120,12 @@ defmodule Crux.Structs.Util do
     ```
   """
   @spec string_to_atom(input :: String.t() | atom()) :: atom()
-  @doc since: "0.1.0"
+  if Version.compare(System.version(), "1.7.0") != :lt do
+    @doc since: "0.1.0"
+  else
+    @since "0.1.0"
+  end
+
   def string_to_atom(string) when is_bitstring(string), do: String.to_atom(string)
   def string_to_atom(atom) when is_atom(atom), do: atom
 
@@ -151,7 +169,12 @@ defmodule Crux.Structs.Util do
     ```
   """
   @spec atomify(input :: map() | list()) :: map() | list()
-  @doc since: "0.1.0"
+  if Version.compare(System.version(), "1.7.0") != :lt do
+    @doc since: "0.1.0"
+  else
+    @since "0.1.0"
+  end
+
   def atomify(input)
   def atomify(%{__struct__: _struct} = struct), do: struct |> Map.from_struct() |> atomify()
   def atomify(%{} = map), do: Map.new(map, &atomify_kv/1)
@@ -159,4 +182,34 @@ defmodule Crux.Structs.Util do
   def atomify(other), do: other
 
   defp atomify_kv({k, v}), do: {string_to_atom(k), atomify(v)}
+
+  # TODO: Remove this as soon as 1.7.0 is required
+  if Version.compare(System.version(), "1.7.0") != :lt do
+    defmacro since(version) when is_binary(version) do
+      quote do
+        @doc since: unquote(version)
+      end
+    end
+
+    defmacro modulesince(version) when is_binary(version) do
+      quote do
+        @moduledoc since: unquote(version)
+      end
+    end
+
+    defmacro typesince(version) when is_binary(version) do
+      quote do
+        @typedoc since: unquote(version)
+      end
+    end
+  else
+    defmacro since(version) when is_binary(version) do
+      quote do
+        @since unquote(version)
+      end
+    end
+
+    defmacro modulesince(version) when is_binary(version), do: nil
+    defmacro typesince(version) when is_binary(version), do: nil
+  end
 end

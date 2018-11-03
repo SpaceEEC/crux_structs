@@ -1,5 +1,4 @@
 defmodule Crux.Structs.Invite do
-  @moduledoc since: "0.1.0"
   @moduledoc """
   Represents a Discord [Invite Object](https://discordapp.com/developers/docs/resources/invite#invite-object)
 
@@ -31,6 +30,9 @@ defmodule Crux.Structs.Invite do
 
   alias Crux.Structs
   alias Crux.Structs.{Channel, Guild, User, Util}
+  require Util
+
+  Util.modulesince("0.1.0")
 
   defstruct(
     # always
@@ -49,7 +51,8 @@ defmodule Crux.Structs.Invite do
     approximate_member_count: nil
   )
 
-  @typedoc since: "0.1.0"
+  Util.typesince("0.1.0")
+
   @type t :: %__MODULE__{
           code: String.t(),
           guild: Guild.t(),
@@ -70,7 +73,8 @@ defmodule Crux.Structs.Invite do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.0"
+  Util.since("0.1.0")
+
   def create(data) do
     data =
       data

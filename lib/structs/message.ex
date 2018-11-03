@@ -1,5 +1,4 @@
 defmodule Crux.Structs.Message do
-  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Message Object](https://discordapp.com/developers/docs/resources/channel#message-object-message-structure).
 
@@ -11,6 +10,9 @@ defmodule Crux.Structs.Message do
 
   alias Crux.Structs
   alias Crux.Structs.{Attachment, Embed, Member, Reaction, User, Util}
+  require Util
+
+  Util.modulesince("0.1.0")
 
   defstruct(
     attachments: [],
@@ -34,7 +36,8 @@ defmodule Crux.Structs.Message do
     webhook_id: nil
   )
 
-  @typedoc since: "0.1.0"
+  Util.typesince("0.1.0")
+
   @type t :: %__MODULE__{
           attachments: [Attachment.t()],
           # Might be webhook
@@ -63,7 +66,8 @@ defmodule Crux.Structs.Message do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.0"
+  Util.since("0.1.0")
+
   def create(data) do
     data =
       data

@@ -1,5 +1,4 @@
 defmodule Crux.Structs.AuditLogEntry do
-  @moduledoc since: "0.1.6"
   @moduledoc """
     Represents a Discord [Audit Log Object](https://discordapp.com/developers/docs/resources/audit-log)
   """
@@ -7,6 +6,9 @@ defmodule Crux.Structs.AuditLogEntry do
   @behaviour Crux.Structs
 
   alias Crux.Structs.{AuditLogChange, Util}
+  require Util
+
+  Util.modulesince("0.1.6")
 
   @audit_log_events %{
     guild_update: 1,
@@ -40,7 +42,8 @@ defmodule Crux.Structs.AuditLogEntry do
   @typedoc """
     Union type of audit log event name atoms.
   """
-  @typedoc since: "0.1.6"
+  Util.typesince("0.1.6")
+
   @type event_name ::
           :guild_update
           | :channel_create
@@ -75,14 +78,14 @@ defmodule Crux.Structs.AuditLogEntry do
     Returns a map of all audit log event names with their id
   """
   @spec events() :: %{event_name => non_neg_integer()}
-  @doc since: "0.1.6"
+  Util.since("0.1.6")
   def events, do: @audit_log_events
 
   @doc """
     Gets the event name from the action type id
   """
   @spec event_name(action_type :: non_neg_integer()) :: atom()
-  @doc since: "0.1.6"
+  Util.since("0.1.6")
   def event_name(action_type), do: Map.get(@audit_log_events_key, action_type)
 
   defstruct(
@@ -95,7 +98,8 @@ defmodule Crux.Structs.AuditLogEntry do
     reason: nil
   )
 
-  @typedoc since: "0.1.6"
+  Util.typesince("0.1.6")
+
   @type t :: %__MODULE__{
           id: Crux.Rest.snowflake(),
           target_id: Crux.Rest.snowflake(),
@@ -111,7 +115,8 @@ defmodule Crux.Structs.AuditLogEntry do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.6"
+  Util.since("0.1.6")
+
   def create(data) do
     data =
       data

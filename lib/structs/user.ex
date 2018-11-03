@@ -1,5 +1,4 @@
 defmodule Crux.Structs.User do
-  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [User Object](https://discordapp.com/developers/docs/resources/user#user-object-user-structure)
   """
@@ -7,6 +6,9 @@ defmodule Crux.Structs.User do
   @behaviour Crux.Structs
 
   alias Crux.Structs.Util
+  require Util
+
+  Util.modulesince("0.1.0")
 
   defstruct(
     avatar: nil,
@@ -16,7 +18,8 @@ defmodule Crux.Structs.User do
     username: nil
   )
 
-  @typedoc since: "0.1.0"
+  Util.typesince("0.1.0")
+
   @type t :: %__MODULE__{
           avatar: String.t() | nil,
           bot: boolean(),
@@ -30,7 +33,8 @@ defmodule Crux.Structs.User do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.0"
+  Util.since("0.1.0")
+
   def create(data) do
     data =
       data
@@ -51,7 +55,7 @@ defmodule Crux.Structs.User do
     ```
   """
   @spec to_mention(user :: Crux.Structs.User.t()) :: String.t()
-  @doc since: "0.1.1"
+  Util.since("0.1.1")
   def to_mention(%__MODULE__{id: id}), do: "<@#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.User do

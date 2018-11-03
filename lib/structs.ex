@@ -1,10 +1,12 @@
 defmodule Crux.Structs do
-  @moduledoc since: "0.1.0"
   @moduledoc """
     Provides a unified function to create one or a list of structs, invoking their `create/1` function if available.
   """
 
   alias Crux.Structs.Util
+  require Util
+
+  Util.modulesince("0.1.0")
 
   @doc """
     Can be implemented by structs to transform the inital data.
@@ -69,7 +71,7 @@ defmodule Crux.Structs do
   """
   @spec create(data :: map(), target :: module()) :: struct()
   @spec create(data :: list(), target :: module()) :: list(struct())
-  @doc since: "0.1.0"
+  Util.since("0.1.0")
   def create(data, target)
   def create(nil, _target), do: nil
 
@@ -80,7 +82,7 @@ defmodule Crux.Structs do
   def create(%{__struct__: target} = data, target), do: data
 
   def create(data, target) do
-    if Keyword.has_key?(target.__info__(:functions), :create) do
+    if :erlang.function_exported(target, :create, 1) do
       target.create(data)
     else
       data = Util.atomify(data)

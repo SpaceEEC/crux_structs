@@ -1,5 +1,4 @@
 defmodule Crux.Structs.Reaction do
-  @moduledoc since: "0.1.0"
   @moduledoc """
     Represents a Discord [Reaction Object](https://discordapp.com/developers/docs/resources/channel#reaction-object).
   """
@@ -8,6 +7,9 @@ defmodule Crux.Structs.Reaction do
 
   alias Crux.Structs
   alias Crux.Structs.{Util, Emoji}
+  require Util
+
+  Util.modulesince("0.1.0")
 
   defstruct(
     count: nil,
@@ -15,7 +17,8 @@ defmodule Crux.Structs.Reaction do
     emoji: nil
   )
 
-  @typedoc since: "0.1.0"
+  Util.typesince("0.1.0")
+
   @type t :: %__MODULE__{
           count: integer(),
           me: boolean,
@@ -27,7 +30,8 @@ defmodule Crux.Structs.Reaction do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.0"
+  Util.since("0.1.0")
+
   def create(data) do
     data =
       data

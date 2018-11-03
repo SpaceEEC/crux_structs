@@ -1,5 +1,4 @@
 defmodule Crux.Structs.Webhook do
-  @moduledoc since: "0.1.6"
   @moduledoc """
     Represents a Discord [Webhook Object](https://discordapp.com/developers/docs/resources/webhook#webhook-object)
 
@@ -10,6 +9,9 @@ defmodule Crux.Structs.Webhook do
   @behaviour Crux.Structs
 
   alias Crux.Structs.Util
+  require Util
+
+  Util.modulesince("0.1.6")
 
   defstruct(
     avatar: nil,
@@ -21,7 +23,8 @@ defmodule Crux.Structs.Webhook do
     user: nil
   )
 
-  @typedoc since: "0.1.6"
+  Util.typesince("0.1.6")
+
   @type t :: %__MODULE__{
           avatar: String.t() | nil,
           id: Crux.Rest.snowflake(),
@@ -37,7 +40,8 @@ defmodule Crux.Structs.Webhook do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.6"
+  Util.since("0.1.6")
+
   def create(data) do
     data =
       data
@@ -63,7 +67,7 @@ defmodule Crux.Structs.Webhook do
     ```
   """
   @spec to_mention(webhook :: Crux.Structs.Webhook.t()) :: String.t()
-  @doc since: "0.1.6"
+  Util.since("0.1.6")
   def to_mention(%__MODULE__{id: id}), do: "<@#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Webhook do

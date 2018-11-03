@@ -1,5 +1,4 @@
 defmodule Crux.Structs.AuditLogChange do
-  @moduledoc since: "0.1.6"
   @moduledoc """
     Represents a Discord [Audit Log Change Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-change)
   """
@@ -8,6 +7,9 @@ defmodule Crux.Structs.AuditLogChange do
 
   alias Crux.Structs
   alias Crux.Structs.{Overwrite, Role, Util}
+  require Util
+
+  Util.modulesince("0.1.6")
 
   defstruct(
     new_value: nil,
@@ -20,7 +22,8 @@ defmodule Crux.Structs.AuditLogChange do
 
   > Note that the Role object returned by Discord in audit logs is a partial role that only contains id and name.
   """
-  @typedoc since: "0.1.6"
+  Util.typesince("0.1.6")
+
   @type audit_log_change_value ::
           String.t()
           | Crux.Rest.snowflake()
@@ -29,7 +32,8 @@ defmodule Crux.Structs.AuditLogChange do
           | [Role.t()]
           | [Overwrite.t()]
 
-  @typedoc since: "0.1.6"
+  Util.typesince("0.1.6")
+
   @type t :: %__MODULE__{
           new_value: audit_log_change_value() | nil,
           old_value: audit_log_change_value() | nil,
@@ -41,7 +45,8 @@ defmodule Crux.Structs.AuditLogChange do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.6"
+  Util.since("0.1.6")
+
   def create(data) do
     data =
       data

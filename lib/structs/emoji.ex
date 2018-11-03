@@ -1,5 +1,4 @@
 defmodule Crux.Structs.Emoji do
-  @moduledoc since: "0.1.0"
   @moduledoc """
   Represents a Discord [Emoji Object](https://discordapp.com/developers/docs/resources/emoji#emoji-object-emoji-structure).
 
@@ -10,6 +9,9 @@ defmodule Crux.Structs.Emoji do
   @behaviour Crux.Structs
 
   alias Crux.Structs.Util
+  require Util
+
+  Util.modulesince("0.1.0")
 
   defstruct(
     animated: nil,
@@ -21,7 +23,8 @@ defmodule Crux.Structs.Emoji do
     managed: nil
   )
 
-  @typedoc since: "0.1.0"
+  Util.typesince("0.1.0")
+
   @type t :: %__MODULE__{
           animated: boolean() | nil,
           id: Crux.Rest.snowflake() | nil,
@@ -37,7 +40,8 @@ defmodule Crux.Structs.Emoji do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  @doc since: "0.1.0"
+  Util.since("0.1.0")
+
   def create(data) do
     data =
       data
@@ -93,7 +97,7 @@ defmodule Crux.Structs.Emoji do
   """
   @spec to_identifier(emoji :: Crux.Structs.Emoji.t() | Crux.Structs.Reaction.t() | String.t()) ::
           String.t()
-  @doc since: "0.1.1"
+  Util.since("0.1.1")
   def to_identifier(%Crux.Structs.Reaction{emoji: emoji}), do: to_identifier(emoji)
   def to_identifier(%__MODULE__{id: nil, name: name}), do: name |> URI.encode_www_form()
   def to_identifier(%__MODULE__{id: id, name: name, animated: true}), do: "a:#{name}:#{id}"

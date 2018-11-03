@@ -1,5 +1,4 @@
 defmodule Crux.Structs.Channel do
-  @moduledoc since: "0.1.0"
   @moduledoc """
   Represents a Discord [Channel Object](https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure).
 
@@ -33,6 +32,9 @@ defmodule Crux.Structs.Channel do
   @behaviour Crux.Structs
 
   alias Crux.Structs.{Overwrite, Util}
+  require Util
+
+  Util.modulesince("0.1.0")
 
   defstruct(
     application_id: nil,
@@ -55,7 +57,8 @@ defmodule Crux.Structs.Channel do
     user_limit: nil
   )
 
-  @typedoc since: "0.1.0"
+  Util.typesince("0.1.0")
+
   @type t :: %__MODULE__{
           application_id: Crux.Rest.snowflake(),
           bitrate: integer(),
@@ -82,7 +85,8 @@ defmodule Crux.Structs.Channel do
 
   > Automatically invoked by `Crux.Structs.create/2`
   """
-  @doc since: "0.1.0"
+  Util.since("0.1.0")
+
   def create(data) do
     data =
       data
@@ -116,7 +120,7 @@ defmodule Crux.Structs.Channel do
   ```
   """
   @spec to_mention(user :: Crux.Structs.Channel.t()) :: String.t()
-  @doc since: "0.1.1"
+  Util.since("0.1.1")
   def to_mention(%__MODULE__{id: id}), do: "<##{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Channel do
