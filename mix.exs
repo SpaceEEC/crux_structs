@@ -1,7 +1,7 @@
 defmodule Crux.Structs.MixProject do
   use Mix.Project
 
-  @vsn "0.1.6-dev"
+  @vsn "0.1.6"
   @name :crux_structs
 
   def project do
@@ -26,7 +26,7 @@ defmodule Crux.Structs.MixProject do
       links: %{
         "GitHub" => "https://github.com/SpaceEEC/#{@name}/",
         "Changelog" => "https://github.com/SpaceEEC/#{@name}/releases/tag/#{@vsn}/",
-        "Documentation" => "https://hexdocs.pm/#{@name}/",
+        "Documentation" => "https://hexdocs.pm/#{@name}/#{@vsn}",
         "Unified Development Documentation" => "https://crux.randomly.space/"
       }
     ]
@@ -34,6 +34,9 @@ defmodule Crux.Structs.MixProject do
 
   def application, do: []
 
-  defp deps,
-    do: [{:ex_doc, git: "https://github.com/spaceeec/ex_doc", only: :dev, runtime: false}]
+  defp deps do
+    [
+      {:ex_doc, git: "https://github.com/spaceeec/ex_doc", only: :dev, runtime: false}
+    ]
+  end
 end
