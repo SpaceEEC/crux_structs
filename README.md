@@ -2,6 +2,13 @@
 
 Package providing structures representing objects from the [Discord API](https://discordapp.com/developers) and a few [utility](lib/structs/util.ex) functions.
 
+## Useful links
+
+ - [Documentation](https://hexdocs.pm/crux_structs/0.1.6/)
+ - [Github](https://github.com/SpaceEEC/crux_structs/)
+ - [Changelog](https://github.com/SpaceEEC/crux_structs/releases/tag/0.1.6/)
+ - [Umbrella Development Documentation](https://crux.randomly.space/)
+
 ## Installation
 
 The package can be installed by adding `crux_structs` to your list of dependencies in `mix.exs`:
