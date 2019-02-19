@@ -206,7 +206,7 @@ defmodule Crux.Structs.Permissions do
   def to_map(permissions) do
     permissions = resolve(permissions)
 
-    Enum.into(@names, %{}, &{&1, has(permissions, &1)})
+    Map.new(@names, &{&1, has(permissions, &1)})
   end
 
   @doc ~S"""
