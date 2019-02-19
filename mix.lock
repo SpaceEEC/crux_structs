@@ -1,7 +1,7 @@
 %{
   "earmark": {:hex, :earmark, "1.2.6", "b6da42b3831458d3ecc57314dff3051b080b9b2be88c2e5aa41cd642a5b044ed", [:mix], [], "hexpm"},
-  "ex_doc": {:git, "https://github.com/spaceeec/ex_doc", "1ff5b32fc9d2294f0ff3a6ad5793b681e11f6062", []},
-  "makeup": {:hex, :makeup, "0.5.4", "71fbff7079cf2a6371cae11f193233842300a895c8de9d97e09c39a5d77d1f0d", [:mix], [{:nimble_parsec, "~> 0.4", [hex: :nimble_parsec, repo: "hexpm", optional: false]}], "hexpm"},
-  "makeup_elixir": {:hex, :makeup_elixir, "0.8.1", "54a4deadaa0c6b6d467362fea29ac002420b083eb2484d9e1aa13931dbc22b58", [:mix], [{:makeup, "~> 0.5.4", [hex: :makeup, repo: "hexpm", optional: false]}], "hexpm"},
-  "nimble_parsec": {:hex, :nimble_parsec, "0.4.0", "ee261bb53214943679422be70f1658fff573c5d0b0a1ecd0f18738944f818efe", [:mix], [], "hexpm"},
+  "ex_doc": {:git, "https://github.com/spaceeec/ex_doc", "ba85b84d56c24a42db725858b07f7b2cdc4a37b7", [branch: "feat/umbrella"]},
+  "makeup": {:hex, :makeup, "0.8.0", "9cf32aea71c7fe0a4b2e9246c2c4978f9070257e5c9ce6d4a28ec450a839b55f", [:mix], [{:nimble_parsec, "~> 0.5.0", [hex: :nimble_parsec, repo: "hexpm", optional: false]}], "hexpm"},
+  "makeup_elixir": {:hex, :makeup_elixir, "0.13.0", "be7a477997dcac2e48a9d695ec730b2d22418292675c75aa2d34ba0909dcdeda", [:mix], [{:makeup, "~> 0.8", [hex: :makeup, repo: "hexpm", optional: false]}], "hexpm"},
+  "nimble_parsec": {:hex, :nimble_parsec, "0.5.0", "90e2eca3d0266e5c53f8fbe0079694740b9c91b6747f2b7e3c5d21966bba8300", [:mix], [], "hexpm"},
 }

@@ -36,7 +36,11 @@ defmodule Crux.Structs.MixProject do
 
   defp deps do
     [
-      {:ex_doc, git: "https://github.com/spaceeec/ex_doc", only: :dev, runtime: false}
+      {:ex_doc,
+       git: "https://github.com/spaceeec/ex_doc",
+       branch: "feat/umbrella",
+       only: :dev,
+       runtime: false}
     ]
   end
 end
