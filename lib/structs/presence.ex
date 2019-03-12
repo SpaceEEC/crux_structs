@@ -19,7 +19,8 @@ defmodule Crux.Structs.Presence do
     game: nil,
     # guild_id: nil,
     status: "offline",
-    activities: []
+    activities: [],
+    client_status: %{}
   )
 
   Util.typesince("0.1.0")
@@ -30,7 +31,8 @@ defmodule Crux.Structs.Presence do
           game: map() | nil,
           # guild_id: Crux.Rest.snowflake() | nil,
           status: String.t(),
-          activities: [map()]
+          activities: [map()],
+          client_status: %{required(atom()) => atom()}
         }
 
   @doc """
