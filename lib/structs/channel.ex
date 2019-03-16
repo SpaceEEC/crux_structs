@@ -4,26 +4,26 @@ defmodule Crux.Structs.Channel do
 
   List of where every property can be present:
 
-  | Property              | Text (0) | DM (1)               | Voice (2) | Group (3) | Category (4) |
-  | :-------------------: | :------: | :------------------: | :-------: | :-------: | :----------: |
-  | application_id        | no       | no                   | no        | yes       | no           |
-  | bitrate               | no       | no                   | yes       | no        | no           |
-  | guild_id              | yes      | no                   | yes       | no        | yes          |
-  | icon                  | no       | no                   | no        | yes       | no           |
-  | id                    | yes      | yes                  | yes       | yes       | yes          |
-  | last_message_id       | yes      | yes                  | no        | yes       | no           |
-  | last_pin_timestamp    | yes      | yes                  | no        | yes       | no           |
-  | name                  | yes      | no                   | yes       | yes       | yes          |
-  | nsfw                  | yes      | no                   | no        | no        | no           |
-  | owner_id              | no       | no                   | no        | yes       | no           |
-  | parent_id             | yes      | no                   | yes       | no        | no           |
-  | permission_overwrites | yes      | no                   | yes       | no        | yes          |
-  | position              | yes      | no                   | yes       | no        | yes          |
-  | rate_limit_per_user   | yes      | no                   | no       | no         | no           |
-  | recipients            | no       | yes<br>(One Element) | no        | yes       | no           |
-  | topic                 | yes      | no                   | yes       | no        | yes          |
-  | type                  | `0`      | `1`                  | `2`       | `3`       | `4`          |
-  | user_limit            | no       | no                   | yes       | no        | no           |
+  | Property              | Text (0) | DM (1)               | Voice (2) | Group (3) | Category (4) | News (5) |
+  | :-------------------: | :------: | :------------------: | :-------: | :-------: | :----------: | :------: |
+  | application_id        | no       | no                   | no        | yes       | no           | no       |
+  | bitrate               | no       | no                   | yes       | no        | no           | no       |
+  | guild_id              | yes      | no                   | yes       | no        | yes          | yes      |
+  | icon                  | no       | no                   | no        | yes       | no           | no       |
+  | id                    | yes      | yes                  | yes       | yes       | yes          | yes      |
+  | last_message_id       | yes      | yes                  | no        | yes       | no           | yes      |
+  | last_pin_timestamp    | yes      | yes                  | no        | yes       | no           | yes      |
+  | name                  | yes      | no                   | yes       | yes       | yes          | yes      |
+  | nsfw                  | yes      | no                   | no        | no        | no           | yes      |
+  | owner_id              | no       | no                   | no        | yes       | no           | no       |
+  | parent_id             | yes      | no                   | yes       | no        | no           | yes      |
+  | permission_overwrites | yes      | no                   | yes       | no        | yes          | yes      |
+  | position              | yes      | no                   | yes       | no        | yes          | yes      |
+  | rate_limit_per_user   | yes      | no                   | no       | no         | no           | no       |
+  | recipients            | no       | yes<br>(One Element) | no        | yes       | no           | no       |
+  | topic                 | yes      | no                   | yes       | no        | yes          | yes      |
+  | type                  | `0`      | `1`                  | `2`       | `3`       | `4`          | `5`      |
+  | user_limit            | no       | no                   | yes       | no        | no           | no       |
 
   Differences opposed to the Discord API Object:
     - `:recipients` is a MapSet of user ids
