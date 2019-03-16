@@ -40,8 +40,13 @@ defmodule Crux.Structs.Guild do
     member_count: nil,
     voice_states: %{},
     members: %{},
-    channels: %MapSet{}
-    # presences: %{}
+    channels: %MapSet{},
+    # presences: %{},
+    max_presences: nil,
+    max_members: nil,
+    vanity_url_code: nil,
+    description: nil,
+    banner: nil
   )
 
   Util.typesince("0.1.0")
@@ -70,8 +75,13 @@ defmodule Crux.Structs.Guild do
           member_count: integer(),
           voice_states: %{optional(Crux.Rest.snowflake()) => VoiceState.t()},
           members: %{optional(Crux.Rest.snowflake()) => Member.t()},
-          channels: MapSet.t(Crux.Rest.snowflake())
-          # presences: %{optional(Crux.Rest.snowflake()) => Presence.t()}
+          channels: MapSet.t(Crux.Rest.snowflake()),
+          # presences: %{optional(Crux.Rest.snowflake()) => Presence.t()},
+          max_presences: pos_integer() | nil,
+          max_members: pos_integer(),
+          vanity_url_code: String.t() | nil,
+          description: String.t() | nil,
+          banner: String.t() | nil
         }
 
   @doc """
