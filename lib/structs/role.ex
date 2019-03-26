@@ -48,6 +48,7 @@ defmodule Crux.Structs.Role do
       data
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update(:guild_id, nil, &Util.id_to_int/1)
 
     struct(__MODULE__, data)
   end

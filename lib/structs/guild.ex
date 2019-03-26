@@ -102,6 +102,7 @@ defmodule Crux.Structs.Guild do
       data
       |> Map.update(:owner_id, nil, &Util.id_to_int/1)
       |> Map.update(:afk_channel_id, nil, &Util.id_to_int/1)
+      |> Map.update(:roles, [], &Enum.map(&1, fn role -> Map.put(role, :guild_id, data.id) end))
       |> Map.update(:roles, %{}, &Util.raw_data_to_map(&1, Role))
       |> Map.update(
         :emojis,
