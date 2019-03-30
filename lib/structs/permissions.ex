@@ -124,7 +124,7 @@ defmodule Crux.Structs.Permissions do
         }
 
   @doc """
-    Creates a new `Crux.Structs.Permissions` struct from a valid `t:permissions/0`.
+    Creates a new `Crux.Structs.Permissions` struct from a valid `t:resolvable/0`.
   """
   @spec new(permissions :: resolvable()) :: t()
   Util.since("0.1.3")
@@ -198,7 +198,7 @@ defmodule Crux.Structs.Permissions do
   end
 
   @doc ~S"""
-    Serializes permissions into a map keyed by `t:name/0` with a boolean indicating whether the name is set.
+    Serializes permissions into a map keyed by `t:name/0` with a boolean indicating whether the permission is set.
   """
   @spec to_map(permissions :: resolvable()) :: %{name() => boolean()}
   Util.since("0.1.3")
