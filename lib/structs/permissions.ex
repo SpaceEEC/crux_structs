@@ -128,7 +128,7 @@ defmodule Crux.Structs.Permissions do
   """
   @spec new(permissions :: resolvable()) :: t()
   Util.since("0.1.3")
-  def new(permissions), do: %__MODULE__{bitfield: resolve(permissions)}
+  def new(permissions \\ 0), do: %__MODULE__{bitfield: resolve(permissions)}
 
   @doc ~S"""
     Resolves a `t:resolvable/0` into a bitfield representing the set permissions.
