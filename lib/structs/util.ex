@@ -108,15 +108,15 @@ defmodule Crux.Structs.Util do
   ## Examples
 
     ```elixir
-  # Key is already a number
+  # Id is already a number
   iex> Crux.Structs.Util.map_to_id(:foo).(%{foo: 123})
   123
 
-  # Key is a string
+  # Id is a string
   iex> Crux.Structs.Util.map_to_id(:foo).(%{foo: "123"})
   123
 
-  # No key exists
+  # No id exists
   iex> Crux.Structs.Util.map_to_id(:foo).(%{"foo" => "123"})
   nil
 
