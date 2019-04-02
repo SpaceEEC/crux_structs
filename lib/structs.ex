@@ -82,6 +82,8 @@ defmodule Crux.Structs do
   def create(%{__struct__: target} = data, target), do: data
 
   def create(data, target) do
+    Code.ensure_loaded(target)
+
     if :erlang.function_exported(target, :create, 1) do
       target.create(data)
     else
