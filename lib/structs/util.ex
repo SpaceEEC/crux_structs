@@ -102,10 +102,35 @@ defmodule Crux.Structs.Util do
     |> Map.new(fn struct -> {Map.fetch!(struct, key), struct} end)
   end
 
-  @doc """
+  @doc ~S"""
     Returns a function converting a passed map to an id, using the specified key as key.
+
+  ## Examples
+
+    ```elixir
+  # Key is already a number
+  iex> Crux.Structs.Util.map_to_id(:foo).(%{foo: 123})
+  123
+
+  # Key is a string
+  iex> Crux.Structs.Util.map_to_id(:foo).(%{foo: "123"})
+  123
+
+  # No key exists
+  iex> Crux.Structs.Util.map_to_id(:foo).(%{"foo" => "123"})
+  nil
+
+  # Example using `Enum.map/2`
+  iex> [
+  ...> %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"},
+  ...> %{"username" => "Drahcirius", "discriminator" => "1336", "id" => "130175406673231873", "avatar" => "c896aebec82c90f590b08cfebcdc4e3b"}
+  ...> ]
+  ...> |> Enum.map(Crux.Structs.Util.map_to_id("id"))
+  [218348062828003328, 130175406673231873]
+
+    ```
   """
-  @spec map_to_id(key :: atom()) :: (map() -> Crux.Rest.snowflake() | nil)
+  @spec map_to_id(key :: term()) :: (map() -> Crux.Rest.snowflake() | nil)
   def map_to_id(key \\ :id) do
     fn
       %{^key => value} -> id_to_int(value)
