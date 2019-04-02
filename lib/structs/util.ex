@@ -97,8 +97,20 @@ defmodule Crux.Structs.Util do
   end
 
   def raw_data_to_map(data, target, key \\ :id) do
-    Structs.create(data, target)
+    data
+    |> Structs.create(target)
     |> Map.new(fn struct -> {Map.fetch!(struct, key), struct} end)
+  end
+
+  @doc """
+    Returns a function converting a passed map to an id, using the specified key as key.
+  """
+  @spec map_to_id(key :: atom()) :: (map() -> Crux.Rest.snowflake() | nil)
+  def map_to_id(key \\ :id) do
+    fn
+      %{^key => value} -> id_to_int(value)
+      _ -> nil
+    end
   end
 
   @doc ~S"""

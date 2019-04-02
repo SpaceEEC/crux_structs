@@ -115,10 +115,11 @@ defmodule Crux.Structs.AuditLogEntry do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.6")
 
   def create(data) do
-    data =
+    audit_log_entry =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
@@ -126,6 +127,6 @@ defmodule Crux.Structs.AuditLogEntry do
       |> Map.update(:changes, %{}, &Util.raw_data_to_map(&1, AuditLogChange, :key))
       |> Map.update!(:user_id, &Util.id_to_int/1)
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, audit_log_entry)
   end
 end

@@ -40,14 +40,15 @@ defmodule Crux.Structs.Presence do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    presence =
       data
       |> Util.atomify()
-      |> Map.update!(:user, fn user -> Map.get(user, :id) |> Util.id_to_int() end)
+      |> Map.update!(:user, Util.map_to_id())
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, presence)
   end
 end

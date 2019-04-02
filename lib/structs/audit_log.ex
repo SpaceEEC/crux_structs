@@ -29,16 +29,17 @@ defmodule Crux.Structs.AuditLog do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.6")
 
   def create(data) do
-    data =
+    audit_log =
       data
       |> Util.atomify()
       |> Map.update(:webhooks, [], &Util.raw_data_to_map(&1, Webhook))
       |> Map.update(:users, [], &Util.raw_data_to_map(&1, User))
       |> Map.update(:audit_log_entries, [], &Util.raw_data_to_map(&1, AuditLogEntry))
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, audit_log)
   end
 end

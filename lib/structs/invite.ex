@@ -73,16 +73,17 @@ defmodule Crux.Structs.Invite do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    invite =
       data
       |> Util.atomify()
       |> Map.update(:guild, nil, &Structs.create(&1, Guild))
       |> Map.update(:inviter, nil, &Structs.create(&1, User))
       |> Map.update(:channel, nil, &Structs.create(&1, Channel))
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, invite)
   end
 end

@@ -8,7 +8,7 @@ defmodule Crux.Structs.Member do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
+  alias Crux.Structs.{Member, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -40,17 +40,18 @@ defmodule Crux.Structs.Member do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    member =
       data
       |> Util.atomify()
-      |> Map.update!(:user, fn user -> Map.get(user, :id) |> Util.id_to_int() end)
+      |> Map.update!(:user, Util.map_to_id())
       |> Map.update!(:roles, &MapSet.new(&1, fn role_id -> Util.id_to_int(role_id) end))
       |> Map.update(:guild_id, nil, &Util.id_to_int/1)
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, member)
   end
 
   @doc ~S"""
@@ -77,6 +78,7 @@ defmodule Crux.Structs.Member do
   def to_mention(%__MODULE__{user: id}), do: "<@!#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Member do
-    def to_string(%Crux.Structs.Member{} = data), do: Crux.Structs.Member.to_mention(data)
+    @spec to_string(Member.t()) :: String.t()
+    def to_string(%Member{} = data), do: Member.to_mention(data)
   end
 end

@@ -45,14 +45,13 @@ defmodule Crux.Structs.AuditLogChange do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.6")
 
   def create(data) do
-    data =
-      data
-      |> Util.atomify()
+    data = Util.atomify(data)
 
-    data =
+    audit_log_change =
       case data.key do
         "$add" ->
           data
@@ -80,6 +79,6 @@ defmodule Crux.Structs.AuditLogChange do
           data
       end
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, audit_log_change)
   end
 end

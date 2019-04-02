@@ -52,7 +52,7 @@ defmodule Crux.Structs.Permissions do
   Util.since("0.2.0")
   def flags, do: @permissions
 
-  @names @permissions |> Map.keys()
+  @names Map.keys(@permissions)
   @doc """
   Returns a list of all permission keys.
   """
@@ -184,7 +184,8 @@ defmodule Crux.Structs.Permissions do
   end
 
   def resolve(permissions) when is_list(permissions) do
-    Enum.map(permissions, &resolve/1)
+    permissions
+    |> Enum.map(&resolve/1)
     |> Enum.reduce(0, &|||/2)
   end
 
@@ -246,7 +247,7 @@ defmodule Crux.Structs.Permissions do
   Util.since("0.1.3")
 
   def add(base, to_add) do
-    to_add = to_add |> resolve()
+    to_add = resolve(to_add)
 
     base
     |> resolve()
@@ -341,7 +342,8 @@ defmodule Crux.Structs.Permissions do
     have = resolve(have)
     want = resolve(want)
 
-    (want &&& ~~~have)
+    want
+    |> band(~~~have)
     |> new()
   end
 
@@ -365,14 +367,14 @@ defmodule Crux.Structs.Permissions do
   def implicit(%Structs.Member{user: user_id}, guild, channel),
     do: implicit(user_id, guild, channel)
 
-  def implicit(user_id, %Structs.Guild{owner_id: user_id}, _), do: @all |> new()
+  def implicit(user_id, %Structs.Guild{owner_id: user_id}, _), do: new(@all)
 
   def implicit(user_id, guild, channel) do
     permissions = explicit(user_id, guild)
 
     cond do
       has(permissions, :administrator) ->
-        @all |> new()
+        new(@all)
 
       channel ->
         explicit(user_id, guild, channel)
@@ -409,7 +411,7 @@ defmodule Crux.Structs.Permissions do
     member =
       Map.get(members, user_id) ||
         raise """
-          There is no member with the ID "#{user_id}" in the cache of the guild.
+          There is no member with the ID "#{inspect(user_id)}" in the cache of the guild.
           The member is uncached or not in the guild.
         """
 
@@ -418,7 +420,7 @@ defmodule Crux.Structs.Permissions do
       |> Map.get(guild_id)
       |> Map.get(:permissions)
 
-    member_roles = member.roles |> MapSet.put(guild_id)
+    member_roles = MapSet.put(member.roles, guild_id)
 
     roles
     |> Map.take(member_roles)
@@ -437,7 +439,7 @@ defmodule Crux.Structs.Permissions do
     %{bitfield: permissions} = explicit(user_id, guild)
 
     # apply @everyone overwrite
-    permissions =
+    base_permissions =
       overwrites
       |> Map.get(guild_id)
       |> apply_overwrite(permissions)
@@ -445,19 +447,19 @@ defmodule Crux.Structs.Permissions do
     role_ids = members |> Map.get(user_id) |> Map.get(:roles)
 
     # apply all other overwrites
-    permissions =
+    role_permissions =
       overwrites
       |> Map.take(role_ids)
       |> Map.values()
       # reduce all relevant overwrites into a single dummy one
       |> Enum.reduce(%{allow: 0, deny: 0}, &acc_overwrite/2)
       # apply it to the base permissions
-      |> apply_overwrite(permissions)
+      |> apply_overwrite(base_permissions)
 
     # apply user overwrite
     overwrites
     |> Map.get(user_id)
-    |> apply_overwrite(permissions)
+    |> apply_overwrite(role_permissions)
     |> new()
   end
 
@@ -470,9 +472,8 @@ defmodule Crux.Structs.Permissions do
   defp apply_overwrite(nil, permissions), do: permissions
 
   defp apply_overwrite(%{allow: allow, deny: deny}, permissions) do
-    permissions = permissions &&& ~~~deny
-    permissions = permissions ||| allow
-
     permissions
+    |> band(~~~deny)
+    |> bor(allow)
   end
 end

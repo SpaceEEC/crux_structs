@@ -5,7 +5,7 @@ defmodule Crux.Structs.Role do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
+  alias Crux.Structs.{Role, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -41,16 +41,17 @@ defmodule Crux.Structs.Role do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    role =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
       |> Map.update(:guild_id, nil, &Util.id_to_int/1)
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, role)
   end
 
   @doc ~S"""
@@ -70,6 +71,7 @@ defmodule Crux.Structs.Role do
   def to_mention(%__MODULE__{id: id}), do: "<@&#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Role do
-    def to_string(%Crux.Structs.Role{} = data), do: Crux.Structs.Role.to_mention(data)
+    @spec to_string(Role.t()) :: String.t()
+    def to_string(%Role{} = data), do: Role.to_mention(data)
   end
 end

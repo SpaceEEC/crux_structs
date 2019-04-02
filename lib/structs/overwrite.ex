@@ -31,14 +31,15 @@ defmodule Crux.Structs.Overwrite do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    overwrite =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, overwrite)
   end
 end

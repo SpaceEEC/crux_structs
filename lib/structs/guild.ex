@@ -10,7 +10,7 @@ defmodule Crux.Structs.Guild do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Member, Role, Util, VoiceState}
+  alias Crux.Structs.{Guild, Member, Role, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
@@ -90,6 +90,7 @@ defmodule Crux.Structs.Guild do
   > Automatically invoked by `Crux.Structs.create/2`.
   """
   # TODO: Write a test
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
@@ -98,17 +99,13 @@ defmodule Crux.Structs.Guild do
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
 
-    data =
+    guild =
       data
       |> Map.update(:owner_id, nil, &Util.id_to_int/1)
       |> Map.update(:afk_channel_id, nil, &Util.id_to_int/1)
       |> Map.update(:roles, [], &Enum.map(&1, fn role -> Map.put(role, :guild_id, data.id) end))
       |> Map.update(:roles, %{}, &Util.raw_data_to_map(&1, Role))
-      |> Map.update(
-        :emojis,
-        %MapSet{},
-        &MapSet.new(&1, fn emoji -> Map.get(emoji, :id) |> Util.id_to_int() end)
-      )
+      |> Map.update(:emojis, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:features, [], &MapSet.new/1)
       |> Map.update(:application_id, nil, &Util.id_to_int/1)
       |> Map.update(
@@ -123,16 +120,13 @@ defmodule Crux.Structs.Guild do
         &Enum.map(&1, fn member -> Map.put(member, :guild_id, data.id) end)
       )
       |> Map.update!(:members, &Util.raw_data_to_map(&1, Member, :user))
-      |> Map.update(
-        :channels,
-        %MapSet{},
-        &MapSet.new(&1, fn channel -> Map.get(channel, :id) |> Util.id_to_int() end)
-      )
+      |> Map.update(:channels, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, guild)
   end
 
   defimpl String.Chars, for: Crux.Structs.Guild do
-    def to_string(%Crux.Structs.Guild{name: name}), do: name
+    @spec to_string(Guild.t()) :: String.t()
+    def to_string(%Guild{name: name}), do: name
   end
 end

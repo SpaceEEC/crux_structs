@@ -85,10 +85,11 @@ defmodule Crux.Structs.Channel do
 
   > Automatically invoked by `Crux.Structs.create/2`
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    channel =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Util.id_to_int/1)
@@ -98,13 +99,9 @@ defmodule Crux.Structs.Channel do
       |> Map.update(:appliparent_idcation_id, nil, &Util.id_to_int/1)
       |> Map.update(:parent_id, nil, &Util.id_to_int/1)
       |> Map.update(:permission_overwrites, %{}, &Util.raw_data_to_map(&1, Overwrite))
-      |> Map.update(
-        :recipients,
-        %MapSet{},
-        &MapSet.new(&1, fn recipient -> Map.get(recipient, :id) |> Util.id_to_int() end)
-      )
+      |> Map.update(:recipients, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, channel)
   end
 
   @doc ~S"""
@@ -124,6 +121,9 @@ defmodule Crux.Structs.Channel do
   def to_mention(%__MODULE__{id: id}), do: "<##{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Channel do
-    def to_string(%Crux.Structs.Channel{} = data), do: Crux.Structs.Channel.to_mention(data)
+    alias Crux.Structs.Channel
+
+    @spec to_string(Channel.t()) :: String.t()
+    def to_string(%Channel{} = data), do: Channel.to_mention(data)
   end
 end

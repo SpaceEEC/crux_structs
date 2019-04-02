@@ -7,7 +7,7 @@ defmodule Crux.Structs.Attachment do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
+  alias Crux.Structs.{Attachment, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -39,18 +39,20 @@ defmodule Crux.Structs.Attachment do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    attachment =
       data
       |> Util.atomify()
       |> Map.update(:id, nil, &Util.id_to_int/1)
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, attachment)
   end
 
   defimpl String.Chars, for: Crux.Structs.Attachment do
-    def to_string(%Crux.Structs.Attachment{url: url}), do: url
+    @spec to_string(Attachment.t()) :: String.t()
+    def to_string(%Attachment{url: url}), do: url
   end
 end

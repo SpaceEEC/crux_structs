@@ -6,7 +6,7 @@ defmodule Crux.Structs.Reaction do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Util, Emoji}
+  alias Crux.Structs.{Emoji, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -30,14 +30,15 @@ defmodule Crux.Structs.Reaction do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    reaction =
       data
       |> Util.atomify()
       |> Map.update!(:emoji, &Structs.create(&1, Emoji))
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, reaction)
   end
 end

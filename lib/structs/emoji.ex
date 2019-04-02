@@ -8,7 +8,7 @@ defmodule Crux.Structs.Emoji do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
+  alias Crux.Structs.{Emoji, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -40,17 +40,18 @@ defmodule Crux.Structs.Emoji do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    emoji =
       data
       |> Util.atomify()
       |> Map.update(:id, nil, &Util.id_to_int/1)
       |> Map.update(:roles, MapSet.new(), &MapSet.new(&1, fn role -> Util.id_to_int(role) end))
-      |> Map.update(:user, nil, fn user -> Map.get(user, :id) |> Util.id_to_int() end)
+      |> Map.update(:user, nil, Util.map_to_id())
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, emoji)
   end
 
   @doc ~S"""
@@ -99,17 +100,18 @@ defmodule Crux.Structs.Emoji do
           String.t()
   Util.since("0.1.1")
   def to_identifier(%Crux.Structs.Reaction{emoji: emoji}), do: to_identifier(emoji)
-  def to_identifier(%__MODULE__{id: nil, name: name}), do: name |> URI.encode_www_form()
+  def to_identifier(%__MODULE__{id: nil, name: name}), do: URI.encode_www_form(name)
   def to_identifier(%__MODULE__{id: id, name: name, animated: true}), do: "a:#{name}:#{id}"
   def to_identifier(%__MODULE__{id: id, name: name}), do: "#{name}:#{id}"
   def to_identifier(identifier) when is_bitstring(identifier), do: identifier
 
   defimpl String.Chars, for: Crux.Structs.Emoji do
-    def to_string(%Crux.Structs.Emoji{id: nil, name: name}), do: name
+    @spec to_string(Emoji.t()) :: String.t()
+    def to_string(%Emoji{id: nil, name: name}), do: name
 
-    def to_string(%Crux.Structs.Emoji{id: id, name: name, animated: true}),
+    def to_string(%Emoji{id: id, name: name, animated: true}),
       do: "<a:#{name}:#{id}>"
 
-    def to_string(%Crux.Structs.Emoji{id: id, name: name}), do: "<:#{name}:#{id}>"
+    def to_string(%Emoji{id: id, name: name}), do: "<:#{name}:#{id}>"
   end
 end

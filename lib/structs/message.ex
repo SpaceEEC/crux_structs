@@ -9,7 +9,7 @@ defmodule Crux.Structs.Message do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Attachment, Embed, Member, Reaction, User, Util}
+  alias Crux.Structs.{Attachment, Embed, Member, Message, Reaction, User, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -66,6 +66,7 @@ defmodule Crux.Structs.Message do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
@@ -79,24 +80,15 @@ defmodule Crux.Structs.Message do
       |> Map.update(:guild_id, nil, &Util.id_to_int/1)
       |> Map.update!(:id, &Util.id_to_int/1)
 
-    data =
+    message =
       data
-      |> Map.update(:member, nil, fn member ->
-        member
-        |> Map.put(:guild_id, data.guild_id)
-        |> Map.put(:user, %{id: data.author.id})
-        |> Structs.create(Member)
-      end)
+      |> Map.update(:member, nil, create_member(data))
       |> Map.update(
         :mention_roles,
         %MapSet{},
         &MapSet.new(&1, fn role_id -> Util.id_to_int(role_id) end)
       )
-      |> Map.update(
-        :mentions,
-        %MapSet{},
-        &MapSet.new(&1, fn user -> Map.get(user, :id) |> Util.id_to_int() end)
-      )
+      |> Map.update(:mentions, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(
         :reactions,
         %{},
@@ -109,10 +101,20 @@ defmodule Crux.Structs.Message do
       )
       |> Map.update(:webhook_id, nil, &Util.id_to_int/1)
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, message)
+  end
+
+  defp create_member(data) do
+    fn member ->
+      member
+      |> Map.put(:guild_id, data.guild_id)
+      |> Map.put(:user, %{id: data.author.id})
+      |> Structs.create(Member)
+    end
   end
 
   defimpl String.Chars, for: Crux.Structs.Message do
-    def to_string(%Crux.Structs.Message{content: content}), do: content
+    @spec to_string(Message.t()) :: String.t()
+    def to_string(%Message{content: content}), do: content
   end
 end

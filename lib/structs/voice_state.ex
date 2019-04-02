@@ -42,16 +42,17 @@ defmodule Crux.Structs.VoiceState do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
   def create(data) do
-    data =
+    voice_state =
       data
       |> Util.atomify()
       |> Map.update!(:guild_id, &Util.id_to_int/1)
       |> Map.update(:channel_id, nil, &Util.id_to_int/1)
       |> Map.update!(:user_id, &Util.id_to_int/1)
 
-    struct(__MODULE__, data)
+    struct(__MODULE__, voice_state)
   end
 end
