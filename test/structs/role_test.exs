@@ -14,7 +14,7 @@ defmodule Crux.Structs.RoleTest do
         "managed" => false,
         "permissions" => 3_524_608
       }
-      |> Crux.Structs.Role.create()
+      |> Crux.Structs.create(Crux.Structs.Role)
 
     assert role == %Crux.Structs.Role{
              id: 376_146_940_762_783_746,

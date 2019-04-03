@@ -15,7 +15,7 @@ defmodule Crux.Structs.AttachmentTest do
           "https://cdn.discordapp.com/attachments/316880197314019329/440894250004250624/410121532308848640.png",
         "width" => 128
       }
-      |> Crux.Structs.Attachment.create()
+      |> Crux.Structs.create(Crux.Structs.Attachment)
 
     assert attachment == %Crux.Structs.Attachment{
              filename: "410121532308848640.png",

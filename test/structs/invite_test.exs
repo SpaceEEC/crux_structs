@@ -24,7 +24,7 @@ defmodule Crux.Structs.InviteTest do
           "name" => "rules"
         }
       }
-      |> Crux.Structs.Invite.create()
+      |> Crux.Structs.create(Crux.Structs.Invite)
 
     assert invite == %Crux.Structs.Invite{
              channel: %Crux.Structs.Channel{

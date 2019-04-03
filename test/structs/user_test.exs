@@ -10,7 +10,7 @@ defmodule Crux.Structs.UserTest do
         "id" => "218348062828003328",
         "avatar" => "646a356e237350bf8b8dfde15667dfc4"
       }
-      |> Crux.Structs.User.create()
+      |> Crux.Structs.create(Crux.Structs.User)
 
     assert user == %Crux.Structs.User{
              username: "space",

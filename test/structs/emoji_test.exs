@@ -5,7 +5,7 @@ defmodule Crux.Structs.EmojiTest do
   test "create a unicode emoji" do
     emoji =
       %{"animated" => false, "id" => nil, "name" => "👋"}
-      |> Crux.Structs.Emoji.create()
+      |> Crux.Structs.create(Crux.Structs.Emoji)
 
     assert emoji == %Crux.Structs.Emoji{
              animated: false,
@@ -34,7 +34,7 @@ defmodule Crux.Structs.EmojiTest do
         "animated" => false,
         "id" => "340234098767560724"
       }
-      |> Crux.Structs.Emoji.create()
+      |> Crux.Structs.create(Crux.Structs.Emoji)
 
     assert emoji == %Crux.Structs.Emoji{
              animated: false,

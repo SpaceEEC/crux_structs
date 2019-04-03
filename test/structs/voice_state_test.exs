@@ -16,7 +16,7 @@ defmodule Crux.Structs.VoiceStateTest do
         "self_video" => false,
         "suppress" => false
       }
-      |> Crux.Structs.VoiceState.create()
+      |> Crux.Structs.create(Crux.Structs.VoiceState)
 
     assert voice_state == %Crux.Structs.VoiceState{
              guild_id: 81_384_788_765_712_384,

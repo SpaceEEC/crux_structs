@@ -9,7 +9,7 @@ defmodule Crux.Structs.ReactionTest do
         "me" => false,
         "emoji" => %{"animated" => false, "id" => nil, "name" => "👋"}
       }
-      |> Crux.Structs.Reaction.create()
+      |> Crux.Structs.create(Crux.Structs.Reaction)
 
     assert reaction === %Crux.Structs.Reaction{
              count: 5,

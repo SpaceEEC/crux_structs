@@ -11,7 +11,7 @@ defmodule Crux.Structs.PresenceTest do
         "game" => nil,
         "status" => "online"
       }
-      |> Crux.Structs.Presence.create()
+      |> Crux.Structs.create(Crux.Structs.Presence)
 
     assert presence == %Crux.Structs.Presence{
              user: 218_348_062_828_003_328,

@@ -10,7 +10,7 @@ defmodule Crux.Structs.OverwriteTest do
         "allow" => 0x400,
         "deny" => 0x800
       }
-      |> Crux.Structs.Overwrite.create()
+      |> Crux.Structs.create(Crux.Structs.Overwrite)
 
     assert overwrite == %Crux.Structs.Overwrite{
              type: "member",

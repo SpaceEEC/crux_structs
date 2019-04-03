@@ -20,7 +20,7 @@ defmodule Crux.Structs.ChannelTest do
         "type" => 0,
         "id" => "250372608284033025"
       }
-      |> Crux.Structs.Channel.create()
+      |> Crux.Structs.create(Crux.Structs.Channel)
 
     assert channel === %Crux.Structs.Channel{
              guild_id: 243_175_181_885_898_762,
