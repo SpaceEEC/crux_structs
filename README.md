@@ -11,7 +11,7 @@ Library providing structures representing objects from the [Discord API](https:/
 
 ## Installation
 
-The lbirary can be installed by adding `crux_structs` to your list of dependencies in `mix.exs`:
+The library can be installed by adding `crux_structs` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
