@@ -22,7 +22,7 @@ defmodule Crux.Structs.Permissions do
     add_reactions: 1 <<< 6,
     view_audit_log: 1 <<< 7,
     priority_speaker: 1 <<< 8,
-    # 9
+    stream: 1 <<< 9,
     view_channel: 1 <<< 10,
     send_messages: 1 <<< 11,
     send_tts_message: 1 <<< 12,
@@ -83,6 +83,7 @@ defmodule Crux.Structs.Permissions do
           | :add_reactions
           | :view_audit_log
           | :priority_speaker
+          | :stream
           | :view_channel
           | :send_messages
           | :send_tts_message
