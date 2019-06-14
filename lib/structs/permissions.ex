@@ -317,8 +317,8 @@ defmodule Crux.Structs.Permissions do
   @doc ~S"""
     Similar to `has/2` but returns a `Crux.Structs.Permissions` of the missing permissions.
 
-    ## Examples
-      ```
+  ## Examples
+    ```elixir
     iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [:send_messages, :view_channel, :embed_links])
     %Crux.Structs.Permissions{bitfield: 0x4000}
 
@@ -333,7 +333,7 @@ defmodule Crux.Structs.Permissions do
     # No permissions
     iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [])
     %Crux.Structs.Permissions{bitfield: 0}
-
+    ```
   """
   @spec missing(resolvable(), resolvable()) :: t()
   Util.since("0.2.0")
