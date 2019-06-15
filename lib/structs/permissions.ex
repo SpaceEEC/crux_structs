@@ -333,6 +333,7 @@ defmodule Crux.Structs.Permissions do
   # No permissions
   iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [])
   %Crux.Structs.Permissions{bitfield: 0}
+
     ```
   """
   @spec missing(resolvable(), resolvable()) :: t()
