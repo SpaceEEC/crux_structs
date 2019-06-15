@@ -317,23 +317,24 @@ defmodule Crux.Structs.Permissions do
   @doc ~S"""
     Similar to `has/2` but returns a `Crux.Structs.Permissions` of the missing permissions.
 
-    ## Examples
-      ```
-    iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [:send_messages, :view_channel, :embed_links])
-    %Crux.Structs.Permissions{bitfield: 0x4000}
+  ## Examples
+    ```elixir
+  iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [:send_messages, :view_channel, :embed_links])
+  %Crux.Structs.Permissions{bitfield: 0x4000}
 
-    # Administrator won't implicilty grant other permissions
-    iex> Crux.Structs.Permissions.missing([:administrator], [:send_messages])
-    %Crux.Structs.Permissions{bitfield: 0x800}
+  # Administrator won't implicilty grant other permissions
+  iex> Crux.Structs.Permissions.missing([:administrator], [:send_messages])
+  %Crux.Structs.Permissions{bitfield: 0x800}
 
-    # Everything set
-    iex> Crux.Structs.Permissions.missing([:kick_members, :ban_members, :view_audit_log], [:kick_members, :ban_members])
-    %Crux.Structs.Permissions{bitfield: 0}
+  # Everything set
+  iex> Crux.Structs.Permissions.missing([:kick_members, :ban_members, :view_audit_log], [:kick_members, :ban_members])
+  %Crux.Structs.Permissions{bitfield: 0}
 
-    # No permissions
-    iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [])
-    %Crux.Structs.Permissions{bitfield: 0}
+  # No permissions
+  iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [])
+  %Crux.Structs.Permissions{bitfield: 0}
 
+    ```
   """
   @spec missing(resolvable(), resolvable()) :: t()
   Util.since("0.2.0")
