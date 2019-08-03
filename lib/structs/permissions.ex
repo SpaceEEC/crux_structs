@@ -421,7 +421,9 @@ defmodule Crux.Structs.Permissions do
       |> Map.get(guild_id)
       |> Map.get(:permissions)
 
-    member_roles = MapSet.put(member.roles, guild_id)
+    member_roles = member.roles
+    |> MapSet.put(guild_id)
+    |> MapSet.to_list()
 
     roles
     |> Map.take(member_roles)
