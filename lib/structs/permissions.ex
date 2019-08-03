@@ -421,9 +421,10 @@ defmodule Crux.Structs.Permissions do
       |> Map.get(guild_id)
       |> Map.get(:permissions)
 
-    member_roles = member.roles
-    |> MapSet.put(guild_id)
-    |> MapSet.to_list()
+    member_roles =
+      member.roles
+      |> MapSet.put(guild_id)
+      |> MapSet.to_list()
 
     roles
     |> Map.take(member_roles)
@@ -447,7 +448,11 @@ defmodule Crux.Structs.Permissions do
       |> Map.get(guild_id)
       |> apply_overwrite(permissions)
 
-    role_ids = members |> Map.get(user_id) |> Map.get(:roles)
+    role_ids =
+      members
+      |> Map.get(user_id)
+      |> Map.get(:roles)
+      |> MapSet.to_list()
 
     # apply all other overwrites
     role_permissions =
