@@ -6,6 +6,10 @@ defmodule Crux.Structs.MessageTest do
   test "create" do
     message =
       %{
+        "activity" => %{
+          "type" => 0,
+          "party_id" => "interesting_id"
+        },
         "attachments" => [],
         "author" => %{
           "avatar" => "646a356e237350bf8b8dfde15667dfc4",
@@ -25,6 +29,14 @@ defmodule Crux.Structs.MessageTest do
         "edited_timestamp" => nil,
         "embeds" => [],
         "id" => "440947000364630017",
+        "mention_channels" => [
+          %{
+            "id" => "278325129692446722",
+            "guild_id" => "278325129692446720",
+            "name" => "big-news",
+            "type" => 5
+          }
+        ],
         "mention_everyone" => false,
         "mention_roles" => [],
         "mentions" => [
@@ -45,11 +57,21 @@ defmodule Crux.Structs.MessageTest do
         "pinned" => false,
         "timestamp" => "2018-05-01T18:45:57.286000+00:00",
         "tts" => false,
-        "type" => 0
+        "type" => 0,
+        "flags" => 2,
+        "message_reference" => %{
+          "channel_id" => "278325129692446722",
+          "guild_id" => "278325129692446720",
+          "message_id" => "306588351130107906"
+        }
       }
       |> Crux.Structs.create(Crux.Structs.Message)
 
     assert message == %Crux.Structs.Message{
+             activity: %{
+               type: 0,
+               party_id: "interesting_id"
+             },
              attachments: [],
              author: %Crux.Structs.User{
                username: "space",
@@ -75,13 +97,27 @@ defmodule Crux.Structs.MessageTest do
              edited_timestamp: nil,
              embeds: [],
              id: 440_947_000_364_630_017,
+             mention_channels: [
+               %{
+                 id: 278_325_129_692_446_722,
+                 guild_id: 278_325_129_692_446_720,
+                 name: "big-news",
+                 type: 5
+               }
+             ],
              mention_everyone: false,
              mention_roles: %MapSet{},
              mentions: MapSet.new([218_348_062_828_003_328]),
              pinned: false,
              timestamp: "2018-05-01T18:45:57.286000+00:00",
              tts: false,
-             type: 0
+             type: 0,
+             flags: 2,
+             message_reference: %{
+               channel_id: 278_325_129_692_446_722,
+               guild_id: 278_325_129_692_446_720,
+               message_id: 306_588_351_130_107_906
+             }
            }
   end
 
