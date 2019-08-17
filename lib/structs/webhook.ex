@@ -31,7 +31,7 @@ defmodule Crux.Structs.Webhook do
           channel_id: Crux.Rest.snowflake(),
           guild_id: Crux.Rest.snowflake() | nil,
           name: String.t() | nil,
-          token: String.t(),
+          token: String.t() | nil,
           user: Crux.Rest.snowflake() | nil
         }
 
