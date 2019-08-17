@@ -148,9 +148,7 @@ defmodule Crux.Structs.Message do
       )
       |> Map.update(:webhook_id, nil, &Util.id_to_int/1)
 
-    message =
-      data
-      |> Map.update(:member, nil, create_member(data))
+    message = Map.update(data, :member, nil, create_member(data))
 
     struct(__MODULE__, message)
   end
