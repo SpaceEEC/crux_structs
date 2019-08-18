@@ -1,7 +1,7 @@
 defmodule Crux.Structs.MixProject do
   use Mix.Project
 
-  @vsn "0.2.0"
+  @vsn "0.2.1-dev"
   @name :crux_structs
 
   def project do
@@ -42,8 +42,8 @@ defmodule Crux.Structs.MixProject do
        branch: "feat/umbrella",
        only: :dev,
        runtime: false},
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:poison, ">= 0.0.0", only: [:dev]}
+      {:credo, "~> 1.1.2", only: [:dev, :test], runtime: false},
+      {:jason, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -61,7 +61,7 @@ defmodule Crux.Structs.MixProject do
       |> Enum.slice(0..-2)
       |> Enum.map(&%{"url" => "https://hexdocs.pm/#{@name}/" <> &1, "version" => &1})
       |> Enum.reverse()
-      |> Poison.encode!()
+      |> Jason.encode!()
 
     config = "var versionNodes = " <> config
 
