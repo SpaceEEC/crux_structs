@@ -4,6 +4,7 @@ matrix:
   include:
     - language: elixir
       elixir: '1.9.1'
+      otp_release: '22'
       script:
         - mix format --check-formatted
         - mix credo --strict
