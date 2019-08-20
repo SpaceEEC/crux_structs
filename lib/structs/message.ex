@@ -121,7 +121,11 @@ defmodule Crux.Structs.Message do
     data =
       data
       |> Util.atomify()
-      |> Map.update(:application, nil, &Map.update(&1, :id, nil, fn id -> Snowflake.to_snowflake(id) end))
+      |> Map.update(
+        :application,
+        nil,
+        &Map.update(&1, :id, nil, fn id -> Snowflake.to_snowflake(id) end)
+      )
       |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update!(:author, &Structs.create(&1, User))
       |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
