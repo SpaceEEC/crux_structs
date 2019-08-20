@@ -86,7 +86,7 @@ defmodule Crux.Structs.Snowflake.Parts do
   end
 
   def construct(opts) when is_list(opts) do
-    Snowflake
+    Snowflake.Parts
     |> struct(opts)
     |> construct()
   end
