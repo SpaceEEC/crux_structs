@@ -3,85 +3,104 @@ defmodule Crux.Structs.Guild do
   Represents a Discord [Guild Object](https://discordapp.com/developers/docs/resources/guild#guild-object-guild-structure).
 
   Differences opposed to the Discord API Object:
-  - `:emojis` is a `MapSet` of emoji ids
   - `:channels` is a `MapSet` of channel ids
+  - `:emojis` is a `MapSet` of emoji ids
   - `:presences` does not exists at all
   """
 
   @behaviour Crux.Structs
 
+  alias Crux.Structs
   alias Crux.Structs.{Guild, Member, Role, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
 
   defstruct(
-    id: nil,
-    name: nil,
-    icon: nil,
-    splash: nil,
-    owner_id: nil,
-    region: nil,
     afk_channel_id: nil,
     afk_timeout: nil,
-    embed_enabled: nil,
-    verification_level: nil,
-    default_message_notifications: nil,
-    explicit_content_filter: nil,
-    roles: %{},
-    emojis: %MapSet{},
-    features: %MapSet{},
-    mfa_level: nil,
     application_id: nil,
-    widget_enabled: nil,
+    banner: nil,
+    channels: %MapSet{},
+    default_message_notifications: nil,
+    description: nil,
+    emojis: %MapSet{},
+    explicit_content_filter: nil,
+    features: %MapSet{},
+    icon: nil,
+    id: nil,
     joined_at: nil,
     large: nil,
-    unavailable: nil,
+    # :lazy,
+    # :lfg,
     member_count: nil,
-    voice_states: %{},
     members: %{},
-    channels: %MapSet{},
-    # presences: %{},
+    mfa_level: nil,
+    name: nil,
+    owner_id: nil,
+    preferred_locale: nil,
+    premium_subscription_count: nil,
+    premium_tier: nil,
+    # :presences,
+    region: nil,
+    roles: %{},
+    splash: nil,
+    system_channel_flags: nil,
+    system_channel_id: nil,
+    unavailable: nil,
+    vanity_url_code: nil,
+    verification_level: nil,
+    voice_states: %{},
+
+    ## Not in GUILD_CREATE
     max_presences: nil,
     max_members: nil,
-    vanity_url_code: nil,
-    description: nil,
-    banner: nil
+    embed_enabled: nil,
+    widget_enabled: nil
   )
 
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          id: Crux.Rest.snowflake(),
-          name: String.t(),
-          icon: String.t() | nil,
-          owner_id: String.t(),
-          region: String.t(),
           afk_channel_id: Crux.Rest.snowflake() | nil,
           afk_timeout: integer(),
-          embed_enabled: boolean(),
-          verification_level: integer(),
-          default_message_notifications: integer(),
-          explicit_content_filter: integer(),
-          roles: %{optional(Crux.Rest.snowflake()) => Role.t()},
-          emojis: MapSet.t(Crux.Rest.snowflake()),
-          features: MapSet.t(String.t()),
-          mfa_level: integer(),
           application_id: Crux.Rest.snowflake() | nil,
-          widget_enabled: boolean(),
+          banner: String.t() | nil,
+          channels: MapSet.t(Crux.Rest.snowflake()),
+          default_message_notifications: non_neg_integer(),
+          description: String.t() | nil,
+          emojis: MapSet.t(Crux.Rest.snowflake()),
+          explicit_content_filter: non_neg_integer(),
+          features: MapSet.t(String.t()),
+          icon: String.t() | nil,
+          id: Crux.Rest.snowflake(),
           joined_at: String.t(),
           large: boolean(),
+          # lazy: boolean(),
+          # lfg: nil,
+          member_count: pos_integer(),
+          members: %{required(Crux.Rest.snowflake()) => Member.t()},
+          mfa_level: integer(),
+          name: String.t(),
+          owner_id: String.t(),
+          preferred_locale: String.t(),
+          premium_subscription_count: non_neg_integer(),
+          premium_tier: non_neg_integer(),
+          # presences: %{required(Crux.Rest.snowflake()) => Presence.t()},
+          region: String.t(),
+          roles: %{optional(Crux.Rest.snowflake()) => Role.t()},
+          splash: String.t() | nil,
+          system_channel_flags: non_neg_integer(),
+          system_channel_id: Crux.Rest.snowflake() | nil,
           unavailable: boolean(),
-          member_count: integer(),
+          vanity_url_code: String.t() | nil,
+          verification_level: integer(),
           voice_states: %{optional(Crux.Rest.snowflake()) => VoiceState.t()},
-          members: %{optional(Crux.Rest.snowflake()) => Member.t()},
-          channels: MapSet.t(Crux.Rest.snowflake()),
-          # presences: %{optional(Crux.Rest.snowflake()) => Presence.t()},
+          # Not in GUILD_CREATE
           max_presences: pos_integer() | nil,
           max_members: pos_integer(),
-          vanity_url_code: String.t() | nil,
-          description: String.t() | nil,
-          banner: String.t() | nil
+          embed_enabled: boolean(),
+          widget_enabled: boolean()
         }
 
   @doc """
@@ -97,30 +116,57 @@ defmodule Crux.Structs.Guild do
     data =
       data
       |> Util.atomify()
+      |> Map.update(:afk_channel_id, nil, &Util.id_to_int/1)
+      |> Map.update(:application_id, nil, &Util.id_to_int/1)
+      |> Map.update(:channels, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(:emojis, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(:features, %MapSet{}, &MapSet.new/1)
       |> Map.update!(:id, &Util.id_to_int/1)
+      # :members
+      |> Map.update(:owner_id, nil, &Util.id_to_int/1)
+      # :roles
+      |> Map.update(:system_channel_id, nil, &Util.id_to_int/1)
+
+    # :voice_states
 
     guild =
       data
-      |> Map.update(:owner_id, nil, &Util.id_to_int/1)
-      |> Map.update(:afk_channel_id, nil, &Util.id_to_int/1)
-      |> Map.update(:roles, [], &Enum.map(&1, fn role -> Map.put(role, :guild_id, data.id) end))
-      |> Map.update(:roles, %{}, &Util.raw_data_to_map(&1, Role))
-      |> Map.update(:emojis, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
-      |> Map.update(:features, [], &MapSet.new/1)
-      |> Map.update(:application_id, nil, &Util.id_to_int/1)
-      |> Map.update(
-        :voice_states,
-        [],
-        &Enum.map(&1, fn voice_state -> Map.put(voice_state, :guild_id, data.id) end)
-      )
-      |> Map.update!(:voice_states, &Util.raw_data_to_map(&1, VoiceState, :user_id))
       |> Map.update(
         :members,
-        [],
-        &Enum.map(&1, fn member -> Map.put(member, :guild_id, data.id) end)
+        %{},
+        &Map.new(&1, fn member ->
+          member =
+            member
+            |> Map.put(:guild_id, data.id)
+            |> Structs.create(Member)
+
+          {member.user, member}
+        end)
       )
-      |> Map.update!(:members, &Util.raw_data_to_map(&1, Member, :user))
-      |> Map.update(:channels, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(
+        :roles,
+        %{},
+        &Map.new(&1, fn role ->
+          role =
+            role
+            |> Map.put(:guild_id, data.id)
+            |> Structs.create(Role)
+
+          {role.id, role}
+        end)
+      )
+      |> Map.update(
+        :voice_states,
+        %{},
+        &Map.new(&1, fn voice_state ->
+          voice_state =
+            voice_state
+            |> Map.put(:guild_id, data.id)
+            |> Structs.create(VoiceState)
+
+          {voice_state.user_id, voice_state}
+        end)
+      )
 
     struct(__MODULE__, guild)
   end
