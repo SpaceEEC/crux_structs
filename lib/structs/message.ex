@@ -51,7 +51,7 @@ defmodule Crux.Structs.Message do
   Util.typesince("0.2.1")
 
   @type message_application :: %{
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           cover_image: String.t() | nil,
           description: String.t(),
           icon: String.t() | nil,
@@ -61,8 +61,8 @@ defmodule Crux.Structs.Message do
   Util.typesince("0.2.1")
 
   @type mention_channel :: %{
-          id: Crux.Rest.snowflake(),
-          guild_id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
+          guild_id: Snowflake.t(),
           name: String.t(),
           type: non_neg_integer()
         }
@@ -74,9 +74,9 @@ defmodule Crux.Structs.Message do
   Util.typesince("0.2.1")
 
   @type message_reference :: %{
-          message_id: Crux.Rest.snowflake() | nil,
-          guild_id: Crux.Rest.snowflake() | nil,
-          channel_id: Crux.Rest.snowflake()
+          message_id: Snowflake.t() | nil,
+          guild_id: Snowflake.t() | nil,
+          channel_id: Snowflake.t()
         }
 
   Util.typesince("0.1.0")
@@ -92,13 +92,13 @@ defmodule Crux.Structs.Message do
           edited_timestamp: String.t(),
           embeds: [Embed.t()],
           flags: non_neg_integer(),
-          guild_id: Crux.Rest.snowflake() | nil,
-          id: Crux.Rest.snowflake(),
+          guild_id: Snowflake.t() | nil,
+          id: Snowflake.t(),
           member: Member.t() | nil,
           mention_channels: [mention_channel()],
           mention_everyone: boolean(),
-          mention_roles: MapSet.t(Crux.Rest.snowflake()),
-          mentions: MapSet.t(Crux.Rest.snowflake()),
+          mention_roles: MapSet.t(Snowflake.t()),
+          mentions: MapSet.t(Snowflake.t()),
           message_reference: message_reference(),
           nonce: String.t() | nil,
           pinned: boolean(),
@@ -106,7 +106,7 @@ defmodule Crux.Structs.Message do
           timestamp: String.t(),
           tts: boolean(),
           type: integer(),
-          webhook_id: Crux.Rest.snowflake() | nil
+          webhook_id: Snowflake.t() | nil
         }
 
   @doc """
