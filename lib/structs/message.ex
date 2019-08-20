@@ -121,13 +121,13 @@ defmodule Crux.Structs.Message do
     data =
       data
       |> Util.atomify()
-      |> Map.update(:application, nil, &Map.update(&1, :id, nil, fn id -> Util.id_to_int(id) end))
+      |> Map.update(:application, nil, &Map.update(&1, :id, nil, fn id -> Snowflake.to_snowflake(id) end))
       |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update!(:author, &Structs.create(&1, User))
       |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
       |> Map.update(:embeds, [], &Structs.create(&1, Embed))
-      |> Map.update(:guild_id, nil, &Util.id_to_int/1)
-      |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update(:mention_channels, [], &create_mention_channel/1)
       |> Map.update(
         :mention_roles,
@@ -160,15 +160,15 @@ defmodule Crux.Structs.Message do
 
   defp create_mention_channel(%{} = mention_channel) do
     mention_channel
-    |> Map.update!(:id, &Util.id_to_int/1)
-    |> Map.update!(:guild_id, &Util.id_to_int/1)
+    |> Map.update!(:id, &Snowflake.to_snowflake/1)
+    |> Map.update!(:guild_id, &Snowflake.to_snowflake/1)
   end
 
   defp create_message_reference(%{} = message_reference) do
     message_reference
-    |> Map.update(:message_id, nil, &Util.id_to_int/1)
-    |> Map.update(:channel_id, nil, &Util.id_to_int/1)
-    |> Map.update(:guild_id, nil, &Util.id_to_int/1)
+    |> Map.update(:message_id, nil, &Snowflake.to_snowflake/1)
+    |> Map.update(:channel_id, nil, &Snowflake.to_snowflake/1)
+    |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
   end
 
   defp create_member(data) do

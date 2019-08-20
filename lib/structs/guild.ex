@@ -116,16 +116,16 @@ defmodule Crux.Structs.Guild do
     data =
       data
       |> Util.atomify()
-      |> Map.update(:afk_channel_id, nil, &Util.id_to_int/1)
-      |> Map.update(:application_id, nil, &Util.id_to_int/1)
+      |> Map.update(:afk_channel_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:application_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:channels, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:emojis, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:features, %MapSet{}, &MapSet.new/1)
-      |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
       # :members
-      |> Map.update(:owner_id, nil, &Util.id_to_int/1)
+      |> Map.update(:owner_id, nil, &Snowflake.to_snowflake/1)
       # :roles
-      |> Map.update(:system_channel_id, nil, &Util.id_to_int/1)
+      |> Map.update(:system_channel_id, nil, &Snowflake.to_snowflake/1)
 
     # :voice_states
 
