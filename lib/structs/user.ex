@@ -5,7 +5,7 @@ defmodule Crux.Structs.User do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{User, Util}
+  alias Crux.Structs.{User, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -24,12 +24,12 @@ defmodule Crux.Structs.User do
           avatar: String.t() | nil,
           bot: boolean(),
           discriminator: String.t(),
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           username: String.t()
         }
 
   @doc """
-    Creates a `Crux.Structs.User` struct from raw data.
+    Creates a `t:Crux.Structs.User.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -40,13 +40,13 @@ defmodule Crux.Structs.User do
     user =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, user)
   end
 
   @doc ~S"""
-    Converts a `Crux.Structs.User` into its discord mention format.
+    Converts a `t:Crux.Structs.User.t/0` into its discord mention format.
 
     ```elixir
   iex> %Crux.Structs.User{id: 218348062828003328}

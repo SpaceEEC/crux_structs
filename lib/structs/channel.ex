@@ -31,7 +31,7 @@ defmodule Crux.Structs.Channel do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Overwrite, Util}
+  alias Crux.Structs.{Overwrite, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -60,28 +60,28 @@ defmodule Crux.Structs.Channel do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          application_id: Crux.Rest.snowflake(),
+          application_id: Snowflake.t(),
           bitrate: integer(),
-          guild_id: Crux.Rest.snowflake(),
+          guild_id: Snowflake.t(),
           icon: String.t(),
-          id: Crux.Rest.snowflake(),
-          last_message_id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
+          last_message_id: Snowflake.t(),
           last_pin_timestamp: String.t(),
           name: String.t(),
           nsfw: boolean(),
-          owner_id: Crux.Rest.snowflake(),
-          parent_id: Crux.Rest.snowflake(),
-          permission_overwrites: %{optional(Crux.Rest.snowflake()) => Overwrite.t()},
+          owner_id: Snowflake.t(),
+          parent_id: Snowflake.t(),
+          permission_overwrites: %{optional(Snowflake.t()) => Overwrite.t()},
           position: integer(),
           rate_limit_per_user: integer(),
-          recipients: MapSet.t(Crux.Rest.snowflake()),
+          recipients: MapSet.t(Snowflake.t()),
           topic: String.t(),
           type: integer(),
           user_limit: non_neg_integer()
         }
 
   @doc """
-    Creates a `Crux.Structs.Channel` struct from raw data.
+    Creates a `t:Crux.Structs.Channel.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`
   """
@@ -92,12 +92,12 @@ defmodule Crux.Structs.Channel do
     channel =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
-      |> Map.update(:guild_id, nil, &Util.id_to_int/1)
-      |> Map.update(:owner_id, nil, &Util.id_to_int/1)
-      |> Map.update(:last_message_id, nil, &Util.id_to_int/1)
-      |> Map.update(:appliparent_idcation_id, nil, &Util.id_to_int/1)
-      |> Map.update(:parent_id, nil, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:owner_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:last_message_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:appliparent_idcation_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:parent_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:permission_overwrites, %{}, &Util.raw_data_to_map(&1, Overwrite))
       |> Map.update(:recipients, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
 
@@ -105,7 +105,7 @@ defmodule Crux.Structs.Channel do
   end
 
   @doc ~S"""
-    Converts a `Crux.Structs.Channel` into its discord mention format.
+    Converts a `t:Crux.Structs.Channel.t/0` into its discord mention format.
 
   ## Example
 

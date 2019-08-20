@@ -10,7 +10,7 @@ defmodule Crux.Structs.SnowflakeTest do
   end
 
   test "to_integer alias works" do
-    snowflake = %Crux.Structs.Snowflake{
+    snowflake = %Crux.Structs.Snowflake.Parts{
       increment: 0,
       process_id: 0,
       timestamp: 1_472_128_634_889,
@@ -27,7 +27,7 @@ defmodule Crux.Structs.SnowflakeTest do
   end
 
   test "forth and back yields same result (start struct)" do
-    snowflake = %Crux.Structs.Snowflake{
+    snowflake = %Crux.Structs.Snowflake.Parts{
       increment: 0,
       process_id: 0,
       timestamp: 1_472_128_634_889,

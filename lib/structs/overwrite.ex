@@ -5,7 +5,7 @@ defmodule Crux.Structs.Overwrite do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
+  alias Crux.Structs.{Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -20,14 +20,14 @@ defmodule Crux.Structs.Overwrite do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           type: String.t(),
           allow: integer(),
           deny: integer()
         }
 
   @doc """
-    Creates a `Crux.Structs.Overwrite` struct from raw data.
+    Creates a `t:Crux.Structs.Overwrite.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -38,7 +38,7 @@ defmodule Crux.Structs.Overwrite do
     overwrite =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, overwrite)
   end

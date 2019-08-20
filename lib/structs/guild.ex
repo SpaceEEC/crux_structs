@@ -11,7 +11,7 @@ defmodule Crux.Structs.Guild do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Guild, Member, Role, Util, VoiceState}
+  alias Crux.Structs.{Guild, Member, Role, Snowflake, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
@@ -104,7 +104,7 @@ defmodule Crux.Structs.Guild do
         }
 
   @doc """
-    Creates a `Crux.Structs.Guild` struct from raw data.
+    Creates a `t:Crux.Structs.Guild/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

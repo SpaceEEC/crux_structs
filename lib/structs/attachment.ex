@@ -7,7 +7,7 @@ defmodule Crux.Structs.Attachment do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Attachment, Util}
+  alias Crux.Structs.{Attachment, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -25,7 +25,7 @@ defmodule Crux.Structs.Attachment do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           filename: String.t(),
           size: integer(),
           url: String.t(),
@@ -35,7 +35,7 @@ defmodule Crux.Structs.Attachment do
         }
 
   @doc """
-    Creates a `Crux.Structs.Attachment` struct from raw data.
+    Creates a `t:Crux.Structs.Attachment.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -46,7 +46,7 @@ defmodule Crux.Structs.Attachment do
     attachment =
       data
       |> Util.atomify()
-      |> Map.update(:id, nil, &Util.id_to_int/1)
+      |> Map.update(:id, nil, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, attachment)
   end

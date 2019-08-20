@@ -8,7 +8,7 @@ defmodule Crux.Structs.Member do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Member, Util}
+  alias Crux.Structs.{Member, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -26,17 +26,17 @@ defmodule Crux.Structs.Member do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          user: Crux.Rest.snowflake(),
+          user: Snowflake.t(),
           nick: String.t() | nil,
-          roles: MapSet.t(Crux.Rest.snowflake()),
+          roles: MapSet.t(Snowflake.t()),
           joined_at: String.t(),
           deaf: boolean() | nil,
           mute: boolean() | nil,
-          guild_id: Crux.Rest.snowflake() | nil
+          guild_id: Snowflake.t() | nil
         }
 
   @doc """
-    Creates a `Crux.Structs.Member` struct from raw data.
+    Creates a `t:Crux.Structs.Member.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -48,14 +48,14 @@ defmodule Crux.Structs.Member do
       data
       |> Util.atomify()
       |> Map.update!(:user, Util.map_to_id())
-      |> Map.update!(:roles, &MapSet.new(&1, fn role_id -> Util.id_to_int(role_id) end))
-      |> Map.update(:guild_id, nil, &Util.id_to_int/1)
+      |> Map.update!(:roles, &MapSet.new(&1, fn role_id -> Snowflake.to_snowflake(role_id) end))
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, member)
   end
 
   @doc ~S"""
-    Converts a `Crux.Structs.Member` into its discord mention format.
+    Converts a `t:Crux.Structs.Member.t/0` into its discord mention format.
 
   ## Examples
 

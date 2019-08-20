@@ -9,7 +9,7 @@ defmodule Crux.Structs.Message do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Attachment, Embed, Member, Message, Reaction, User, Util}
+  alias Crux.Structs.{Attachment, Embed, Member, Message, Reaction, Snowflake, User, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -87,7 +87,7 @@ defmodule Crux.Structs.Message do
           attachments: [Attachment.t()],
           # Might be a webhook user
           author: User.t(),
-          channel_id: Crux.Rest.snowflake(),
+          channel_id: Snowflake.t(),
           content: String.t(),
           edited_timestamp: String.t(),
           embeds: [Embed.t()],
@@ -110,7 +110,7 @@ defmodule Crux.Structs.Message do
         }
 
   @doc """
-    Creates a `Crux.Structs.Message` struct from raw data.
+    Creates a `t:Crux.Structs.Message.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -124,7 +124,7 @@ defmodule Crux.Structs.Message do
       |> Map.update(:application, nil, &Map.update(&1, :id, nil, fn id -> Util.id_to_int(id) end))
       |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update!(:author, &Structs.create(&1, User))
-      |> Map.update!(:channel_id, &Util.id_to_int/1)
+      |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
       |> Map.update(:embeds, [], &Structs.create(&1, Embed))
       |> Map.update(:guild_id, nil, &Util.id_to_int/1)
       |> Map.update!(:id, &Util.id_to_int/1)
@@ -132,7 +132,7 @@ defmodule Crux.Structs.Message do
       |> Map.update(
         :mention_roles,
         %MapSet{},
-        &MapSet.new(&1, fn role_id -> Util.id_to_int(role_id) end)
+        &MapSet.new(&1, fn role_id -> Snowflake.to_snowflake(role_id) end)
       )
       |> Map.update(:mentions, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:message_reference, nil, &create_message_reference/1)
@@ -146,7 +146,7 @@ defmodule Crux.Structs.Message do
           {key, reaction}
         end)
       )
-      |> Map.update(:webhook_id, nil, &Util.id_to_int/1)
+      |> Map.update(:webhook_id, nil, &Snowflake.to_snowflake/1)
 
     message = Map.update(data, :member, nil, create_member(data))
 

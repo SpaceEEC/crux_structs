@@ -1,6 +1,6 @@
 defmodule Crux.Structs do
   @moduledoc """
-    Provides a unified function to create one or a list of structs, invoking their `create/1` function if available.
+    Provides a unified function to create one or a list of structs, invoking their `c:create/1` function if available.
   """
 
   alias Crux.Structs.Util
@@ -15,7 +15,7 @@ defmodule Crux.Structs do
   @optional_callbacks create: 1
 
   @doc ~S"""
-    Creates a struct or a list of structs invoking their `create/1` function if available.
+    Creates a struct or a list of structs invoking their `c:create/1` function if available.
 
   ## Examples
 

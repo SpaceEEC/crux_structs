@@ -114,7 +114,7 @@ defmodule Crux.Structs.Permissions do
   @type resolvable :: t() | non_neg_integer() | name() | [resolvable()]
 
   @typedoc """
-    Represents a `Crux.Structs.Permissions`.
+    Represents a `t:Crux.Structs.Permissions.t/0`.
 
     * `:bitfield`: The raw bitfield of permission flags.
   """
@@ -125,7 +125,7 @@ defmodule Crux.Structs.Permissions do
         }
 
   @doc """
-    Creates a new `Crux.Structs.Permissions` struct from a valid `t:resolvable/0`.
+    Creates a new `t:Crux.Structs.Permissions.t/0` from a valid `t:resolvable/0`.
   """
   @spec new(permissions :: resolvable()) :: t()
   Util.since("0.1.3")
@@ -316,7 +316,7 @@ defmodule Crux.Structs.Permissions do
   end
 
   @doc ~S"""
-    Similar to `has/2` but returns a `Crux.Structs.Permissions` of the missing permissions.
+    Similar to `has/2` but returns a `t:Crux.Structs.Permissions.t/0` of the missing permissions.
 
   ## Examples
     ```elixir
@@ -357,7 +357,7 @@ defmodule Crux.Structs.Permissions do
   > The guild-wide administrator flag or being owner implicitly grants all permissions, see `explicit/3`.
   """
   @spec implicit(
-          member :: Structs.Member.t() | Structs.User.t() | Crux.Rest.snowflake(),
+          member :: Structs.Member.t() | Structs.User.t() | Snowflake.t(),
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
@@ -394,7 +394,7 @@ defmodule Crux.Structs.Permissions do
   > The administrator flag or being owner implicitly does not grant permissions, see `implicit/3`.
   """
   @spec explicit(
-          member :: Structs.Member.t() | Structs.User.t() | Crux.Rest.snowflake(),
+          member :: Structs.Member.t() | Structs.User.t() | Snowflake.t(),
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
