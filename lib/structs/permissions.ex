@@ -93,6 +93,7 @@ defmodule Crux.Structs.Permissions do
           | :read_message_histroy
           | :mention_everyone
           | :use_external_emojis
+          | :view_server_analytics
           | :connect
           | :speak
           | :mute_members
