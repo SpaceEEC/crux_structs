@@ -4,12 +4,12 @@ on: push
 
 jobs:
   test-elixir-min-version:
-    name: Test Elixir 1.6
+    name: Elixir 1.6 - Tests
     
     runs-on: ubuntu-latest
     
     container:
-      image: elixir:1.6-slim
+      image: spaceeec/elixir:1.6-slim
     
     steps:
     - uses: actions/checkout@v1
@@ -22,10 +22,12 @@ jobs:
       run: mix test
     
   test-elixir-latest:
+    name: Elixir 1.9 - Formatting, Credo, and Tests
+
     runs-on: ubuntu-latest
 
     container:
-      image: elixir:1.9.1-slim
+      image: spaceeec/elixir:1.9-slim
 
     steps:
     - uses: actions/checkout@v1
