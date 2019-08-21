@@ -74,4 +74,4 @@ jobs:
       - name: Publish
         env:
           MIX_ENV: prod
-        run: echo "this would publish"
+        run: echo "this would publish the code"
