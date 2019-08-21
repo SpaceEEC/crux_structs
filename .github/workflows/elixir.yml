@@ -5,9 +5,9 @@ on: push
 jobs:
   test-elixir-min-version:
     name: Elixir 1.6 - Tests
-    
+
     runs-on: ubuntu-latest
-    
+
     container:
       image: spaceeec/elixir:1.6-slim
     
@@ -20,7 +20,7 @@ jobs:
         mix deps.get
     - name: Tests
       run: mix test
-    
+
   test-elixir-latest:
     name: Elixir 1.9 - Formatting, Credo, and Tests
 
@@ -42,3 +42,34 @@ jobs:
       run: mix credo --strict
     - name: Tests
       run: mix test
+
+  release:
+    name: Publish Release
+    needs: [test-elixir-min-version, test-elixir-latest]
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: spaceeec/elixir:1.9-slim
+
+      steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      # - uses: actions/checkout@v1
+      # - name: Install Dependencies
+      #   env:
+      #     MIX_ENV: prod
+      #   run: |
+      #     mix local.rebar --force
+      #     mix local.hex --force
+      #     mix deps.get
+      # - name: Compile
+      #   env:
+      #     MIX_ENV: prod
+      #   run: mix compile
+      # - name: Publish
+      #   env:
+      #     MIX_ENV: prod
+      #   run: echo "this would publish"
