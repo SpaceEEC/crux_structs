@@ -1,9 +1,9 @@
-name: Elixir CI
+name: Publish
 
 on:
   push:
     tags:
-    - '/*'
+    - '123.456.789-fake'
 
 jobs:
   # Redundant but can't be helped AFAIK
