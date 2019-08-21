@@ -1,12 +1,8 @@
-name: Publish
+name: Elixir CI
 
-on:
-  push:
-    branches:
-    - refs/tags/*
+on: push
 
 jobs:
-  # Redundant, but can't be helped AFAIK
   test-elixir-min-version:
     name: Elixir 1.6 - Only Tests
 
@@ -47,7 +43,6 @@ jobs:
     - name: Tests
       run: mix test
 
-
   release:
     name: Publish Release
 
@@ -61,6 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install Dependencies
+        if: contains(github.ref, 'tags')
         env:
           MIX_ENV: prod
         run: |
@@ -68,10 +64,12 @@ jobs:
           mix local.hex --force
           mix deps.get
       - name: Compile
+        if: contains(github.ref, 'tags')
         env:
           MIX_ENV: prod
         run: mix compile
       - name: Publish
+        if: contains(github.ref, 'tags')
         env:
           MIX_ENV: prod
         run: echo "this would publish the code"
