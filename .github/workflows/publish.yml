@@ -2,6 +2,8 @@ name: Publish
 
 on:
   push:
+    branches:
+    - 'foo'
     tags:
     - '123.456.789-fake'
 
