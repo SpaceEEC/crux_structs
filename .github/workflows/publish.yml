@@ -3,7 +3,7 @@ name: Elixir CI
 on:
   push:
     tags:
-    - '*'
+    - '/*'
 
 jobs:
   # Redundant but can't be helped AFAIK
