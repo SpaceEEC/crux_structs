@@ -45,6 +45,7 @@ jobs:
 
   release:
     name: Publish Release
+
     needs: [test-elixir-min-version, test-elixir-latest]
 
     runs-on: ubuntu-latest
@@ -52,11 +53,11 @@ jobs:
     container:
       image: spaceeec/elixir:1.9-slim
 
-      steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
       # - uses: actions/checkout@v1
       # - name: Install Dependencies
       #   env:
