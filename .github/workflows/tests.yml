@@ -3,7 +3,7 @@ name: Tests
 on:
   push:
     branches:
-    - 'feat/ci'
+    - 'refs/heads/feat/ci'
   pull_request:
 
 jobs:
