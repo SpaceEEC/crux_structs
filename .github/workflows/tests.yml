@@ -3,6 +3,7 @@ name: Tests
 on:
   push:
     branches:
+      - '*'
 
 jobs:
   test-elixir-min-version:
