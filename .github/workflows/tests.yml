@@ -3,7 +3,9 @@ name: Tests
 on:
   push:
     branches:
-      - '**/**'
+      - '**' # Branches without a /
+      - '**/**' # Branches with a /
+      - '!refs/tags/*' # No tags
 
 jobs:
   test-elixir-min-version:
