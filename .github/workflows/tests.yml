@@ -8,7 +8,10 @@ on:
       - 'docs/*'
       - 'fix/*'
       - 'refactor/*'
-      - '!refs/tags/*'
+    tags:
+      - '!*'
+      - '!*/**'
+      - '!**/**'
 
 jobs:
   test-elixir-min-version:
