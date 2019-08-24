@@ -3,8 +3,8 @@ name: Tests
 on:
   push:
     branches:
-      - '**' # Branches without a /
-      - '**/**' # Branches with a /
+      - 'refs/heads/**' # Branches without a /
+      - 'refs/heads/**/**' # Branches with a /
 
 jobs:
   test-elixir-min-version:
