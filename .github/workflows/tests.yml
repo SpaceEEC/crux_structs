@@ -3,9 +3,7 @@ name: Tests
 on:
   push:
     branches:
-    - 'master'
     - 'feat/ci'
-    - '!refs/tags/*'
   pull_request:
 
 jobs:
