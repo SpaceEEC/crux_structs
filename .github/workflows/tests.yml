@@ -5,7 +5,7 @@ on:
     branches:
       # - 'refs/heads/**' # Branches without a /
       # - 'refs/heads/**/**' # Branches with a /
-      - '**'
+      - '**/**'
       - '!refs/tags/*'
 
 jobs:
