@@ -3,9 +3,11 @@ name: Tests
 on:
   push:
     branches:
-      # - 'refs/heads/**' # Branches without a /
-      # - 'refs/heads/**/**' # Branches with a /
-      - '**/**'
+      - '*'
+      - 'feat/*'
+      - 'docs/*'
+      - 'fix/*'
+      - 'refactor/*'
       - '!refs/tags/*'
 
 jobs:
