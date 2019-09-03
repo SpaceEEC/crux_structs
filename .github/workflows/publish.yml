@@ -62,18 +62,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install Dependencies
-        env:
-          MIX_ENV: prod
         run: |
           mix local.rebar --force
           mix local.hex --force
           mix deps.get
       - name: Compile
-        env:
-          MIX_ENV: prod
         run: mix compile
       - name: Publish
         env:
-          MIX_ENV: prod
           HEX_API_KEY: wrong_key # ${{ serects.HEX_API_KEY }}
         run: mix hex.publish --yes --dry-run
