@@ -70,5 +70,5 @@ jobs:
         run: mix compile
       - name: Publish
         env:
-          HEX_API_KEY: ${{ serects.HEX_API_KEY }}
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
         run: mix hex.publish --yes --dry-run
