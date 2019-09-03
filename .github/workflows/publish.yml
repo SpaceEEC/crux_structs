@@ -2,8 +2,10 @@ name: Publish
 
 on:
   push:
-    branches:
-    - 'refs/tags/*'
+    tags:
+      - '*'
+      - '*/**'
+      - '**/**'
 
 jobs:
   # Redundant but can't be helped AFAIK
