@@ -42,7 +42,7 @@ defmodule Crux.Structs.MixProject do
        branch: "feat/umbrella",
        only: :dev,
        runtime: false},
-      {:credo, "~> 1.1.2", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
       {:jason, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
@@ -57,21 +57,21 @@ defmodule Crux.Structs.MixProject do
     config =
       System.cmd("git", ["tag"])
       |> elem(0)
+      |> String.trim()
       |> String.split("\n")
-      |> Enum.slice(0..-2)
       |> Enum.map(&%{"url" => "https://hexdocs.pm/#{@name}/" <> &1, "version" => &1})
       |> Enum.reverse()
       |> Jason.encode!()
 
     config = "var versionNodes = " <> config
 
-    __ENV__.file
-    |> Path.split()
-    |> Enum.slice(0..-2)
-    |> Kernel.++(["doc", "docs_config.js"])
-    |> Enum.join("/")
-    |> File.write!(config)
+    path =
+      __ENV__.file
+      |> Path.join(Path.join(["..", "doc", "docs_config.js"]))
+      |> Path.expand()
 
-    Mix.Shell.IO.info(~S{Generated "doc/docs_config.js".})
+    File.write!(path, config)
+
+    Mix.Shell.IO.info(~s{Generated "#{path}".})
   end
 end
