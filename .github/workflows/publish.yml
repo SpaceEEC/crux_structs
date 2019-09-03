@@ -10,7 +10,7 @@ on:
 jobs:
   # Redundant but can't be helped AFAIK
   test-elixir-min-version:
-    name: PUBLISH Elixir 1.6 - Only Tests
+    name: Elixir 1.6 - Only Tests
 
     runs-on: ubuntu-latest
 
@@ -28,7 +28,7 @@ jobs:
       run: mix test
 
   test-elixir-latest:
-    name: PUBLISH Elixir 1.9 - Full
+    name: Elixir 1.9 - Full
 
     runs-on: ubuntu-latest
 
@@ -50,7 +50,7 @@ jobs:
       run: mix test
 
   release:
-    name: PUBLISH Publish Release
+    name: Publish
 
     needs: [test-elixir-latest, test-elixir-min-version]
 
@@ -62,7 +62,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install Dependencies
-        if: contains(github.ref, 'tags')
         env:
           MIX_ENV: prod
         run: |
@@ -70,12 +69,11 @@ jobs:
           mix local.hex --force
           mix deps.get
       - name: Compile
-        if: contains(github.ref, 'tags')
         env:
           MIX_ENV: prod
         run: mix compile
       - name: Publish
-        if: contains(github.ref, 'tags')
         env:
           MIX_ENV: prod
-        run: echo "this would publish the code"
+          HEX_API_KEY: wrong_key # ${{ serects.HEX_API_KEY }}
+        run: mix hex.publish --yes --dry-run
