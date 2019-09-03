@@ -117,7 +117,7 @@ defmodule Crux.Structs.Snowflake do
   """
   Util.typesince("0.2.1")
 
-  defmacro is_snowflake(snowflake)
+  defguard is_snowflake(snowflake)
            when is_integer(snowflake) and snowflake in 0..0xFFFF_FFFF_FFFF_FFFF
 
   @doc """
