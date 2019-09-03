@@ -6,7 +6,7 @@ defmodule Crux.Structs.Snowflake.Parts do
 
     | Field               | Bits     | Number of Bits | Description                                                                |
     | :-----------------: | :------: | :------------: | :------------------------------------------------------------------------: |
-    | Timestamp           | 63 to 22 | 42 bits        | Milliseconds since Discord Epoch                                           |
+    | Timestamp           | 63 to 22 | 42 bits        | Milliseconds since Discord Epoch (1420070400000)                           |
     | Internal Worker ID  | 21 to 17 |  5 bits        |                                                                            |
     | Internal Process ID | 16 to 12 |  5 bits        |                                                                            |
     | Increment           | 11 to  0 | 12 bits        | For every ID that is generated on that process, this number is incremented |
@@ -113,6 +113,14 @@ defmodule Crux.Structs.Snowflake do
   @type t :: 0..0xFFFF_FFFF_FFFF_FFFF
 
   @doc """
+    Returns `true` if `term` is a `t:t/0`; otherwise returns `false`..
+  """
+  Util.typesince("0.2.1")
+
+  defmacro is_snowflake(snowflake)
+           when is_integer(snowflake) and snowflake in 0..0xFFFF_FFFF_FFFF_FFFF
+
+  @doc """
   The discord epoch, the first second of 2015 or `1420070400000`.
 
     ```elixir
@@ -141,7 +149,6 @@ defmodule Crux.Structs.Snowflake do
   """
   @spec deconstruct(t) :: Snowflake.Parts.t()
   Util.since("0.2.1")
-
   defdelegate deconstruct(snowflake), to: Snowflake.Parts
 
   @doc """
@@ -187,7 +194,7 @@ defmodule Crux.Structs.Snowflake do
   Util.since("0.2.1")
   def to_snowflake(nil), do: nil
 
-  def to_snowflake(snowflake) when is_integer(snowflake) and snowflake >= 0 do
+  def to_snowflake(snowflake) when is_snowflake(snowflake) do
     snowflake
   end
 
