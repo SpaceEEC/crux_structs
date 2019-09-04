@@ -42,7 +42,6 @@ defmodule Crux.Structs.Member do
 
   @type id_resolvable() :: User.id_resolvable()
 
-
   @doc """
     Resolves the id of a `t:Crux.Structs.Member.t/0`.
 
