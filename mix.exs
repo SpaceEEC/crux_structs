@@ -54,9 +54,10 @@ defmodule Crux.Structs.MixProject do
   end
 
   def generate_config(_) do
+    {data, 0} = System.cmd("git", ["tag"])
+
     config =
-      System.cmd("git", ["tag"])
-      |> elem(0)
+      data
       |> String.trim()
       |> String.split("\n")
       |> Enum.map(&%{"url" => "https://hexdocs.pm/#{@name}/" <> &1, "version" => &1})
