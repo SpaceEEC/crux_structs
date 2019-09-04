@@ -31,6 +31,7 @@ defmodule Crux.Structs.Channel do
 
   @behaviour Crux.Structs
 
+  alias Crux.Structs
   alias Crux.Structs.{Channel, Message, Overwrite, Snowflake, Util}
   require Util
   require Snowflake
@@ -122,7 +123,7 @@ defmodule Crux.Structs.Channel do
     resolve_id(id)
   end
 
-  def resolve_id(data), do: Crux.Structs.resolve_id(data)
+  def resolve_id(data), do: Structs.resolve_id(data)
 
   @doc """
     Creates a `t:Crux.Structs.Channel.t/0` struct from raw data.

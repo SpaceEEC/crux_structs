@@ -5,7 +5,8 @@ defmodule Crux.Structs.User do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Snowflake, Member, Message, User, Util, VoiceState}
+  alias Crux.Structs
+  alias Crux.Structs.{Member, Message, Snowflake, User, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
@@ -87,7 +88,7 @@ defmodule Crux.Structs.User do
     resolve_id(user_id)
   end
 
-  def resolve_id(data), do: Crux.Structs.resolve_id(data)
+  def resolve_id(data), do: Structs.resolve_id(data)
 
   @doc """
     Creates a `t:Crux.Structs.User.t/0` struct from raw data.

@@ -159,6 +159,9 @@ defmodule Crux.Structs do
   end
 
   @doc false
+  @spec resolve_id(Snowflake.t()) :: Snowflake.t()
+  @spec resolve_id(String.t()) :: Snowflake.t() | nil
+  @spec resolve_id(nil) :: nil
   def resolve_id(snowflake) when Snowflake.is_snowflake(snowflake) do
     snowflake
   end

@@ -233,10 +233,12 @@ defmodule Crux.Structs.Snowflake do
   end
 
   def parse(string) when is_binary(string) do
-    with {snowflake, ""} when is_snowflake(snowflake) <- Integer.parse(string) do
-      snowflake
-    else
-      _ -> :error
+    case Integer.parse(string) do
+      {snowflake, ""} when is_snowflake(snowflake) ->
+        snowflake
+
+      _ ->
+        :error
     end
   end
 
