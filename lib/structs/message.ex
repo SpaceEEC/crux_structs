@@ -9,7 +9,7 @@ defmodule Crux.Structs.Message do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Attachment, Embed, Member, Message, Reaction, User, Util}
+  alias Crux.Structs.{Attachment, Embed, Member, Message, Reaction, Snowflake, User, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -51,7 +51,7 @@ defmodule Crux.Structs.Message do
   Util.typesince("0.2.1")
 
   @type message_application :: %{
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           cover_image: String.t() | nil,
           description: String.t(),
           icon: String.t() | nil,
@@ -61,8 +61,8 @@ defmodule Crux.Structs.Message do
   Util.typesince("0.2.1")
 
   @type mention_channel :: %{
-          id: Crux.Rest.snowflake(),
-          guild_id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
+          guild_id: Snowflake.t(),
           name: String.t(),
           type: non_neg_integer()
         }
@@ -74,9 +74,9 @@ defmodule Crux.Structs.Message do
   Util.typesince("0.2.1")
 
   @type message_reference :: %{
-          message_id: Crux.Rest.snowflake() | nil,
-          guild_id: Crux.Rest.snowflake() | nil,
-          channel_id: Crux.Rest.snowflake()
+          message_id: Snowflake.t() | nil,
+          guild_id: Snowflake.t() | nil,
+          channel_id: Snowflake.t()
         }
 
   Util.typesince("0.1.0")
@@ -87,18 +87,18 @@ defmodule Crux.Structs.Message do
           attachments: [Attachment.t()],
           # Might be a webhook user
           author: User.t(),
-          channel_id: Crux.Rest.snowflake(),
+          channel_id: Snowflake.t(),
           content: String.t(),
           edited_timestamp: String.t(),
           embeds: [Embed.t()],
           flags: non_neg_integer(),
-          guild_id: Crux.Rest.snowflake() | nil,
-          id: Crux.Rest.snowflake(),
+          guild_id: Snowflake.t() | nil,
+          id: Snowflake.t(),
           member: Member.t() | nil,
           mention_channels: [mention_channel()],
           mention_everyone: boolean(),
-          mention_roles: MapSet.t(Crux.Rest.snowflake()),
-          mentions: MapSet.t(Crux.Rest.snowflake()),
+          mention_roles: MapSet.t(Snowflake.t()),
+          mentions: MapSet.t(Snowflake.t()),
           message_reference: message_reference(),
           nonce: String.t() | nil,
           pinned: boolean(),
@@ -106,11 +106,11 @@ defmodule Crux.Structs.Message do
           timestamp: String.t(),
           tts: boolean(),
           type: integer(),
-          webhook_id: Crux.Rest.snowflake() | nil
+          webhook_id: Snowflake.t() | nil
         }
 
   @doc """
-    Creates a `Crux.Structs.Message` struct from raw data.
+    Creates a `t:Crux.Structs.Message.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -121,18 +121,22 @@ defmodule Crux.Structs.Message do
     data =
       data
       |> Util.atomify()
-      |> Map.update(:application, nil, &Map.update(&1, :id, nil, fn id -> Util.id_to_int(id) end))
+      |> Map.update(
+        :application,
+        nil,
+        &Map.update(&1, :id, nil, fn id -> Snowflake.to_snowflake(id) end)
+      )
       |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update!(:author, &Structs.create(&1, User))
-      |> Map.update!(:channel_id, &Util.id_to_int/1)
+      |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
       |> Map.update(:embeds, [], &Structs.create(&1, Embed))
-      |> Map.update(:guild_id, nil, &Util.id_to_int/1)
-      |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update(:mention_channels, [], &create_mention_channel/1)
       |> Map.update(
         :mention_roles,
         %MapSet{},
-        &MapSet.new(&1, fn role_id -> Util.id_to_int(role_id) end)
+        &MapSet.new(&1, fn role_id -> Snowflake.to_snowflake(role_id) end)
       )
       |> Map.update(:mentions, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:message_reference, nil, &create_message_reference/1)
@@ -146,7 +150,7 @@ defmodule Crux.Structs.Message do
           {key, reaction}
         end)
       )
-      |> Map.update(:webhook_id, nil, &Util.id_to_int/1)
+      |> Map.update(:webhook_id, nil, &Snowflake.to_snowflake/1)
 
     message = Map.update(data, :member, nil, create_member(data))
 
@@ -160,15 +164,15 @@ defmodule Crux.Structs.Message do
 
   defp create_mention_channel(%{} = mention_channel) do
     mention_channel
-    |> Map.update!(:id, &Util.id_to_int/1)
-    |> Map.update!(:guild_id, &Util.id_to_int/1)
+    |> Map.update!(:id, &Snowflake.to_snowflake/1)
+    |> Map.update!(:guild_id, &Snowflake.to_snowflake/1)
   end
 
   defp create_message_reference(%{} = message_reference) do
     message_reference
-    |> Map.update(:message_id, nil, &Util.id_to_int/1)
-    |> Map.update(:channel_id, nil, &Util.id_to_int/1)
-    |> Map.update(:guild_id, nil, &Util.id_to_int/1)
+    |> Map.update(:message_id, nil, &Snowflake.to_snowflake/1)
+    |> Map.update(:channel_id, nil, &Snowflake.to_snowflake/1)
+    |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
   end
 
   defp create_member(data) do

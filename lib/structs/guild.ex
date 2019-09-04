@@ -11,7 +11,7 @@ defmodule Crux.Structs.Guild do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Guild, Member, Role, Util, VoiceState}
+  alias Crux.Structs.{Guild, Member, Role, Snowflake, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
@@ -62,40 +62,40 @@ defmodule Crux.Structs.Guild do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          afk_channel_id: Crux.Rest.snowflake() | nil,
+          afk_channel_id: Snowflake.t() | nil,
           afk_timeout: integer(),
-          application_id: Crux.Rest.snowflake() | nil,
+          application_id: Snowflake.t() | nil,
           banner: String.t() | nil,
-          channels: MapSet.t(Crux.Rest.snowflake()),
+          channels: MapSet.t(Snowflake.t()),
           default_message_notifications: non_neg_integer(),
           description: String.t() | nil,
-          emojis: MapSet.t(Crux.Rest.snowflake()),
+          emojis: MapSet.t(Snowflake.t()),
           explicit_content_filter: non_neg_integer(),
           features: MapSet.t(String.t()),
           icon: String.t() | nil,
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           joined_at: String.t(),
           large: boolean(),
           # lazy: boolean(),
           # lfg: nil,
           member_count: pos_integer(),
-          members: %{required(Crux.Rest.snowflake()) => Member.t()},
+          members: %{required(Snowflake.t()) => Member.t()},
           mfa_level: integer(),
           name: String.t(),
           owner_id: String.t(),
           preferred_locale: String.t(),
           premium_subscription_count: non_neg_integer(),
           premium_tier: non_neg_integer(),
-          # presences: %{required(Crux.Rest.snowflake()) => Presence.t()},
+          # presences: %{required(Snowflake.t()) => Presence.t()},
           region: String.t(),
-          roles: %{optional(Crux.Rest.snowflake()) => Role.t()},
+          roles: %{optional(Snowflake.t()) => Role.t()},
           splash: String.t() | nil,
           system_channel_flags: non_neg_integer(),
-          system_channel_id: Crux.Rest.snowflake() | nil,
+          system_channel_id: Snowflake.t() | nil,
           unavailable: boolean(),
           vanity_url_code: String.t() | nil,
           verification_level: integer(),
-          voice_states: %{optional(Crux.Rest.snowflake()) => VoiceState.t()},
+          voice_states: %{optional(Snowflake.t()) => VoiceState.t()},
           # Not in GUILD_CREATE
           max_presences: pos_integer() | nil,
           max_members: pos_integer(),
@@ -104,7 +104,7 @@ defmodule Crux.Structs.Guild do
         }
 
   @doc """
-    Creates a `Crux.Structs.Guild` struct from raw data.
+    Creates a `t:Crux.Structs.Guild/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -116,16 +116,16 @@ defmodule Crux.Structs.Guild do
     data =
       data
       |> Util.atomify()
-      |> Map.update(:afk_channel_id, nil, &Util.id_to_int/1)
-      |> Map.update(:application_id, nil, &Util.id_to_int/1)
+      |> Map.update(:afk_channel_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:application_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:channels, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:emojis, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:features, %MapSet{}, &MapSet.new/1)
-      |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
       # :members
-      |> Map.update(:owner_id, nil, &Util.id_to_int/1)
+      |> Map.update(:owner_id, nil, &Snowflake.to_snowflake/1)
       # :roles
-      |> Map.update(:system_channel_id, nil, &Util.id_to_int/1)
+      |> Map.update(:system_channel_id, nil, &Snowflake.to_snowflake/1)
 
     # :voice_states
 

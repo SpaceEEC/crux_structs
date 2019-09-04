@@ -8,7 +8,7 @@ defmodule Crux.Structs.Webhook do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Util, Webhook}
+  alias Crux.Structs.{Snowflake, Util, Webhook}
   require Util
 
   Util.modulesince("0.1.6")
@@ -27,16 +27,16 @@ defmodule Crux.Structs.Webhook do
 
   @type t :: %__MODULE__{
           avatar: String.t() | nil,
-          id: Crux.Rest.snowflake(),
-          channel_id: Crux.Rest.snowflake(),
-          guild_id: Crux.Rest.snowflake() | nil,
+          id: Snowflake.t(),
+          channel_id: Snowflake.t(),
+          guild_id: Snowflake.t() | nil,
           name: String.t() | nil,
           token: String.t(),
-          user: Crux.Rest.snowflake() | nil
+          user: Snowflake.t() | nil
         }
 
   @doc """
-    Creates a `Crux.Structs.Webhook` struct from raw data.
+    Creates a `t:Crux.Structs.Webhook.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -47,16 +47,16 @@ defmodule Crux.Structs.Webhook do
     data =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
-      |> Map.update!(:channel_id, &Util.id_to_int/1)
-      |> Map.update(:guild_id, nil, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
+      |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:user, nil, Util.map_to_id())
 
     struct(__MODULE__, data)
   end
 
   @doc ~S"""
-    Converts a `Crux.Structs.Webhook` into its discord mention format.
+    Converts a `t:Crux.Structs.Webhook.t/0` into its discord mention format.
 
   > Although the discord client does not autocomplete it for you, mentioning one still works.
 

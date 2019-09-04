@@ -5,7 +5,7 @@ defmodule Crux.Structs.Role do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Role, Util}
+  alias Crux.Structs.{Role, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -25,7 +25,7 @@ defmodule Crux.Structs.Role do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           name: String.t(),
           color: integer(),
           hoist: boolean(),
@@ -33,11 +33,11 @@ defmodule Crux.Structs.Role do
           permissions: integer(),
           managed: boolean(),
           mentionable: boolean(),
-          guild_id: Crux.Rest.snowflake()
+          guild_id: Snowflake.t()
         }
 
   @doc """
-    Creates a `Crux.Structs.Role` struct from raw data.
+    Creates a `t:Crux.Structs.Role.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -48,14 +48,14 @@ defmodule Crux.Structs.Role do
     role =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
-      |> Map.update(:guild_id, nil, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, role)
   end
 
   @doc ~S"""
-    Converts a `Crux.Structs.Role` into its discord mention format.
+    Converts a `t:Crux.Structs.Role.t/0` into its discord mention format.
 
     ## Example
 

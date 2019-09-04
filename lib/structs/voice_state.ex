@@ -5,7 +5,7 @@ defmodule Crux.Structs.VoiceState do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
+  alias Crux.Structs.{Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -26,9 +26,9 @@ defmodule Crux.Structs.VoiceState do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          guild_id: Crux.Rest.snowflake(),
-          channel_id: Crux.Rest.snowflake() | nil,
-          user_id: Crux.Rest.snowflake(),
+          guild_id: Snowflake.t(),
+          channel_id: Snowflake.t() | nil,
+          user_id: Snowflake.t(),
           session_id: String.t(),
           deaf: boolean(),
           mute: boolean(),
@@ -38,7 +38,7 @@ defmodule Crux.Structs.VoiceState do
         }
 
   @doc """
-    Creates a `Crux.Structs.VoiceState` struct from raw data.
+    Creates a `t:Crux.Structs.VoiceState.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -49,9 +49,9 @@ defmodule Crux.Structs.VoiceState do
     voice_state =
       data
       |> Util.atomify()
-      |> Map.update!(:guild_id, &Util.id_to_int/1)
-      |> Map.update(:channel_id, nil, &Util.id_to_int/1)
-      |> Map.update!(:user_id, &Util.id_to_int/1)
+      |> Map.update!(:guild_id, &Snowflake.to_snowflake/1)
+      |> Map.update(:channel_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update!(:user_id, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, voice_state)
   end

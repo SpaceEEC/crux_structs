@@ -26,17 +26,17 @@ defmodule Crux.Structs.Presence do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          user: Crux.Rest.snowflake(),
-          # roles: [Crux.Rest.snowflake()],
+          user: Snowflake.t(),
+          # roles: [Snowflake.t()],
           game: map() | nil,
-          # guild_id: Crux.Rest.snowflake() | nil,
+          # guild_id: Snowflake.t() | nil,
           status: String.t(),
           activities: [map()],
           client_status: %{required(atom()) => atom()}
         }
 
   @doc """
-    Creates a `Crux.Structs.Presence` struct from raw data.
+    Creates a `t:Crux.Structs.Presence.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

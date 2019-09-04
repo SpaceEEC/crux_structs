@@ -5,7 +5,7 @@ defmodule Crux.Structs.AuditLogEntry do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{AuditLogChange, Util}
+  alias Crux.Structs.{AuditLogChange, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.6")
@@ -101,17 +101,17 @@ defmodule Crux.Structs.AuditLogEntry do
   Util.typesince("0.1.6")
 
   @type t :: %__MODULE__{
-          id: Crux.Rest.snowflake(),
-          target_id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
+          target_id: Snowflake.t(),
           changes: %{String.t() => AuditLogChange.t()},
-          user_id: Crux.Rest.snowflake(),
+          user_id: Snowflake.t(),
           action_type: non_neg_integer(),
           options: %{} | nil,
           reason: String.t() | nil
         }
 
   @doc """
-    Creates a `Crux.Structs.AuditLogEntry` struct from raw data.
+    Creates a `t:Crux.Structs.AuditLogEntry.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -122,10 +122,10 @@ defmodule Crux.Structs.AuditLogEntry do
     audit_log_entry =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
-      |> Map.update!(:target_id, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
+      |> Map.update!(:target_id, &Snowflake.to_snowflake/1)
       |> Map.update(:changes, %{}, &Util.raw_data_to_map(&1, AuditLogChange, :key))
-      |> Map.update!(:user_id, &Util.id_to_int/1)
+      |> Map.update!(:user_id, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, audit_log_entry)
   end

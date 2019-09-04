@@ -6,7 +6,7 @@ defmodule Crux.Structs.AuditLogChange do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Overwrite, Role, Util}
+  alias Crux.Structs.{Overwrite, Role, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.6")
@@ -26,7 +26,7 @@ defmodule Crux.Structs.AuditLogChange do
 
   @type audit_log_change_value ::
           String.t()
-          | Crux.Rest.snowflake()
+          | Snowflake.t()
           | integer()
           | boolean()
           | [Role.t()]
@@ -41,7 +41,7 @@ defmodule Crux.Structs.AuditLogChange do
         }
 
   @doc """
-    Creates a `Crux.Structs.AuditLogChange` struct from raw data.
+    Creates a `t:Crux.Structs.AuditLogChange.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -72,8 +72,8 @@ defmodule Crux.Structs.AuditLogChange do
         # Guard is a bit more strict just to be safe
         key when key == "id" or binary_part(key, byte_size(key), -3) == "_id" ->
           data
-          |> Map.update(:new_value, nil, &Util.id_to_int/1)
-          |> Map.update(:old_value, nil, &Util.id_to_int/1)
+          |> Map.update(:new_value, nil, &Snowflake.to_snowflake/1)
+          |> Map.update(:old_value, nil, &Snowflake.to_snowflake/1)
 
         _ ->
           data

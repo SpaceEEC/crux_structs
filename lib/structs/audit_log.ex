@@ -19,13 +19,13 @@ defmodule Crux.Structs.AuditLog do
   Util.typesince("0.1.6")
 
   @type t :: %__MODULE__{
-          webhooks: %{Crux.Rest.snowflake() => Webhook.t()},
-          users: %{Crux.Rest.snowflake() => User.t()},
-          audit_log_entries: %{Crux.Rest.snowflake() => AuditLogEntry.t()}
+          webhooks: %{Snowflake.t() => Webhook.t()},
+          users: %{Snowflake.t() => User.t()},
+          audit_log_entries: %{Snowflake.t() => AuditLogEntry.t()}
         }
 
   @doc """
-    Creates a `Crux.Structs.AuditLog` struct from raw data.
+    Creates a `t:Crux.Structs.AuditLog.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

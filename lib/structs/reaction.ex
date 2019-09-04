@@ -26,7 +26,7 @@ defmodule Crux.Structs.Reaction do
         }
 
   @doc """
-    Creates a `Crux.Structs.Presence` struct from raw data.
+    Creates a `t:Crux.Structs.Presence.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
