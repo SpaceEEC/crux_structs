@@ -31,8 +31,9 @@ defmodule Crux.Structs.Channel do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Overwrite, Snowflake, Util}
+  alias Crux.Structs.{Channel, Message, Overwrite, Snowflake, Util}
   require Util
+  require Snowflake
 
   Util.modulesince("0.1.0")
 
@@ -79,6 +80,49 @@ defmodule Crux.Structs.Channel do
           type: integer(),
           user_limit: non_neg_integer()
         }
+
+  @typedoc """
+    All available types that can be resolved into a channel id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: Message.t() | Channel.t() | Snowflake.t() | String.t()
+
+  @doc """
+    Resolves the id of a `t:Crux.Structs.Channel.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    ```elixir
+    iex> %Crux.Structs.Message{channel_id: 222079895583457280}
+    ...> |> Crux.Structs.Channel.resolve_id()
+    222079895583457280
+
+    iex> %Crux.Structs.Channel{id: 222079895583457280}
+    ...> |> Crux.Structs.Channel.resolve_id()
+    222079895583457280
+
+    iex> 222079895583457280
+    ...> |> Crux.Structs.Channel.resolve_id()
+    222079895583457280
+
+    iex> "222079895583457280"
+    ...> |> Crux.Structs.Channel.resolve_id()
+    222079895583457280
+
+    ```
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+
+  def resolve_id(%Message{channel_id: channel_id}) do
+    resolve_id(channel_id)
+  end
+
+  def resolve_id(%Channel{id: id}) do
+    resolve_id(id)
+  end
+
+  def resolve_id(data), do: Crux.Structs.resolve_id(data)
 
   @doc """
     Creates a `t:Crux.Structs.Channel.t/0` struct from raw data.

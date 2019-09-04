@@ -5,7 +5,7 @@ defmodule Crux.Structs.User do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Snowflake, User, Util}
+  alias Crux.Structs.{Snowflake, Member, Message, User, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
@@ -27,6 +27,67 @@ defmodule Crux.Structs.User do
           id: Snowflake.t(),
           username: String.t()
         }
+
+  @typedoc """
+    All available types that can be resolved into a user id.
+  """
+  Util.typesince("0.2.1")
+
+  @type id_resolvable() ::
+          User.t() | Member.t() | Message.t() | VoiceState.t() | Snowflake.t() | String.t()
+
+  @doc """
+    Resolves the id of a `t:Crux.Structs.Guild.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    ```elixir
+    iex> %Crux.Structs.User{id: 218348062828003328}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.Member{user: 218348062828003328}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.VoiceState{user_id: 218348062828003328}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> 218348062828003328
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> "218348062828003328"
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    ```
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+
+  def resolve_id(%User{id: id}) do
+    resolve_id(id)
+  end
+
+  def resolve_id(%Member{user: user}) do
+    resolve_id(user)
+  end
+
+  def resolve_id(%Message{author: author}) do
+    resolve_id(author)
+  end
+
+  def resolve_id(%VoiceState{user_id: user_id}) do
+    resolve_id(user_id)
+  end
+
+  def resolve_id(data), do: Crux.Structs.resolve_id(data)
 
   @doc """
     Creates a `t:Crux.Structs.User.t/0` struct from raw data.

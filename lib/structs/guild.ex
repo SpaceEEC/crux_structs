@@ -11,8 +11,9 @@ defmodule Crux.Structs.Guild do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Guild, Member, Role, Snowflake, Util, VoiceState}
+  alias Crux.Structs.{Channel, Guild, Member, Message, Role, Snowflake, Util, VoiceState}
   require Util
+  require Snowflake
 
   Util.modulesince("0.1.0")
 
@@ -102,6 +103,67 @@ defmodule Crux.Structs.Guild do
           embed_enabled: boolean(),
           widget_enabled: boolean()
         }
+
+  @typedoc """
+    All available types that can be resolved into a guild id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: Guild.t() | Channel.t() | Message.t() | Snowflake.t()
+
+  @doc """
+    Resolves the id of a `t:Crux.Structs.Guild.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+
+    ```elixir
+    iex> %Crux.Structs.Guild{id: 516569101267894284}
+    ...> |> Crux.Structs.Guild.resolve_id()
+    516569101267894284
+
+    iex> %Crux.Structs.Channel{guild_id: 516569101267894284}
+    ...> |> Crux.Structs.Guild.resolve_id()
+    516569101267894284
+
+    iex> %Crux.Structs.Message{guild_id: 516569101267894284}
+    ...> |> Crux.Structs.Guild.resolve_id()
+    516569101267894284
+
+    iex> 516569101267894284
+    ...> |> Crux.Structs.Guild.resolve_id()
+    516569101267894284
+
+    iex> "516569101267894284"
+    ...> |> Crux.Structs.Guild.resolve_id()
+    516569101267894284
+
+    # DMs
+    iex> %Crux.Structs.Channel{guild_id: nil}
+    ...> |> Crux.Structs.Guild.resolve_id()
+    nil
+
+    iex> %Crux.Structs.Message{guild_id: nil}
+    ...> |> Crux.Structs.Guild.resolve_id()
+    nil
+
+    ```
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+
+  def resolve_id(%Guild{id: id}) do
+    resolve_id(id)
+  end
+
+  def resolve_id(%Channel{guild_id: guild_id}) do
+    resolve_id(guild_id)
+  end
+
+  def resolve_id(%Message{guild_id: guild_id}) do
+    resolve_id(guild_id)
+  end
+
+  def resolve_id(data), do: Crux.Structs.resolve_id(data)
 
   @doc """
     Creates a `t:Crux.Structs.Guild/0` struct from raw data.

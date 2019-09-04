@@ -25,6 +25,40 @@ defmodule Crux.Structs.Reaction do
           emoji: Emoji.t()
         }
 
+  @typedoc """
+    All available types that can be resolved into a reaction / emoji id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: Reaction.t() | Emoji.t() | Snowflake.t() | String.t()
+  @doc """
+    Resolves the id of a `t:Crux.Structs.Reaction.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    ```elixir
+    iex> %Crux.Structs.Reaction{emoji: %Crux.Structs.Emoji{id: 618731477143912448}}
+    ...> |> Crux.Structs.Reaction.resolve_id()
+    618731477143912448
+
+    iex> %Crux.Structs.Emoji{id: 618731477143912448}
+    ...> |> Crux.Structs.Reaction.resolve_id()
+    618731477143912448
+
+    iex> 618731477143912448
+    ...> |> Crux.Structs.Reaction.resolve_id()
+    618731477143912448
+
+    iex> "618731477143912448"
+    ...> |> Crux.Structs.Reaction.resolve_id()
+    618731477143912448
+
+    ```
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+
+  defdelegate resolve_id(data), to: Emoji
+
   @doc """
     Creates a `t:Crux.Structs.Presence.t/0` struct from raw data.
 

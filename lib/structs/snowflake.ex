@@ -189,7 +189,8 @@ defmodule Crux.Structs.Snowflake do
 
     ```
   """
-  @spec to_snowflake(String.t() | t()) :: t() | no_return()
+  @spec to_snowflake(t()) :: t()
+  @spec to_snowflake(String.t()) :: t() | no_return()
   @spec to_snowflake(nil) :: nil
   Util.since("0.2.1")
   def to_snowflake(nil), do: nil
@@ -202,6 +203,41 @@ defmodule Crux.Structs.Snowflake do
     string
     |> String.to_integer()
     |> to_snowflake()
+  end
+
+  @doc """
+    Converts a `t:String.t/0` to a `t:t/0` while allowing `t:t/0` to pass through.
+
+    Returns `:error` if the provided string is not an integer.
+
+    ```elixir
+    iex> Crux.Structs.Snowflake.parse("invalid")
+    :error
+
+    iex> Crux.Structs.Snowflake.parse(218348062828003328)
+    218348062828003328
+
+    # Fallbacks
+    iex> Crux.Structs.Snowflake.parse("218348062828003328")
+    218348062828003328
+
+    ```
+
+  """
+  @spec parse(t()) :: t()
+  @spec parse(String.t()) :: t() | :error
+  Util.since("0.2.1")
+
+  def parse(snowflake) when is_snowflake(snowflake) do
+    snowflake
+  end
+
+  def parse(string) when is_binary(string) do
+    with {snowflake, ""} when is_snowflake(snowflake) <- Integer.parse(string) do
+      snowflake
+    else
+      _ -> :error
+    end
   end
 
   # delegates
