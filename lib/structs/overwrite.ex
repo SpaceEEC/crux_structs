@@ -5,6 +5,7 @@ defmodule Crux.Structs.Overwrite do
 
   @behaviour Crux.Structs
 
+  alias Crux.Structs
   alias Crux.Structs.{Overwrite, Role, Snowflake, User, Util}
   require Util
   require Snowflake
@@ -84,7 +85,7 @@ defmodule Crux.Structs.Overwrite do
   def resolve_target(%Role{id: id}), do: {"role", id}
 
   def resolve_target(target) do
-    case Crux.Structs.resolve_id(target, User) do
+    case Structs.resolve_id(target, User) do
       nil -> nil
       id when is_map(target) -> {"member", id}
       id -> {:unknown, id}
