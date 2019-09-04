@@ -125,6 +125,76 @@ defmodule Crux.Structs.Channel do
 
   def resolve_id(data), do: Structs.resolve_id(data)
 
+  @typedoc """
+    All available types that can be resolved into a channel position.
+  """
+  Util.typesince("0.2.1")
+
+  @type position_resolvable() ::
+          Channel.t()
+          | %{channel: id_resolvable(), position: integer()}
+          | {id_resolvable, integer()}
+          | %{id: id_resolvable(), position: integer()}
+
+  @doc """
+    Resolves a `t:position_resolvable/0` into a channel position.
+
+  ## Examples
+
+    ```elixir
+    iex> %Crux.Structs.Channel{id: 222079895583457280, position: 5}
+    ...> |> Crux.Structs.Channel.resolve_position()
+    %{id: 222079895583457280, position: 5}
+
+    iex> {%Crux.Structs.Channel{id: 222079895583457280}, 5}
+    ...> |> Crux.Structs.Channel.resolve_position()
+    %{id: 222079895583457280, position: 5}
+
+    iex> {222079895583457280, 5}
+    ...> |> Crux.Structs.Channel.resolve_position()
+    %{id: 222079895583457280, position: 5}
+
+    iex> %{id: 222079895583457280, position: 5}
+    ...> |> Crux.Structs.Channel.resolve_position()
+    %{id: 222079895583457280, position: 5}
+
+    iex> {nil, 5}
+    ...> |> Crux.Structs.Channel.resolve_position()
+    nil
+
+    ```
+
+  """
+  Util.since("0.2.1")
+  @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
+  def resolve_position(%Channel{id: id, position: position}) do
+    validate_position(%{id: id, position: position})
+  end
+
+  def resolve_position(%{channel: resolvable, position: position}) do
+    validate_position(%{id: resolve_id(resolvable), position: position})
+  end
+
+  def resolve_position(%{id: resolvable, position: position}) do
+    validate_position(%{id: resolve_id(resolvable), position: position})
+  end
+
+  def resolve_position({resolvable, position}) do
+    validate_position(%{id: resolve_id(resolvable), position: position})
+  end
+
+  @spec validate_position(%{id: Snowflake.t(), position: integer()}) :: %{
+          id: Snowflake.t(),
+          position: integer()
+        }
+  @spec validate_position(%{id: nil, position: integer()}) :: nil
+  defp validate_position(%{id: nil, position: _}), do: nil
+
+  defp validate_position(%{id: _id, position: position} = entry)
+       when is_integer(position) do
+    entry
+  end
+
   @doc """
     Creates a `t:Crux.Structs.Channel.t/0` struct from raw data.
 
