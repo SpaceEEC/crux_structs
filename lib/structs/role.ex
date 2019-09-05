@@ -84,6 +84,8 @@ defmodule Crux.Structs.Role do
   """
   Util.since("0.2.1")
   @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
+  def resolve_position(resolvable)
+
   def resolve_position(%Role{id: id, position: position}) do
     validate_position(%{id: id, position: position})
   end

@@ -7,7 +7,6 @@ defmodule Crux.Structs.VoiceState do
 
   alias Crux.Structs.{Snowflake, User, Util}
   require Util
-  require Snowflake
 
   Util.modulesince("0.1.0")
 
@@ -54,7 +53,7 @@ defmodule Crux.Structs.VoiceState do
   """
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
   Util.since("0.2.1")
-  defdelegate resolve_id(data), to: User
+  defdelegate resolve_id(resolvable), to: User
 
   @doc """
     Creates a `t:Crux.Structs.VoiceState.t/0` struct from raw data.

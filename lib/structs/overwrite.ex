@@ -8,7 +8,6 @@ defmodule Crux.Structs.Overwrite do
   alias Crux.Structs
   alias Crux.Structs.{Overwrite, Role, Snowflake, User, Util}
   require Util
-  require Snowflake
 
   Util.modulesince("0.1.0")
 
@@ -84,10 +83,10 @@ defmodule Crux.Structs.Overwrite do
   def resolve_target(%Overwrite{id: id, type: type}), do: {type, id}
   def resolve_target(%Role{id: id}), do: {"role", id}
 
-  def resolve_target(target) do
-    case Structs.resolve_id(target, User) do
+  def resolve_target(resolvable) do
+    case Structs.resolve_id(resolvable, User) do
       nil -> nil
-      id when is_map(target) -> {"member", id}
+      id when is_map(resolvable) -> {"member", id}
       id -> {:unknown, id}
     end
   end

@@ -52,7 +52,7 @@ defmodule Crux.Structs.Member do
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
   Util.since("0.2.1")
 
-  defdelegate resolve_id(data), to: User
+  defdelegate resolve_id(resolvable), to: User
 
   @doc """
     Creates a `t:Crux.Structs.Member.t/0` struct from raw data.

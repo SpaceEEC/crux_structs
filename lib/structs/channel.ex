@@ -34,7 +34,6 @@ defmodule Crux.Structs.Channel do
   alias Crux.Structs
   alias Crux.Structs.{Channel, Message, Overwrite, Snowflake, Util}
   require Util
-  require Snowflake
 
   Util.modulesince("0.1.0")
 
@@ -123,7 +122,7 @@ defmodule Crux.Structs.Channel do
     resolve_id(id)
   end
 
-  def resolve_id(data), do: Structs.resolve_id(data)
+  def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
 
   @typedoc """
     All available types that can be resolved into a channel position.
@@ -133,7 +132,7 @@ defmodule Crux.Structs.Channel do
   @type position_resolvable() ::
           Channel.t()
           | %{channel: id_resolvable(), position: integer()}
-          | {id_resolvable, integer()}
+          | {id_resolvable(), integer()}
           | %{id: id_resolvable(), position: integer()}
 
   @doc """
@@ -163,10 +162,11 @@ defmodule Crux.Structs.Channel do
     nil
 
     ```
-
   """
   Util.since("0.2.1")
   @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
+  def resolve_position(resolvable)
+
   def resolve_position(%Channel{id: id, position: position}) do
     validate_position(%{id: id, position: position})
   end

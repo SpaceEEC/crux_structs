@@ -58,7 +58,7 @@ defmodule Crux.Structs.Reaction do
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
   Util.since("0.2.1")
 
-  defdelegate resolve_id(data), to: Emoji
+  defdelegate resolve_id(resolvable), to: Emoji
 
   @doc """
     Creates a `t:Crux.Structs.Presence.t/0` struct from raw data.

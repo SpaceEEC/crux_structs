@@ -102,7 +102,7 @@ defmodule Crux.Structs.User do
     resolve_id(user_id)
   end
 
-  def resolve_id(data), do: Structs.resolve_id(data)
+  def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
 
   @doc """
     Creates a `t:Crux.Structs.User.t/0` struct from raw data.

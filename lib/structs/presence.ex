@@ -42,7 +42,7 @@ defmodule Crux.Structs.Presence do
   @type id_resolvable :: User.id_resolvable()
 
   @doc """
-    Resolves the id of a `Crux.Structs.Presence.t/0`
+    Resolves the id of a `t:Crux.Structs.Presence.t/0`
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`
 
@@ -51,7 +51,7 @@ defmodule Crux.Structs.Presence do
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
   Util.since("0.2.1")
 
-  defdelegate resolve_id(data), to: User
+  defdelegate resolve_id(resolvable), to: User
 
   @doc """
     Creates a `t:Crux.Structs.Presence.t/0` struct from raw data.

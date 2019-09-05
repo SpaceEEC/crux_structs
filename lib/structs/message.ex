@@ -11,7 +11,6 @@ defmodule Crux.Structs.Message do
   alias Crux.Structs
   alias Crux.Structs.{Attachment, Embed, Member, Message, Reaction, Snowflake, User, Util}
   require Util
-  require Snowflake
 
   Util.modulesince("0.1.0")
 
@@ -111,22 +110,6 @@ defmodule Crux.Structs.Message do
         }
 
   @type id_resolvable() :: Message.t() | Snowflake.t() | String.t()
-
-  @doc """
-    Resolves the id of a `t:Crux.Structs.Message.t/0`.
-
-  > Automatically invoked by `Crux.Structs.resolve_id/2`.
-
-    For examples see `Crux.Structs.User.resolve_id/1`.
-  """
-  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
-
-  def resolve_id(%Message{id: id}) do
-    resolve_id(id)
-  end
-
-  def resolve_id(data), do: Structs.resolve_id(data)
 
   @doc """
     Creates a `t:Crux.Structs.Message.t/0` struct from raw data.
