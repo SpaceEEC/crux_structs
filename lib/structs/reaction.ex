@@ -30,6 +30,7 @@ defmodule Crux.Structs.Reaction do
   """
   Util.typesince("0.2.1")
   @type id_resolvable() :: Reaction.t() | Emoji.t() | Snowflake.t() | String.t()
+
   @doc """
     Resolves the id of a `t:Crux.Structs.Reaction.t/0`.
 

@@ -117,21 +117,7 @@ defmodule Crux.Structs.Message do
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`.
 
-
-    ```elixir
-    iex> %Crux.Structs.Message{id: 618790661260574731}
-    ...> |> Crux.Structs.Message.resolve_id()
-    618790661260574731
-
-    iex> 618790661260574731
-    ...> |> Crux.Structs.Message.resolve_id()
-    618790661260574731
-
-    iex> "618790661260574731"
-    ...> |> Crux.Structs.Message.resolve_id()
-    618790661260574731
-
-    ```
+    For examples see `Crux.Structs.User.resolve_id/1`.
   """
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
   Util.since("0.2.1")

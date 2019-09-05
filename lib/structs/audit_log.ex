@@ -5,7 +5,7 @@ defmodule Crux.Structs.AuditLog do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{AuditLogEntry, User, Util, Webhook}
+  alias Crux.Structs.{AuditLog, AuditLogEntry, Snowflake, User, Util, Webhook}
   require Util
 
   Util.modulesince("0.1.6")
@@ -23,6 +23,12 @@ defmodule Crux.Structs.AuditLog do
           users: %{Snowflake.t() => User.t()},
           audit_log_entries: %{Snowflake.t() => AuditLogEntry.t()}
         }
+
+  @typedoc """
+    All available types that can be resolved into an audit log id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: AuditLog.t() | Snowflake.t() | String.t()
 
   @doc """
     Creates a `t:Crux.Structs.AuditLog.t/0` struct from raw data.

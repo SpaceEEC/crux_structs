@@ -35,6 +35,12 @@ defmodule Crux.Structs.Webhook do
           user: Snowflake.t() | nil
         }
 
+  @typedoc """
+    All available types that can be resolved into a webhook id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: Webhook.t() | Snowflake.t() | String.t()
+
   @doc """
     Creates a `t:Crux.Structs.Webhook.t/0` struct from raw data.
 

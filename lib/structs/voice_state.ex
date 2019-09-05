@@ -49,32 +49,8 @@ defmodule Crux.Structs.VoiceState do
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`.
 
-    ```elixir
-    iex> %Crux.Structs.User{id: 218348062828003328}
-    ...> |> Crux.Structs.VoiceState.resolve_id()
-    218348062828003328
+    For examples see `Crux.Structs.User.resolve_id/1`.
 
-    iex> %Crux.Structs.Member{user: 218348062828003328}
-    ...> |> Crux.Structs.VoiceState.resolve_id()
-    218348062828003328
-
-    iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
-    ...> |> Crux.Structs.VoiceState.resolve_id()
-    218348062828003328
-
-    iex> %Crux.Structs.VoiceState{user_id: 218348062828003328}
-    ...> |> Crux.Structs.VoiceState.resolve_id()
-    218348062828003328
-
-    iex> 218348062828003328
-    ...> |> Crux.Structs.VoiceState.resolve_id()
-    218348062828003328
-
-    iex> "218348062828003328"
-    ...> |> Crux.Structs.VoiceState.resolve_id()
-    218348062828003328
-
-    ```
   """
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
   Util.since("0.2.1")

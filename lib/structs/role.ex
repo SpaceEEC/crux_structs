@@ -37,24 +37,6 @@ defmodule Crux.Structs.Role do
           guild_id: Snowflake.t()
         }
 
-  @doc """
-    Creates a `t:Crux.Structs.Role.t/0` struct from raw data.
-
-  > Automatically invoked by `Crux.Structs.create/2`.
-  """
-  @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
-  def create(data) do
-    role =
-      data
-      |> Util.atomify()
-      |> Map.update!(:id, &Snowflake.to_snowflake/1)
-      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
-
-    struct(__MODULE__, role)
-  end
-
   @typedoc """
     All available types that can be resolved into a role id.
   """
@@ -128,6 +110,24 @@ defmodule Crux.Structs.Role do
   defp validate_position(%{id: _id, position: position} = entry)
        when is_integer(position) do
     entry
+  end
+
+  @doc """
+    Creates a `t:Crux.Structs.Role.t/0` struct from raw data.
+
+  > Automatically invoked by `Crux.Structs.create/2`.
+  """
+  @spec create(data :: map()) :: t()
+  Util.since("0.1.0")
+
+  def create(data) do
+    role =
+      data
+      |> Util.atomify()
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
+
+    struct(__MODULE__, role)
   end
 
   @doc ~S"""

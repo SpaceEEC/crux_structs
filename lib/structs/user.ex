@@ -6,7 +6,7 @@ defmodule Crux.Structs.User do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Member, Message, Snowflake, User, Util, VoiceState}
+  alias Crux.Structs.{Member, Message, Presence, Snowflake, User, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
@@ -35,7 +35,13 @@ defmodule Crux.Structs.User do
   Util.typesince("0.2.1")
 
   @type id_resolvable() ::
-          User.t() | Member.t() | Message.t() | VoiceState.t() | Snowflake.t() | String.t()
+          User.t()
+          | Member.t()
+          | Message.t()
+          | Presence.t()
+          | VoiceState.t()
+          | Snowflake.t()
+          | String.t()
 
   @doc """
     Resolves the id of a `t:Crux.Structs.Guild.t/0`.
@@ -52,6 +58,10 @@ defmodule Crux.Structs.User do
     218348062828003328
 
     iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.Presence{user: 218348062828003328}
     ...> |> Crux.Structs.User.resolve_id()
     218348062828003328
 
@@ -82,6 +92,10 @@ defmodule Crux.Structs.User do
 
   def resolve_id(%Message{author: author}) do
     resolve_id(author)
+  end
+
+  def resolve_id(%Presence{user: user}) do
+    resolve_id(user)
   end
 
   def resolve_id(%VoiceState{user_id: user_id}) do

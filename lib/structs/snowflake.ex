@@ -19,6 +19,8 @@ defmodule Crux.Structs.Snowflake.Parts do
   alias Crux.Structs.{Snowflake, Util}
   require Util
 
+  Util.modulesince("0.2.1")
+
   @discord_epoch 1_420_070_400_000
 
   @doc false
