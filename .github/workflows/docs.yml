@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger repositorry dispatch
+    - name: Trigger repository dispatch
       env:
         GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
       run: |
