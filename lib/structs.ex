@@ -149,9 +149,6 @@ defmodule Crux.Structs do
         %^target{id: id} when not is_nil(id) ->
           resolve_id(id)
 
-        %{} ->
-          nil
-
         _ ->
           resolve_id(data)
       end
@@ -176,5 +173,6 @@ defmodule Crux.Structs do
     end
   end
 
-  def resolve_id(_), do: nil
+  def resolve_id(%{}), do: nil
+  def resolve_id(nil), do: nil
 end
