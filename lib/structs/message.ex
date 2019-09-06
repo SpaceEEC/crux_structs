@@ -109,6 +109,10 @@ defmodule Crux.Structs.Message do
           webhook_id: Snowflake.t() | nil
         }
 
+  @typedoc """
+    All available types that can be resolved into a message id.
+  """
+  Util.typesince("0.2.1")
   @type id_resolvable() :: Message.t() | Snowflake.t() | String.t()
 
   @doc """
