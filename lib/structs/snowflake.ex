@@ -63,7 +63,7 @@ defmodule Crux.Structs.Snowflake.Parts do
       timestamp: ((snowflake &&& @timestamp_bitmask) >>> 22) + @discord_epoch,
       worker_id: (snowflake &&& @worker_id_bitmask) >>> 17,
       process_id: (snowflake &&& @process_id_bitmask) >>> 12,
-      increment: snowflake &&& @increment_bitmask
+      increment: snowflake &&& @increment_bitmask >>> 0
     }
   end
 
@@ -114,10 +114,16 @@ defmodule Crux.Structs.Snowflake do
   Util.typesince("0.2.1")
   @type t :: 0..0xFFFF_FFFF_FFFF_FFFF
 
+  @typedoc """
+    All valid types that can be resolved into a `t:t/0`.
+  """
+  Util.typesince("0.2.1")
+  @type resolvable :: String.t() | t()
+
   @doc """
     Returns `true` if `term` is a `t:t/0`; otherwise returns `false`..
   """
-  Util.typesince("0.2.1")
+  Util.since("0.2.1")
 
   defguard is_snowflake(snowflake)
            when is_integer(snowflake) and snowflake in 0..0xFFFF_FFFF_FFFF_FFFF
@@ -210,7 +216,7 @@ defmodule Crux.Structs.Snowflake do
   @doc """
     Converts a `t:String.t/0` to a `t:t/0` while allowing `t:t/0` to pass through.
 
-    Returns `:error` if the provided string is not an integer.
+    Returns `:error` if the provided string is not a `t:t/0`.
 
     ```elixir
     iex> Crux.Structs.Snowflake.parse("invalid")
