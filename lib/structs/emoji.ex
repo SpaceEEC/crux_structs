@@ -102,6 +102,14 @@ defmodule Crux.Structs.Emoji do
     struct(__MODULE__, emoji)
   end
 
+  @typedoc """
+    All available types that can be resolved into a discord emoji identifier.
+
+  > String.t() stands for an already encoded unicode emoji.
+  """
+  Util.typesince("0.2.1")
+  @type identifier_resolvable() :: Emoji.t() | Reaction.t() | String.t()
+
   @doc ~S"""
     Converts an `t:Crux.Structs.Emoji.t/0`, a `t:Crux.Structs.Reaction.t/0`, or a `t:String.t/0` to its discord identifier format.
 
@@ -145,8 +153,7 @@ defmodule Crux.Structs.Emoji do
 
     ```
   """
-  @spec to_identifier(emoji :: Crux.Structs.Emoji.t() | Crux.Structs.Reaction.t() | String.t()) ::
-          String.t()
+  @spec to_identifier(emoji :: identifier_resolvable()) :: String.t()
   Util.since("0.1.1")
   def to_identifier(%Crux.Structs.Reaction{emoji: emoji}), do: to_identifier(emoji)
   def to_identifier(%__MODULE__{id: nil, name: name}), do: URI.encode_www_form(name)
