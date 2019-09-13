@@ -19,6 +19,8 @@ defmodule Crux.Structs.VoiceState do
     mute: nil,
     self_deaf: nil,
     self_mute: nil,
+    # Only present if true
+    self_stream: false,
     # Can bots even do that?
     suppress: nil
   )
@@ -34,6 +36,7 @@ defmodule Crux.Structs.VoiceState do
           mute: boolean(),
           self_deaf: boolean(),
           self_mute: boolean(),
+          self_stream: boolean(),
           suppress: boolean()
         }
 
