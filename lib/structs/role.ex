@@ -5,6 +5,7 @@ defmodule Crux.Structs.Role do
 
   @behaviour Crux.Structs
 
+  alias Crux.Structs
   alias Crux.Structs.{Role, Snowflake, Util}
   require Util
 
@@ -36,6 +37,83 @@ defmodule Crux.Structs.Role do
           guild_id: Snowflake.t()
         }
 
+  @typedoc """
+    All available types that can be resolved into a role id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: Role.t() | Snowflake.t() | String.t() | nil
+
+  @typedoc """
+    All available types that can be resolved into a role position.
+  """
+  Util.typesince("0.2.1")
+
+  @type position_resolvable() ::
+          Role.t()
+          | %{role: id_resolvable(), position: integer()}
+          | {id_resolvable(), integer()}
+          | %{id: id_resolvable(), position: integer()}
+
+  @doc """
+    Resolves a `t:position_resolvable/0` into a role position.
+
+  ## Examples
+
+    ```elixir
+    iex> {%Crux.Structs.Role{id: 373405430589816834}, 5}
+    ...> |> Crux.Structs.Role.resolve_position()
+    %{id: 373405430589816834, position: 5}
+
+    iex> %{id: 373405430589816834, position: 5}
+    ...> |> Crux.Structs.Role.resolve_position()
+    %{id: 373405430589816834, position: 5}
+
+    iex> %{role: %Crux.Structs.Role{id: 373405430589816834}, position: 5}
+    ...> |> Crux.Structs.Role.resolve_position()
+    %{id: 373405430589816834, position: 5}
+
+    iex> {373405430589816834, 5}
+    ...> |> Crux.Structs.Role.resolve_position()
+    %{id: 373405430589816834, position: 5}
+
+    iex> {nil, 5}
+    ...> |> Crux.Structs.Role.resolve_position()
+    nil
+
+    ```
+  """
+  Util.since("0.2.1")
+  @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
+  def resolve_position(resolvable)
+
+  def resolve_position(%Role{id: id, position: position}) do
+    validate_position(%{id: id, position: position})
+  end
+
+  def resolve_position(%{role: resolvable, position: position}) do
+    validate_position(%{id: Structs.resolve_id(resolvable, Role), position: position})
+  end
+
+  def resolve_position({resolvable, position}) do
+    validate_position(%{id: Structs.resolve_id(resolvable, Role), position: position})
+  end
+
+  def resolve_position(%{id: resolvable, position: position}) do
+    validate_position(%{id: Structs.resolve_id(resolvable, Role), position: position})
+  end
+
+  @spec validate_position(%{id: Snowflake.t(), position: integer()}) :: %{
+          id: Snowflake.t(),
+          position: integer()
+        }
+  @spec validate_position(%{id: nil, position: integer()}) :: nil
+  defp validate_position(%{id: nil, position: _}), do: nil
+
+  defp validate_position(%{id: _id, position: position} = entry)
+       when is_integer(position) do
+    entry
+  end
+
   @doc """
     Creates a `t:Crux.Structs.Role.t/0` struct from raw data.
 
@@ -57,7 +135,7 @@ defmodule Crux.Structs.Role do
   @doc ~S"""
     Converts a `t:Crux.Structs.Role.t/0` into its discord mention format.
 
-    ## Example
+  ## Example
 
     ```elixir
   iex> %Crux.Structs.Role{id: 376146940762783746}

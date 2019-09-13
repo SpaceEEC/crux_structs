@@ -8,7 +8,8 @@ defmodule Crux.Structs.Emoji do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Emoji, Snowflake, Util}
+  alias Crux.Structs
+  alias Crux.Structs.{Emoji, Reaction, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -35,6 +36,49 @@ defmodule Crux.Structs.Emoji do
           managed: boolean() | nil
         }
 
+  @typedoc """
+    All available types that can be resolved into an emoji id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: Reaction.t() | Emoji.t() | Snowflake.t() | String.t()
+
+  @doc """
+    Resolves the id of a `t:Crux.Structs.Emoji.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    ```elixir
+    iex> %Crux.Structs.Emoji{id: 618731477143912448}
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    iex> %Crux.Structs.Reaction{emoji: %Crux.Structs.Emoji{id: 618731477143912448}}
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    iex> 618731477143912448
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    iex> "618731477143912448"
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    ```
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+
+  def resolve_id(%Reaction{emoji: emoji}) do
+    resolve_id(emoji)
+  end
+
+  def resolve_id(%Emoji{id: id}) do
+    resolve_id(id)
+  end
+
+  def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
+
   @doc """
     Creates a `t:Crux.Structs.Emoji.t/0` struct from raw data.
 
@@ -57,6 +101,14 @@ defmodule Crux.Structs.Emoji do
 
     struct(__MODULE__, emoji)
   end
+
+  @typedoc """
+    All available types that can be resolved into a discord emoji identifier.
+
+  > String.t() stands for an already encoded unicode emoji.
+  """
+  Util.typesince("0.2.1")
+  @type identifier_resolvable() :: Emoji.t() | Reaction.t() | String.t()
 
   @doc ~S"""
     Converts an `t:Crux.Structs.Emoji.t/0`, a `t:Crux.Structs.Reaction.t/0`, or a `t:String.t/0` to its discord identifier format.
@@ -101,8 +153,7 @@ defmodule Crux.Structs.Emoji do
 
     ```
   """
-  @spec to_identifier(emoji :: Crux.Structs.Emoji.t() | Crux.Structs.Reaction.t() | String.t()) ::
-          String.t()
+  @spec to_identifier(emoji :: identifier_resolvable()) :: String.t()
   Util.since("0.1.1")
   def to_identifier(%Crux.Structs.Reaction{emoji: emoji}), do: to_identifier(emoji)
   def to_identifier(%__MODULE__{id: nil, name: name}), do: URI.encode_www_form(name)

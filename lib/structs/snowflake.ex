@@ -19,6 +19,8 @@ defmodule Crux.Structs.Snowflake.Parts do
   alias Crux.Structs.{Snowflake, Util}
   require Util
 
+  Util.modulesince("0.2.1")
+
   @discord_epoch 1_420_070_400_000
 
   @doc false
@@ -61,7 +63,7 @@ defmodule Crux.Structs.Snowflake.Parts do
       timestamp: ((snowflake &&& @timestamp_bitmask) >>> 22) + @discord_epoch,
       worker_id: (snowflake &&& @worker_id_bitmask) >>> 17,
       process_id: (snowflake &&& @process_id_bitmask) >>> 12,
-      increment: snowflake &&& @increment_bitmask
+      increment: snowflake &&& @increment_bitmask >>> 0
     }
   end
 
@@ -112,10 +114,16 @@ defmodule Crux.Structs.Snowflake do
   Util.typesince("0.2.1")
   @type t :: 0..0xFFFF_FFFF_FFFF_FFFF
 
+  @typedoc """
+    All valid types that can be resolved into a `t:t/0`.
+  """
+  Util.typesince("0.2.1")
+  @type resolvable :: String.t() | t()
+
   @doc """
     Returns `true` if `term` is a `t:t/0`; otherwise returns `false`..
   """
-  Util.typesince("0.2.1")
+  Util.since("0.2.1")
 
   defguard is_snowflake(snowflake)
            when is_integer(snowflake) and snowflake in 0..0xFFFF_FFFF_FFFF_FFFF
@@ -189,7 +197,8 @@ defmodule Crux.Structs.Snowflake do
 
     ```
   """
-  @spec to_snowflake(String.t() | t()) :: t() | no_return()
+  @spec to_snowflake(t()) :: t()
+  @spec to_snowflake(String.t()) :: t() | no_return()
   @spec to_snowflake(nil) :: nil
   Util.since("0.2.1")
   def to_snowflake(nil), do: nil
@@ -202,6 +211,43 @@ defmodule Crux.Structs.Snowflake do
     string
     |> String.to_integer()
     |> to_snowflake()
+  end
+
+  @doc """
+    Converts a `t:String.t/0` to a `t:t/0` while allowing `t:t/0` to pass through.
+
+    Returns `:error` if the provided string is not a `t:t/0`.
+
+    ```elixir
+    iex> Crux.Structs.Snowflake.parse("invalid")
+    :error
+
+    iex> Crux.Structs.Snowflake.parse(218348062828003328)
+    218348062828003328
+
+    # Fallbacks
+    iex> Crux.Structs.Snowflake.parse("218348062828003328")
+    218348062828003328
+
+    ```
+
+  """
+  @spec parse(t()) :: t()
+  @spec parse(String.t()) :: t() | :error
+  Util.since("0.2.1")
+
+  def parse(snowflake) when is_snowflake(snowflake) do
+    snowflake
+  end
+
+  def parse(string) when is_binary(string) do
+    case Integer.parse(string) do
+      {snowflake, ""} when is_snowflake(snowflake) ->
+        snowflake
+
+      _ ->
+        :error
+    end
   end
 
   # delegates

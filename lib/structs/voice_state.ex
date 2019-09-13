@@ -5,7 +5,7 @@ defmodule Crux.Structs.VoiceState do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Snowflake, Util}
+  alias Crux.Structs.{Snowflake, User, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -39,6 +39,24 @@ defmodule Crux.Structs.VoiceState do
           self_stream: boolean(),
           suppress: boolean()
         }
+
+  @typedoc """
+    All available types that can be resolved into a user id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: User.id_resolvable()
+
+  @doc """
+    Resolves the id of a `t:Crux.Structs.VoiceState.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    For examples see `Crux.Structs.User.resolve_id/1`.
+
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+  defdelegate resolve_id(resolvable), to: User
 
   @doc """
     Creates a `t:Crux.Structs.VoiceState.t/0` struct from raw data.
