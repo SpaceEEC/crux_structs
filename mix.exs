@@ -1,7 +1,7 @@
 defmodule Crux.Structs.MixProject do
   use Mix.Project
 
-  @vsn "0.2.1-dev"
+  @vsn "0.2.1"
   @name :crux_structs
 
   def project do
@@ -11,7 +11,7 @@ defmodule Crux.Structs.MixProject do
       app: @name,
       version: @vsn,
       elixir: "~> 1.6",
-      description: "Package providing Discord API structs for crux.",
+      description: "Library providing Discord API structs for crux.",
       source_url: "https://github.com/SpaceEEC/crux_structs/",
       homepage_url: "https://github.com/SpaceEEC/crux_structs/",
       deps: deps(),
@@ -27,8 +27,9 @@ defmodule Crux.Structs.MixProject do
       links: %{
         "GitHub" => "https://github.com/SpaceEEC/#{@name}/",
         "Changelog" => "https://github.com/SpaceEEC/#{@name}/releases/tag/#{@vsn}/",
-        "Documentation" => "https://hexdocs.pm/#{@name}/#{@vsn}",
-        "Unified Development Documentation" => "https://crux.randomly.space/"
+        "Documentation" => "https://hexdocs.pm/#{@name}/#{@vsn}/",
+        "Unified Development Documentation" => "https://crux.randomly.space/",
+        "Crux Libraries Overview" => "https://github.com/SpaceEEC/crux/"
       }
     ]
   end
