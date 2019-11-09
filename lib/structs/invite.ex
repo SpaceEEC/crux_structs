@@ -4,21 +4,21 @@ defmodule Crux.Structs.Invite do
 
   List of what property can be present fetched with what function:
 
-  | Property                   | `Rest.get_invite/1` | `Rest.create_channel_invite/1` | `Rest.delete_invite/1`   |
-  |                            |                     | `Rest.get_channel_invites/1`   |                          |
-  |                            |                     | `Rest.get_guild_invites/1`     |                          |
-  | code                       | yes                 | yes                            | yes                      |
-  | guild                      | if not group dm     | if not group dm                | if not group dm          |
-  | channel                    | yes                 | yes                            | yes                      |
-  | inviter                    | yes                 | yes                            | yes                      |
-  | uses                       | no                  | yes                            | no                       |
-  | max_uses                   | no                  | yes                            | no                       |
-  | max_age                    | no                  | yes                            | no                       |
-  | temporary                  | no                  | yes                            | no                       |
-  | created_at                 | no                  | yes                            | no                       |
-  | revoked                    | no                  | no                             | no                       |
-  | approximate_presence_count | yes                 | no                             | no                       |
-  | approximate_member_count   | yes                 | no                             | no                       |
+  | Property                   | `Rest.get_guild_vanity_invite` | `Rest.get_invite/1` | `Rest.create_channel_invite/1` | `Rest.delete_invite/1`   |
+  |                            |                                |                     | `Rest.get_channel_invites/1`   |                          |
+  |                            |                                |                     | `Rest.get_guild_invites/1`     |                          |
+  | code                       | yes                            | yes                 | yes                            | yes                      |
+  | guild                      | no                             | if not group dm     | if not group dm                | if not group dm          |
+  | channel                    | no                             | yes                 | yes                            | yes                      |
+  | inviter                    | no                             | yes                 | yes                            | yes                      |
+  | uses                       | yes                            | no                  | yes                            | no                       |
+  | max_uses                   | no                             | no                  | yes                            | no                       |
+  | max_age                    | no                             | no                  | yes                            | no                       |
+  | temporary                  | no                             | no                  | yes                            | no                       |
+  | created_at                 | no                             | no                  | yes                            | no                       |
+  | revoked                    | no                             | no                  | no                             | no                       |
+  | approximate_presence_count | no                             | yes                 | no                             | no                       |
+  | approximate_member_count   | no                             | yes                 | no                             | no                       |
 
   Notes:
   - `:guild` only has`:verification_level`, `:features`, `:name`, `:splash`, `:id`, and `:icon`.
@@ -35,11 +35,9 @@ defmodule Crux.Structs.Invite do
   Util.modulesince("0.1.0")
 
   defstruct(
-    # always
     code: nil,
     guild: nil,
     channel: nil,
-    # only when fetched via get_channel_invites
     inviter: nil,
     uses: nil,
     max_uses: nil,
