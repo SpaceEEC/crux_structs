@@ -20,6 +20,7 @@ defmodule Crux.Structs.Webhook do
     id: nil,
     name: nil,
     token: nil,
+    type: nil,
     user: nil
   )
 
@@ -32,6 +33,7 @@ defmodule Crux.Structs.Webhook do
           guild_id: Snowflake.t() | nil,
           name: String.t() | nil,
           token: String.t() | nil,
+          type: non_neg_integer(),
           user: Snowflake.t() | nil
         }
 
