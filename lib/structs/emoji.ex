@@ -8,7 +8,8 @@ defmodule Crux.Structs.Emoji do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Emoji, Util}
+  alias Crux.Structs
+  alias Crux.Structs.{Emoji, Reaction, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -27,16 +28,59 @@ defmodule Crux.Structs.Emoji do
 
   @type t :: %__MODULE__{
           animated: boolean() | nil,
-          id: Crux.Rest.snowflake() | nil,
+          id: Snowflake.t() | nil,
           name: String.t(),
-          roles: MapSet.t(Crux.Rest.snowflake()),
-          user: Crux.Rest.snowflake() | nil,
+          roles: MapSet.t(Snowflake.t()),
+          user: Snowflake.t() | nil,
           require_colons: boolean() | nil,
           managed: boolean() | nil
         }
 
+  @typedoc """
+    All available types that can be resolved into an emoji id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: Reaction.t() | Emoji.t() | Snowflake.t() | String.t()
+
   @doc """
-    Creates a `Crux.Structs.Emoji` struct from raw data.
+    Resolves the id of a `t:Crux.Structs.Emoji.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    ```elixir
+    iex> %Crux.Structs.Emoji{id: 618731477143912448}
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    iex> %Crux.Structs.Reaction{emoji: %Crux.Structs.Emoji{id: 618731477143912448}}
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    iex> 618731477143912448
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    iex> "618731477143912448"
+    ...> |> Crux.Structs.Emoji.resolve_id()
+    618731477143912448
+
+    ```
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+
+  def resolve_id(%Reaction{emoji: emoji}) do
+    resolve_id(emoji)
+  end
+
+  def resolve_id(%Emoji{id: id}) do
+    resolve_id(id)
+  end
+
+  def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
+
+  @doc """
+    Creates a `t:Crux.Structs.Emoji.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -47,15 +91,27 @@ defmodule Crux.Structs.Emoji do
     emoji =
       data
       |> Util.atomify()
-      |> Map.update(:id, nil, &Util.id_to_int/1)
-      |> Map.update(:roles, MapSet.new(), &MapSet.new(&1, fn role -> Util.id_to_int(role) end))
+      |> Map.update(:id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(
+        :roles,
+        MapSet.new(),
+        &MapSet.new(&1, fn role -> Snowflake.to_snowflake(role) end)
+      )
       |> Map.update(:user, nil, Util.map_to_id())
 
     struct(__MODULE__, emoji)
   end
 
+  @typedoc """
+    All available types that can be resolved into a discord emoji identifier.
+
+  > String.t() stands for an already encoded unicode emoji.
+  """
+  Util.typesince("0.2.1")
+  @type identifier_resolvable() :: Emoji.t() | Reaction.t() | String.t()
+
   @doc ~S"""
-    Converts an `Crux.Structs.Emoji`, a `Crux.Structs.Reaction`, or a `String.t()` to its discord identifier format.
+    Converts an `t:Crux.Structs.Emoji.t/0`, a `t:Crux.Structs.Reaction.t/0`, or a `t:String.t/0` to its discord identifier format.
 
     > This is automatically done if using a appropriate rest function.
 
@@ -85,7 +141,8 @@ defmodule Crux.Structs.Emoji do
   "blobReach:356830260626456586"
 
   # An already encoded identifier
-  iex> "👀" |> URI.encode_www_form()
+  iex> "👀"
+  ...> |> URI.encode_www_form()
   ...> |> Crux.Structs.Emoji.to_identifier()
   "%F0%9F%91%80"
 
@@ -96,8 +153,7 @@ defmodule Crux.Structs.Emoji do
 
     ```
   """
-  @spec to_identifier(emoji :: Crux.Structs.Emoji.t() | Crux.Structs.Reaction.t() | String.t()) ::
-          String.t()
+  @spec to_identifier(emoji :: identifier_resolvable()) :: String.t()
   Util.since("0.1.1")
   def to_identifier(%Crux.Structs.Reaction{emoji: emoji}), do: to_identifier(emoji)
   def to_identifier(%__MODULE__{id: nil, name: name}), do: URI.encode_www_form(name)

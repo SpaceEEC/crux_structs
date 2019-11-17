@@ -1,7 +1,7 @@
 defmodule Crux.Structs.MixProject do
   use Mix.Project
 
-  @vsn "0.2.1-dev"
+  @vsn "0.2.1"
   @name :crux_structs
 
   def project do
@@ -11,7 +11,7 @@ defmodule Crux.Structs.MixProject do
       app: @name,
       version: @vsn,
       elixir: "~> 1.6",
-      description: "Package providing Discord API structs for crux.",
+      description: "Library providing Discord API structs for crux.",
       source_url: "https://github.com/SpaceEEC/crux_structs/",
       homepage_url: "https://github.com/SpaceEEC/crux_structs/",
       deps: deps(),
@@ -27,8 +27,9 @@ defmodule Crux.Structs.MixProject do
       links: %{
         "GitHub" => "https://github.com/SpaceEEC/#{@name}/",
         "Changelog" => "https://github.com/SpaceEEC/#{@name}/releases/tag/#{@vsn}/",
-        "Documentation" => "https://hexdocs.pm/#{@name}/#{@vsn}",
-        "Unified Development Documentation" => "https://crux.randomly.space/"
+        "Documentation" => "https://hexdocs.pm/#{@name}/#{@vsn}/",
+        "Unified Development Documentation" => "https://crux.randomly.space/",
+        "Crux Libraries Overview" => "https://github.com/SpaceEEC/crux/"
       }
     ]
   end
@@ -42,7 +43,7 @@ defmodule Crux.Structs.MixProject do
        branch: "feat/umbrella",
        only: :dev,
        runtime: false},
-      {:credo, "~> 1.1.2", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
       {:jason, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
@@ -54,24 +55,25 @@ defmodule Crux.Structs.MixProject do
   end
 
   def generate_config(_) do
+    {data, 0} = System.cmd("git", ["tag"])
+
     config =
-      System.cmd("git", ["tag"])
-      |> elem(0)
+      data
+      |> String.trim()
       |> String.split("\n")
-      |> Enum.slice(0..-2)
       |> Enum.map(&%{"url" => "https://hexdocs.pm/#{@name}/" <> &1, "version" => &1})
       |> Enum.reverse()
       |> Jason.encode!()
 
     config = "var versionNodes = " <> config
 
-    __ENV__.file
-    |> Path.split()
-    |> Enum.slice(0..-2)
-    |> Kernel.++(["doc", "docs_config.js"])
-    |> Enum.join("/")
-    |> File.write!(config)
+    path =
+      __ENV__.file
+      |> Path.join(Path.join(["..", "doc", "docs_config.js"]))
+      |> Path.expand()
 
-    Mix.Shell.IO.info(~S{Generated "doc/docs_config.js".})
+    File.write!(path, config)
+
+    Mix.Shell.IO.info(~s{Generated "#{path}".})
   end
 end

@@ -5,7 +5,7 @@ defmodule Crux.Structs.VoiceState do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
+  alias Crux.Structs.{Snowflake, User, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -19,6 +19,8 @@ defmodule Crux.Structs.VoiceState do
     mute: nil,
     self_deaf: nil,
     self_mute: nil,
+    # Only present if true
+    self_stream: false,
     # Can bots even do that?
     suppress: nil
   )
@@ -26,19 +28,38 @@ defmodule Crux.Structs.VoiceState do
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
-          guild_id: Crux.Rest.snowflake(),
-          channel_id: Crux.Rest.snowflake() | nil,
-          user_id: Crux.Rest.snowflake(),
+          guild_id: Snowflake.t(),
+          channel_id: Snowflake.t() | nil,
+          user_id: Snowflake.t(),
           session_id: String.t(),
           deaf: boolean(),
           mute: boolean(),
           self_deaf: boolean(),
           self_mute: boolean(),
+          self_stream: boolean(),
           suppress: boolean()
         }
 
+  @typedoc """
+    All available types that can be resolved into a user id.
+  """
+  Util.typesince("0.2.1")
+  @type id_resolvable() :: User.id_resolvable()
+
   @doc """
-    Creates a `Crux.Structs.VoiceState` struct from raw data.
+    Resolves the id of a `t:Crux.Structs.VoiceState.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    For examples see `Crux.Structs.User.resolve_id/1`.
+
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+  defdelegate resolve_id(resolvable), to: User
+
+  @doc """
+    Creates a `t:Crux.Structs.VoiceState.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -49,9 +70,9 @@ defmodule Crux.Structs.VoiceState do
     voice_state =
       data
       |> Util.atomify()
-      |> Map.update!(:guild_id, &Util.id_to_int/1)
-      |> Map.update(:channel_id, nil, &Util.id_to_int/1)
-      |> Map.update!(:user_id, &Util.id_to_int/1)
+      |> Map.update!(:guild_id, &Snowflake.to_snowflake/1)
+      |> Map.update(:channel_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update!(:user_id, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, voice_state)
   end

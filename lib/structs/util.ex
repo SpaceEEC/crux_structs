@@ -10,7 +10,7 @@ defmodule Crux.Structs.Util do
   end
 
   @doc ~s"""
-    Converts a string, likely Discord snowflake, to an integer
+    Converts a string, likely Discord snowflake, to not negative integer
 
   ## Examples
 
@@ -36,8 +36,9 @@ defmodule Crux.Structs.Util do
     @since "0.1.0"
   end
 
-  def id_to_int(str) when is_bitstring(str), do: String.to_integer(str)
-  def id_to_int(already) when is_integer(already), do: already
+  @deprecated "Use Snowflake.to_snowflake/1 instead"
+  def id_to_int(str) when is_bitstring(str), do: str |> String.to_integer() |> id_to_int
+  def id_to_int(already) when is_integer(already) and already >= 0, do: already
   def id_to_int(nil), do: nil
 
   @doc ~S"""
@@ -130,7 +131,7 @@ defmodule Crux.Structs.Util do
 
     ```
   """
-  @spec map_to_id(key :: term()) :: (map() -> Crux.Rest.snowflake() | nil)
+  @spec map_to_id(key :: term()) :: (map() -> Snowflake.t() | nil)
   def map_to_id(key \\ :id) do
     fn
       %{^key => value} -> id_to_int(value)
@@ -163,6 +164,7 @@ defmodule Crux.Structs.Util do
     @since "0.1.0"
   end
 
+  @deprecated "There will be no replacement"
   def string_to_atom(string) when is_bitstring(string), do: String.to_atom(string)
   def string_to_atom(atom) when is_atom(atom), do: atom
 
@@ -218,7 +220,8 @@ defmodule Crux.Structs.Util do
   def atomify(list) when is_list(list), do: Enum.map(list, &atomify/1)
   def atomify(other), do: other
 
-  defp atomify_kv({k, v}), do: {string_to_atom(k), atomify(v)}
+  defp atomify_kv({k, v}) when is_atom(k), do: {k, atomify(v)}
+  defp atomify_kv({k, v}), do: {String.to_atom(k), atomify(v)}
 
   # TODO: Remove this as soon as 1.7.0 is required
   if Version.compare(System.version(), "1.7.0") != :lt do

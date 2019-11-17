@@ -5,7 +5,8 @@ defmodule Crux.Structs.User do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{User, Util}
+  alias Crux.Structs
+  alias Crux.Structs.{Member, Message, Presence, Snowflake, User, Util, VoiceState}
   require Util
 
   Util.modulesince("0.1.0")
@@ -24,12 +25,87 @@ defmodule Crux.Structs.User do
           avatar: String.t() | nil,
           bot: boolean(),
           discriminator: String.t(),
-          id: Crux.Rest.snowflake(),
+          id: Snowflake.t(),
           username: String.t()
         }
 
+  @typedoc """
+    All available types that can be resolved into a user id.
+  """
+  Util.typesince("0.2.1")
+
+  @type id_resolvable() ::
+          User.t()
+          | Member.t()
+          | Message.t()
+          | Presence.t()
+          | VoiceState.t()
+          | Snowflake.t()
+          | String.t()
+
   @doc """
-    Creates a `Crux.Structs.User` struct from raw data.
+    Resolves the id of a `t:Crux.Structs.Guild.t/0`.
+
+  > Automatically invoked by `Crux.Structs.resolve_id/2`.
+
+    ```elixir
+    iex> %Crux.Structs.User{id: 218348062828003328}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.Member{user: 218348062828003328}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.Presence{user: 218348062828003328}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> %Crux.Structs.VoiceState{user_id: 218348062828003328}
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> 218348062828003328
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    iex> "218348062828003328"
+    ...> |> Crux.Structs.User.resolve_id()
+    218348062828003328
+
+    ```
+  """
+  @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
+  Util.since("0.2.1")
+
+  def resolve_id(%User{id: id}) do
+    resolve_id(id)
+  end
+
+  def resolve_id(%Member{user: user}) do
+    resolve_id(user)
+  end
+
+  def resolve_id(%Message{author: author}) do
+    resolve_id(author)
+  end
+
+  def resolve_id(%Presence{user: user}) do
+    resolve_id(user)
+  end
+
+  def resolve_id(%VoiceState{user_id: user_id}) do
+    resolve_id(user_id)
+  end
+
+  def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
+
+  @doc """
+    Creates a `t:Crux.Structs.User.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -40,13 +116,13 @@ defmodule Crux.Structs.User do
     user =
       data
       |> Util.atomify()
-      |> Map.update!(:id, &Util.id_to_int/1)
+      |> Map.update!(:id, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, user)
   end
 
   @doc ~S"""
-    Converts a `Crux.Structs.User` into its discord mention format.
+    Converts a `t:Crux.Structs.User.t/0` into its discord mention format.
 
     ```elixir
   iex> %Crux.Structs.User{id: 218348062828003328}
