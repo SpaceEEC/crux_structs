@@ -5,7 +5,7 @@ defmodule Crux.Structs.AuditLog do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{AuditLog, AuditLogEntry, Snowflake, User, Util, Webhook}
+  alias Crux.Structs.{AuditLog, AuditLogEntry, Integration, Snowflake, User, Util, Webhook}
   require Util
 
   Util.modulesince("0.1.6")
@@ -13,6 +13,7 @@ defmodule Crux.Structs.AuditLog do
   defstruct(
     webhooks: %{},
     users: %{},
+    integrations: %{},
     audit_log_entries: %{}
   )
 
@@ -21,6 +22,7 @@ defmodule Crux.Structs.AuditLog do
   @type t :: %__MODULE__{
           webhooks: %{Snowflake.t() => Webhook.t()},
           users: %{Snowflake.t() => User.t()},
+          integrations: %{Snowflake.t() => map()},
           audit_log_entries: %{Snowflake.t() => AuditLogEntry.t()}
         }
 
@@ -44,6 +46,7 @@ defmodule Crux.Structs.AuditLog do
       |> Util.atomify()
       |> Map.update(:webhooks, [], &Util.raw_data_to_map(&1, Webhook))
       |> Map.update(:users, [], &Util.raw_data_to_map(&1, User))
+      |> Map.update(:integrations, [], &Util.raw_data_to_map(&1, Integration))
       |> Map.update(:audit_log_entries, [], &Util.raw_data_to_map(&1, AuditLogEntry))
 
     struct(__MODULE__, audit_log)
