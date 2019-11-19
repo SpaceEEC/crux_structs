@@ -131,7 +131,7 @@ defmodule Crux.Structs.Util do
 
     ```
   """
-  @spec map_to_id(key :: term()) :: (map() -> Snowflake.t() | nil)
+  @spec map_to_id(key :: term()) :: (map() -> Structs.Snowflake.t() | nil)
   def map_to_id(key \\ :id) do
     fn
       %{^key => value} -> id_to_int(value)

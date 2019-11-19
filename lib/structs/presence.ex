@@ -8,7 +8,7 @@ defmodule Crux.Structs.Presence do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{User, Util}
+  alias Crux.Structs.{Snowflake, User, Util}
   require Util
 
   Util.modulesince("0.1.0")

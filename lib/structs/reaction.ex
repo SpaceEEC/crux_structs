@@ -6,7 +6,7 @@ defmodule Crux.Structs.Reaction do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Emoji, Util}
+  alias Crux.Structs.{Emoji, Reaction, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")

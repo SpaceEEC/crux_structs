@@ -357,7 +357,7 @@ defmodule Crux.Structs.Permissions do
   > The guild-wide administrator flag or being owner implicitly grants all permissions, see `explicit/3`.
   """
   @spec implicit(
-          member :: Structs.Member.t() | Structs.User.t() | Snowflake.t(),
+          member :: Structs.Member.t() | Structs.User.t() | Structs.Snowflake.t(),
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
@@ -394,7 +394,7 @@ defmodule Crux.Structs.Permissions do
   > The administrator flag or being owner implicitly does not grant permissions, see `implicit/3`.
   """
   @spec explicit(
-          member :: Structs.Member.t() | Structs.User.t() | Snowflake.t(),
+          member :: Structs.Member.t() | Structs.User.t() | Structs.Snowflake.t(),
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
