@@ -24,6 +24,9 @@ defmodule Crux.Structs.AuditLogEntry do
     member_ban_remove: 23,
     member_update: 24,
     member_role_update: 25,
+    member_move: 26,
+    member_disconnect: 27,
+    bot_add: 28,
     role_create: 30,
     role_update: 31,
     role_delete: 32,
@@ -36,7 +39,13 @@ defmodule Crux.Structs.AuditLogEntry do
     emoji_create: 60,
     emoji_update: 61,
     emoji_delete: 62,
-    message_delete: 72
+    message_delete: 72,
+    message_bulk_delete: 73,
+    message_pin: 74,
+    message_unpin: 75,
+    integration_create: 80,
+    integration_update: 81,
+    integration_delete: 82
   }
 
   @typedoc """
@@ -58,6 +67,9 @@ defmodule Crux.Structs.AuditLogEntry do
           | :member_ban_remove
           | :member_update
           | :member_role_update
+          | :member_move
+          | :member_disconnect
+          | :bot_add
           | :role_create
           | :role_update
           | :role_delete
@@ -71,6 +83,12 @@ defmodule Crux.Structs.AuditLogEntry do
           | :emoji_update
           | :emoji_delete
           | :message_delete
+          | :message_bulk_delete
+          | :message_pin
+          | :message_unpin
+          | :integration_create
+          | :integration_update
+          | :integration_delete
 
   @audit_log_events_key Map.new(@audit_log_events, fn {k, v} -> {v, k} end)
 
