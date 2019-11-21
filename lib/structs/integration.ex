@@ -55,6 +55,9 @@ defmodule Crux.Structs.Integration do
       |> Map.update(:id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:role_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:user, nil, Util.map_to_id())
+      |> Map.update(:account, nil, fn account ->
+        Map.update(account, :id, nil, &Snowflake.to_snowflake/1)
+      end)
 
     struct(__MODULE__, integration)
   end
