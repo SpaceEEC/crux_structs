@@ -144,6 +144,22 @@ defmodule Crux.Structs.AuditLogEntry do
       |> Map.update!(:target_id, &Snowflake.to_snowflake/1)
       |> Map.update(:changes, %{}, &Util.raw_data_to_map(&1, AuditLogChange, :key))
       |> Map.update!(:user_id, &Snowflake.to_snowflake/1)
+      |> Map.update(
+        :options,
+        nil,
+        &Map.new(&1, fn {k, v} ->
+          k_string = to_string(k)
+
+          v =
+            if k_string == "id" or binary_part(k_string, byte_size(k_string), -3) == "_id" do
+              Snowflake.to_snowflake(v)
+            else
+              v
+            end
+
+          {k, v}
+        end)
+      )
 
     struct(__MODULE__, audit_log_entry)
   end
