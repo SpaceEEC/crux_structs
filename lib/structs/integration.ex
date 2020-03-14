@@ -5,7 +5,7 @@ defmodule Crux.Structs.Integration do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Snowflake, Util}
+  alias Crux.Structs.{Snowflake, Integration, Util}
   require Util
 
   Util.modulesince("0.2.2")
@@ -39,6 +39,12 @@ defmodule Crux.Structs.Integration do
           account: map(),
           synced_at: String.t()
         }
+
+  @typedoc """
+    All available types that can be resolved into an integration id.
+  """
+  Util.typesince("0.2.3")
+  @type id_resolvable() :: Integration.t() | Snowflake.t()
 
   @doc """
     Creates a `t:Crux.Structs.Integration.t/0` struct from raw data.
