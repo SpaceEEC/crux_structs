@@ -5,7 +5,7 @@ defmodule Crux.Structs.VoiceRegion do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Snowflake, Util, VoiceRegion}
+  alias Crux.Structs.Util
   require Util
 
   Util.modulesince("0.2.3")
