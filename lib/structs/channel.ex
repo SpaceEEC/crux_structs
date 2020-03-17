@@ -77,9 +77,25 @@ defmodule Crux.Structs.Channel do
           rate_limit_per_user: integer(),
           recipients: MapSet.t(Snowflake.t()),
           topic: String.t(),
-          type: integer(),
+          type: type(),
           user_limit: non_neg_integer()
         }
+
+  @typedoc """
+    | Type           | ID  | Description                                                                                  |
+    | :------------: | :-: | :------------------------------------------------------------------------------------------: |
+    | GUILD_TEXT     |  0  | A text channel within a guild.                                                               |
+    | DM             |  1  | A direct text channel between two users.                                                     |
+    | GUILD_VOICE    |  2  | A voice channel withing a guild.                                                             |
+    | GROUP_DM       |  3  | A direct channel between multiple users.<br>Bots do not have access to those.                |
+    | GUILD_CATEGORY |  4  | An organizational category.                                                                  |
+    | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.<br>Bots can not publish messages. |
+    | GUILD_STORE    |  6  | A channel in which game developers can sell their game.<br>Bots can not interact with those. |
+
+    For more information see the [Discord Developer Documentation](https://discordapp.com/developers/docs/resources/channel#channel-object-channel-types).
+  """
+  Util.typesince("0.2.3")
+  @type type :: non_neg_integer()
 
   @typedoc """
     All available types that can be resolved into a channel id.
