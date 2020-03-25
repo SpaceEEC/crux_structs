@@ -40,10 +40,10 @@ defmodule Crux.Structs.MixProject do
     [
       {:ex_doc,
        git: "https://github.com/spaceeec/ex_doc",
-       branch: "feat/umbrella",
+       branch: "fork",
        only: :dev,
        runtime: false},
-      {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
       {:jason, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
