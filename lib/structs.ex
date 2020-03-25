@@ -80,7 +80,7 @@ defmodule Crux.Structs do
   @spec create(data :: list(), target :: module()) :: list(struct())
   Util.since("0.1.0")
   def create(data, target)
-  def create(nil, _target), do: nil
+  def create(nil, _), do: nil
 
   def create(data, target) when is_list(data) do
     Enum.map(data, &create(&1, target))
@@ -146,7 +146,10 @@ defmodule Crux.Structs do
       target.resolve_id(data)
     else
       case data do
-        %^target{id: id} when not is_nil(id) ->
+        %^target{id: nil} ->
+          resolve_id(data)
+
+        %^target{id: id} ->
           resolve_id(id)
 
         _ ->
@@ -158,6 +161,7 @@ defmodule Crux.Structs do
   @doc false
   @spec resolve_id(Snowflake.t()) :: Snowflake.t()
   @spec resolve_id(String.t()) :: Snowflake.t() | nil
+  @spec resolve_id(map()) :: nil
   @spec resolve_id(nil) :: nil
   def resolve_id(snowflake) when Snowflake.is_snowflake(snowflake) do
     snowflake

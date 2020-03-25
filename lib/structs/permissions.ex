@@ -4,10 +4,10 @@ defmodule Crux.Structs.Permissions do
 
     For more informations see [Discord Docs](https://discordapp.com/developers/docs/topics/permissions).
   """
-  use Bitwise
 
   alias Crux.Structs
   alias Crux.Structs.Util
+  use Bitwise
   require Util
 
   Util.modulesince("0.1.3")
@@ -50,7 +50,7 @@ defmodule Crux.Structs.Permissions do
   """
   @spec flags() :: %{name() => non_neg_integer()}
   Util.since("0.2.0")
-  def flags, do: @permissions
+  def flags(), do: @permissions
 
   @names Map.keys(@permissions)
   @doc """
@@ -58,15 +58,15 @@ defmodule Crux.Structs.Permissions do
   """
   @spec names() :: [name()]
   Util.since("0.2.0")
-  def names, do: @names
+  def names(), do: @names
 
   @all @permissions |> Map.values() |> Enum.reduce(&|||/2)
   @doc """
     Returns the integer value of all permissions summed up.
   """
-  @spec all :: pos_integer()
+  @spec all() :: pos_integer()
   Util.since("0.2.0")
-  def all, do: @all
+  def all(), do: @all
 
   @typedoc """
     Union type of all valid permission name atoms.

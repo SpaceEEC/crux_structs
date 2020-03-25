@@ -97,7 +97,7 @@ defmodule Crux.Structs.AuditLogEntry do
   """
   @spec events() :: %{event_name => non_neg_integer()}
   Util.since("0.1.6")
-  def events, do: @audit_log_events
+  def events(), do: @audit_log_events
 
   @doc """
     Gets the event name from the action type id

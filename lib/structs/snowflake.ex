@@ -14,9 +14,8 @@ defmodule Crux.Structs.Snowflake.Parts do
     For more information see [Discord Docs](https://discordapp.com/developers/docs/reference#snowflakes).
   """
 
-  use Bitwise
-
   alias Crux.Structs.{Snowflake, Util}
+  use Bitwise
   require Util
 
   Util.modulesince("0.2.1")
@@ -101,9 +100,8 @@ defmodule Crux.Structs.Snowflake do
     For more information see [Discord Docs](https://discordapp.com/developers/docs/reference#snowflakes).
   """
 
-  use Bitwise
-
   alias Crux.Structs.{Snowflake, Util}
+  use Bitwise
   require Util
 
   Util.modulesince("0.2.1")
