@@ -9,6 +9,7 @@ defmodule Crux.Structs.EmojiTest do
 
     assert emoji == %Crux.Structs.Emoji{
              animated: false,
+             available: nil,
              id: nil,
              name: "👋",
              roles: MapSet.new(),
@@ -32,12 +33,14 @@ defmodule Crux.Structs.EmojiTest do
         },
         "require_colons" => true,
         "animated" => false,
+        "available" => true,
         "id" => "340234098767560724"
       }
       |> Crux.Structs.create(Crux.Structs.Emoji)
 
     assert emoji == %Crux.Structs.Emoji{
              animated: false,
+             available: true,
              id: 340_234_098_767_560_724,
              name: "Missing",
              roles: MapSet.new(),

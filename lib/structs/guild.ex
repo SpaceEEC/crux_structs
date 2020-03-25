@@ -24,6 +24,8 @@ defmodule Crux.Structs.Guild do
     channels: %MapSet{},
     default_message_notifications: nil,
     description: nil,
+    discovery_splash: nil,
+    embed_channel_id: nil,
     emojis: %MapSet{},
     explicit_content_filter: nil,
     features: %MapSet{},
@@ -41,9 +43,11 @@ defmodule Crux.Structs.Guild do
     preferred_locale: nil,
     premium_subscription_count: nil,
     premium_tier: nil,
+    public_updates_channel_id: nil,
     # :presences,
     region: nil,
     roles: %{},
+    rules_channel_id: nil,
     splash: nil,
     system_channel_flags: nil,
     system_channel_id: nil,
@@ -51,10 +55,11 @@ defmodule Crux.Structs.Guild do
     vanity_url_code: nil,
     verification_level: nil,
     voice_states: %{},
+    widget_channel_id: nil,
 
     ## Not in GUILD_CREATE
-    max_presences: nil,
     max_members: nil,
+    max_presences: nil,
     embed_enabled: nil,
     widget_enabled: nil
   )
@@ -69,6 +74,8 @@ defmodule Crux.Structs.Guild do
           channels: MapSet.t(Snowflake.t()),
           default_message_notifications: non_neg_integer(),
           description: String.t() | nil,
+          discovery_splash: String.t() | nil,
+          embed_channel_id: Snowflake.t() | nil,
           emojis: MapSet.t(Snowflake.t()),
           explicit_content_filter: non_neg_integer(),
           features: MapSet.t(String.t()),
@@ -86,9 +93,11 @@ defmodule Crux.Structs.Guild do
           preferred_locale: String.t(),
           premium_subscription_count: non_neg_integer(),
           premium_tier: non_neg_integer(),
+          public_updates_channel_id: Snowflake.t() | nil,
           # presences: %{required(Snowflake.t()) => Presence.t()},
           region: String.t(),
           roles: %{optional(Snowflake.t()) => Role.t()},
+          rules_channel_id: Snowflake.t() | nil,
           splash: String.t() | nil,
           system_channel_flags: non_neg_integer(),
           system_channel_id: Snowflake.t() | nil,
@@ -96,6 +105,8 @@ defmodule Crux.Structs.Guild do
           vanity_url_code: String.t() | nil,
           verification_level: integer(),
           voice_states: %{optional(Snowflake.t()) => VoiceState.t()},
+          widget_channel_id: Snowflake.t() | nil,
+
           # Not in GUILD_CREATE
           max_presences: pos_integer() | nil,
           max_members: pos_integer(),

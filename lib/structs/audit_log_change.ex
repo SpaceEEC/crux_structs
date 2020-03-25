@@ -1,6 +1,6 @@
 defmodule Crux.Structs.AuditLogChange do
   @moduledoc """
-    Represents a Discord [Audit Log Change Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-change)
+    Represents a Discord [Audit Log Change Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-change-object).
   """
 
   @behaviour Crux.Structs

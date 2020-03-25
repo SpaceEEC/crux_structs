@@ -1,6 +1,6 @@
 defmodule Crux.Structs.AuditLog do
   @moduledoc """
-    Represents a Discord [Audit Log Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-object)
+    Represents a Discord [Audit Log Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-object).
   """
 
   @behaviour Crux.Structs
@@ -22,7 +22,7 @@ defmodule Crux.Structs.AuditLog do
   @type t :: %__MODULE__{
           webhooks: %{Snowflake.t() => Webhook.t()},
           users: %{Snowflake.t() => User.t()},
-          integrations: %{Snowflake.t() => map()},
+          integrations: %{Snowflake.t() => Integration.t()},
           audit_log_entries: %{Snowflake.t() => AuditLogEntry.t()}
         }
 

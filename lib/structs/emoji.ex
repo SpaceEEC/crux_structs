@@ -16,6 +16,7 @@ defmodule Crux.Structs.Emoji do
 
   defstruct(
     animated: nil,
+    available: nil,
     id: nil,
     name: nil,
     roles: nil,
@@ -28,6 +29,7 @@ defmodule Crux.Structs.Emoji do
 
   @type t :: %__MODULE__{
           animated: boolean() | nil,
+          available: boolean() | nil,
           id: Snowflake.t() | nil,
           name: String.t(),
           roles: MapSet.t(Snowflake.t()),

@@ -21,7 +21,7 @@ defmodule Crux.Structs.Invite do
   | approximate_member_count   | no                               | yes                 | no                             | no                       |
 
   Notes:
-  - `:guild` only has`:verification_level`, `:features`, `:name`, `:splash`, `:id`, and `:icon`.
+  - `:guild` only has `:verification_level`, `:features`, `:name`, `:splash`, `:id`, and `:icon`.
   - `:channel` only has `:type`, `:id` and `:name`.
   > You can, if applicable, fetch the full structs from cache.
   """
