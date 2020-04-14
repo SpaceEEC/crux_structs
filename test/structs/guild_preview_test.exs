@@ -51,9 +51,8 @@ defmodule Crux.Structs.GuildPreviewTest do
                  id: 197_038_439_483_310_086,
                  require_colons: true,
                  managed: false,
-                 animated: false
-                 #  TODO: Add this
-                 #  available: true
+                 animated: false,
+                 available: true
                }
              },
              features: [
