@@ -18,6 +18,7 @@ defmodule Crux.Structs.Member do
     nick: nil,
     roles: nil,
     joined_at: nil,
+    premium_since: nil,
     deaf: nil,
     mute: nil,
     guild_id: nil
@@ -30,6 +31,7 @@ defmodule Crux.Structs.Member do
           nick: String.t() | nil,
           roles: MapSet.t(Snowflake.t()),
           joined_at: String.t(),
+          premium_since: String.t() | nil,
           deaf: boolean() | nil,
           mute: boolean() | nil,
           guild_id: Snowflake.t() | nil
