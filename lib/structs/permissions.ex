@@ -32,7 +32,7 @@ defmodule Crux.Structs.Permissions do
     read_message_history: 1 <<< 16,
     mention_everyone: 1 <<< 17,
     use_external_emojis: 1 <<< 18,
-    # 19
+    view_guild_insights: 1 <<< 19,
     connect: 1 <<< 20,
     speak: 1 <<< 21,
     mute_members: 1 <<< 22,
@@ -93,6 +93,7 @@ defmodule Crux.Structs.Permissions do
           | :read_message_histroy
           | :mention_everyone
           | :use_external_emojis
+          | :view_guild_insights
           | :connect
           | :speak
           | :mute_members
