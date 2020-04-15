@@ -91,7 +91,7 @@ defmodule Crux.Structs.Message do
           content: String.t(),
           edited_timestamp: String.t(),
           embeds: [Embed.t()],
-          flags: non_neg_integer(),
+          flags: Message.Flags.raw(),
           guild_id: Snowflake.t() | nil,
           id: Snowflake.t(),
           member: Member.t() | nil,
