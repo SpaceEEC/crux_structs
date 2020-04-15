@@ -10,7 +10,7 @@ defmodule Crux.Structs.PermissionsTest do
 
     assert is_list(names)
 
-    assert Enum.size(names) > 0
+    assert length(names) > 0
   end
 
   test "flags/0" do
