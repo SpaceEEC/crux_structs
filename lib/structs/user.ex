@@ -16,7 +16,8 @@ defmodule Crux.Structs.User do
     bot: false,
     discriminator: nil,
     id: nil,
-    username: nil
+    username: nil,
+    public_flags: nil
   )
 
   Util.typesince("0.1.0")
@@ -26,7 +27,8 @@ defmodule Crux.Structs.User do
           bot: boolean(),
           discriminator: String.t(),
           id: Snowflake.t(),
-          username: String.t()
+          username: String.t(),
+          public_flags: integer()
         }
 
   @typedoc """
