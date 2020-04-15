@@ -7,9 +7,6 @@ defmodule Crux.Structs.Permissions do
 
   alias Crux.Structs
   alias Crux.Structs.Util
-  require Util
-
-  Util.modulesince("0.1.3")
 
   use Bitwise
 
@@ -48,6 +45,10 @@ defmodule Crux.Structs.Permissions do
   }
 
   use Crux.Structs.BitField, permissions
+
+  require Util
+
+  Util.modulesince("0.1.3")
 
   @typedoc """
     Union type of all valid permission name atoms.

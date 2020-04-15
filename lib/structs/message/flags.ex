@@ -6,9 +6,6 @@ defmodule Crux.Structs.Message.Flags do
   """
 
   alias Crux.Structs.Util
-  require Util
-  Util.modulesince("0.2.3")
-
   use Bitwise
 
   flags = %{
@@ -20,6 +17,9 @@ defmodule Crux.Structs.Message.Flags do
   }
 
   use Crux.Structs.BitField, flags
+
+  require Util
+  Util.modulesince("0.2.3")
 
   @typedoc """
   Union type of all valid message flags.

@@ -99,23 +99,20 @@ defmodule Crux.Structs.BitField do
       use Bitwise
 
       @flags unquote(flags)
-
       @doc """
       Get a map of `t:name/0`s and their corresponding bit values.
       """
-      @spec flags :: %{required(name()) => non_neg_integer()}
+      @spec flags() :: %{required(name()) => non_neg_integer()}
       def flags(), do: @flags
 
-      @names @flags |> Map.keys()
-
+      @names Map.keys(@flags)
       @doc """
       Get a list of all available `t:name/0`s.
       """
       @spec names() :: [name()]
       def names(), do: @names
 
-      @all @flags |> Enum.reduce(0, fn {_name, bit}, acc -> bit ||| acc end)
-
+      @all Enum.reduce(@flags, 0, fn {_name, bit}, acc -> bit ||| acc end)
       @doc """
       Get an integer representing all available bits set.
       """

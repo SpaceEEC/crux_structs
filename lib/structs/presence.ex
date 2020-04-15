@@ -104,8 +104,11 @@ defmodule Crux.Structs.Presence do
     |> create_activity()
   end
 
-  defp create_activity(%{emoji: emoji} = activity)
-       when not is_nil(emoji) do
+  defp create_activity(%{emoji: nil} = activity) do
+    activity
+  end
+
+  defp create_activity(%{emoji: _emoji} = activity) do
     Map.update!(activity, :emoji, &Structs.create(&1, Emoji))
   end
 
