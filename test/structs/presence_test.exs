@@ -65,7 +65,7 @@ defmodule Crux.Structs.PresenceTest do
              }
     end
 
-    test "activity from an application" do
+    test "activity of an application" do
       presence =
         %{
           "user" => %{
