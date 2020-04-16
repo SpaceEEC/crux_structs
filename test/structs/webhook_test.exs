@@ -53,22 +53,23 @@ defmodule Crux.Structs.WebhookTest do
     end
 
     test "follower webhook" do
-      webhook = %{
-        "avatar" => "09347e32e597650a217dafa7f86c738c",
-        "channel_id" => "612356602850181161",
-        "guild_id" => "243175181885898762",
-        "id" => "678636620286656543",
-        "name" => "#announcements",
-        "type" => 2,
-        "user" => %{
-          "avatar" => "646a356e237350bf8b8dfde15667dfc4",
-          "discriminator" => "0001",
-          "id" => "218348062828003328",
-          "public_flags" => 512,
-          "username" => "space"
+      webhook =
+        %{
+          "avatar" => "09347e32e597650a217dafa7f86c738c",
+          "channel_id" => "612356602850181161",
+          "guild_id" => "243175181885898762",
+          "id" => "678636620286656543",
+          "name" => "#announcements",
+          "type" => 2,
+          "user" => %{
+            "avatar" => "646a356e237350bf8b8dfde15667dfc4",
+            "discriminator" => "0001",
+            "id" => "218348062828003328",
+            "public_flags" => 512,
+            "username" => "space"
+          }
         }
-      }
-      |> Structs.create(Webhook)
+        |> Structs.create(Webhook)
 
       assert webhook == %Webhook{
                type: 2,

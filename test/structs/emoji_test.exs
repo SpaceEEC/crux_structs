@@ -69,7 +69,7 @@ defmodule Crux.Structs.EmojiTest do
       emoji =
         %Emoji{
           animated: true,
-          id: 393649411961520128,
+          id: 393_649_411_961_520_128,
           name: "youdied"
         }
         |> to_string()
@@ -81,7 +81,7 @@ defmodule Crux.Structs.EmojiTest do
       emoji =
         %Emoji{
           animated: false,
-          id: 367379627984945153,
+          id: 367_379_627_984_945_153,
           name: "QuestionMark"
         }
         |> to_string()
