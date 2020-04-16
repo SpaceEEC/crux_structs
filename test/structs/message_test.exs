@@ -1,7 +1,9 @@
 defmodule Crux.Structs.MessageTest do
   use ExUnit.Case, async: true
-
   doctest Crux.Structs.Message
+
+  alias Crux.Structs
+  alias Crux.Structs.{Emoji, Member, Message, Reaction, User}
 
   test "create" do
     message =
@@ -9,6 +11,16 @@ defmodule Crux.Structs.MessageTest do
         "activity" => %{
           "type" => 0,
           "party_id" => "interesting_id"
+        },
+        "application" => %{
+          "cover_image" => "b76db81b683527961ee1432c24a02774",
+          "description" => "click the circles! to the beat!",
+          "icon" => "ea86f6c52576847a7cb81f1c1faa18a3",
+          "id" => "367827983903490050",
+          "name" => "osu!",
+          "primary_sku_id" => "367827983903490050",
+          "splash" => "8029278a3fab0e30108bd335f26ab8a0",
+          "summary" => "click the circles! to the beat!"
         },
         "attachments" => [],
         "author" => %{
@@ -63,23 +75,31 @@ defmodule Crux.Structs.MessageTest do
           "channel_id" => "278325129692446722",
           "guild_id" => "278325129692446720",
           "message_id" => "306588351130107906"
-        }
+        },
+        "reactions" => [
+          %{
+            "count" => 1,
+            "emoji" => %{"id" => "543171949510000650", "name" => "cirBar"},
+            "me" => false
+          }
+        ]
       }
-      |> Crux.Structs.create(Crux.Structs.Message)
+      |> Structs.create(Message)
 
-    assert message == %Crux.Structs.Message{
+    assert message == %Message{
              activity: %{
                type: 0,
                party_id: "interesting_id"
              },
              attachments: [],
-             author: %Crux.Structs.User{
+             application: 367_827_983_903_490_050,
+             author: %User{
                username: "space",
                discriminator: "0001",
                avatar: "646a356e237350bf8b8dfde15667dfc4",
                id: 218_348_062_828_003_328
              },
-             member: %Crux.Structs.Member{
+             member: %Member{
                roles:
                  MapSet.new([
                    222_442_681_798_885_376,
@@ -117,6 +137,17 @@ defmodule Crux.Structs.MessageTest do
                channel_id: 278_325_129_692_446_722,
                guild_id: 278_325_129_692_446_720,
                message_id: 306_588_351_130_107_906
+             },
+             reactions: %{
+               543_171_949_510_000_650 => %Reaction{
+                 count: 1,
+                 emoji: %Emoji{
+                   id: 543_171_949_510_000_650,
+                   name: "cirBar",
+                   roles: MapSet.new()
+                 },
+                 me: false
+               }
              }
            }
   end
