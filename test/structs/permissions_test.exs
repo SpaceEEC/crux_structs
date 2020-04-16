@@ -1,7 +1,7 @@
 defmodule Crux.Structs.PermissionsTest do
   use ExUnit.Case, async: true
 
-  alias Crux.Structs.{Channel, Guild, Member, Overwrite, Permissions, Role}
+  alias Crux.Structs.{Channel, Guild, Member, Overwrite, Permissions, Role, User}
 
   doctest Permissions
 
@@ -157,7 +157,22 @@ defmodule Crux.Structs.PermissionsTest do
       assert bitfield === Permissions.all()
     end
 
-    test "implicit/3 administrator override" do
+    test "implicit/2 no admin" do
+      [member, guild, _] = test_data(no_admin: true)
+
+      permissions = Permissions.implicit(member, guild)
+
+      assert permissions ===
+               Permissions.new([
+                 :view_channel,
+                 :send_messages,
+                 :kick_members,
+                 :ban_members,
+                 :read_message_history
+               ])
+    end
+
+    test "implicit/3 administrator overrides" do
       [member, guild, channel] = test_data()
 
       %Permissions{bitfield: bitfield} = Permissions.implicit(member, guild, channel)
@@ -181,6 +196,14 @@ defmodule Crux.Structs.PermissionsTest do
                  :ban_members,
                  :read_message_history
                ])
+    end
+
+    test "implicit/2 user clause works" do
+      [member, guild, _] = test_data()
+
+      %Permissions{bitfield: bitfield} = Permissions.implicit(%User{id: member.user}, guild)
+
+      assert bitfield === Permissions.all()
     end
   end
 
@@ -218,6 +241,68 @@ defmodule Crux.Structs.PermissionsTest do
                ])
     end
 
+    test "explicit/3 missing everyone role overwrite works" do
+      [member, guild, channel] = test_data(allow: Permissions.resolve([:administrator]))
+      channel = %{channel | permission_overwrites: %{}}
+
+      permissions = Permissions.explicit(member, guild, channel)
+
+      assert Permissions.to_list(permissions) ===
+               Permissions.to_list([
+                 :view_channel,
+                 :administrator,
+                 :send_messages,
+                 :kick_members,
+                 :ban_members,
+                 :read_message_history
+               ])
+    end
+
+    test "explicit/3 role overwrite works" do
+      [member, guild, channel] = test_data()
+
+      guild =
+        Map.update!(
+          guild,
+          :members,
+          fn members ->
+            Map.update!(
+              members,
+              218_348_062_828_003_328,
+              &Map.update!(&1, :roles, fn roles -> MapSet.put(roles, 597_981_185_393_688_597) end)
+            )
+          end
+        )
+
+      permissions = Permissions.explicit(member, guild, channel)
+
+      assert Permissions.to_list(permissions) ===
+               Permissions.to_list([
+                 :administrator,
+                 :attach_files,
+                 :kick_members,
+                 :ban_members,
+                 :read_message_history
+               ])
+    end
+
+    test "explicit/2 user clause works" do
+      [member, guild, _] = test_data()
+      guild = Map.put(guild, :owner, member.user)
+
+      %Permissions{bitfield: bitfield} = Permissions.explicit(%User{id: member.user}, guild)
+
+      assert bitfield ===
+               Permissions.resolve([
+                 :administrator,
+                 :view_channel,
+                 :send_messages,
+                 :kick_members,
+                 :ban_members,
+                 :read_message_history
+               ])
+    end
+
     test "no roles does not raise" do
       [member, guild, _] = test_data()
 
@@ -230,11 +315,21 @@ defmodule Crux.Structs.PermissionsTest do
           end
         )
 
-      assert guild.members[218_348_062_828_003_328].roles |> MapSet.size() === 0
+      assert guild.members[218_348_062_828_003_328].roles |> Enum.empty?()
 
       %Permissions{bitfield: bitfield} = Permissions.explicit(member, guild)
 
       assert bitfield === Permissions.resolve([:view_channel, :send_messages])
+    end
+
+    test "uncached member raises" do
+      [member, guild, _] = test_data()
+
+      guild = %{guild | members: Map.new()}
+
+      assert_raise ArgumentError, ~r"There is no member with the ID .+", fn ->
+        Permissions.explicit(member, guild)
+      end
     end
 
     defp test_data(options \\ []) do
@@ -261,6 +356,9 @@ defmodule Crux.Structs.PermissionsTest do
                 if(options[:no_admin], do: 0, else: :administrator),
                 :read_message_history
               ])
+          },
+          597_981_185_393_688_597 => %Role{
+            permissions: 0
           }
         }
       }
@@ -270,6 +368,10 @@ defmodule Crux.Structs.PermissionsTest do
           243_175_181_885_898_762 => %Overwrite{
             allow: options[:allow] || 0,
             deny: options[:deny] || Permissions.resolve([:view_channel])
+          },
+          597_981_185_393_688_597 => %Overwrite{
+            allow: Permissions.resolve([:attach_files]),
+            deny: Permissions.resolve([:send_messages])
           }
         }
       }
