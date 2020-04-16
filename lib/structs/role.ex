@@ -64,6 +64,10 @@ defmodule Crux.Structs.Role do
     ...> |> Crux.Structs.Role.resolve_position()
     %{id: 373405430589816834, position: 5}
 
+    iex> %Crux.Structs.Role{id: 373405430589816834, position: 5}
+    ...> |> Crux.Structs.Role.resolve_position()
+    %{id: 373405430589816834, position: 5}
+
     iex> %{id: 373405430589816834, position: 5}
     ...> |> Crux.Structs.Role.resolve_position()
     %{id: 373405430589816834, position: 5}
