@@ -8,7 +8,9 @@ defmodule Crux.Structs.Presence do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Snowflake, User, Util}
+  alias Crux.Structs
+  alias Crux.Structs.{Emoji, Presence, Snowflake, User, Util}
+  require Snowflake
   require Util
 
   Util.modulesince("0.1.0")
@@ -23,6 +25,28 @@ defmodule Crux.Structs.Presence do
     client_status: %{}
   )
 
+  @typedoc """
+  Represents an [Activity Structure](https://discordapp.com/developers/docs/topics/gateway#activity-object-activity-structure).
+  """
+  Util.typesince("0.2.3")
+
+  @type activity :: %{
+          required(:name) => String.t(),
+          required(:type) => integer(),
+          optional(:url) => nil | String.t(),
+          required(:created_at) => integer(),
+          optional(:timestamps) => map(),
+          optional(:application_id) => Snowflake.t(),
+          optional(:details) => String.t() | nil,
+          optional(:state) => String.t() | nil,
+          optional(:emoji) => Emoji.t() | nil,
+          optional(:party) => map(),
+          optional(:assets) => map(),
+          optional(:secrets) => map(),
+          optional(:instance) => boolean(),
+          optional(:flags) => Presence.ActivityFlags.raw()
+        }
+
   Util.typesince("0.1.0")
 
   @type t :: %__MODULE__{
@@ -31,7 +55,7 @@ defmodule Crux.Structs.Presence do
           game: map() | nil,
           # guild_id: Snowflake.t() | nil,
           status: String.t(),
-          activities: [map()],
+          activities: [activity()],
           client_status: %{required(atom()) => atom()}
         }
 
@@ -66,7 +90,29 @@ defmodule Crux.Structs.Presence do
       data
       |> Util.atomify()
       |> Map.update!(:user, Util.map_to_id())
+      |> Map.update(:activities, [], fn activities ->
+        Enum.map(activities, &create_activity/1)
+      end)
 
     struct(__MODULE__, presence)
+  end
+
+  defp create_activity(%{application_id: application_id} = activity)
+       when not Snowflake.is_snowflake(application_id) do
+    activity
+    |> Map.update!(:application_id, &Snowflake.to_snowflake/1)
+    |> create_activity()
+  end
+
+  defp create_activity(%{emoji: nil} = activity) do
+    activity
+  end
+
+  defp create_activity(%{emoji: _emoji} = activity) do
+    Map.update!(activity, :emoji, &Structs.create(&1, Emoji))
+  end
+
+  defp create_activity(activity) do
+    activity
   end
 end

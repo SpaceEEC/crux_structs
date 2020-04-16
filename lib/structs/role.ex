@@ -6,7 +6,7 @@ defmodule Crux.Structs.Role do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Role, Snowflake, Util}
+  alias Crux.Structs.{Permissions, Role, Snowflake, Util}
   require Util
 
   Util.modulesince("0.1.0")
@@ -31,7 +31,7 @@ defmodule Crux.Structs.Role do
           color: integer(),
           hoist: boolean(),
           position: integer(),
-          permissions: integer(),
+          permissions: Permissions.raw(),
           managed: boolean(),
           mentionable: boolean(),
           guild_id: Snowflake.t()

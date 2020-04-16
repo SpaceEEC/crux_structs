@@ -7,12 +7,10 @@ defmodule Crux.Structs.Permissions do
 
   alias Crux.Structs
   alias Crux.Structs.Util
+
   use Bitwise
-  require Util
 
-  Util.modulesince("0.1.3")
-
-  @permissions %{
+  permissions = %{
     create_instant_invite: 1 <<< 0,
     kick_members: 1 <<< 1,
     ban_members: 1 <<< 2,
@@ -45,28 +43,12 @@ defmodule Crux.Structs.Permissions do
     manage_webhooks: 1 <<< 29,
     manage_emojis: 1 <<< 30
   }
-  @doc """
-    Returns a map of all permissions.
-  """
-  @spec flags() :: %{name() => non_neg_integer()}
-  Util.since("0.2.0")
-  def flags(), do: @permissions
 
-  @names Map.keys(@permissions)
-  @doc """
-  Returns a list of all permission keys.
-  """
-  @spec names() :: [name()]
-  Util.since("0.2.0")
-  def names(), do: @names
+  use Crux.Structs.BitField, permissions
 
-  @all @permissions |> Map.values() |> Enum.reduce(&|||/2)
-  @doc """
-    Returns the integer value of all permissions summed up.
-  """
-  @spec all() :: pos_integer()
-  Util.since("0.2.0")
-  def all(), do: @all
+  require Util
+
+  Util.modulesince("0.1.3")
 
   @typedoc """
     Union type of all valid permission name atoms.
@@ -105,250 +87,6 @@ defmodule Crux.Structs.Permissions do
           | :manage_roles
           | :manage_webhooks
           | :manage_emojis
-
-  defstruct(bitfield: 0)
-
-  @typedoc """
-    All valid types which can be directly resolved into a permissions bitfield.
-  """
-  Util.typesince("0.2.0")
-  @type resolvable :: t() | non_neg_integer() | name() | [resolvable()]
-
-  @typedoc """
-    Represents a `t:Crux.Structs.Permissions.t/0`.
-
-    * `:bitfield`: The raw bitfield of permission flags.
-  """
-  Util.typesince("0.1.3")
-
-  @type t :: %__MODULE__{
-          bitfield: non_neg_integer()
-        }
-
-  @doc """
-    Creates a new `t:Crux.Structs.Permissions.t/0` from a valid `t:resolvable/0`.
-  """
-  @spec new(permissions :: resolvable()) :: t()
-  Util.since("0.1.3")
-  def new(permissions \\ 0), do: %__MODULE__{bitfield: resolve(permissions)}
-
-  @doc ~S"""
-    Resolves a `t:resolvable/0` into a bitfield representing the set permissions.
-
-  ## Examples
-    ```elixir
-  # A single bitflag
-  iex> 0x8
-  ...> |> Crux.Structs.Permissions.resolve()
-  0x8
-
-  # A single name
-  iex> :administrator
-  ...> |> Crux.Structs.Permissions.resolve()
-  0x8
-
-  # A list of bitflags
-  iex> [0x8, 0x4]
-  ...> |> Crux.Structs.Permissions.resolve()
-  0xC
-
-  # A list of names
-  iex> [:administrator, :ban_members]
-  ...> |> Crux.Structs.Permissions.resolve()
-  0xC
-
-  # A mixture of both
-  iex> [:manage_roles, 0x400, 0x800, :add_reactions]
-  ...> |> Crux.Structs.Permissions.resolve()
-  0x10000C40
-
-  # An empty list
-  iex> []
-  ...> |> Crux.Structs.Permissions.resolve()
-  0x0
-
-    ```
-  """
-  @spec resolve(permissions :: resolvable()) :: non_neg_integer()
-  Util.since("0.1.3")
-  def resolve(permissions)
-
-  def resolve(%__MODULE__{bitfield: bitfield}), do: bitfield
-
-  def resolve(permissions) when is_integer(permissions) and permissions >= 0 do
-    Enum.reduce(@permissions, 0, fn {_name, value}, acc ->
-      if (permissions &&& value) == value, do: acc ||| value, else: acc
-    end)
-  end
-
-  def resolve(permissions) when permissions in @names do
-    Map.get(@permissions, permissions)
-  end
-
-  def resolve(permissions) when is_list(permissions) do
-    permissions
-    |> Enum.map(&resolve/1)
-    |> Enum.reduce(0, &|||/2)
-  end
-
-  def resolve(permissions) do
-    raise """
-    Expected a name atom, a non negative integer, or a list of them.
-
-    Received:
-    #{inspect(permissions)}
-    """
-  end
-
-  @doc ~S"""
-    Serializes permissions into a map keyed by `t:name/0` with a boolean indicating whether the permission is set.
-  """
-  @spec to_map(permissions :: resolvable()) :: %{name() => boolean()}
-  Util.since("0.1.3")
-
-  def to_map(permissions) do
-    permissions = resolve(permissions)
-
-    Map.new(@names, &{&1, has(permissions, &1)})
-  end
-
-  @doc ~S"""
-    Serializes permissions into a list of set `t:name/0`s.
-
-  ## Examples
-    ```elixir
-  iex> 0x30
-  ...> |> Crux.Structs.Permissions.to_list()
-  [:manage_guild, :manage_channels]
-
-    ```
-  """
-  @spec to_list(permissions :: resolvable()) :: [name()]
-  Util.since("0.1.3")
-
-  def to_list(permissions) do
-    permissions = resolve(permissions)
-
-    Enum.reduce(@permissions, [], fn {name, val}, acc ->
-      if has(permissions, val), do: [name | acc], else: acc
-    end)
-  end
-
-  @doc ~S"""
-    Adds permissions to the base permissions.
-
-  ## Examples
-    ```elixir
-  iex> :administrator
-  ...> |> Crux.Structs.Permissions.add(:manage_guild)
-  %Crux.Structs.Permissions{bitfield: 0x28}
-
-    ```
-  """
-  @spec add(base :: resolvable(), to_add :: resolvable()) :: t()
-  Util.since("0.1.3")
-
-  def add(base, to_add) do
-    to_add = resolve(to_add)
-
-    base
-    |> resolve()
-    |> bor(to_add)
-    |> new()
-  end
-
-  @doc ~S"""
-    Removes permissions from the base permissions
-
-  ## Examples
-    ```elixir
-  iex> [0x8, 0x10, 0x20]
-  ...> |> Crux.Structs.Permissions.remove([0x10, 0x20])
-  %Crux.Structs.Permissions{bitfield: 0x8}
-
-    ```
-  """
-  @spec remove(base :: resolvable(), to_remove :: resolvable()) :: t()
-  Util.since("0.1.3")
-
-  def remove(base, to_remove) do
-    to_remove = to_remove |> resolve() |> bnot()
-
-    base
-    |> resolve()
-    |> band(to_remove)
-    |> new()
-  end
-
-  @doc ~S"""
-    Check whether the second permissions are all present in the first.
-
-  ## Examples
-    ```elixir
-  # Administrator won't grant any other permissions
-  iex> Crux.Structs.Permissions.has(0x8, Crux.Structs.Permissions.all())
-  false
-
-  # Resolving a list of `permissions_name`s
-  iex> Crux.Structs.Permissions.has([:send_messages, :view_channel, :read_message_history], [:send_messages, :view_channel])
-  true
-
-  # Resolving different types of `permissions`s
-  iex> Crux.Structs.Permissions.has(:administrator, 0x8)
-  true
-
-  # In different order
-  iex> Crux.Structs.Permissions.has(0x8, :administrator)
-  true
-
-    ```
-  """
-  @spec has(
-          have :: resolvable(),
-          want :: resolvable()
-        ) :: boolean()
-  Util.since("0.1.3")
-
-  def has(have, want) do
-    have = resolve(have)
-    want = resolve(want)
-
-    (have &&& want) == want
-  end
-
-  @doc ~S"""
-    Similar to `has/2` but returns a `t:Crux.Structs.Permissions.t/0` of the missing permissions.
-
-  ## Examples
-    ```elixir
-  iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [:send_messages, :view_channel, :embed_links])
-  %Crux.Structs.Permissions{bitfield: 0x4000}
-
-  # Administrator won't implicilty grant other permissions
-  iex> Crux.Structs.Permissions.missing([:administrator], [:send_messages])
-  %Crux.Structs.Permissions{bitfield: 0x800}
-
-  # Everything set
-  iex> Crux.Structs.Permissions.missing([:kick_members, :ban_members, :view_audit_log], [:kick_members, :ban_members])
-  %Crux.Structs.Permissions{bitfield: 0}
-
-  # No permissions
-  iex> Crux.Structs.Permissions.missing([:send_messages, :view_channel], [])
-  %Crux.Structs.Permissions{bitfield: 0}
-
-    ```
-  """
-  @spec missing(resolvable(), resolvable()) :: t()
-  Util.since("0.2.0")
-
-  def missing(have, want) do
-    have = resolve(have)
-    want = resolve(want)
-
-    want
-    |> band(~~~have)
-    |> new()
-  end
 
   @doc """
     Resolves permissions for a user in a guild, optionally including channel permission overwrites.

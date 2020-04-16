@@ -28,7 +28,7 @@ defmodule Crux.Structs.User do
           discriminator: String.t(),
           id: Snowflake.t(),
           username: String.t(),
-          public_flags: integer()
+          public_flags: User.Flags.raw()
         }
 
   @typedoc """

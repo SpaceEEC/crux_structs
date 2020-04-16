@@ -99,7 +99,7 @@ defmodule Crux.Structs.Guild do
           roles: %{optional(Snowflake.t()) => Role.t()},
           rules_channel_id: Snowflake.t() | nil,
           splash: String.t() | nil,
-          system_channel_flags: non_neg_integer(),
+          system_channel_flags: Guild.SystemChannelFlags.raw(),
           system_channel_id: Snowflake.t() | nil,
           unavailable: boolean(),
           vanity_url_code: String.t() | nil,
