@@ -52,6 +52,7 @@ defmodule Crux.Structs.Message do
 
   @type message_application :: %{
           id: Snowflake.t(),
+          primary_sku_id: Snowflake.t() |nil,
           cover_image: String.t() | nil,
           description: String.t(),
           icon: String.t() | nil,
@@ -130,7 +131,11 @@ defmodule Crux.Structs.Message do
       |> Map.update(
         :application,
         nil,
-        &Map.update(&1, :id, nil, fn id -> Snowflake.to_snowflake(id) end)
+        fn application ->
+          application
+          |> Map.update(:id, nil, &Snowflake.to_snowflake/1)
+          |> Map.update(:primary_sku_id, nil, &Snowflake.to_snowflake/1)
+        end
       )
       |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update!(:author, &Structs.create(&1, User))
