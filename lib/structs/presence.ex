@@ -66,11 +66,17 @@ defmodule Crux.Structs.Presence do
   @type id_resolvable :: User.id_resolvable()
 
   @doc """
-    Resolves the id of a `t:Crux.Structs.Presence.t/0`
+  Resolves the id of a `t:Crux.Structs.Presence.t/0`
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`
 
-    For examples see `Crux.Structs.User.resolve_id/1`
+  ```elixir
+  iex> %Crux.Structs.Presence{user: 218348062828003328}
+  ...> |> Crux.Structs.Presence.resolve_id()
+  218348062828003328
+  ```
+
+  For more examples see `Crux.Structs.User.resolve_id/1`
   """
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
   Util.since("0.2.1")
