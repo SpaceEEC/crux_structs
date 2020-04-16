@@ -173,6 +173,10 @@ defmodule Crux.Structs.Channel do
     ...> |> Crux.Structs.Channel.resolve_position()
     %{id: 222079895583457280, position: 5}
 
+    iex> %{channel: 222079895583457280, position: 5}
+    ...> |> Crux.Structs.Channel.resolve_position()
+    %{id: 222079895583457280, position: 5}
+
     iex> {nil, 5}
     ...> |> Crux.Structs.Channel.resolve_position()
     nil
@@ -199,6 +203,7 @@ defmodule Crux.Structs.Channel do
     validate_position(%{id: resolve_id(resolvable), position: position})
   end
 
+  @doc false
   @spec validate_position(%{id: Snowflake.t(), position: integer()}) :: %{
           id: Snowflake.t(),
           position: integer()
@@ -227,7 +232,7 @@ defmodule Crux.Structs.Channel do
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:owner_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:last_message_id, nil, &Snowflake.to_snowflake/1)
-      |> Map.update(:appliparent_idcation_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:application_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:parent_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:permission_overwrites, %{}, &Util.raw_data_to_map(&1, Overwrite))
       |> Map.update(:recipients, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
