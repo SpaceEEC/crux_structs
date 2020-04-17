@@ -4,7 +4,7 @@ defmodule Crux.Structs.MixProject do
   @vsn "0.2.3-dev"
   @name :crux_structs
 
-  def project do
+  def project() do
     [
       start_permanent: Mix.env() == :prod,
       package: package(),
@@ -15,11 +15,12 @@ defmodule Crux.Structs.MixProject do
       source_url: "https://github.com/SpaceEEC/#{@name}/",
       homepage_url: "https://github.com/SpaceEEC/#{@name}/",
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      docs: docs()
     ]
   end
 
-  def package do
+  def package() do
     [
       name: @name,
       licenses: ["MIT"],
@@ -34,12 +35,11 @@ defmodule Crux.Structs.MixProject do
     ]
   end
 
-  def application, do: []
+  def application(), do: []
 
-  defp deps do
+  defp deps() do
     [
-      {:ex_doc,
-       git: "https://github.com/spaceeec/ex_doc", branch: "fork", only: :dev, runtime: false},
+      {:ex_doc, github: "spaceeec/ex_doc", branch: "fork", only: :dev, runtime: false},
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
       {:jason, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
@@ -48,6 +48,48 @@ defmodule Crux.Structs.MixProject do
   defp aliases() do
     [
       docs: ["docs", &generate_config/1]
+    ]
+  end
+
+  defp docs() do
+    [
+      groups_for_modules: [
+        Discord: [
+          Crux.Structs.Attachment,
+          Crux.Structs.AuditLog,
+          Crux.Structs.AuditLogChange,
+          Crux.Structs.AuditLogEntry,
+          Crux.Structs.Channel,
+          Crux.Structs.Embed,
+          Crux.Structs.Emoji,
+          Crux.Structs.Guild,
+          Crux.Structs.GuildPreview,
+          Crux.Structs.Integration,
+          Crux.Structs.Invite,
+          Crux.Structs.Member,
+          Crux.Structs.Message,
+          Crux.Structs.Overwrite,
+          Crux.Structs.Presence,
+          Crux.Structs.Reaction,
+          Crux.Structs.Role,
+          Crux.Structs.User,
+          Crux.Structs.VoiceRegion,
+          Crux.Structs.VoiceState,
+          Crux.Structs.Webhook
+        ],
+        BitFields: [
+          Crux.Structs.Guild.SystemChannelFlags,
+          Crux.Structs.Message.Flags,
+          Crux.Structs.Permissions,
+          Crux.Structs.Presence.ActivityFlags,
+          Crux.Structs.User.Flags
+        ],
+        Utility: ~r/.+/
+      ],
+      nest_modules_by_prefix: [
+        Crux.Structs
+      ],
+      formatters: ["html"]
     ]
   end
 
