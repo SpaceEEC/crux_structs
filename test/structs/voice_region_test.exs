@@ -15,7 +15,7 @@ defmodule Crux.Structs.VoiceRegionTest do
         "deprecated" => false,
         "optimal" => false
       }
-      |> Structs.create(VoiceState)
+      |> Structs.create(VoiceRegion)
 
     assert voice_region == %VoiceRegion{
              id: "us-west",
