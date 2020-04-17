@@ -180,7 +180,6 @@ defmodule Crux.Structs.Guild do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
-  # TODO: Write a test
   @spec create(data :: map()) :: t()
   Util.since("0.1.0")
 
