@@ -1,7 +1,7 @@
 defmodule Crux.Structs.MixProject do
   use Mix.Project
 
-  @vsn "0.2.3-dev"
+  @vsn "0.2.3"
   @name :crux_structs
 
   def project() do
