@@ -151,9 +151,9 @@ defmodule Crux.Structs.Permissions do
   def explicit(user_id, %Structs.Guild{id: guild_id, members: members, roles: roles}, nil) do
     member =
       Map.get(members, user_id) ||
-        raise """
-          There is no member with the ID "#{inspect(user_id)}" in the cache of the guild.
-          The member is uncached or not in the guild.
+        raise ArgumentError, """
+        There is no member with the ID "#{inspect(user_id)}" in the cache of the guild.
+        The member is uncached or not in the guild.
         """
 
     permissions =

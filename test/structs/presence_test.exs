@@ -65,6 +65,41 @@ defmodule Crux.Structs.PresenceTest do
              }
     end
 
+    test "custom status without emoji" do
+      presence =
+        %{
+          "user" => %{
+            "id" => "218348062828003328"
+          },
+          "game" => nil,
+          "status" => "online",
+          "activities" => [
+            %{
+              "type" => 4,
+              # What is "type" anyway?
+              "name" => "CUSTOM_STATUS",
+              "state" => "Some status",
+              "emoji" => nil
+            }
+          ]
+        }
+        |> Crux.Structs.create(Crux.Structs.Presence)
+
+      assert presence == %Crux.Structs.Presence{
+               user: 218_348_062_828_003_328,
+               game: nil,
+               activities: [
+                 %{
+                   type: 4,
+                   name: "CUSTOM_STATUS",
+                   state: "Some status",
+                   emoji: nil
+                 }
+               ],
+               status: "online"
+             }
+    end
+
     test "activity of an application" do
       presence =
         %{
