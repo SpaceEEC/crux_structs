@@ -151,10 +151,15 @@ defmodule Crux.Structs.AuditLogEntry do
           k_string = to_string(k)
 
           v =
-            if k_string == "id" or binary_part(k_string, byte_size(k_string), -3) == "_id" do
-              Snowflake.to_snowflake(v)
-            else
-              v
+            cond do
+              k_string == "id" or binary_part(k_string, byte_size(k_string), -3) == "_id" ->
+                Snowflake.to_snowflake(v)
+
+              k in ~w/members_removed delete_member_days count/a ->
+                String.to_integer(v)
+
+              true ->
+                v
             end
 
           {k, v}
