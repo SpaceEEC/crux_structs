@@ -3,7 +3,7 @@ defmodule Crux.Structs.WebhookTest do
   doctest Crux.Structs.Webhook
 
   alias Crux.Structs
-  alias Crux.Structs.{User, Webhook}
+  alias Crux.Structs.Webhook
 
   describe "create/1" do
     test "minimal webhook" do

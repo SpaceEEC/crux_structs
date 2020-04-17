@@ -177,16 +177,34 @@ defmodule Crux.Structs.GuildTest do
         }
         |> Structs.create(Guild)
 
+      roles = %{
+        243_175_181_885_898_762 => %Role{
+          color: 0,
+          hoist: false,
+          id: 243_175_181_885_898_762,
+          managed: false,
+          mentionable: false,
+          name: "@everyone",
+          permissions: 0,
+          position: 0,
+          guild_id: 243_175_181_885_898_762
+        },
+        243_175_678_227_382_273 => %Role{
+          color: 0,
+          hoist: false,
+          id: 243_175_678_227_382_273,
+          managed: false,
+          mentionable: false,
+          name: "perms",
+          permissions: 2_146_959_351,
+          position: 5,
+          guild_id: 243_175_181_885_898_762
+        }
+      }
+
       assert %Guild{
                id: 243_175_181_885_898_762,
-               roles: %{
-                 243_175_181_885_898_762 => %Role{
-                   id: 243_175_181_885_898_762
-                 },
-                 243_175_678_227_382_273 => %Role{
-                   id: 243_175_678_227_382_273
-                 }
-               }
+               roles: ^roles
              } = guild
     end
 
@@ -302,10 +320,23 @@ defmodule Crux.Structs.GuildTest do
         }
       }
 
-      assert %Guild{
-               id: 243_175_181_885_898_762,
-               members: ^members
-             } = guild
+      # These fail on 1.6 for some reason not clear to me.
+      # Whoever fixes this gets a virtual cookie.
+
+      # assert ^members = guild.members
+
+      # assert %Guild{
+      #          id: 243_175_181_885_898_762,
+      #          members: ^members
+      #        } = guild
+
+      # Test this asserting that all members match, one by one then.
+      assert map_size(members) == map_size(guild.members)
+
+      for {id, member} <- guild.members do
+        expected = members[id]
+        assert ^expected = member
+      end
     end
 
     test "voice_states" do
