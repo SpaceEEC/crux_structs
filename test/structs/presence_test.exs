@@ -65,7 +65,6 @@ defmodule Crux.Structs.PresenceTest do
              }
     end
 
-
     test "custom status without emoji" do
       presence =
         %{

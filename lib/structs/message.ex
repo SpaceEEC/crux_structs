@@ -52,7 +52,7 @@ defmodule Crux.Structs.Message do
 
   @type message_application :: %{
           id: Snowflake.t(),
-          primary_sku_id: Snowflake.t() |nil,
+          primary_sku_id: Snowflake.t() | nil,
           cover_image: String.t() | nil,
           description: String.t(),
           icon: String.t() | nil,
