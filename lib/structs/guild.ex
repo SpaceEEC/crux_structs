@@ -61,7 +61,9 @@ defmodule Crux.Structs.Guild do
     max_members: nil,
     max_presences: nil,
     embed_enabled: nil,
-    widget_enabled: nil
+    widget_enabled: nil,
+    approximate_member_count: nil,
+    approximate_presence_count: nil
   )
 
   Util.typesince("0.1.0")
@@ -111,7 +113,9 @@ defmodule Crux.Structs.Guild do
           max_presences: pos_integer() | nil,
           max_members: pos_integer(),
           embed_enabled: boolean(),
-          widget_enabled: boolean()
+          widget_enabled: boolean(),
+          approximate_member_count: pos_integer(),
+          approximate_presence_count: pos_integer()
         }
 
   @typedoc """
