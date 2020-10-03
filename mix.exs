@@ -10,7 +10,7 @@ defmodule Crux.Structs.MixProject do
       package: package(),
       app: @name,
       version: @vsn,
-      elixir: "~> 1.6",
+      elixir: "~> 1.10",
       description: "Library providing Discord API structs for crux.",
       source_url: "https://github.com/SpaceEEC/#{@name}/",
       homepage_url: "https://github.com/SpaceEEC/#{@name}/",
