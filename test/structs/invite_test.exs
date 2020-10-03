@@ -156,7 +156,7 @@ defmodule Crux.Structs.InviteTest do
                  splash: nil,
                  vanity_url_code: nil,
                  verification_level: 2,
-                 features: MapSet.new(),
+                 features: MapSet.new()
                },
                inviter: %User{
                  avatar: "646a356e237350bf8b8dfde15667dfc4",
@@ -167,7 +167,6 @@ defmodule Crux.Structs.InviteTest do
                  public_flags: User.Flags.new(512),
                  username: "space"
                },
-
                max_age: 0,
                max_uses: 0,
                temporary: false,

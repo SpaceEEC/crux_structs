@@ -30,7 +30,7 @@ defmodule Crux.Structs.Webhook do
           user: Snowflake.t() | nil,
           name: String.t() | nil,
           avatar: String.t() | nil,
-          token: String.t() | nil,
+          token: String.t() | nil
         }
 
   @typedoc """

@@ -66,7 +66,7 @@ defmodule Crux.Structs.Invite do
           max_uses: integer() | nil,
           max_age: integer() | nil,
           temporary: boolean() | nil,
-          created_at: String.t() | nil,
+          created_at: String.t() | nil
         }
 
   @doc """

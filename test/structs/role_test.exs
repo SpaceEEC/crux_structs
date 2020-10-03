@@ -14,7 +14,7 @@ defmodule Crux.Structs.RoleTest do
         "position" => 8,
         "id" => "376146940762783746",
         "managed" => false,
-        "permissions" => 3_524_608,
+        "permissions" => 3_524_608
       }
       |> Crux.Structs.create(Crux.Structs.Role)
 
