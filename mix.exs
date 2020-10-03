@@ -40,7 +40,7 @@ defmodule Crux.Structs.MixProject do
   defp deps() do
     [
       {:ex_doc, github: "spaceeec/ex_doc", branch: "fork", only: :dev, runtime: false},
-      {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5.0-rc.2", only: [:dev, :test], runtime: false},
       {:jason, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end

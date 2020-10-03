@@ -5,6 +5,7 @@ defmodule Crux.Structs.Util do
   @moduledoc since: "0.1.0"
 
   alias Crux.Structs
+  alias Crux.Structs.Snowflake
 
   @doc ~S"""
     Converts a list of raw api data to structs keyed under the passed key.
@@ -100,10 +101,10 @@ defmodule Crux.Structs.Util do
     ```
   """
   @doc since: "0.2.0"
-  @spec map_to_id(key :: term()) :: (map() -> Structs.Snowflake.t() | nil)
+  @spec map_to_id(key :: term()) :: (map() -> Snowflake.t() | nil)
   def map_to_id(key \\ :id) do
     fn
-      %{^key => value} -> Structs.Snowflake.to_snowflake(value)
+      %{^key => value} -> Snowflake.to_snowflake(value)
       _ -> nil
     end
   end

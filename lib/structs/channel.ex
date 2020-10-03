@@ -247,12 +247,10 @@ defmodule Crux.Structs.Channel do
   ```
   """
   @doc since: "0.1.1"
-  @spec to_mention(user :: Crux.Structs.Channel.t()) :: String.t()
+  @spec to_mention(user :: Channel.t()) :: String.t()
   def to_mention(%__MODULE__{id: id}), do: "<##{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Channel do
-    alias Crux.Structs.Channel
-
     @spec to_string(Channel.t()) :: String.t()
     def to_string(%Channel{} = data), do: Channel.to_mention(data)
   end

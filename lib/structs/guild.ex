@@ -13,7 +13,7 @@ defmodule Crux.Structs.Guild do
 
   alias Crux.Structs
   alias Crux.Structs.{Channel, Guild, Member, Message, Role, Snowflake, Util, VoiceState}
-  alias __MODULE__.SystemChannelFlags
+  alias Guild.SystemChannelFlags
 
   defstruct [
     :id,
