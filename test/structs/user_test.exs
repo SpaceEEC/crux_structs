@@ -13,6 +13,8 @@ defmodule Crux.Structs.UserTest do
       |> Crux.Structs.create(Crux.Structs.User)
 
     assert user == %Crux.Structs.User{
+             bot: false,
+             system: false,
              username: "space",
              discriminator: "0001",
              id: 218_348_062_828_003_328,

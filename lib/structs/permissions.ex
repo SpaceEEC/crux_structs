@@ -2,11 +2,11 @@ defmodule Crux.Structs.Permissions do
   @moduledoc """
     Custom non discord api struct to help with working with permissions.
 
-    For more informations see [Discord Docs](https://discordapp.com/developers/docs/topics/permissions).
+    For more informations see [Discord Docs](https://discord.com/developers/docs/topics/permissions).
   """
+  @moduledoc since: "0.1.3"
 
   alias Crux.Structs
-  alias Crux.Structs.Util
 
   use Bitwise
 
@@ -46,15 +46,10 @@ defmodule Crux.Structs.Permissions do
 
   use Crux.Structs.BitField, permissions
 
-  require Util
-
-  Util.modulesince("0.1.3")
-
   @typedoc """
     Union type of all valid permission name atoms.
   """
-  Util.typesince("0.2.0")
-
+  @typedoc since: "0.2.0"
   @type name ::
           :create_instant_invite
           | :kick_members
@@ -95,12 +90,12 @@ defmodule Crux.Structs.Permissions do
 
   > The guild-wide administrator flag or being owner implicitly grants all permissions, see `explicit/3`.
   """
+  @doc since: "0.2.0"
   @spec implicit(
           member :: Structs.Member.t() | Structs.User.t() | Structs.Snowflake.t(),
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
-  Util.since("0.2.0")
   def implicit(member, guild, channel \\ nil)
 
   def implicit(%Structs.User{id: user_id}, guild, channel), do: implicit(user_id, guild, channel)
@@ -132,13 +127,12 @@ defmodule Crux.Structs.Permissions do
 
   > The administrator flag or being owner implicitly does not grant permissions, see `implicit/3`.
   """
+  @doc since: "0.2.0"
   @spec explicit(
           member :: Structs.Member.t() | Structs.User.t() | Structs.Snowflake.t(),
           guild :: Structs.Guild.t(),
           channel :: Structs.Channel.t() | nil
         ) :: t()
-  Util.since("0.2.0")
-
   def explicit(member, guild, channel \\ nil)
 
   def explicit(%Structs.Member{user: user_id}, guild, channel),
@@ -147,7 +141,7 @@ defmodule Crux.Structs.Permissions do
   def explicit(%Structs.User{id: user_id}, guild, channel), do: explicit(user_id, guild, channel)
 
   # -> compute_base_permissions from
-  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
+  # https://discord.com/developers/docs/topics/permissions#permission-overwrites
   def explicit(user_id, %Structs.Guild{id: guild_id, members: members, roles: roles}, nil) do
     member =
       Map.get(members, user_id) ||
@@ -174,7 +168,7 @@ defmodule Crux.Structs.Permissions do
   end
 
   # -> compute_permissions and compute_overwrites from
-  # https://discordapp.com/developers/docs/topics/permissions#permission-overwrites
+  # https://discord.com/developers/docs/topics/permissions#permission-overwrites
   def explicit(
         user_id,
         %Structs.Guild{id: guild_id, members: members} = guild,

@@ -1,9 +1,9 @@
 defmodule Crux.Structs.Presence.ActivityFlags do
   @moduledoc """
-  Custom non discord API struct helping with the usage of presence activity flags.
+  Custom non discord API struct helping with the usage of presence [activity flags](https://discord.com/developers/docs/topics/gateway#activity-object-activity-flags).
   """
+  @moduledoc since: "0.2.3"
 
-  alias Crux.Structs.Util
   use Bitwise
 
   flags = %{
@@ -17,15 +17,10 @@ defmodule Crux.Structs.Presence.ActivityFlags do
 
   use Crux.Structs.BitField, flags
 
-  require Util
-
-  Util.modulesince("0.2.3")
-
   @typedoc """
   Union type of all valid presence activity flags.
   """
-  Util.typesince("0.2.3")
-
+  @typedoc since: "0.2.3"
   @type name ::
           :instance
           | :join

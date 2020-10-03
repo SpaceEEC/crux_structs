@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Channel do
   @moduledoc """
-  Represents a Discord [Channel Object](https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure).
+  Represents a Discord [Channel Object](https://discord.com/developers/docs/resources/channel#channel-object).
 
   List of where every property can be present:
 
@@ -28,38 +28,35 @@ defmodule Crux.Structs.Channel do
   Differences opposed to the Discord API Object:
     - `:recipients` is a MapSet of user ids
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs
   alias Crux.Structs.{Channel, Message, Overwrite, Snowflake, Util}
-  require Util
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :id,
+    :type,
+    :guild_id,
+    :position,
+    :permission_overwrites,
+    :name,
+    :topic,
+    :nsfw,
+    :last_message_id,
+    :bitrate,
+    :user_limit,
+    :rate_limit_per_user,
+    :recipients,
+    :icon,
+    :owner_id,
+    :application_id,
+    :parent_id,
+    :last_pin_timestamp
+  ]
 
-  defstruct(
-    application_id: nil,
-    bitrate: nil,
-    guild_id: nil,
-    icon: nil,
-    id: nil,
-    last_message_id: nil,
-    last_pin_timestamp: nil,
-    name: nil,
-    nsfw: nil,
-    owner_id: nil,
-    parent_id: nil,
-    permission_overwrites: %{},
-    position: nil,
-    rate_limit_per_user: nil,
-    recipients: %MapSet{},
-    topic: nil,
-    type: nil,
-    user_limit: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           application_id: Snowflake.t(),
           bitrate: integer(),
@@ -89,18 +86,18 @@ defmodule Crux.Structs.Channel do
     | GUILD_VOICE    |  2  | A voice channel withing a guild.                                                             |
     | GROUP_DM       |  3  | A direct channel between multiple users.<br>Bots do not have access to those.                |
     | GUILD_CATEGORY |  4  | An organizational category.                                                                  |
-    | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.<br>Bots can not publish messages. |
+    | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.                                   |
     | GUILD_STORE    |  6  | A channel in which game developers can sell their game.<br>Bots can not interact with those. |
 
-    For more information see the [Discord Developer Documentation](https://discordapp.com/developers/docs/resources/channel#channel-object-channel-types).
+    For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
   """
-  Util.typesince("0.2.3")
+  @typedoc since: "0.2.3"
   @type type :: non_neg_integer()
 
   @typedoc """
     All available types that can be resolved into a channel id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: Message.t() | Channel.t() | Snowflake.t() | String.t()
 
   @doc """
@@ -127,9 +124,8 @@ defmodule Crux.Structs.Channel do
 
     ```
   """
+  @doc since: "0.2.3"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
-
   def resolve_id(%Message{channel_id: channel_id}) do
     resolve_id(channel_id)
   end
@@ -143,8 +139,7 @@ defmodule Crux.Structs.Channel do
   @typedoc """
     All available types that can be resolved into a channel position.
   """
-  Util.typesince("0.2.1")
-
+  @typedoc since: "0.2.1"
   @type position_resolvable() ::
           Channel.t()
           | %{channel: id_resolvable(), position: integer()}
@@ -183,7 +178,7 @@ defmodule Crux.Structs.Channel do
 
     ```
   """
-  Util.since("0.2.1")
+  @doc since: "0.2.3"
   @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
   def resolve_position(resolvable)
 
@@ -221,9 +216,8 @@ defmodule Crux.Structs.Channel do
 
   > Automatically invoked by `Crux.Structs.create/2`
   """
+  @typedoc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     channel =
       data
@@ -234,8 +228,8 @@ defmodule Crux.Structs.Channel do
       |> Map.update(:last_message_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:application_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:parent_id, nil, &Snowflake.to_snowflake/1)
-      |> Map.update(:permission_overwrites, %{}, &Util.raw_data_to_map(&1, Overwrite))
-      |> Map.update(:recipients, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(:permission_overwrites, nil, &Util.raw_data_to_map(&1, Overwrite))
+      |> Map.update(:recipients, nil, &MapSet.new(&1, Util.map_to_id()))
 
     struct(__MODULE__, channel)
   end
@@ -252,13 +246,11 @@ defmodule Crux.Structs.Channel do
 
   ```
   """
-  @spec to_mention(user :: Crux.Structs.Channel.t()) :: String.t()
-  Util.since("0.1.1")
+  @doc since: "0.1.1"
+  @spec to_mention(user :: Channel.t()) :: String.t()
   def to_mention(%__MODULE__{id: id}), do: "<##{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Channel do
-    alias Crux.Structs.Channel
-
     @spec to_string(Channel.t()) :: String.t()
     def to_string(%Channel{} = data), do: Channel.to_mention(data)
   end

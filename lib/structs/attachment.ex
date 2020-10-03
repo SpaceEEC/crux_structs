@@ -1,29 +1,26 @@
 defmodule Crux.Structs.Attachment do
   @moduledoc """
-    Represents a Discord [Attachment Object](https://discordapp.com/developers/docs/resources/channel#attachment-object-attachment-structure)
+    Represents a Discord [Attachment Object](https://discord.com/developers/docs/resources/channel#attachment-object)
 
     Height and width are only present for images.
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs.{Attachment, Snowflake, Util}
-  require Util
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :id,
+    :filename,
+    :size,
+    :url,
+    :proxy_url,
+    :height,
+    :width
+  ]
 
-  defstruct(
-    id: nil,
-    filename: nil,
-    size: nil,
-    url: nil,
-    proxy_url: nil,
-    height: nil,
-    width: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
           filename: String.t(),
@@ -39,9 +36,8 @@ defmodule Crux.Structs.Attachment do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     attachment =
       data

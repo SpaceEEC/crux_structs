@@ -27,6 +27,7 @@ defmodule Crux.Structs.VoiceStateTest do
              mute: false,
              self_mute: false,
              self_deaf: false,
+             self_video: false,
              suppress: false
            }
   end

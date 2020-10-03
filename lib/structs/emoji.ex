@@ -1,32 +1,29 @@
 defmodule Crux.Structs.Emoji do
   @moduledoc """
-  Represents a Discord [Emoji Object](https://discordapp.com/developers/docs/resources/emoji#emoji-object-emoji-structure).
+  Represents a Discord [Emoji Object](https://discord.com/developers/docs/resources/emoji#emoji-object).
 
   Differences opposed to the Discord API Object:
     - `:user` is just the user id
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs
   alias Crux.Structs.{Emoji, Reaction, Snowflake, Util}
-  require Util
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :animated,
+    :available,
+    :id,
+    :name,
+    :roles,
+    :user,
+    :require_colons,
+    :managed
+  ]
 
-  defstruct(
-    animated: nil,
-    available: nil,
-    id: nil,
-    name: nil,
-    roles: nil,
-    user: nil,
-    require_colons: nil,
-    managed: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           animated: boolean() | nil,
           available: boolean() | nil,
@@ -41,7 +38,7 @@ defmodule Crux.Structs.Emoji do
   @typedoc """
     All available types that can be resolved into an emoji id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: Reaction.t() | Emoji.t() | Snowflake.t() | String.t()
 
   @doc """
@@ -68,9 +65,8 @@ defmodule Crux.Structs.Emoji do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
-
   def resolve_id(%Reaction{emoji: emoji}) do
     resolve_id(emoji)
   end
@@ -86,9 +82,8 @@ defmodule Crux.Structs.Emoji do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     emoji =
       data
@@ -109,7 +104,7 @@ defmodule Crux.Structs.Emoji do
 
   > String.t() stands for an already encoded unicode emoji.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type identifier_resolvable() :: Emoji.t() | Reaction.t() | String.t()
 
   @doc ~S"""
@@ -155,8 +150,8 @@ defmodule Crux.Structs.Emoji do
 
     ```
   """
+  @doc since: "0.1.1"
   @spec to_identifier(emoji :: identifier_resolvable()) :: String.t()
-  Util.since("0.1.1")
   def to_identifier(%Crux.Structs.Reaction{emoji: emoji}), do: to_identifier(emoji)
   def to_identifier(%__MODULE__{id: nil, name: name}), do: URI.encode_www_form(name)
   def to_identifier(%__MODULE__{id: id, name: name, animated: true}), do: "a:#{name}:#{id}"

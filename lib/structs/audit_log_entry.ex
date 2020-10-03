@@ -1,14 +1,12 @@
 defmodule Crux.Structs.AuditLogEntry do
   @moduledoc """
-    Represents a Discord [Audit Log Entry Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-entry-object).
+    Represents a Discord [Audit Log Entry Object](https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object).
   """
+  @moduledoc since: "0.1.6"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs.{AuditLogChange, Snowflake, Util}
-  require Util
-
-  Util.modulesince("0.1.6")
 
   @audit_log_events %{
     guild_update: 1,
@@ -51,8 +49,7 @@ defmodule Crux.Structs.AuditLogEntry do
   @typedoc """
     Union type of audit log event name atoms.
   """
-  Util.typesince("0.1.6")
-
+  @typedoc since: "0.1.6"
   @type event_name ::
           :guild_update
           | :channel_create
@@ -95,29 +92,28 @@ defmodule Crux.Structs.AuditLogEntry do
   @doc """
     Returns a map of all audit log event names with their id
   """
+  @doc since: "0.1.6"
   @spec events() :: %{event_name => non_neg_integer()}
-  Util.since("0.1.6")
   def events(), do: @audit_log_events
 
   @doc """
     Gets the event name from the action type id
   """
+  @doc since: "0.1.6"
   @spec event_name(action_type :: non_neg_integer()) :: atom()
-  Util.since("0.1.6")
   def event_name(action_type), do: Map.get(@audit_log_events_key, action_type)
 
-  defstruct(
-    id: nil,
-    target_id: nil,
-    changes: %{},
-    user_id: nil,
-    action_type: nil,
-    options: nil,
-    reason: nil
-  )
+  defstruct [
+    :id,
+    :target_id,
+    :changes,
+    :user_id,
+    :action_type,
+    :options,
+    :reason
+  ]
 
-  Util.typesince("0.1.6")
-
+  @typedoc since: "0.1.6"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
           target_id: Snowflake.t(),
@@ -133,16 +129,15 @@ defmodule Crux.Structs.AuditLogEntry do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.6"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.6")
-
   def create(data) do
     audit_log_entry =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update!(:target_id, &Snowflake.to_snowflake/1)
-      |> Map.update(:changes, %{}, &Util.raw_data_to_map(&1, AuditLogChange, :key))
+      |> Map.update(:changes, nil, &Util.raw_data_to_map(&1, AuditLogChange, :key))
       |> Map.update!(:user_id, &Snowflake.to_snowflake/1)
       |> Map.update(
         :options,
@@ -155,7 +150,8 @@ defmodule Crux.Structs.AuditLogEntry do
               k_string == "id" or binary_part(k_string, byte_size(k_string), -3) == "_id" ->
                 Snowflake.to_snowflake(v)
 
-              k in ~w/members_removed delete_member_days count/a ->
+              # The reason type is here -> https://discord.com/developers/docs/change-log#september-24-2020
+              k in ~w/type members_removed delete_member_days count/a and not is_integer(v) ->
                 String.to_integer(v)
 
               true ->

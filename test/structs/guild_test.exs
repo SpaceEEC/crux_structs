@@ -3,7 +3,7 @@ defmodule Crux.Structs.GuildTest do
   doctest Crux.Structs.Guild
 
   alias Crux.Structs
-  alias Crux.Structs.{Guild, Member, Role, VoiceState}
+  alias Crux.Structs.{Guild, Member, Permissions, Role, VoiceState}
 
   describe "create/1" do
     test "minimal guild" do
@@ -77,7 +77,7 @@ defmodule Crux.Structs.GuildTest do
                widget_channel_id: nil,
                system_channel_id: 243_175_181_885_898_762,
                premium_tier: 0,
-               system_channel_flags: 0,
+               system_channel_flags: Guild.SystemChannelFlags.new(0),
                discovery_splash: nil,
                approximate_member_count: 4,
                approximate_presence_count: 2,
@@ -90,16 +90,23 @@ defmodule Crux.Structs.GuildTest do
                verification_level: 2,
                roles: %{
                  243_175_181_885_898_762 => %Role{
-                   id: 243_175_181_885_898_762
+                   id: 243_175_181_885_898_762,
+                   color: 0,
+                   guild_id: 243_175_181_885_898_762,
+                   hoist: false,
+                   managed: false,
+                   mentionable: false,
+                   name: "@everyone",
+                   permissions: Permissions.new(),
+                   position: 0
                  }
                },
-               embed_channel_id: nil,
                splash: nil,
                afk_timeout: 300,
                vanity_url_code: nil,
                icon: "add8c452e1f9821e99b8411360fbfd1d",
-               emojis: %{},
-               #  max_video_channel_users: 25
+               emojis: MapSet.new(),
+               max_video_channel_users: 25,
                preferred_locale: "de",
                region: "frankfurt",
                explicit_content_filter: 2,
@@ -109,12 +116,11 @@ defmodule Crux.Structs.GuildTest do
                max_members: 250_000,
                widget_enabled: false,
                description: nil,
-               embed_enabled: false,
                premium_subscription_count: 0,
                mfa_level: 0,
                afk_channel_id: nil,
                max_presences: nil
-             } = guild
+             } == guild
     end
 
     test "emojis" do
@@ -189,7 +195,7 @@ defmodule Crux.Structs.GuildTest do
           managed: false,
           mentionable: false,
           name: "@everyone",
-          permissions: 0,
+          permissions: Permissions.new(0),
           position: 0,
           guild_id: 243_175_181_885_898_762
         },
@@ -200,7 +206,7 @@ defmodule Crux.Structs.GuildTest do
           managed: false,
           mentionable: false,
           name: "perms",
-          permissions: 2_146_959_351,
+          permissions: Permissions.new(2_146_959_351),
           position: 5,
           guild_id: 243_175_181_885_898_762
         }
