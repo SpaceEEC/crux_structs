@@ -1,32 +1,29 @@
 defmodule Crux.Structs.Integration do
   @moduledoc """
-    Represents a Discord [Integration Object](https://discordapp.com/developers/docs/resources/guild#integration-object).
+    Represents a Discord [Integration Object](https://discord.com/developers/docs/resources/guild#integration-object).
   """
+  @moduledoc since: "0.2.2"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs.{Integration, Snowflake, Util}
-  require Util
 
-  Util.modulesince("0.2.2")
+  defstruct [
+    :id,
+    :name,
+    :type,
+    :enabled,
+    :syncing,
+    :role_id,
+    :enable_emoticons,
+    :expire_behavior,
+    :expire_grace_period,
+    :user,
+    :account,
+    :synced_at
+  ]
 
-  defstruct(
-    id: nil,
-    name: nil,
-    type: nil,
-    enabled: nil,
-    syncing: nil,
-    role_id: nil,
-    enable_emoticons: nil,
-    expire_behavior: nil,
-    expire_grace_period: nil,
-    user: nil,
-    account: nil,
-    synced_at: nil
-  )
-
-  Util.typesince("0.2.2")
-
+  @typedoc since: "0.2.2"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
           name: String.t(),
@@ -45,7 +42,7 @@ defmodule Crux.Structs.Integration do
   @typedoc """
     All available types that can be resolved into an integration id.
   """
-  Util.typesince("0.2.3")
+  @typedoc since: "0.2.3"
   @type id_resolvable() :: Integration.t() | Snowflake.t()
 
   @doc """
@@ -53,9 +50,8 @@ defmodule Crux.Structs.Integration do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.2.2"
   @spec create(data :: map()) :: t()
-  Util.since("0.2.2")
-
   def create(data) do
     integration =
       data

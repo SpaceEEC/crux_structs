@@ -1,31 +1,30 @@
 defmodule Crux.Structs.Member do
   @moduledoc """
-    Represents a Discord [Guild Member Object](https://discordapp.com/developers/docs/resources/guild#guild-member-object-guild-member-structure).
+    Represents a Discord [Guild Member Object](https://discord.com/developers/docs/resources/guild#guild-member-object).
 
   Differences opposed to the Discord API Object:
     - `:user` is just the user id
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs.{Member, Snowflake, User, Util}
   require Util
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :user,
+    :nick,
+    :roles,
+    :joined_at,
+    :premium_since,
+    :deaf,
+    :mute,
+    # Additional
+    :guild_id
+  ]
 
-  defstruct(
-    user: nil,
-    nick: nil,
-    roles: nil,
-    joined_at: nil,
-    premium_since: nil,
-    deaf: nil,
-    mute: nil,
-    guild_id: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.2.1"
   @type t :: %__MODULE__{
           user: Snowflake.t(),
           nick: String.t() | nil,
@@ -40,8 +39,7 @@ defmodule Crux.Structs.Member do
   @typedoc """
     All available types that can be resolved into a user id.
   """
-  Util.typesince("0.2.1")
-
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: User.id_resolvable()
 
   @doc """
@@ -57,9 +55,8 @@ defmodule Crux.Structs.Member do
 
   For more examples see `Crux.Structs.User.resolve_id/1`.
   """
+  @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
-
   defdelegate resolve_id(resolvable), to: User
 
   @doc """
@@ -67,9 +64,8 @@ defmodule Crux.Structs.Member do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     member =
       data
@@ -99,8 +95,8 @@ defmodule Crux.Structs.Member do
 
     ```
   """
+  @doc since: "0.1.1"
   @spec to_mention(user :: Crux.Structs.Member.t()) :: String.t()
-  Util.since("0.1.1")
   def to_mention(%__MODULE__{user: id, nick: nil}), do: "<@#{id}>"
   def to_mention(%__MODULE__{user: id}), do: "<@!#{id}>"
 

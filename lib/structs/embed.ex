@@ -1,35 +1,30 @@
 defmodule Crux.Structs.Embed do
   @moduledoc """
-  Represents a Discord [Embed Object](https://discordapp.com/developers/docs/resources/channel#embed-object-embed-structure).
+  Represents a Discord [Embed Object](https://discord.com/developers/docs/resources/channel#embed-object).
 
   Every property except type is optional, and thus may have default value.
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.Util
-  require Util
+  defstruct [
+    :title,
+    :type,
+    :description,
+    :url,
+    :timestamp,
+    :color,
+    :footer,
+    :image,
+    :thumbnail,
+    :video,
+    :provider,
+    :author,
+    :fields
+  ]
 
-  Util.modulesince("0.1.0")
-
-  defstruct(
-    title: nil,
-    type: "rich",
-    description: nil,
-    url: nil,
-    timestamp: nil,
-    color: nil,
-    footer: nil,
-    image: nil,
-    thumbnail: nil,
-    video: nil,
-    provider: nil,
-    author: nil,
-    fields: []
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           title: String.t() | nil,
           type: String.t() | nil,

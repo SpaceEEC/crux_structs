@@ -1,6 +1,6 @@
 # Crux.Structs
 
-Library providing structures representing objects from the [Discord API](https://discordapp.com/developers) and a few utility structs.
+Library providing structures representing objects from the [Discord API](https://discord.com/developers/docs/) and a few utility structs.
 
 ## Useful links
 

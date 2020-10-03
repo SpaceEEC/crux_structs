@@ -1,36 +1,33 @@
 defmodule Crux.Structs.Overwrite do
   @moduledoc """
-    Represents a Discord [Overwrite Object](https://discordapp.com/developers/docs/resources/channel#overwrite-object-overwrite-structure).
+    Represents a Discord [Overwrite Object](https://discord.com/developers/docs/resources/channel#overwrite-object).
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Overwrite, Role, Snowflake, User, Util}
-  require Util
+  alias Crux.Structs.{Overwrite, Permissions, Role, Snowflake, User, Util}
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :id,
+    :type,
+    :allow,
+    :deny
+  ]
 
-  defstruct(
-    id: nil,
-    type: nil,
-    allow: 0,
-    deny: 0
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
           type: String.t(),
-          allow: integer(),
-          deny: integer()
+          allow: Permissions.t(),
+          deny: Permissions.t()
         }
 
   @typedoc """
     All available types that can be resolved into a target for a permission overwrite
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type target_resolvable() :: Overwrite.t() | Role.t() | User.id_resolvable()
 
   @doc """
@@ -79,6 +76,7 @@ defmodule Crux.Structs.Overwrite do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec resolve_target(target_resolvable()) :: {String.t() | :unknown, Snowflake.t()}
   def resolve_target(%Overwrite{id: id, type: type}), do: {type, id}
   def resolve_target(%Role{id: id}), do: {"role", id}
@@ -96,14 +94,15 @@ defmodule Crux.Structs.Overwrite do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     overwrite =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
+      |> Map.update!(:allow, &Permissions.new/1)
+      |> Map.update!(:deny, &Permissions.new/1)
 
     struct(__MODULE__, overwrite)
   end

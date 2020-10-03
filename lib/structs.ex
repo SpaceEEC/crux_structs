@@ -2,12 +2,10 @@ defmodule Crux.Structs do
   @moduledoc """
     Provides a unified function to create one or a list of structs, invoking their `c:create/1` function if available.
   """
+  @moduledoc since: "0.1.0"
 
   alias Crux.Structs.{Snowflake, Util}
-  require Util
   require Snowflake
-
-  Util.modulesince("0.1.0")
 
   @doc """
     Can be implemented by structs to transform the inital data.
@@ -76,9 +74,9 @@ defmodule Crux.Structs do
 
     ```
   """
+  @doc since: "0.1.0"
   @spec create(data :: map(), target :: module()) :: struct()
   @spec create(data :: list(), target :: module()) :: list(struct())
-  Util.since("0.1.0")
   def create(data, target)
   def create(nil, _), do: nil
 
@@ -135,6 +133,7 @@ defmodule Crux.Structs do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec resolve_id(nil, target :: module()) :: nil
   @spec resolve_id(Snowflake.t(), target :: module()) :: Snowflake.t()
   @spec resolve_id(map(), target :: module()) :: Snowflake.t() | nil

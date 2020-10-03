@@ -1,36 +1,35 @@
 defmodule Crux.Structs.VoiceState do
   @moduledoc """
-    Represents a Discord [Voice State Object](https://discordapp.com/developers/docs/resources/voice#voice-state-object-voice-state-structure)
+    Represents a Discord [Voice State Object](https://discord.com/developers/docs/resources/voice#voice-state-object)
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Snowflake, User, Util}
-  require Util
+  alias Crux.Structs
+  alias Crux.Structs.{Member, Snowflake, User, Util}
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :guild_id,
+    :channel_id,
+    :user_id,
+    :member,
+    :session_id,
+    :deaf,
+    :mute,
+    :self_deaf,
+    :self_mute,
+    :self_stream,
+    :self_video,
+    :suppress
+  ]
 
-  defstruct(
-    guild_id: nil,
-    channel_id: nil,
-    user_id: nil,
-    session_id: nil,
-    deaf: nil,
-    mute: nil,
-    self_deaf: nil,
-    self_mute: nil,
-    # Only present if true
-    self_stream: false,
-    # Can bots even do that?
-    suppress: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           guild_id: Snowflake.t(),
           channel_id: Snowflake.t() | nil,
           user_id: Snowflake.t(),
+          member: Member.t(),
           session_id: String.t(),
           deaf: boolean(),
           mute: boolean(),
@@ -43,7 +42,7 @@ defmodule Crux.Structs.VoiceState do
   @typedoc """
     All available types that can be resolved into a user id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: User.id_resolvable()
 
   @doc """
@@ -60,8 +59,8 @@ defmodule Crux.Structs.VoiceState do
   For more examples see `Crux.Structs.User.resolve_id/1`.
 
   """
+  @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
   defdelegate resolve_id(resolvable), to: User
 
   @doc """
@@ -69,9 +68,8 @@ defmodule Crux.Structs.VoiceState do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     voice_state =
       data
@@ -79,6 +77,7 @@ defmodule Crux.Structs.VoiceState do
       |> Map.update!(:guild_id, &Snowflake.to_snowflake/1)
       |> Map.update(:channel_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update!(:user_id, &Snowflake.to_snowflake/1)
+      |> Map.update(:member, nil, &Structs.create(&1, Member))
 
     struct(__MODULE__, voice_state)
   end

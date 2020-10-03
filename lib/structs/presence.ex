@@ -1,35 +1,30 @@
 defmodule Crux.Structs.Presence do
   @moduledoc """
-    Represents a Discord [Presence Object](https://discordapp.com/developers/docs/topics/gateway#presence-update-presence-update-event-fields).
+    Represents a Discord [Presence Object](https://discord.com/developers/docs/topics/gateway#presence-update-presence-update-event-fields).
 
   Differences opposed to the Discord API Object:
     - `:user` is just the user id
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs
   alias Crux.Structs.{Emoji, Presence, Snowflake, User, Util}
   require Snowflake
-  require Util
 
-  Util.modulesince("0.1.0")
-
-  defstruct(
-    user: nil,
-    # roles: [],
-    game: nil,
-    # guild_id: nil,
-    status: "offline",
-    activities: [],
-    client_status: %{}
-  )
+  defstruct [
+    :user,
+    :guild_id,
+    :status,
+    :activities,
+    :client_status
+  ]
 
   @typedoc """
-  Represents an [Activity Structure](https://discordapp.com/developers/docs/topics/gateway#activity-object-activity-structure).
+  Represents an [Activity Object](https://discord.com/developers/docs/topics/gateway#activity-object).
   """
-  Util.typesince("0.2.3")
-
+  @typedoc since: "0.2.3"
   @type activity :: %{
           required(:name) => String.t(),
           required(:type) => integer(),
@@ -47,13 +42,10 @@ defmodule Crux.Structs.Presence do
           optional(:flags) => Presence.ActivityFlags.raw()
         }
 
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           user: Snowflake.t(),
-          # roles: [Snowflake.t()],
-          game: map() | nil,
-          # guild_id: Snowflake.t() | nil,
+          guild_id: Snowflake.t() | nil,
           status: String.t(),
           activities: [activity()],
           client_status: %{required(atom()) => atom()}
@@ -62,7 +54,7 @@ defmodule Crux.Structs.Presence do
   @typedoc """
     All available types that can be resolved into a user id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable :: User.id_resolvable()
 
   @doc """
@@ -78,9 +70,8 @@ defmodule Crux.Structs.Presence do
 
   For more examples see `Crux.Structs.User.resolve_id/1`
   """
+  @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
-
   defdelegate resolve_id(resolvable), to: User
 
   @doc """
@@ -88,15 +79,15 @@ defmodule Crux.Structs.Presence do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     presence =
       data
       |> Util.atomify()
       |> Map.update!(:user, Util.map_to_id())
-      |> Map.update(:activities, [], fn activities ->
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:activities, nil, fn activities ->
         Enum.map(activities, &create_activity/1)
       end)
 

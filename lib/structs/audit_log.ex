@@ -1,24 +1,21 @@
 defmodule Crux.Structs.AuditLog do
   @moduledoc """
-    Represents a Discord [Audit Log Object](https://discordapp.com/developers/docs/resources/audit-log#audit-log-object).
+    Represents a Discord [Audit Log Object](https://discord.com/developers/docs/resources/audit-log#audit-log-object).
   """
+  @moduledoc since: "0.1.6"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs.{AuditLog, AuditLogEntry, Integration, Snowflake, User, Util, Webhook}
-  require Util
 
-  Util.modulesince("0.1.6")
+  defstruct [
+    :webhooks,
+    :users,
+    :integrations,
+    :audit_log_entries
+  ]
 
-  defstruct(
-    webhooks: %{},
-    users: %{},
-    integrations: %{},
-    audit_log_entries: %{}
-  )
-
-  Util.typesince("0.1.6")
-
+  @typedoc since: "0.1.6"
   @type t :: %__MODULE__{
           webhooks: %{Snowflake.t() => Webhook.t()},
           users: %{Snowflake.t() => User.t()},
@@ -29,7 +26,7 @@ defmodule Crux.Structs.AuditLog do
   @typedoc """
     All available types that can be resolved into an audit log id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: AuditLog.t() | Snowflake.t() | String.t()
 
   @doc """
@@ -37,17 +34,16 @@ defmodule Crux.Structs.AuditLog do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.6"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.6")
-
   def create(data) do
     audit_log =
       data
       |> Util.atomify()
-      |> Map.update(:webhooks, [], &Util.raw_data_to_map(&1, Webhook))
-      |> Map.update(:users, [], &Util.raw_data_to_map(&1, User))
-      |> Map.update(:integrations, [], &Util.raw_data_to_map(&1, Integration))
-      |> Map.update(:audit_log_entries, [], &Util.raw_data_to_map(&1, AuditLogEntry))
+      |> Map.update(:webhooks, %{}, &Util.raw_data_to_map(&1, Webhook))
+      |> Map.update(:users, %{}, &Util.raw_data_to_map(&1, User))
+      |> Map.update(:integrations, %{}, &Util.raw_data_to_map(&1, Integration))
+      |> Map.update(:audit_log_entries, %{}, &Util.raw_data_to_map(&1, AuditLogEntry))
 
     struct(__MODULE__, audit_log)
   end

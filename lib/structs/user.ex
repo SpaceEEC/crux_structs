@@ -1,41 +1,39 @@
 defmodule Crux.Structs.User do
   @moduledoc """
-    Represents a Discord [User Object](https://discordapp.com/developers/docs/resources/user#user-object-user-structure)
+    Represents a Discord [User Object](https://discord.com/developers/docs/resources/user#user-object)
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs
   alias Crux.Structs.{Member, Message, Presence, Snowflake, User, Util, VoiceState}
-  require Util
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :id,
+    :username,
+    :discriminator,
+    :avatar,
+    :bot,
+    :system,
+    :public_flags
+  ]
 
-  defstruct(
-    avatar: nil,
-    bot: false,
-    discriminator: nil,
-    id: nil,
-    username: nil,
-    public_flags: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
-          avatar: String.t() | nil,
-          bot: boolean(),
-          discriminator: String.t(),
           id: Snowflake.t(),
           username: String.t(),
-          public_flags: User.Flags.raw()
+          discriminator: String.t(),
+          avatar: String.t() | nil,
+          bot: boolean(),
+          system: boolean(),
+          public_flags: User.Flags.t()
         }
 
   @typedoc """
     All available types that can be resolved into a user id.
   """
-  Util.typesince("0.2.1")
-
+  @typedoc since: "0.2.1"
   @type id_resolvable() ::
           User.t()
           | Member.t()
@@ -81,9 +79,8 @@ defmodule Crux.Structs.User do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
-
   def resolve_id(%User{id: id}) do
     resolve_id(id)
   end
@@ -111,14 +108,16 @@ defmodule Crux.Structs.User do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     user =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
+      |> Map.put_new(:bot, false)
+      |> Map.put_new(:system, false)
+      |> Map.update(:public_flags, nil, &User.Flags.new/1)
 
     struct(__MODULE__, user)
   end
@@ -133,8 +132,8 @@ defmodule Crux.Structs.User do
 
     ```
   """
+  @doc since: "0.1.1"
   @spec to_mention(user :: Crux.Structs.User.t()) :: String.t()
-  Util.since("0.1.1")
   def to_mention(%__MODULE__{id: id}), do: "<@#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.User do

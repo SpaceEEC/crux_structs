@@ -1,11 +1,11 @@
 defmodule Crux.Structs.Message.Flags do
   @moduledoc """
-  Custom non discord API struct helping with the usage of message flags.
+  Custom non discord API struct helping with the usage of [message flags](https://discord.com/developers/docs/resources/channel#message-object-message-flags).
 
   Currently it's only possible to edit the `suppress_embeds` flag.
   """
+  @moduledoc since: "0.2.3"
 
-  alias Crux.Structs.Util
   use Bitwise
 
   flags = %{
@@ -18,14 +18,10 @@ defmodule Crux.Structs.Message.Flags do
 
   use Crux.Structs.BitField, flags
 
-  require Util
-  Util.modulesince("0.2.3")
-
   @typedoc """
   Union type of all valid message flags.
   """
-  Util.typesince("0.2.3")
-
+  @typedoc since: "0.2.3"
   @type name ::
           :crossposted
           | :is_crosspost

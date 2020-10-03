@@ -1,30 +1,28 @@
 defmodule Crux.Structs.Role do
   @moduledoc """
-    Represents a Discord [Role Object](https://discordapp.com/developers/docs/topics/permissions#role-object-role-structure).
+    Represents a Discord [Role Object](https://discord.com/developers/docs/topics/permissions#role-object).
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs
   alias Crux.Structs.{Permissions, Role, Snowflake, Util}
-  require Util
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :id,
+    :name,
+    :color,
+    :hoist,
+    :position,
+    :permissions,
+    :managed,
+    :mentionable,
+    # Additional
+    :guild_id
+  ]
 
-  defstruct(
-    id: nil,
-    name: nil,
-    color: nil,
-    hoist: nil,
-    position: nil,
-    permissions: nil,
-    managed: nil,
-    mentionable: nil,
-    guild_id: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
           name: String.t(),
@@ -40,14 +38,13 @@ defmodule Crux.Structs.Role do
   @typedoc """
     All available types that can be resolved into a role id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: Role.t() | Snowflake.t() | String.t() | nil
 
   @typedoc """
     All available types that can be resolved into a role position.
   """
-  Util.typesince("0.2.1")
-
+  @typedoc since: "0.2.1"
   @type position_resolvable() ::
           Role.t()
           | %{role: id_resolvable(), position: integer()}
@@ -86,7 +83,7 @@ defmodule Crux.Structs.Role do
 
     ```
   """
-  Util.since("0.2.1")
+  @doc since: "0.2.1"
   @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
   def resolve_position(resolvable)
 
@@ -106,6 +103,7 @@ defmodule Crux.Structs.Role do
     validate_position(%{id: Structs.resolve_id(resolvable, Role), position: position})
   end
 
+  @doc since: "0.2.1"
   @spec validate_position(%{id: Snowflake.t(), position: integer()}) :: %{
           id: Snowflake.t(),
           position: integer()
@@ -123,15 +121,14 @@ defmodule Crux.Structs.Role do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     role =
       data
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
-      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update!(:guild_id, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, role)
   end
@@ -148,8 +145,8 @@ defmodule Crux.Structs.Role do
 
     ```
   """
+  @doc since: "0.1.1"
   @spec to_mention(user :: Crux.Structs.Role.t()) :: String.t()
-  Util.since("0.1.1")
   def to_mention(%__MODULE__{id: id}), do: "<@&#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Role do

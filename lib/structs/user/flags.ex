@@ -1,11 +1,11 @@
 defmodule Crux.Structs.User.Flags do
   @moduledoc """
-  Custom non discord API struct helping with the usage of user flags.
+  Custom non discord API struct helping with the usage of [user flags](https://discord.com/developers/docs/resources/user#user-object-user-flags).
 
   Discord is only providing a not documented subset of the available flags to bots.
   """
+  @moduledoc since: "0.2.3"
 
-  alias Crux.Structs.Util
   use Bitwise
 
   flags = %{
@@ -26,20 +26,15 @@ defmodule Crux.Structs.User.Flags do
     bughunter_level_2: 1 <<< 14,
     # 15
     verified_bot: 1 <<< 16,
-    verified_developer: 1 <<< 17
+    verified_bot_developer: 1 <<< 17
   }
 
   use Crux.Structs.BitField, flags
 
-  require Util
-
-  Util.modulesince("0.2.3")
-
   @typedoc """
   Union type of all valid user flags.
   """
-  Util.typesince("0.2.3")
-
+  @typedoc since: "0.2.3"
   @type name ::
           :discord_employee
           | :discord_partner
@@ -53,5 +48,5 @@ defmodule Crux.Structs.User.Flags do
           | :system
           | :bughunter_level_2
           | :verified_bot
-          | :verified_developer
+          | :verified_bot_developer
 end

@@ -1,46 +1,42 @@
 defmodule Crux.Structs.Webhook do
   @moduledoc """
-    Represents a Discord [Webhook Object](https://discordapp.com/developers/docs/resources/webhook#webhook-object)
+    Represents a Discord [Webhook Object](https://discord.com/developers/docs/resources/webhook#webhook-object)
 
   Differences opposed to the Discord API Object:
     - `:user` is just the user id
   """
+  @moduledoc since: "0.1.6"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs.{Snowflake, Util, Webhook}
-  require Util
 
-  Util.modulesince("0.1.6")
-
-  defstruct(
-    avatar: nil,
-    channel_id: nil,
-    guild_id: nil,
-    id: nil,
-    name: nil,
-    token: nil,
-    type: nil,
-    user: nil
-  )
-
-  Util.typesince("0.1.6")
+  defstruct [
+    :id,
+    :type,
+    :guild_id,
+    :channel_id,
+    :user,
+    :name,
+    :avatar,
+    :token
+  ]
 
   @type t :: %__MODULE__{
-          avatar: String.t() | nil,
           id: Snowflake.t(),
-          channel_id: Snowflake.t(),
+          type: 1..2,
           guild_id: Snowflake.t() | nil,
+          channel_id: Snowflake.t(),
+          user: Snowflake.t() | nil,
           name: String.t() | nil,
+          avatar: String.t() | nil,
           token: String.t() | nil,
-          type: non_neg_integer(),
-          user: Snowflake.t() | nil
         }
 
   @typedoc """
     All available types that can be resolved into a webhook id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: Webhook.t() | Snowflake.t() | String.t()
 
   @doc """
@@ -48,9 +44,8 @@ defmodule Crux.Structs.Webhook do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.6"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.6")
-
   def create(data) do
     data =
       data
@@ -75,8 +70,8 @@ defmodule Crux.Structs.Webhook do
 
     ```
   """
+  @doc since: "0.1.6"
   @spec to_mention(webhook :: Crux.Structs.Webhook.t()) :: String.t()
-  Util.since("0.1.6")
   def to_mention(%__MODULE__{id: id}), do: "<@#{id}>"
 
   defimpl String.Chars, for: Crux.Structs.Webhook do

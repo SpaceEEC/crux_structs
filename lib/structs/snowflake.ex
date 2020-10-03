@@ -11,20 +11,18 @@ defmodule Crux.Structs.Snowflake.Parts do
     | Internal Process ID | 16 to 12 |  5 bits        |                                                                            |
     | Increment           | 11 to  0 | 12 bits        | For every ID that is generated on that process, this number is incremented |
 
-    For more information see [Discord Docs](https://discordapp.com/developers/docs/reference#snowflakes).
+    For more information see [Discord Docs](https://discord.com/developers/docs/reference#snowflakes).
   """
+  @moduledoc since: "0.2.1"
 
-  alias Crux.Structs.{Snowflake, Util}
+  alias Crux.Structs.Snowflake
   use Bitwise
-  require Util
-
-  Util.modulesince("0.2.1")
 
   @discord_epoch 1_420_070_400_000
 
   @doc false
+  @doc since: "0.2.1"
   @spec discord_epoch() :: non_neg_integer()
-  Util.since("0.2.1")
   def discord_epoch(), do: @discord_epoch
 
   # bits 63 to 22
@@ -39,8 +37,7 @@ defmodule Crux.Structs.Snowflake.Parts do
   @typedoc """
     The parts of a `t:Crux.Structs.Snowflake.t/0`.
   """
-  Util.typesince("0.2.1")
-
+  @typedoc since: "0.2.1"
   @type t :: %Snowflake.Parts{
           timestamp: non_neg_integer,
           worker_id: non_neg_integer,
@@ -54,9 +51,8 @@ defmodule Crux.Structs.Snowflake.Parts do
             increment: 0
 
   @doc false
+  @doc since: "0.2.1"
   @spec deconstruct(Snowflake.t()) :: t
-  Util.since("0.2.1")
-
   def deconstruct(snowflake) when is_integer(snowflake) and snowflake >= 0 do
     %Snowflake.Parts{
       timestamp: ((snowflake &&& @timestamp_bitmask) >>> 22) + @discord_epoch,
@@ -67,9 +63,8 @@ defmodule Crux.Structs.Snowflake.Parts do
   end
 
   @doc false
+  @doc since: "0.2.1"
   @spec construct(t | Keyword.t()) :: Snowflake.t()
-  Util.since("0.2.1")
-
   def construct(%Snowflake.Parts{
         timestamp: timestamp,
         worker_id: worker_id,
@@ -97,32 +92,29 @@ defmodule Crux.Structs.Snowflake do
   @moduledoc """
     Custom non discord api struct to help with working with Discord's snowflakes.
 
-    For more information see [Discord Docs](https://discordapp.com/developers/docs/reference#snowflakes).
+    For more information see [Discord Docs](https://discord.com/developers/docs/reference#snowflakes).
   """
+  @moduledoc since: "0.2.1"
 
-  alias Crux.Structs.{Snowflake, Util}
+  alias Crux.Structs.Snowflake
   use Bitwise
-  require Util
-
-  Util.modulesince("0.2.1")
 
   @typedoc """
     A discord `snowflake`, an unsigned 64 bit integer.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type t :: 0..0xFFFF_FFFF_FFFF_FFFF
 
   @typedoc """
     All valid types that can be resolved into a `t:t/0`.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type resolvable :: String.t() | t()
 
   @doc """
     Returns `true` if `term` is a `t:t/0`; otherwise returns `false`..
   """
-  Util.since("0.2.1")
-
+  @doc since: "0.2.1"
   defguard is_snowflake(snowflake)
            when is_integer(snowflake) and snowflake in 0..0xFFFF_FFFF_FFFF_FFFF
 
@@ -135,8 +127,8 @@ defmodule Crux.Structs.Snowflake do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec discord_epoch() :: non_neg_integer()
-  Util.since("0.2.1")
   defdelegate discord_epoch(), to: Crux.Structs.Snowflake.Parts
 
   @doc """
@@ -153,8 +145,8 @@ defmodule Crux.Structs.Snowflake do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec deconstruct(t) :: Snowflake.Parts.t()
-  Util.since("0.2.1")
   defdelegate deconstruct(snowflake), to: Snowflake.Parts
 
   @doc """
@@ -173,8 +165,8 @@ defmodule Crux.Structs.Snowflake do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec construct(Snowflake.Parts.t() | Keyword.t()) :: t
-  Util.since("0.2.1")
   defdelegate construct(parts), to: Snowflake.Parts
 
   @doc """
@@ -195,10 +187,10 @@ defmodule Crux.Structs.Snowflake do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec to_snowflake(t()) :: t()
   @spec to_snowflake(String.t()) :: t() | no_return()
   @spec to_snowflake(nil) :: nil
-  Util.since("0.2.1")
   def to_snowflake(nil), do: nil
 
   def to_snowflake(snowflake) when is_snowflake(snowflake) do
@@ -230,9 +222,9 @@ defmodule Crux.Structs.Snowflake do
     ```
 
   """
+  @doc since: "0.2.1"
   @spec parse(t()) :: t()
   @spec parse(String.t()) :: t() | :error
-  Util.since("0.2.1")
 
   def parse(snowflake) when is_snowflake(snowflake) do
     snowflake
@@ -253,14 +245,14 @@ defmodule Crux.Structs.Snowflake do
   @doc """
     Deconstructs a `t:t/0` to its `t:Crux.Structs.Snowflake.Parts.t/0`.
   """
+  @doc since: "0.2.1"
   @spec from_integer(t) :: Snowflake.Parts.t()
-  Util.since("0.2.1")
   defdelegate from_integer(snowflake), to: Snowflake.Parts, as: :deconstruct
 
   @doc """
     Constructs a `t:t/0` from its `t:Crux.Structs.Snowflake.Parts.t/0`.
   """
+  @doc since: "0.2.1"
   @spec to_integer(Snowflake.Parts.t()) :: t()
-  Util.since("0.2.1")
   defdelegate to_integer(t), to: Snowflake.Parts, as: :construct
 end

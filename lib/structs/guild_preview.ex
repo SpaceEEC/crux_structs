@@ -1,31 +1,27 @@
 defmodule Crux.Structs.GuildPreview do
   @moduledoc """
-  Represents a Discord [Guild Preview Object](TODO)
-
+  Represents a Discord [Guild Preview Object](https://discord.com/developers/docs/resources/guild#guild-preview-object).
   """
+  @moduledoc since: "0.2.3"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs.{Emoji, Snowflake, Util}
-  require Util
 
-  Util.modulesince("0.2.3")
+  defstruct [
+    :id,
+    :name,
+    :icon,
+    :splash,
+    :discovery_splash,
+    :emojis,
+    :features,
+    :approximate_member_count,
+    :approximate_presence_count,
+    :description
+  ]
 
-  defstruct(
-    id: nil,
-    name: nil,
-    icon: nil,
-    splash: nil,
-    discovery_splash: nil,
-    emojis: %{},
-    features: [],
-    approximate_member_count: nil,
-    approximate_presence_count: nil,
-    description: nil
-  )
-
-  Util.typesince("0.2.3")
-
+  @typedoc since: "0.2.3"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
           name: String.t(),
@@ -44,9 +40,8 @@ defmodule Crux.Structs.GuildPreview do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.2.3"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     data =
       data

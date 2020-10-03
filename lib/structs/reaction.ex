@@ -1,24 +1,21 @@
 defmodule Crux.Structs.Reaction do
   @moduledoc """
-    Represents a Discord [Reaction Object](https://discordapp.com/developers/docs/resources/channel#reaction-object).
+    Represents a Discord [Reaction Object](https://discord.com/developers/docs/resources/channel#reaction-object).
   """
+  @moduledoc since: "0.1.0"
 
   @behaviour Crux.Structs
 
   alias Crux.Structs
   alias Crux.Structs.{Emoji, Reaction, Snowflake, Util}
-  require Util
 
-  Util.modulesince("0.1.0")
+  defstruct [
+    :count,
+    :me,
+    :emoji
+  ]
 
-  defstruct(
-    count: nil,
-    me: nil,
-    emoji: nil
-  )
-
-  Util.typesince("0.1.0")
-
+  @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           count: integer(),
           me: boolean,
@@ -28,7 +25,7 @@ defmodule Crux.Structs.Reaction do
   @typedoc """
     All available types that can be resolved into a reaction / emoji id.
   """
-  Util.typesince("0.2.1")
+  @typedoc since: "0.2.1"
   @type id_resolvable() :: Reaction.t() | Emoji.t() | Snowflake.t() | String.t()
 
   @doc """
@@ -55,9 +52,8 @@ defmodule Crux.Structs.Reaction do
 
     ```
   """
+  @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
-  Util.since("0.2.1")
-
   defdelegate resolve_id(resolvable), to: Emoji
 
   @doc """
@@ -65,9 +61,8 @@ defmodule Crux.Structs.Reaction do
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
+  @doc since: "0.1.0"
   @spec create(data :: map()) :: t()
-  Util.since("0.1.0")
-
   def create(data) do
     reaction =
       data
