@@ -4,7 +4,7 @@
       name: "default",
       files: %{
         included: ["lib/"],
-        excluded: [~r"/_build/", ~r"/deps/"]
+        excluded: [~r"/_build/", ~r"/deps/", ~r"/.elixir_ls/"]
       },
       requires: [],
       strict: true,
