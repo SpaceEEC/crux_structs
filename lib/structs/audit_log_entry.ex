@@ -137,7 +137,7 @@ defmodule Crux.Structs.AuditLogEntry do
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update!(:target_id, &Snowflake.to_snowflake/1)
-      |> Map.update(:changes, %{}, &Util.raw_data_to_map(&1, AuditLogChange, :key))
+      |> Map.update(:changes, nil, &Util.raw_data_to_map(&1, AuditLogChange, :key))
       |> Map.update!(:user_id, &Snowflake.to_snowflake/1)
       |> Map.update(
         :options,

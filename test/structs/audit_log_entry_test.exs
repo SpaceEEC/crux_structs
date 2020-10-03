@@ -67,7 +67,7 @@ defmodule Crux.Structs.AuditLogEntryTest do
             %{"key" => "deny", "old_value" => 0}
           ],
           "id" => "698565876986937475",
-          "options" => %{"id" => "243175678227382273", "role_name" => "perms", "type" => "role"},
+          "options" => %{"id" => "243175678227382273", "role_name" => "perms", "type" => "0"},
           "target_id" => "561498582562242560",
           "user_id" => "218348062828003328"
         }
@@ -87,7 +87,7 @@ defmodule Crux.Structs.AuditLogEntryTest do
                options: %{
                  id: 243_175_678_227_382_273,
                  role_name: "perms",
-                 type: "role"
+                 type: 0
                }
              } = entry
 

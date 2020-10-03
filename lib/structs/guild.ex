@@ -185,12 +185,12 @@ defmodule Crux.Structs.Guild do
       |> Map.update(:system_channel_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:public_updates_channel_id, nil, &Snowflake.to_snowflake/1)
       # :roles
-      |> Map.update(:emojis, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
-      |> Map.update(:features, %MapSet{}, &MapSet.new/1)
+      |> Map.update(:emojis, nil, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(:features, nil, &MapSet.new/1)
       |> Map.update(:system_channel_flags, nil, &SystemChannelFlags.new/1)
       # :voice_states
       # :members
-      |> Map.update(:channels, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(:channels, nil, &MapSet.new(&1, Util.map_to_id()))
 
     # :presences
 
@@ -198,7 +198,7 @@ defmodule Crux.Structs.Guild do
       data
       |> Map.update(
         :roles,
-        %{},
+        nil,
         &Map.new(&1, fn role ->
           role =
             role
@@ -210,7 +210,7 @@ defmodule Crux.Structs.Guild do
       )
       |> Map.update(
         :voice_states,
-        %{},
+        nil,
         &Map.new(&1, fn voice_state ->
           voice_state =
             voice_state
@@ -222,7 +222,7 @@ defmodule Crux.Structs.Guild do
       )
       |> Map.update(
         :members,
-        %{},
+        nil,
         &Map.new(&1, fn member ->
           member =
             member

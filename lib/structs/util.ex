@@ -22,13 +22,17 @@ defmodule Crux.Structs.Util do
       username: "Drahcirius",
       discriminator: "1336",
       id: 130175406673231873,
-      avatar: "c896aebec82c90f590b08cfebcdc4e3b"
+      avatar: "c896aebec82c90f590b08cfebcdc4e3b",
+      bot: false,
+      system: false
     },
     218348062828003328 => %Crux.Structs.User{
       username: "space",
       discriminator: "0001",
       id: 218348062828003328,
-      avatar: "46a356e237350bf8b8dfde15667dfc4"
+      avatar: "46a356e237350bf8b8dfde15667dfc4",
+      bot: false,
+      system: false
     }
   }
 
@@ -42,13 +46,17 @@ defmodule Crux.Structs.Util do
       username: "Drahcirius",
       discriminator: "1336",
       id: 130175406673231873,
-      avatar: "c896aebec82c90f590b08cfebcdc4e3b"
+      avatar: "c896aebec82c90f590b08cfebcdc4e3b",
+      bot: false,
+      system: false
     },
     "space" => %Crux.Structs.User{
       username: "space",
       discriminator: "0001",
       id: 218348062828003328,
-      avatar: "46a356e237350bf8b8dfde15667dfc4"
+      avatar: "46a356e237350bf8b8dfde15667dfc4",
+      bot: false,
+      system: false
     }
   }
 

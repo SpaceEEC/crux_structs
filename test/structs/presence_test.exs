@@ -9,14 +9,14 @@ defmodule Crux.Structs.PresenceTest do
           "user" => %{
             "id" => "218348062828003328"
           },
-          "game" => nil,
+          "activities" => [],
           "status" => "online"
         }
         |> Crux.Structs.create(Crux.Structs.Presence)
 
       assert presence == %Crux.Structs.Presence{
                user: 218_348_062_828_003_328,
-               game: nil,
+               activities: [],
                status: "online"
              }
     end
@@ -27,7 +27,6 @@ defmodule Crux.Structs.PresenceTest do
           "user" => %{
             "id" => "218348062828003328"
           },
-          "game" => nil,
           "status" => "online",
           "activities" => [
             %{
@@ -47,7 +46,6 @@ defmodule Crux.Structs.PresenceTest do
 
       assert presence == %Crux.Structs.Presence{
                user: 218_348_062_828_003_328,
-               game: nil,
                activities: [
                  %{
                    type: 4,
@@ -71,7 +69,6 @@ defmodule Crux.Structs.PresenceTest do
           "user" => %{
             "id" => "218348062828003328"
           },
-          "game" => nil,
           "status" => "online",
           "activities" => [
             %{
@@ -87,7 +84,6 @@ defmodule Crux.Structs.PresenceTest do
 
       assert presence == %Crux.Structs.Presence{
                user: 218_348_062_828_003_328,
-               game: nil,
                activities: [
                  %{
                    type: 4,
@@ -106,7 +102,6 @@ defmodule Crux.Structs.PresenceTest do
           "user" => %{
             "id" => "218348062828003328"
           },
-          "game" => nil,
           "status" => "online",
           "activities" => [
             %{
@@ -120,7 +115,6 @@ defmodule Crux.Structs.PresenceTest do
 
       assert presence == %Crux.Structs.Presence{
                user: 218_348_062_828_003_328,
-               game: nil,
                activities: [
                  %{
                    type: 1,

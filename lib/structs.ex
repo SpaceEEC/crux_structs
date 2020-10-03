@@ -48,7 +48,7 @@ defmodule Crux.Structs do
     # A single user
     iex> %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"}
     ...> |> Crux.Structs.create(Crux.Structs.User)
-    %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4"}
+    %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false}
 
     # Multiple users
     iex> [
@@ -57,16 +57,16 @@ defmodule Crux.Structs do
     ...> ]
     ...> |> Crux.Structs.create(Crux.Structs.User)
     [
-      %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4"},
-      %Crux.Structs.User{username: "Drahcirius", discriminator: "1336", id: 130175406673231873, avatar: "c896aebec82c90f590b08cfebcdc4e3b"}
+      %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false},
+      %Crux.Structs.User{username: "Drahcirius", discriminator: "1336", id: 130175406673231873, avatar: "c896aebec82c90f590b08cfebcdc4e3b", bot: false, system: false}
     ]
 
     # Does not alter already structs
     iex> Crux.Structs.create(
-    ...>   %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4"},
+    ...>   %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false},
     ...>   Crux.Structs.User
     ...> )
-    %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4"}
+    %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false}
 
     # Fallback
     iex> Crux.Structs.create(nil, nil)

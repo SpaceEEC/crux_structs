@@ -30,7 +30,7 @@ defmodule Crux.Structs.EmbedTest do
              author: %{url: "https://www.youtube.com/user/user", name: "user"},
              color: 16_711_680,
              description: "some description",
-             fields: [],
+             fields: nil,
              url: "https://www.youtube.com/watch?v=video",
              provider: %{
                url: "https://www.youtube.com/",

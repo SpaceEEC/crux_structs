@@ -228,8 +228,8 @@ defmodule Crux.Structs.Channel do
       |> Map.update(:last_message_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:application_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:parent_id, nil, &Snowflake.to_snowflake/1)
-      |> Map.update(:permission_overwrites, %{}, &Util.raw_data_to_map(&1, Overwrite))
-      |> Map.update(:recipients, %MapSet{}, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(:permission_overwrites, nil, &Util.raw_data_to_map(&1, Overwrite))
+      |> Map.update(:recipients, nil, &MapSet.new(&1, Util.map_to_id()))
 
     struct(__MODULE__, channel)
   end
