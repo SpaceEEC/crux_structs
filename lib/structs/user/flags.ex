@@ -10,9 +10,9 @@ defmodule Crux.Structs.User.Flags do
 
   flags = %{
     discord_employee: 1 <<< 0,
-    discord_partner: 1 <<< 1,
+    partnered_server_owner: 1 <<< 1,
     hypesquad_events: 1 <<< 2,
-    bughunter_level_1: 1 <<< 3,
+    bug_hunter_level_1: 1 <<< 3,
     # 4
     # 5
     house_bravery: 1 <<< 6,
@@ -23,7 +23,7 @@ defmodule Crux.Structs.User.Flags do
     # 11
     system: 1 <<< 12,
     # 13
-    bughunter_level_2: 1 <<< 14,
+    bug_hunter_level_2: 1 <<< 14,
     # 15
     verified_bot: 1 <<< 16,
     verified_bot_developer: 1 <<< 17
@@ -37,16 +37,16 @@ defmodule Crux.Structs.User.Flags do
   @typedoc since: "0.2.3"
   @type name ::
           :discord_employee
-          | :discord_partner
+          | :partnered_server_owner
           | :hypesquad_events
-          | :bughunter_level_1
+          | :bug_hunter_level_1
           | :house_bravery
           | :house_brilliance
           | :house_balance
           | :early_supporter
           | :team_user
           | :system
-          | :bughunter_level_2
+          | :bug_hunter_level_2
           | :verified_bot
           | :verified_bot_developer
 end
