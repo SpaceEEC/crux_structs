@@ -108,8 +108,8 @@ defmodule Crux.Structs.MixProject do
     config = "var versionNodes = " <> config
 
     path =
-      __ENV__.file
-      |> Path.join(Path.join(["..", "doc", "docs_config.js"]))
+      [__DIR__, "doc", "docs_config.js"]
+      |> Path.join()
       |> Path.expand()
 
     File.write!(path, config)
