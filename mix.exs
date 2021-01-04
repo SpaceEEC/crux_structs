@@ -72,6 +72,7 @@ defmodule Crux.Structs.MixProject do
           Crux.Structs.Presence,
           Crux.Structs.Reaction,
           Crux.Structs.Role,
+          Crux.Structs.Template,
           Crux.Structs.User,
           Crux.Structs.VoiceRegion,
           Crux.Structs.VoiceState,
