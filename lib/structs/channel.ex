@@ -178,7 +178,7 @@ defmodule Crux.Structs.Channel do
 
     ```
   """
-  @doc since: "0.2.3"
+  @doc since: "0.2.1"
   @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
   def resolve_position(resolvable)
 
