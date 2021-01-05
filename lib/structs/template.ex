@@ -43,6 +43,12 @@ defmodule Crux.Structs.Template do
           is_dirty: boolean() | nil
         }
 
+  @typedoc """
+  All available types that can be resolved into a template code.
+  """
+  @typedoc since: "0.3.0"
+  @type code_resolvable() :: t() | String.t()
+
   @doc """
   Resolve the code of a `t:Crux.Structs.Template.t/0`.
 
@@ -60,7 +66,7 @@ defmodule Crux.Structs.Template do
     ```
   """
   @doc since: "0.3.0"
-  @spec resolve_code(t() | String.t()) :: String.t()
+  @spec resolve_code(code_resolvable()) :: String.t()
   def resolve_code(%__MODULE__{code: code})
       when is_binary(code) do
     code
