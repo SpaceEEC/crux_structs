@@ -111,8 +111,8 @@ defmodule Crux.Structs.Overwrite do
       data
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
-      |> Map.update!(:allow, &Permissions.new/1)
-      |> Map.update!(:deny, &Permissions.new/1)
+      |> Map.update!(:allow, &Permissions.resolve/1)
+      |> Map.update!(:deny, &Permissions.resolve/1)
 
     struct(__MODULE__, overwrite)
   end

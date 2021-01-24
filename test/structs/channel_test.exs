@@ -3,7 +3,7 @@ defmodule Crux.Structs.ChannelTest do
   doctest Crux.Structs.Channel
 
   alias Crux.Structs
-  alias Crux.Structs.{Channel, Overwrite, Permissions}
+  alias Crux.Structs.{Channel, Overwrite}
 
   describe "create/1" do
     test "dm_channel" do
@@ -66,16 +66,16 @@ defmodule Crux.Structs.ChannelTest do
                parent_id: 355_984_291_081_224_202,
                permission_overwrites: %{
                  218_348_062_828_003_328 => %Overwrite{
-                   deny: Permissions.new(1024),
+                   deny: 1024,
                    type: "member",
                    id: 218_348_062_828_003_328,
-                   allow: Permissions.new(0)
+                   allow: 0
                  },
                  243_175_181_885_898_762 => %Overwrite{
-                   deny: Permissions.new(0),
+                   deny: 0,
                    type: "role",
                    id: 243_175_181_885_898_762,
-                   allow: Permissions.new(0)
+                   allow: 0
                  }
                },
                position: 11,

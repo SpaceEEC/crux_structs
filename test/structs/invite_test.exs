@@ -164,7 +164,7 @@ defmodule Crux.Structs.InviteTest do
                  system: false,
                  discriminator: "0001",
                  id: 218_348_062_828_003_328,
-                 public_flags: User.Flags.new(512),
+                 public_flags: 512,
                  username: "space"
                },
                max_age: 0,

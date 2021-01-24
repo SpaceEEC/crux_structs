@@ -143,7 +143,7 @@ defmodule Crux.Structs.MessageTest do
              timestamp: "2018-05-01T18:45:57.286000+00:00",
              tts: false,
              type: 0,
-             flags: Message.Flags.new(2),
+             flags: 2,
              message_reference: %{
                channel_id: 278_325_129_692_446_722,
                guild_id: 278_325_129_692_446_720,

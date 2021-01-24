@@ -2,8 +2,6 @@ defmodule Crux.Structs.RoleTest do
   use ExUnit.Case, async: true
   doctest Crux.Structs.Role
 
-  alias Crux.Structs.Permissions
-
   test "create" do
     role =
       %{
@@ -24,7 +22,7 @@ defmodule Crux.Structs.RoleTest do
              color: 5_533_306,
              hoist: false,
              position: 8,
-             permissions: Permissions.new(3_524_608),
+             permissions: 3_524_608,
              managed: false,
              mentionable: true,
              guild_id: nil

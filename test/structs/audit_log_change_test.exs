@@ -3,7 +3,7 @@ defmodule Crux.Structs.AuditLogChangeTest do
   doctest Crux.Structs.AuditLogChange
 
   alias Crux.Structs
-  alias Crux.Structs.{AuditLogChange, Overwrite, Permissions, Role}
+  alias Crux.Structs.{AuditLogChange, Overwrite, Role}
 
   describe "create/1" do
     test "add role" do
@@ -52,14 +52,14 @@ defmodule Crux.Structs.AuditLogChangeTest do
                old_value: nil,
                new_value: [
                  %Overwrite{
-                   allow: Permissions.new(1024),
-                   deny: Permissions.new(0),
+                   allow: 1024,
+                   deny: 0,
                    id: 218_348_062_828_003_328,
                    type: "member"
                  },
                  %Overwrite{
-                   allow: Permissions.new(2048),
-                   deny: Permissions.new(0),
+                   allow: 2048,
+                   deny: 0,
                    id: 257_884_228_451_041_280,
                    type: "member"
                  }

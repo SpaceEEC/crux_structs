@@ -117,7 +117,7 @@ defmodule Crux.Structs.User do
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.put_new(:bot, false)
       |> Map.put_new(:system, false)
-      |> Map.update(:public_flags, nil, &User.Flags.new/1)
+      |> Map.update(:public_flags, nil, &User.Flags.resolve/1)
 
     struct(__MODULE__, user)
   end

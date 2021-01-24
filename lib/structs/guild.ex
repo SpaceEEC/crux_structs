@@ -187,7 +187,7 @@ defmodule Crux.Structs.Guild do
       # :roles
       |> Map.update(:emojis, nil, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:features, nil, &MapSet.new/1)
-      |> Map.update(:system_channel_flags, nil, &SystemChannelFlags.new/1)
+      |> Map.update(:system_channel_flags, nil, &SystemChannelFlags.resolve/1)
       # :voice_states
       # :members
       |> Map.update(:channels, nil, &MapSet.new(&1, Util.map_to_id()))

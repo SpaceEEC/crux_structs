@@ -3,7 +3,7 @@ defmodule Crux.Structs.GuildTest do
   doctest Crux.Structs.Guild
 
   alias Crux.Structs
-  alias Crux.Structs.{Guild, Member, Permissions, Role, VoiceState}
+  alias Crux.Structs.{Guild, Member, Role, VoiceState}
 
   describe "create/1" do
     test "minimal guild" do
@@ -77,7 +77,7 @@ defmodule Crux.Structs.GuildTest do
                widget_channel_id: nil,
                system_channel_id: 243_175_181_885_898_762,
                premium_tier: 0,
-               system_channel_flags: Guild.SystemChannelFlags.new(0),
+               system_channel_flags: 0,
                discovery_splash: nil,
                approximate_member_count: 4,
                approximate_presence_count: 2,
@@ -97,7 +97,7 @@ defmodule Crux.Structs.GuildTest do
                    managed: false,
                    mentionable: false,
                    name: "@everyone",
-                   permissions: Permissions.new(),
+                   permissions: 0,
                    position: 0
                  }
                },
@@ -195,7 +195,7 @@ defmodule Crux.Structs.GuildTest do
           managed: false,
           mentionable: false,
           name: "@everyone",
-          permissions: Permissions.new(0),
+          permissions: 0,
           position: 0,
           guild_id: 243_175_181_885_898_762
         },
@@ -206,7 +206,7 @@ defmodule Crux.Structs.GuildTest do
           managed: false,
           mentionable: false,
           name: "perms",
-          permissions: Permissions.new(2_146_959_351),
+          permissions: 2_146_959_351,
           position: 5,
           guild_id: 243_175_181_885_898_762
         }

@@ -103,14 +103,14 @@ defmodule Crux.Structs.Permissions do
   def implicit(%Structs.Member{user: user_id}, guild, channel),
     do: implicit(user_id, guild, channel)
 
-  def implicit(user_id, %Structs.Guild{owner_id: user_id}, _), do: new(@all)
+  def implicit(user_id, %Structs.Guild{owner_id: user_id}, _), do: @all
 
   def implicit(user_id, guild, channel) do
     permissions = explicit(user_id, guild)
 
     cond do
       has(permissions, :administrator) ->
-        new(@all)
+        @all
 
       channel ->
         explicit(user_id, guild, channel)
@@ -164,7 +164,7 @@ defmodule Crux.Structs.Permissions do
     |> Map.take(member_roles)
     |> Enum.map(fn {_id, %{permissions: permissions}} -> permissions end)
     |> List.insert_at(0, permissions)
-    |> new()
+    |> resolve()
   end
 
   # -> compute_permissions and compute_overwrites from
@@ -174,7 +174,7 @@ defmodule Crux.Structs.Permissions do
         %Structs.Guild{id: guild_id, members: members} = guild,
         %Structs.Channel{permission_overwrites: overwrites}
       ) do
-    %{bitfield: permissions} = explicit(user_id, guild)
+   permissions = explicit(user_id, guild)
 
     # apply @everyone overwrite
     base_permissions =
@@ -202,7 +202,6 @@ defmodule Crux.Structs.Permissions do
     overwrites
     |> Map.get(user_id)
     |> apply_overwrite(role_permissions)
-    |> new()
   end
 
   defp acc_overwrite(nil, acc), do: acc

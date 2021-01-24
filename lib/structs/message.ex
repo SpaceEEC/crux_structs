@@ -153,7 +153,7 @@ defmodule Crux.Structs.Message do
         end)
       )
       |> Map.update(:webhook_id, nil, &Snowflake.to_snowflake/1)
-      |> Map.update(:flags, Message.Flags.new(), &Message.Flags.new/1)
+      |> Map.update(:flags, nil, &Message.Flags.resolve/1)
 
     message = Map.update(data, :member, nil, create_member(data))
 

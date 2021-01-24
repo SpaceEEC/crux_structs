@@ -129,7 +129,7 @@ defmodule Crux.Structs.Role do
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
-      |> Map.update(:permissions, nil, &Permissions.new/1)
+      |> Map.update(:permissions, nil, &Permissions.resolve/1)
 
     struct(__MODULE__, role)
   end

@@ -48,11 +48,11 @@ defmodule Crux.Structs.PermissionsTest do
   end
 
   test "add/2" do
-    assert Permissions.new(0x28) == Permissions.add(:administrator, :manage_guild)
+    assert 0x28 == Permissions.add(:administrator, :manage_guild)
   end
 
   test "remove/2" do
-    assert Permissions.new(0x8) == Permissions.remove([0x8, 0x10, 0x20], [0x10, 0x20])
+    assert 0x8 == Permissions.remove([0x8, 0x10, 0x20], [0x10, 0x20])
   end
 
   describe "has/2" do
@@ -75,7 +75,7 @@ defmodule Crux.Structs.PermissionsTest do
 
   describe "missing/2" do
     test "basic usage" do
-      assert Permissions.new(0x4000) ==
+      assert 0x4000 ==
                Permissions.missing([:send_messages, :view_channel], [
                  :send_messages,
                  :view_channel,
@@ -84,11 +84,11 @@ defmodule Crux.Structs.PermissionsTest do
     end
 
     test "administrator does not implicitly grant permissions" do
-      assert Permissions.new(0x800) == Permissions.missing([:administrator], [:send_messages])
+      assert 0x800 == Permissions.missing([:administrator], [:send_messages])
     end
 
     test "everything set returns empty bitfield" do
-      assert Permissions.new(0x0) ==
+      assert 0x0 ==
                Permissions.missing([:kick_members, :ban_members, :view_audit_log], [
                  :kick_members,
                  :ban_members,
@@ -97,7 +97,7 @@ defmodule Crux.Structs.PermissionsTest do
     end
 
     test "no permissions wanted" do
-      assert Permissions.new(0x0) == Permissions.missing([:send_messages, :view_channel], [])
+      assert 0x0 == Permissions.missing([:send_messages, :view_channel], [])
     end
   end
 
@@ -144,17 +144,13 @@ defmodule Crux.Structs.PermissionsTest do
       member = %Member{user: 218_348_062_828_003_328}
       guild = %Guild{owner_id: 218_348_062_828_003_328}
 
-      %Permissions{bitfield: bitfield} = Permissions.implicit(member, guild)
-
-      assert bitfield === Permissions.all()
+      assert Permissions.implicit(member, guild) === Permissions.all()
     end
 
     test "implicit/2 administrator overrides" do
       [member, guild, _] = test_data()
 
-      %Permissions{bitfield: bitfield} = Permissions.implicit(member, guild)
-
-      assert bitfield === Permissions.all()
+      assert Permissions.implicit(member, guild) === Permissions.all()
     end
 
     test "implicit/2 no admin" do
@@ -163,7 +159,7 @@ defmodule Crux.Structs.PermissionsTest do
       permissions = Permissions.implicit(member, guild)
 
       assert permissions ===
-               Permissions.new([
+               Permissions.resolve([
                  :view_channel,
                  :send_messages,
                  :kick_members,
@@ -175,19 +171,15 @@ defmodule Crux.Structs.PermissionsTest do
     test "implicit/3 administrator overrides" do
       [member, guild, channel] = test_data()
 
-      %Permissions{bitfield: bitfield} = Permissions.implicit(member, guild, channel)
-
-      assert bitfield === Permissions.all()
+      assert Permissions.implicit(member, guild, channel) === Permissions.all()
     end
 
     test "implicit/3 administrator in overwrite does not override" do
       [member, guild, channel] =
         test_data(no_admin: true, allow: Permissions.resolve([:administrator]), deny: 0)
 
-      %Permissions{bitfield: bitfield} = Permissions.implicit(member, guild, channel)
-
       # not equal to Permissions.all() !
-      assert bitfield ===
+      assert Permissions.implicit(member, guild, channel) ===
                Permissions.resolve([
                  :administrator,
                  :view_channel,
@@ -201,9 +193,7 @@ defmodule Crux.Structs.PermissionsTest do
     test "implicit/2 user clause works" do
       [member, guild, _] = test_data()
 
-      %Permissions{bitfield: bitfield} = Permissions.implicit(%User{id: member.user}, guild)
-
-      assert bitfield === Permissions.all()
+      assert Permissions.implicit(%User{id: member.user}, guild) === Permissions.all()
     end
   end
 
@@ -212,9 +202,7 @@ defmodule Crux.Structs.PermissionsTest do
       [member, guild, _] = test_data()
       guild = Map.put(guild, :owner, member.user)
 
-      %Permissions{bitfield: bitfield} = Permissions.explicit(member, guild)
-
-      assert bitfield ===
+      assert Permissions.explicit(member, guild) ===
                Permissions.resolve([
                  :administrator,
                  :view_channel,
@@ -229,9 +217,7 @@ defmodule Crux.Structs.PermissionsTest do
       [member, guild, channel] = test_data(allow: Permissions.resolve([:administrator]))
       guild = Map.put(guild, :owner, member.user)
 
-      %Permissions{bitfield: bitfield} = Permissions.explicit(member, guild, channel)
-
-      assert bitfield ===
+      assert Permissions.explicit(member, guild, channel) ===
                Permissions.resolve([
                  :administrator,
                  :send_messages,
@@ -290,9 +276,7 @@ defmodule Crux.Structs.PermissionsTest do
       [member, guild, _] = test_data()
       guild = Map.put(guild, :owner, member.user)
 
-      %Permissions{bitfield: bitfield} = Permissions.explicit(%User{id: member.user}, guild)
-
-      assert bitfield ===
+      assert Permissions.explicit(%User{id: member.user}, guild) ===
                Permissions.resolve([
                  :administrator,
                  :view_channel,
@@ -317,9 +301,8 @@ defmodule Crux.Structs.PermissionsTest do
 
       assert guild.members[218_348_062_828_003_328].roles |> Enum.empty?()
 
-      %Permissions{bitfield: bitfield} = Permissions.explicit(member, guild)
-
-      assert bitfield === Permissions.resolve([:view_channel, :send_messages])
+      assert Permissions.explicit(member, guild) ===
+               Permissions.resolve([:view_channel, :send_messages])
     end
 
     test "uncached member raises" do

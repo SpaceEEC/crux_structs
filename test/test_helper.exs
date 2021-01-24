@@ -1,1 +1,1 @@
-ExUnit.start()
+ExUnit.start(colors: [enabled: true])

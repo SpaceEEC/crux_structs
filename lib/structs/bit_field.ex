@@ -14,7 +14,7 @@ defmodule Crux.Structs.BitField do
   Get a map of `t:name/0`s and their corresponding bit values.
   """
   @doc since: "0.2.3"
-  @callback flags() :: %{required(name()) => non_neg_integer()}
+  @callback flags() :: %{required(name()) => t()}
 
   @doc """
   Get a list of all available `t:name/0`s.
@@ -23,10 +23,10 @@ defmodule Crux.Structs.BitField do
   @callback names() :: [name()]
 
   @doc """
-  Get an integer representing all available bits set.
+  Get a bitfield representing all available bits set.
   """
   @doc since: "0.2.3"
-  @callback all() :: non_neg_integer()
+  @callback all() :: t()
 
   @typedoc """
   All valid types that can be directly resolved into a bitfield.
@@ -35,25 +35,19 @@ defmodule Crux.Structs.BitField do
   @type resolvable() :: t() | non_neg_integer() | String.t() | name() | [resolvable()]
 
   @typedoc """
-  Represents a struct of a module implementing the `Crux.Structs.BitField` behaviour.
+  Represents a bitfield of a module implementing the `Crux.Structs.BitField` behaviour.
   """
   @typedoc since: "0.2.3"
-  @type t :: struct()
-
-  @doc """
-  Create a new `t:t/0` from a `t:resolvable/0`.
-  """
-  @doc since: "0.2.3"
-  @callback new(resolvable()) :: t()
+  @type t :: non_neg_integer()
 
   @doc """
   Resolve a `t:resolvable/0` into a bitfield.
   """
   @doc since: "0.2.3"
-  @callback resolve(resolvable()) :: non_neg_integer()
+  @callback resolve(resolvable()) :: t()
 
   @doc """
-  Serialize a `t:resolvable/0` into a map representing bit flag names to whether they are set.
+  Serialize a `t:resolvable/0` into a map, which is mapping all `t:name/0`s to whether they are set.
   """
   @doc since: "0.2.3"
   @callback to_map(resolvable()) :: %{required(name()) => boolean()}
@@ -98,7 +92,7 @@ defmodule Crux.Structs.BitField do
       @doc """
       Get a map of `t:name/0`s and their corresponding bit values.
       """
-      @spec flags() :: %{required(name()) => non_neg_integer()}
+      @spec flags() :: %{required(name()) => t()}
       def flags(), do: @flags
 
       @names Map.keys(@flags)
@@ -112,7 +106,7 @@ defmodule Crux.Structs.BitField do
       @doc """
       Get an integer representing all available bits set.
       """
-      @spec all() :: non_neg_integer()
+      @spec all() :: t()
       def all(), do: @all
 
       @typedoc """
@@ -120,11 +114,7 @@ defmodule Crux.Structs.BitField do
       """
       @type resolvable() :: t() | raw() | name() | [resolvable()]
 
-      defstruct bitfield: 0
-
-      @type t :: %__MODULE__{
-              bitfield: non_neg_integer()
-            }
+      @type t :: non_neg_integer()
 
       @typedoc """
       Raw bitfield that can be used as a `t:resolvable/0`.
@@ -132,18 +122,10 @@ defmodule Crux.Structs.BitField do
       @type raw :: non_neg_integer() | String.t()
 
       @doc """
-      Create a new `t:t/0` from a `t:resolvable/0`.
-      """
-      @spec new(resolvable()) :: t()
-      def new(resolvable \\ 0), do: %__MODULE__{bitfield: resolve(resolvable)}
-
-      @doc """
       Resolve a `t:resolvable/0` into a bitfield.
       """
-      @spec resolve(resolvable()) :: non_neg_integer()
+      @spec resolve(resolvable()) :: t()
       def resolve(resolvable)
-
-      def resolve(%__MODULE__{bitfield: bitfield}), do: bitfield
 
       def resolve(resolvable)
           when is_integer(resolvable) and resolvable >= 0 do
@@ -216,7 +198,6 @@ defmodule Crux.Structs.BitField do
         base
         |> resolve()
         |> bor(to_add)
-        |> new()
       end
 
       @doc """
@@ -229,7 +210,6 @@ defmodule Crux.Structs.BitField do
         base
         |> resolve()
         |> band(to_remove)
-        |> new()
       end
 
       @doc """
@@ -256,7 +236,6 @@ defmodule Crux.Structs.BitField do
 
         want
         |> band(~~~have)
-        |> new()
       end
     end
   end
