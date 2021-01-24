@@ -174,7 +174,7 @@ defmodule Crux.Structs.Permissions do
         %Structs.Guild{id: guild_id, members: members} = guild,
         %Structs.Channel{permission_overwrites: overwrites}
       ) do
-   permissions = explicit(user_id, guild)
+    permissions = explicit(user_id, guild)
 
     # apply @everyone overwrite
     base_permissions =
