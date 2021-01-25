@@ -93,6 +93,8 @@ defmodule Crux.Structs.Application do
     struct(__MODULE__, application)
   end
 
+  defp transform_team(nil), do: nil
+
   defp transform_team(team) do
     team
     |> Map.update!(:id, &Snowflake.to_snowflake/1)
