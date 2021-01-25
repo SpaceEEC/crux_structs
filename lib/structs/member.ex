@@ -20,6 +20,7 @@ defmodule Crux.Structs.Member do
     :premium_since,
     :deaf,
     :mute,
+    :pending,
     # Additional
     :guild_id
   ]
@@ -33,6 +34,7 @@ defmodule Crux.Structs.Member do
           premium_since: String.t() | nil,
           deaf: boolean() | nil,
           mute: boolean() | nil,
+          pending: boolean() | nil,
           guild_id: Snowflake.t() | nil
         }
 
