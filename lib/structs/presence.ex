@@ -30,14 +30,23 @@ defmodule Crux.Structs.Presence do
           required(:type) => integer(),
           optional(:url) => nil | String.t(),
           required(:created_at) => integer(),
-          optional(:timestamps) => map(),
+          optional(:timestamps) => %{start: integer(), stop: integer()},
           optional(:application_id) => Snowflake.t(),
           optional(:details) => String.t() | nil,
           optional(:state) => String.t() | nil,
           optional(:emoji) => Emoji.t() | nil,
-          optional(:party) => map(),
-          optional(:assets) => map(),
-          optional(:secrets) => map(),
+          optional(:party) => %{id: String.t(), size: [integer()]},
+          optional(:assets) => %{
+            large_image: String.t(),
+            large_text: String.t(),
+            small_image: String.t(),
+            small_text: String.t()
+          },
+          optional(:secrets) => %{
+            join: String.t(),
+            spectate: String.t(),
+            match: String.t()
+          },
           optional(:instance) => boolean(),
           optional(:flags) => Presence.ActivityFlags.raw()
         }
