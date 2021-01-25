@@ -18,6 +18,7 @@ defmodule Crux.Structs.Role do
     :permissions,
     :managed,
     :mentionable,
+    :tags,
     # Additional
     :guild_id
   ]
@@ -32,7 +33,15 @@ defmodule Crux.Structs.Role do
           permissions: Permissions.raw(),
           managed: boolean(),
           mentionable: boolean(),
-          guild_id: Snowflake.t()
+          guild_id: Snowflake.t(),
+          tags: tags()
+        }
+
+  @typedoc since: "0.3.0"
+  @type tags :: %{
+          optional(:bot_id) => Snowflake.t(),
+          optional(:integration_id) => Snowflake.t(),
+          optional(:premium_subscriber) => nil
         }
 
   @typedoc """
@@ -130,9 +139,30 @@ defmodule Crux.Structs.Role do
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:permissions, nil, &Permissions.resolve/1)
+      |> transform_tags()
 
     struct(__MODULE__, role)
   end
+
+  defp transform_tags(%{tags: %{} = tags} = role) do
+    tags =
+      if Map.has_key?(tags, :bot_id) do
+        Map.update!(tags, :bot_id, &Snowflake.to_snowflake/1)
+      else
+        tags
+      end
+
+    tags =
+      if Map.has_key?(tags, :integration_id) do
+        Map.update!(tags, :integration_id, &Snowflake.to_snowflake/1)
+      else
+        tags
+      end
+
+    %{role | tags: tags}
+  end
+
+  defp transform_tags(role), do: role
 
   @doc ~S"""
     Converts a `t:Crux.Structs.Role.t/0` into its discord mention format.
