@@ -10,7 +10,19 @@ defmodule Crux.Structs.Message do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Attachment, Embed, Member, Message, Reaction, Snowflake, User, Util}
+
+  alias Crux.Structs.{
+    Application,
+    Attachment,
+    Embed,
+    Member,
+    Message,
+    Reaction,
+    Snowflake,
+    Sticker,
+    User,
+    Util
+  }
 
   defstruct [
     :id,
@@ -36,23 +48,15 @@ defmodule Crux.Structs.Message do
     :activity,
     :application,
     :message_reference,
-    :flags
+    :flags,
+    :stickers,
+    :referenced_message
   ]
 
   @typedoc since: "0.2.1"
   @type message_activity :: %{
           optional(:party_id) => String.t(),
           type: integer()
-        }
-
-  @typedoc since: "0.2.1"
-  @type message_application :: %{
-          id: Snowflake.t(),
-          primary_sku_id: Snowflake.t() | nil,
-          cover_image: String.t() | nil,
-          description: String.t(),
-          icon: String.t() | nil,
-          name: String.t()
         }
 
   @typedoc since: "0.2.1"
@@ -97,7 +101,7 @@ defmodule Crux.Structs.Message do
           webhook_id: Snowflake.t() | nil,
           type: integer(),
           activity: message_activity() | nil,
-          application: message_application() | nil,
+          application: Application.t() | nil,
           message_reference: message_reference(),
           flags: Message.Flags.t()
         }
@@ -119,15 +123,7 @@ defmodule Crux.Structs.Message do
     data =
       data
       |> Util.atomify()
-      |> Map.update(
-        :application,
-        nil,
-        fn application ->
-          application
-          |> Map.update(:id, nil, &Snowflake.to_snowflake/1)
-          |> Map.update(:primary_sku_id, nil, &Snowflake.to_snowflake/1)
-        end
-      )
+      |> Map.update(:application, nil, &Structs.create(&1, Application))
       |> Map.update(:attachments, [], &Structs.create(&1, Attachment))
       |> Map.update!(:author, &Structs.create(&1, User))
       |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
@@ -154,6 +150,8 @@ defmodule Crux.Structs.Message do
       )
       |> Map.update(:webhook_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:flags, nil, &Message.Flags.resolve/1)
+      |> Map.update(:stickers, nil, &Util.raw_data_to_map(&1, Sticker))
+      |> Map.update(:referenced_message, nil, &create(&1))
 
     message = Map.update(data, :member, nil, create_member(data))
 

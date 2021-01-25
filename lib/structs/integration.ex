@@ -6,7 +6,8 @@ defmodule Crux.Structs.Integration do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Integration, Snowflake, Util}
+  alias Crux.Structs
+  alias Crux.Structs.{Application, Integration, Snowflake, Util}
 
   defstruct [
     :id,
@@ -20,7 +21,10 @@ defmodule Crux.Structs.Integration do
     :expire_grace_period,
     :user,
     :account,
-    :synced_at
+    :synced_at,
+    :subscriber_count,
+    :revoked,
+    :application
   ]
 
   @typedoc since: "0.2.2"
@@ -35,8 +39,11 @@ defmodule Crux.Structs.Integration do
           expire_behavior: 0..1,
           expire_grace_period: integer(),
           user: Snowflake.t(),
-          account: map(),
-          synced_at: String.t()
+          account: %{id: String.t(), name: String.t()},
+          synced_at: String.t(),
+          subscriber_count: non_neg_integer(),
+          revoked: boolean(),
+          application: Application.t()
         }
 
   @typedoc """
@@ -62,6 +69,7 @@ defmodule Crux.Structs.Integration do
       |> Map.update(:account, nil, fn account ->
         Map.update(account, :id, nil, &Snowflake.to_snowflake/1)
       end)
+      |> Map.update(:application, nil, &Structs.create(&1, Application))
 
     struct(__MODULE__, integration)
   end

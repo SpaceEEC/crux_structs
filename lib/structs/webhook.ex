@@ -19,7 +19,8 @@ defmodule Crux.Structs.Webhook do
     :user,
     :name,
     :avatar,
-    :token
+    :token,
+    :application_id
   ]
 
   @type t :: %__MODULE__{
@@ -54,6 +55,7 @@ defmodule Crux.Structs.Webhook do
       |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:user, nil, Util.map_to_id())
+      |> Map.update(:application_id, nil, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, data)
   end

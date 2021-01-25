@@ -3,7 +3,7 @@ defmodule Crux.Structs.MessageTest do
   doctest Crux.Structs.Message
 
   alias Crux.Structs
-  alias Crux.Structs.{Emoji, Member, Message, Reaction, User}
+  alias Crux.Structs.{Application, Emoji, Member, Message, Reaction, User}
 
   test "create" do
     message =
@@ -19,7 +19,6 @@ defmodule Crux.Structs.MessageTest do
           "id" => "367827983903490050",
           "name" => "osu!",
           "primary_sku_id" => "367827983903490050",
-          "splash" => "8029278a3fab0e30108bd335f26ab8a0",
           "summary" => "click the circles! to the beat!"
         },
         "attachments" => [],
@@ -92,14 +91,13 @@ defmodule Crux.Structs.MessageTest do
                party_id: "interesting_id"
              },
              attachments: [],
-             application: %{
+             application: %Application{
                cover_image: "b76db81b683527961ee1432c24a02774",
                description: "click the circles! to the beat!",
                icon: "ea86f6c52576847a7cb81f1c1faa18a3",
                id: 367_827_983_903_490_050,
                name: "osu!",
                primary_sku_id: 367_827_983_903_490_050,
-               splash: "8029278a3fab0e30108bd335f26ab8a0",
                summary: "click the circles! to the beat!"
              },
              author: %User{
