@@ -6,20 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.23.0">
     <meta name="project" content="crux_structs v0.3.0-dev">
-
     <title>Crux.Structs.Message — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-
     <script src="dist/sidebar_items-991795341c.js"></script>
-
       <script src="docs_config.js"></script>
-
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
-
   </head>
   <body data-type="modules">
     <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
-
 <div class="main">
 
 <button class="sidebar-button sidebar-toggle">
@@ -47,20 +41,17 @@
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
       <a href="https://github.com/SpaceEEC/crux_structs/" class="sidebar-projectName">
-crux_structs
-      </a>
+crux_structs      </a>
       <strong class="sidebar-projectVersion">
         v0.3.0-dev
       </strong>
     </div>
-
   </div>
 
   <ul class="sidebar-listNav">
     <li><a id="extras-list" href="#full-list">Pages</a></li>
 
       <li><a id="modules-list" href="#full-list">Modules</a></li>
-
 
   </ul>
   <div class="gradient"></div>
@@ -72,20 +63,16 @@ crux_structs
     <div id="content" class="content-inner">
 
       <h1>
-Crux.Structs.Message <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
-
+        Crux.Structs.Message <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
           <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
-
       </h1>
 
 
         <section id="moduledoc">
-<p>  Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#message-object">Message Object</a>.</p><p>  Differences opposed to the Discord API Object:</p><ul><li><code class="inline">:mentions</code> is a MapSet of user ids</li></ul>
-        </section>
-
+<p>  Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#message-object">Message Object</a>.</p><p>  Differences opposed to the Discord API Object:</p><ul><li><code class="inline">:mentions</code> is a MapSet of user ids</li></ul>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -95,7 +82,6 @@ Crux.Structs.Message <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
             </a>
             Summary
           </h1>
-
   <div class="summary-types summary">
     <h2>
       <a href="#types">Types</a>
@@ -103,45 +89,31 @@ Crux.Structs.Message <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:id_resolvable/0">id_resolvable()</a>
-
   </div>
-
     <div class="summary-synopsis"><p>  All available types that can be resolved into a message id.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:mention_channel/0">mention_channel()</a>
-
   </div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:message_activity/0">message_activity()</a>
-
   </div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:message_reference/0">message_reference()</a>
-
   </div>
-
     <div class="summary-synopsis"><ul><li><code class="inline">message_id</code> is <code class="inline">nil</code> for the initial message sent when a user starts following a channel.</li><li><code class="inline">guild_id</code> is only <code class="inline">nil</code> for some messages during the initial rollout of this feature.</li></ul></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:t/0">t()</a>
-
   </div>
-
 </div>
-
   </div>
-
   <div class="summary-functions summary">
     <h2>
       <a href="#functions">Functions</a>
@@ -149,17 +121,11 @@ Crux.Structs.Message <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#create/1">create(data)</a>
-
   </div>
-
     <div class="summary-synopsis"><p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Message.t/0</code></a> struct from raw data.</p></div>
-
 </div>
-
   </div>
-
         </section>
-
 
         <section id="types" class="details-list">
           <h1 class="section-heading">
@@ -167,166 +133,122 @@ Crux.Structs.Message <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
               <span class="icon-link" aria-hidden="true"></span>
               <span class="sr-only">Link to this section</span>
             </a>
-Types
-          </h1>
+Types          </h1>
           <div class="types-list">
 <section class="detail" id="t:id_resolvable/0">
-
   <div class="detail-header">
     <a href="#t:id_resolvable/0" class="detail-link" title="Link to this type">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">id_resolvable()</h1>
-
       <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L113" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
       <span class="note">(since 0.2.1)</span>
-
   </div>
 
   <section class="docstring">
-
       <h2>Specs</h2>
       <div class="specs">
-
           <pre>id_resolvable() :: <a href="#t:t/0">t</a>() | <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
-
       </div>
 
-<p>  All available types that can be resolved into a message id.</p>
-  </section>
+<p>  All available types that can be resolved into a message id.</p>  </section>
 </section>
 <section class="detail" id="t:mention_channel/0">
-
   <div class="detail-header">
     <a href="#t:mention_channel/0" class="detail-link" title="Link to this type">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">mention_channel()</h1>
-
       <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L63" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
       <span class="note">(since 0.2.1)</span>
-
   </div>
 
   <section class="docstring">
-
       <h2>Specs</h2>
       <div class="specs">
-
           <pre>mention_channel() :: %{
   id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
   guild_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
   name: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
   type: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()
 }</pre>
-
       </div>
-
 
   </section>
 </section>
 <section class="detail" id="t:message_activity/0">
-
   <div class="detail-header">
     <a href="#t:message_activity/0" class="detail-link" title="Link to this type">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">message_activity()</h1>
-
       <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L57" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
       <span class="note">(since 0.2.1)</span>
-
   </div>
 
   <section class="docstring">
-
       <h2>Specs</h2>
       <div class="specs">
-
           <pre>message_activity() :: %{optional(:party_id) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), :type =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()}</pre>
-
       </div>
-
 
   </section>
 </section>
 <section class="detail" id="t:message_reference/0">
-
   <div class="detail-header">
     <a href="#t:message_reference/0" class="detail-link" title="Link to this type">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">message_reference()</h1>
-
       <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L75" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
       <span class="note">(since 0.2.1)</span>
-
   </div>
 
   <section class="docstring">
-
       <h2>Specs</h2>
       <div class="specs">
-
           <pre>message_reference() :: %{
   message_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil,
   guild_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil,
   channel_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()
 }</pre>
-
       </div>
 
-<ul><li><code class="inline">message_id</code> is <code class="inline">nil</code> for the initial message sent when a user starts following a channel.</li><li><code class="inline">guild_id</code> is only <code class="inline">nil</code> for some messages during the initial rollout of this feature.</li></ul>
-  </section>
+<ul><li><code class="inline">message_id</code> is <code class="inline">nil</code> for the initial message sent when a user starts following a channel.</li><li><code class="inline">guild_id</code> is only <code class="inline">nil</code> for some messages during the initial rollout of this feature.</li></ul>  </section>
 </section>
 <section class="detail" id="t:t/0">
-
   <div class="detail-header">
     <a href="#t:t/0" class="detail-link" title="Link to this type">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-
       <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L82" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
       <span class="note">(since 0.1.0)</span>
-
   </div>
 
   <section class="docstring">
-
       <h2>Specs</h2>
       <div class="specs">
-
           <pre>t() :: %Crux.Structs.Message{
   activity: <a href="#t:message_activity/0">message_activity</a>() | nil,
   application: <a href="Crux.Structs.Application.html#t:t/0">Crux.Structs.Application.t</a>() | nil,
@@ -355,60 +277,44 @@ Types
   type: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
   webhook_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil
 }</pre>
-
       </div>
-
 
   </section>
 </section>
-
           </div>
         </section>
-
         <section id="functions" class="details-list">
           <h1 class="section-heading">
             <a class="hover-link" href="#functions">
               <span class="icon-link" aria-hidden="true"></span>
               <span class="sr-only">Link to this section</span>
             </a>
-Functions
-          </h1>
+Functions          </h1>
           <div class="functions-list">
 <section class="detail" id="create/1">
-
   <div class="detail-header">
     <a href="#create/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-
       <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L122" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
       <span class="note">(since 0.1.0)</span>
-
   </div>
 
   <section class="docstring">
-
       <h2>Specs</h2>
       <div class="specs">
-
           <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:t/0">t</a>()</pre>
-
       </div>
 
-<p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Message.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>
-  </section>
+<p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Message.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
 </section>
-
           </div>
         </section>
-
       <footer class="footer">
         <p>
           <span class="line">
@@ -422,9 +328,7 @@ Functions
           </span>
         </p>
         <p>
-
             <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
-
           <button class="line footer-button display-shortcuts-help">
             Display keyboard shortcuts
           </button>
@@ -444,6 +348,5 @@ Functions
   </div>
 </section>
 </div>
-
   </body>
 </html>

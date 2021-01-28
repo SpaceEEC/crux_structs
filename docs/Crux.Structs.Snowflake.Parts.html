@@ -6,20 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.23.0">
     <meta name="project" content="crux_structs v0.3.0-dev">
-
     <title>Crux.Structs.Snowflake.Parts — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-
     <script src="dist/sidebar_items-991795341c.js"></script>
-
       <script src="docs_config.js"></script>
-
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
-
   </head>
   <body data-type="modules">
     <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
-
 <div class="main">
 
 <button class="sidebar-button sidebar-toggle">
@@ -47,20 +41,17 @@
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
       <a href="https://github.com/SpaceEEC/crux_structs/" class="sidebar-projectName">
-crux_structs
-      </a>
+crux_structs      </a>
       <strong class="sidebar-projectVersion">
         v0.3.0-dev
       </strong>
     </div>
-
   </div>
 
   <ul class="sidebar-listNav">
     <li><a id="extras-list" href="#full-list">Pages</a></li>
 
       <li><a id="modules-list" href="#full-list">Modules</a></li>
-
 
   </ul>
   <div class="gradient"></div>
@@ -72,13 +63,11 @@ crux_structs
     <div id="content" class="content-inner">
 
       <h1>
-Crux.Structs.Snowflake.Parts <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
-
+        Crux.Structs.Snowflake.Parts <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
           <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/snowflake/parts.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
-
       </h1>
 
 
@@ -87,9 +76,7 @@ Crux.Structs.Snowflake.Parts <small class="app-vsn">(crux_structs v0.3.0-dev)</s
   <a href="#module-structure-of-the-parts" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Structure of the Parts
 </h2>
-<table><thead><tr><th style="text-align: center;">Field</th><th style="text-align: center;">Bits</th><th style="text-align: center;">Number of Bits</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;">Timestamp</td><td style="text-align: center;">63 to 22</td><td style="text-align: center;">42 bits</td><td style="text-align: center;">Milliseconds since Discord Epoch (1420070400000)</td></tr><tr><td style="text-align: center;">Internal Worker ID</td><td style="text-align: center;">21 to 17</td><td style="text-align: center;">5 bits</td><td style="text-align: center;"></td></tr><tr><td style="text-align: center;">Internal Process ID</td><td style="text-align: center;">16 to 12</td><td style="text-align: center;">5 bits</td><td style="text-align: center;"></td></tr><tr><td style="text-align: center;">Increment</td><td style="text-align: center;">11 to  0</td><td style="text-align: center;">12 bits</td><td style="text-align: center;">For every ID that is generated on that process, this number is incremented</td></tr></tbody></table><p>  For more information see <a href="https://discord.com/developers/docs/reference#snowflakes">Discord Docs</a>.</p>
-        </section>
-
+<table><thead><tr><th style="text-align: center;">Field</th><th style="text-align: center;">Bits</th><th style="text-align: center;">Number of Bits</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;">Timestamp</td><td style="text-align: center;">63 to 22</td><td style="text-align: center;">42 bits</td><td style="text-align: center;">Milliseconds since Discord Epoch (1420070400000)</td></tr><tr><td style="text-align: center;">Internal Worker ID</td><td style="text-align: center;">21 to 17</td><td style="text-align: center;">5 bits</td><td style="text-align: center;"></td></tr><tr><td style="text-align: center;">Internal Process ID</td><td style="text-align: center;">16 to 12</td><td style="text-align: center;">5 bits</td><td style="text-align: center;"></td></tr><tr><td style="text-align: center;">Increment</td><td style="text-align: center;">11 to  0</td><td style="text-align: center;">12 bits</td><td style="text-align: center;">For every ID that is generated on that process, this number is incremented</td></tr></tbody></table><p>  For more information see <a href="https://discord.com/developers/docs/reference#snowflakes">Discord Docs</a>.</p>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -99,7 +86,6 @@ Crux.Structs.Snowflake.Parts <small class="app-vsn">(crux_structs v0.3.0-dev)</s
             </a>
             Summary
           </h1>
-
   <div class="summary-types summary">
     <h2>
       <a href="#types">Types</a>
@@ -107,17 +93,11 @@ Crux.Structs.Snowflake.Parts <small class="app-vsn">(crux_structs v0.3.0-dev)</s
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:t/0">t()</a>
-
   </div>
-
     <div class="summary-synopsis"><p>  The parts of a <a href="Crux.Structs.Snowflake.html#t:t/0"><code class="inline">Crux.Structs.Snowflake.t/0</code></a>.</p></div>
-
 </div>
-
   </div>
-
         </section>
-
 
         <section id="types" class="details-list">
           <h1 class="section-heading">
@@ -125,49 +105,37 @@ Crux.Structs.Snowflake.Parts <small class="app-vsn">(crux_structs v0.3.0-dev)</s
               <span class="icon-link" aria-hidden="true"></span>
               <span class="sr-only">Link to this section</span>
             </a>
-Types
-          </h1>
+Types          </h1>
           <div class="types-list">
 <section class="detail" id="t:t/0">
-
   <div class="detail-header">
     <a href="#t:t/0" class="detail-link" title="Link to this type">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-
       <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/snowflake/parts.ex#L41" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
       <span class="note">(since 0.2.1)</span>
-
   </div>
 
   <section class="docstring">
-
       <h2>Specs</h2>
       <div class="specs">
-
           <pre>t() :: %Crux.Structs.Snowflake.Parts{
   increment: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
   process_id: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
   timestamp: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
   worker_id: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()
 }</pre>
-
       </div>
 
-<p>  The parts of a <a href="Crux.Structs.Snowflake.html#t:t/0"><code class="inline">Crux.Structs.Snowflake.t/0</code></a>.</p>
-  </section>
+<p>  The parts of a <a href="Crux.Structs.Snowflake.html#t:t/0"><code class="inline">Crux.Structs.Snowflake.t/0</code></a>.</p>  </section>
 </section>
-
           </div>
         </section>
-
       <footer class="footer">
         <p>
           <span class="line">
@@ -181,9 +149,7 @@ Types
           </span>
         </p>
         <p>
-
             <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
-
           <button class="line footer-button display-shortcuts-help">
             Display keyboard shortcuts
           </button>
@@ -203,6 +169,5 @@ Types
   </div>
 </section>
 </div>
-
   </body>
 </html>
