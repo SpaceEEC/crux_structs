@@ -9,6 +9,7 @@ defmodule Crux.Structs.Application do
   alias Crux.Structs
 
   alias Crux.Structs.{
+    Application,
     Snowflake,
     User,
     Util
