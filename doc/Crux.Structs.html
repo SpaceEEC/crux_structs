@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="crux_structs v0.3.0-dev">
+
+    <title>Crux.Structs — crux_structs v0.3.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
+
+    <script src="dist/sidebar_items-991795341c.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
+
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://github.com/SpaceEEC/crux_structs/" class="sidebar-projectName">
+crux_structs
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.3.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Crux.Structs <small>behaviour</small> <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
+
+          <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>  Provides a unified function to create one or a list of structs, invoking their <a href="#c:create/1"><code class="inline">create/1</code></a> function if available.</p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create/2">create(data, target)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Creates a struct or a list of structs invoking their <a href="#c:create/1"><code class="inline">create/1</code></a> function if available.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#resolve_id/2">resolve_id(data, target)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Resolves the id of a struct invoking their <a href="#c:resolve_id/1"><code class="inline">resolve_id/1</code></a> function if available.</p></div>
+
+</div>
+
+  </div>
+
+  <div class="summary-callbacks summary">
+    <h2>
+      <a href="#callbacks">Callbacks</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:create/1">create(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Can be implemented by structs to transform the inital data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:resolve_id/1">resolve_id(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Can be implemented by structs to provide a mechanism to resolve their id.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="create/2">
+
+  <div class="detail-header">
+    <a href="#create/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">create(data, target)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs.ex#L80" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.1.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), target :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">struct</a>()</pre>
+
+          <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(), target :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()) :: [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">struct</a>()]</pre>
+
+      </div>
+
+<p>  Creates a struct or a list of structs invoking their <a href="#c:create/1"><code class="inline">create/1</code></a> function if available.</p><h2 id="create/2-examples" class="section-heading">
+  <a href="#create/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="c1"># A single member</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7816517402-1">%{</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="s">&quot;nick&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;nick&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="s">&quot;user&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="7816517402-2">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;646a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="7816517402-2">}</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="s">&quot;roles&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="7816517402-3">[</span><span class="s">&quot;251158405832638465&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;373405430589816834&quot;</span><span class="p" data-group-id="7816517402-3">]</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="s">&quot;mute&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="s">&quot;deaf&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="s">&quot;joined_at&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;2016-11-02T00:51:21.342000+00:00&quot;</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="7816517402-1">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="7816517402-4">(</span><span class="nc">Crux.Structs.Member</span><span class="p" data-group-id="7816517402-4">)</span><span class="w">
+  </span><span class="p" data-group-id="7816517402-5">%</span><span class="nc" data-group-id="7816517402-5">Crux.Structs.Member</span><span class="p" data-group-id="7816517402-5">{</span><span class="w">
+    </span><span class="ss">nick</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nick&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w">
+    </span><span class="ss">roles</span><span class="p">:</span><span class="w"> </span><span class="nc">MapSet</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7816517402-6">(</span><span class="p" data-group-id="7816517402-7">[</span><span class="mi">251158405832638465</span><span class="p">,</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p" data-group-id="7816517402-7">]</span><span class="p" data-group-id="7816517402-6">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">mute</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+    </span><span class="ss">deaf</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+    </span><span class="ss">joined_at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2016-11-02T00:51:21.342000+00:00&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
+  </span><span class="p" data-group-id="7816517402-5">}</span><span class="w">
+
+  </span><span class="c1"># A single user</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7816517402-8">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="7816517402-8">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="7816517402-9">(</span><span class="nc">Crux.Structs.User</span><span class="p" data-group-id="7816517402-9">)</span><span class="w">
+  </span><span class="p" data-group-id="7816517402-10">%</span><span class="nc" data-group-id="7816517402-10">Crux.Structs.User</span><span class="p" data-group-id="7816517402-10">{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7816517402-10">}</span><span class="w">
+
+  </span><span class="c1"># Multiple users</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7816517402-11">[</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="7816517402-12">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="7816517402-12">}</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="7816517402-13">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;130175406673231873&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p" data-group-id="7816517402-13">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="7816517402-11">]</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="7816517402-14">(</span><span class="nc">Crux.Structs.User</span><span class="p" data-group-id="7816517402-14">)</span><span class="w">
+  </span><span class="p" data-group-id="7816517402-15">[</span><span class="w">
+    </span><span class="p" data-group-id="7816517402-16">%</span><span class="nc" data-group-id="7816517402-16">Crux.Structs.User</span><span class="p" data-group-id="7816517402-16">{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7816517402-16">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="7816517402-17">%</span><span class="nc" data-group-id="7816517402-17">Crux.Structs.User</span><span class="p" data-group-id="7816517402-17">{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">130175406673231873</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7816517402-17">}</span><span class="w">
+  </span><span class="p" data-group-id="7816517402-15">]</span><span class="w">
+
+  </span><span class="c1"># Does not alter already structs</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="7816517402-18">(</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="7816517402-19">%</span><span class="nc" data-group-id="7816517402-19">Crux.Structs.User</span><span class="p" data-group-id="7816517402-19">{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7816517402-19">}</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Crux.Structs.User</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="7816517402-18">)</span><span class="w">
+  </span><span class="p" data-group-id="7816517402-20">%</span><span class="nc" data-group-id="7816517402-20">Crux.Structs.User</span><span class="p" data-group-id="7816517402-20">{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7816517402-20">}</span><span class="w">
+
+  </span><span class="c1"># Fallback</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="7816517402-21">(</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="7816517402-21">)</span><span class="w">
+  </span><span class="no">nil</span><span class="w">
+</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="resolve_id/2">
+
+  <div class="detail-header">
+    <a href="#resolve_id/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">resolve_id(data, target)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs.ex#L141" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.2.1)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>resolve_id(nil, target :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()) :: nil</pre>
+
+          <pre>resolve_id(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(), target :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()) ::
+  <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()</pre>
+
+          <pre>resolve_id(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), target :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()) :: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil</pre>
+
+      </div>
+
+<p>  Resolves the id of a struct invoking their <a href="#c:resolve_id/1"><code class="inline">resolve_id/1</code></a> function if available.</p><pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="c1"># Struct of the concrete type</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2082976899-1">%</span><span class="nc" data-group-id="2082976899-1">Crux.Structs.Webhook</span><span class="p" data-group-id="2082976899-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">618733351624507394</span><span class="p" data-group-id="2082976899-1">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2082976899-2">(</span><span class="nc">Crux.Structs.Webhook</span><span class="p" data-group-id="2082976899-2">)</span><span class="w">
+  </span><span class="mi">618733351624507394</span><span class="w">
+
+  </span><span class="c1"># Already snowflake</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="mi">222089067028807682</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2082976899-3">(</span><span class="nc">Crux.Structs.Role</span><span class="p" data-group-id="2082976899-3">)</span><span class="w">
+  </span><span class="mi">222089067028807682</span><span class="w">
+
+  </span><span class="c1"># Snowflake string</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;222079895583457280&quot;</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2082976899-4">(</span><span class="nc">Crux.Structs.Channel</span><span class="p" data-group-id="2082976899-4">)</span><span class="w">
+  </span><span class="mi">222079895583457280</span><span class="w">
+
+  </span><span class="c1"># nil</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="no">nil</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2082976899-5">(</span><span class="nc">Crux.Structs.Guild</span><span class="p" data-group-id="2082976899-5">)</span><span class="w">
+  </span><span class="no">nil</span><span class="w">
+
+  </span><span class="c1"># Inexact type that is a resolvable</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2082976899-6">%</span><span class="nc" data-group-id="2082976899-6">Crux.Structs.Member</span><span class="p" data-group-id="2082976899-6">{</span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="2082976899-6">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2082976899-7">(</span><span class="nc">Crux.Structs.User</span><span class="p" data-group-id="2082976899-7">)</span><span class="w">
+  </span><span class="mi">218348062828003328</span><span class="w">
+
+  </span><span class="c1"># Incorrect type</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2082976899-8">%</span><span class="nc" data-group-id="2082976899-8">Crux.Structs.Role</span><span class="p" data-group-id="2082976899-8">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079439876390922</span><span class="p" data-group-id="2082976899-8">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2082976899-9">(</span><span class="nc">Crux.Structs.Emoji</span><span class="p" data-group-id="2082976899-9">)</span><span class="w">
+  </span><span class="no">nil</span><span class="w">
+</span></code></pre>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="callbacks" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#callbacks">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Callbacks
+          </h1>
+          <div class="callbacks-list">
+<section class="detail" id="c:create/1">
+
+  <div class="detail-header">
+    <a href="#c:create/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">create(data)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs.ex#L13" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(optional)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">struct</a>()</pre>
+
+      </div>
+
+<p>  Can be implemented by structs to transform the inital data.</p>
+  </section>
+</section>
+<section class="detail" id="c:resolve_id/1">
+
+  <div class="detail-header">
+    <a href="#c:resolve_id/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">resolve_id(data)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs.ex#L18" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(optional)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>resolve_id(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) ::
+  <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil</pre>
+
+      </div>
+
+<p>  Can be implemented by structs to provide a mechanism to resolve their id.</p>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+  </body>
+</html>

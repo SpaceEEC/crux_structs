@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="crux_structs v0.3.0-dev">
+
+    <title>Crux.Structs.Permissions — crux_structs v0.3.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
+
+    <script src="dist/sidebar_items-991795341c.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
+
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://github.com/SpaceEEC/crux_structs/" class="sidebar-projectName">
+crux_structs
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.3.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Crux.Structs.Permissions <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
+
+          <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>  Custom non discord api struct to help with working with permissions.</p><p>  For more informations see <a href="https://discord.com/developers/docs/topics/permissions">Discord Docs</a>.</p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:name/0">name()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Union type of all valid permission name atoms.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:raw/0">raw()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Raw bitfield that can be used as a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:resolvable/0">resolvable()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>All valid types that can be directly resolved into a bitfield.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add/2">add(base, to_add)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Add all set bits of <code class="inline">to_add</code> to <code class="inline">base</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#all/0">all()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Get an integer representing all available bits set.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#explicit/3">explicit(member, guild, channel \\ nil)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Resolves permissions for a user in a guild, optionally including channel permission overwrites.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#flags/0">flags()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Get a map of <a href="#t:name/0"><code class="inline">name/0</code></a>s and their corresponding bit values.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#has/2">has(have, want)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Check whether the <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> you <code class="inline">have</code> has everything set you <code class="inline">want</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#implicit/3">implicit(member, guild, channel \\ nil)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Resolves permissions for a user in a guild, optionally including channel permission overwrites.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#missing/2">missing(have, want)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Return a <a href="#t:t/0"><code class="inline">t/0</code></a> of all bits you <code class="inline">want</code> but not <code class="inline">have</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#names/0">names()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Get a list of all available <a href="#t:name/0"><code class="inline">name/0</code></a>s.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#remove/2">remove(base, to_remove)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Remove all set bits of <code class="inline">to_remove</code> from <code class="inline">base</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#resolve/1">resolve(resolvable)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Resolve a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> into a bitfield.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_list/1">to_list(resolvable)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Serialize a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> into a list of set bit flag names.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_map/1">to_map(resolvable)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Serialize a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> into a map representing bit flag names to whether they are set.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:name/0">
+
+  <div class="detail-header">
+    <a href="#t:name/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">name()</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L53" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.2.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>name() ::
+  :create_instant_invite
+  | :kick_members
+  | :ban_members
+  | :administrator
+  | :manage_channels
+  | :manage_guild
+  | :add_reactions
+  | :view_audit_log
+  | :priority_speaker
+  | :stream
+  | :view_channel
+  | :send_messages
+  | :send_tts_message
+  | :manage_messages
+  | :embed_links
+  | :attach_files
+  | :read_message_histroy
+  | :mention_everyone
+  | :use_external_emojis
+  | :view_guild_insights
+  | :connect
+  | :speak
+  | :mute_members
+  | :deafen_members
+  | :move_members
+  | :use_vad
+  | :change_nickname
+  | :manage_nicknames
+  | :manage_roles
+  | :manage_webhooks
+  | :manage_emojis</pre>
+
+      </div>
+
+<p>  Union type of all valid permission name atoms.</p>
+  </section>
+</section>
+<section class="detail" id="t:raw/0">
+
+  <div class="detail-header">
+    <a href="#t:raw/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">raw()</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>raw() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Raw bitfield that can be used as a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="t:resolvable/0">
+
+  <div class="detail-header">
+    <a href="#t:resolvable/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">resolvable()</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>resolvable() :: <a href="#t:t/0">t</a>() | <a href="#t:raw/0">raw</a>() | <a href="#t:name/0">name</a>() | [<a href="#t:resolvable/0">resolvable</a>()]</pre>
+
+      </div>
+
+<p>All valid types that can be directly resolved into a bitfield.</p>
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t()</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>t() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="add/2">
+
+  <div class="detail-header">
+    <a href="#add/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add(base, to_add)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>add(base :: <a href="#t:resolvable/0">resolvable</a>(), to_add :: <a href="#t:resolvable/0">resolvable</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Add all set bits of <code class="inline">to_add</code> to <code class="inline">base</code>.</p>
+  </section>
+</section>
+<section class="detail" id="all/0">
+
+  <div class="detail-header">
+    <a href="#all/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">all()</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>all() :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Get an integer representing all available bits set.</p>
+  </section>
+</section>
+<section class="detail" id="explicit/3">
+
+    <span id="explicit/2"></span>
+
+  <div class="detail-header">
+    <a href="#explicit/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">explicit(member, guild, channel \\ nil)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L136" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.2.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>explicit(
+  member ::
+    <a href="Crux.Structs.Member.html#t:t/0">Crux.Structs.Member.t</a>() | <a href="Crux.Structs.User.html#t:t/0">Crux.Structs.User.t</a>() | <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+  guild :: <a href="Crux.Structs.Guild.html#t:t/0">Crux.Structs.Guild.t</a>(),
+  channel :: <a href="Crux.Structs.Channel.html#t:t/0">Crux.Structs.Channel.t</a>() | nil
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>  Resolves permissions for a user in a guild, optionally including channel permission overwrites.</p><blockquote><p>Raises when the member is not cached.</p></blockquote><blockquote><p>The administrator flag or being owner implicitly does not grant permissions, see <a href="#implicit/3"><code class="inline">implicit/3</code></a>.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="flags/0">
+
+  <div class="detail-header">
+    <a href="#flags/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">flags()</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>flags() :: %{required(<a href="#t:name/0">name</a>()) =&gt; <a href="#t:t/0">t</a>()}</pre>
+
+      </div>
+
+<p>Get a map of <a href="#t:name/0"><code class="inline">name/0</code></a>s and their corresponding bit values.</p>
+  </section>
+</section>
+<section class="detail" id="has/2">
+
+  <div class="detail-header">
+    <a href="#has/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">has(have, want)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>has(have :: <a href="#t:resolvable/0">resolvable</a>(), want :: <a href="#t:resolvable/0">resolvable</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Check whether the <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> you <code class="inline">have</code> has everything set you <code class="inline">want</code>.</p>
+  </section>
+</section>
+<section class="detail" id="implicit/3">
+
+    <span id="implicit/2"></span>
+
+  <div class="detail-header">
+    <a href="#implicit/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">implicit(member, guild, channel \\ nil)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L99" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.2.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>implicit(
+  member ::
+    <a href="Crux.Structs.Member.html#t:t/0">Crux.Structs.Member.t</a>() | <a href="Crux.Structs.User.html#t:t/0">Crux.Structs.User.t</a>() | <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+  guild :: <a href="Crux.Structs.Guild.html#t:t/0">Crux.Structs.Guild.t</a>(),
+  channel :: <a href="Crux.Structs.Channel.html#t:t/0">Crux.Structs.Channel.t</a>() | nil
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>  Resolves permissions for a user in a guild, optionally including channel permission overwrites.</p><blockquote><p>Raises when the member is not cached.</p></blockquote><blockquote><p>The guild-wide administrator flag or being owner implicitly grants all permissions, see <a href="#explicit/3"><code class="inline">explicit/3</code></a>.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="missing/2">
+
+  <div class="detail-header">
+    <a href="#missing/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">missing(have, want)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>missing(<a href="#t:resolvable/0">resolvable</a>(), <a href="#t:resolvable/0">resolvable</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Return a <a href="#t:t/0"><code class="inline">t/0</code></a> of all bits you <code class="inline">want</code> but not <code class="inline">have</code>.</p>
+  </section>
+</section>
+<section class="detail" id="names/0">
+
+  <div class="detail-header">
+    <a href="#names/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">names()</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>names() :: [<a href="#t:name/0">name</a>()]</pre>
+
+      </div>
+
+<p>Get a list of all available <a href="#t:name/0"><code class="inline">name/0</code></a>s.</p>
+  </section>
+</section>
+<section class="detail" id="remove/2">
+
+  <div class="detail-header">
+    <a href="#remove/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">remove(base, to_remove)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>remove(base :: <a href="#t:resolvable/0">resolvable</a>(), to_remove :: <a href="#t:resolvable/0">resolvable</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Remove all set bits of <code class="inline">to_remove</code> from <code class="inline">base</code>.</p>
+  </section>
+</section>
+<section class="detail" id="resolve/1">
+
+  <div class="detail-header">
+    <a href="#resolve/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">resolve(resolvable)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>resolve(<a href="#t:resolvable/0">resolvable</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Resolve a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> into a bitfield.</p>
+  </section>
+</section>
+<section class="detail" id="to_list/1">
+
+  <div class="detail-header">
+    <a href="#to_list/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">to_list(resolvable)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>to_list(<a href="#t:resolvable/0">resolvable</a>()) :: [<a href="#t:name/0">name</a>()]</pre>
+
+      </div>
+
+<p>Serialize a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> into a list of set bit flag names.</p>
+  </section>
+</section>
+<section class="detail" id="to_map/1">
+
+  <div class="detail-header">
+    <a href="#to_map/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">to_map(resolvable)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/permissions.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>to_map(<a href="#t:resolvable/0">resolvable</a>()) :: %{required(<a href="#t:name/0">name</a>()) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()}</pre>
+
+      </div>
+
+<p>Serialize a <a href="#t:resolvable/0"><code class="inline">resolvable/0</code></a> into a map representing bit flag names to whether they are set.</p>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+  </body>
+</html>

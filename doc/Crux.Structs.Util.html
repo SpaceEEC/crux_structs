@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="crux_structs v0.3.0-dev">
+
+    <title>Crux.Structs.Util — crux_structs v0.3.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
+
+    <script src="dist/sidebar_items-991795341c.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
+
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://github.com/SpaceEEC/crux_structs/" class="sidebar-projectName">
+crux_structs
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.3.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Crux.Structs.Util <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
+
+          <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/util.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>  Collection of util functions.</p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#atomify/1">atomify(input)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Atomifies all keys in a passed list or map to avoid the mess of mixed string and atom keys the gateway sends.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#map_to_id/1">map_to_id(key \\ :id)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Returns a function converting a passed map to an id, using the specified key as key.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#raw_data_to_map/3">raw_data_to_map(data, target, key \\ :id)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  Converts a list of raw api data to structs keyed under the passed key.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="atomify/1">
+
+  <div class="detail-header">
+    <a href="#atomify/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">atomify(input)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/util.ex#L153" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.1.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>atomify(input :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()</pre>
+
+      </div>
+
+<p>  Atomifies all keys in a passed list or map to avoid the mess of mixed string and atom keys the gateway sends.</p><h2 id="atomify/1-examples" class="section-heading">
+  <a href="#atomify/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="nohighlight makeup elixir"><span class="c1"># A map</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2386902914-1">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="2386902914-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">atomify</span><span class="p" data-group-id="2386902914-2">(</span><span class="p" data-group-id="2386902914-2">)</span><span class="w">
+</span><span class="p" data-group-id="2386902914-3">%{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="2386902914-3">}</span><span class="w">
+
+</span><span class="c1"># A list</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2386902914-4">[</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="2386902914-5">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="2386902914-5">}</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="2386902914-6">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;130175406673231873&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p" data-group-id="2386902914-6">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="2386902914-4">]</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">atomify</span><span class="p" data-group-id="2386902914-7">(</span><span class="p" data-group-id="2386902914-7">)</span><span class="w">
+</span><span class="p" data-group-id="2386902914-8">[</span><span class="w">
+  </span><span class="p" data-group-id="2386902914-9">%{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="2386902914-9">}</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="2386902914-10">%{</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;130175406673231873&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p" data-group-id="2386902914-10">}</span><span class="w">
+</span><span class="p" data-group-id="2386902914-8">]</span><span class="w">
+
+</span><span class="c1"># A nested map</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2386902914-11">%{</span><span class="s">&quot;foo&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="2386902914-12">%{</span><span class="s">&quot;baz&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="2386902914-12">}</span><span class="p" data-group-id="2386902914-11">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">atomify</span><span class="p" data-group-id="2386902914-13">(</span><span class="p" data-group-id="2386902914-13">)</span><span class="w">
+</span><span class="p" data-group-id="2386902914-14">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">bar</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2386902914-15">%{</span><span class="ss">baz</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="2386902914-15">}</span><span class="p" data-group-id="2386902914-14">}</span><span class="w">
+
+</span><span class="c1"># A nested list</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2386902914-16">[</span><span class="p" data-group-id="2386902914-17">[</span><span class="p" data-group-id="2386902914-18">%{</span><span class="s">&quot;foo&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="2386902914-18">}</span><span class="p" data-group-id="2386902914-17">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2386902914-19">%{</span><span class="s">&quot;bar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="2386902914-19">}</span><span class="p" data-group-id="2386902914-16">]</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">atomify</span><span class="p" data-group-id="2386902914-20">(</span><span class="p" data-group-id="2386902914-20">)</span><span class="w">
+</span><span class="p" data-group-id="2386902914-21">[</span><span class="p" data-group-id="2386902914-22">[</span><span class="p" data-group-id="2386902914-23">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="2386902914-23">}</span><span class="p" data-group-id="2386902914-22">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2386902914-24">%{</span><span class="ss">bar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="2386902914-24">}</span><span class="p" data-group-id="2386902914-21">]</span><span class="w">
+
+</span><span class="c1"># A struct</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2386902914-25">%</span><span class="nc" data-group-id="2386902914-25">Crux.Structs.Overwrite</span><span class="p" data-group-id="2386902914-25">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">448394877194076161</span><span class="p">,</span><span class="w"> </span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;role&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">allow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">deny</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="2386902914-25">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">atomify</span><span class="p" data-group-id="2386902914-26">(</span><span class="p" data-group-id="2386902914-26">)</span><span class="w">
+</span><span class="p" data-group-id="2386902914-27">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">448394877194076161</span><span class="p">,</span><span class="w"> </span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;role&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">allow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">deny</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="2386902914-27">}</span><span class="w">
+</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="map_to_id/1">
+
+    <span id="map_to_id/0"></span>
+
+  <div class="detail-header">
+    <a href="#map_to_id/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">map_to_id(key \\ :id)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/util.ex#L105" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.2.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>map_to_id(key :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: (<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() -&gt; <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil)</pre>
+
+      </div>
+
+<p>  Returns a function converting a passed map to an id, using the specified key as key.</p><h2 id="map_to_id/1-examples" class="section-heading">
+  <a href="#map_to_id/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="nohighlight makeup elixir"><span class="c1"># Id is already a number</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">map_to_id</span><span class="p" data-group-id="8171945939-1">(</span><span class="ss">:foo</span><span class="p" data-group-id="8171945939-1">)</span><span class="o">.</span><span class="p" data-group-id="8171945939-2">(</span><span class="p" data-group-id="8171945939-3">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p" data-group-id="8171945939-3">}</span><span class="p" data-group-id="8171945939-2">)</span><span class="w">
+</span><span class="mi">123</span><span class="w">
+
+</span><span class="c1"># Id is a string</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">map_to_id</span><span class="p" data-group-id="8171945939-4">(</span><span class="ss">:foo</span><span class="p" data-group-id="8171945939-4">)</span><span class="o">.</span><span class="p" data-group-id="8171945939-5">(</span><span class="p" data-group-id="8171945939-6">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123&quot;</span><span class="p" data-group-id="8171945939-6">}</span><span class="p" data-group-id="8171945939-5">)</span><span class="w">
+</span><span class="mi">123</span><span class="w">
+
+</span><span class="c1"># No id exists</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">map_to_id</span><span class="p" data-group-id="8171945939-7">(</span><span class="ss">:foo</span><span class="p" data-group-id="8171945939-7">)</span><span class="o">.</span><span class="p" data-group-id="8171945939-8">(</span><span class="p" data-group-id="8171945939-9">%{</span><span class="s">&quot;foo&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;123&quot;</span><span class="p" data-group-id="8171945939-9">}</span><span class="p" data-group-id="8171945939-8">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+
+</span><span class="c1"># Example using `Enum.map/2`</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8171945939-10">[</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="8171945939-11">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="8171945939-11">}</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="8171945939-12">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;130175406673231873&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p" data-group-id="8171945939-12">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="8171945939-10">]</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="8171945939-13">(</span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">map_to_id</span><span class="p" data-group-id="8171945939-14">(</span><span class="s">&quot;id&quot;</span><span class="p" data-group-id="8171945939-14">)</span><span class="p" data-group-id="8171945939-13">)</span><span class="w">
+</span><span class="p" data-group-id="8171945939-15">[</span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w"> </span><span class="mi">130175406673231873</span><span class="p" data-group-id="8171945939-15">]</span><span class="w">
+</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="raw_data_to_map/3">
+
+    <span id="raw_data_to_map/2"></span>
+
+  <div class="detail-header">
+    <a href="#raw_data_to_map/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">raw_data_to_map(data, target, key \\ :id)</h1>
+
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/util.ex#L69" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 0.1.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>raw_data_to_map(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(), target :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), key :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>  Converts a list of raw api data to structs keyed under the passed key.</p><h2 id="raw_data_to_map/3-examples" class="section-heading">
+  <a href="#raw_data_to_map/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4838631030-1">[</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="4838631030-2">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="4838631030-2">}</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="4838631030-3">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;130175406673231873&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p" data-group-id="4838631030-3">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="4838631030-1">]</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">raw_data_to_map</span><span class="p" data-group-id="4838631030-4">(</span><span class="nc">Crux.Structs.User</span><span class="p" data-group-id="4838631030-4">)</span><span class="w">
+</span><span class="p" data-group-id="4838631030-5">%{</span><span class="w">
+  </span><span class="mi">130175406673231873</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="4838631030-6">%</span><span class="nc" data-group-id="4838631030-6">Crux.Structs.User</span><span class="p" data-group-id="4838631030-6">{</span><span class="w">
+    </span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">130175406673231873</span><span class="p">,</span><span class="w">
+    </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+    </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
+  </span><span class="p" data-group-id="4838631030-6">}</span><span class="p">,</span><span class="w">
+  </span><span class="mi">218348062828003328</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="4838631030-7">%</span><span class="nc" data-group-id="4838631030-7">Crux.Structs.User</span><span class="p" data-group-id="4838631030-7">{</span><span class="w">
+    </span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w">
+    </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+    </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
+  </span><span class="p" data-group-id="4838631030-7">}</span><span class="w">
+</span><span class="p" data-group-id="4838631030-5">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4838631030-8">[</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="4838631030-9">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;218348062828003328&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p" data-group-id="4838631030-9">}</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="4838631030-10">%{</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;discriminator&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;130175406673231873&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;avatar&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p" data-group-id="4838631030-10">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="4838631030-8">]</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Util</span><span class="o">.</span><span class="n">raw_data_to_map</span><span class="p" data-group-id="4838631030-11">(</span><span class="nc">Crux.Structs.User</span><span class="p">,</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="4838631030-11">)</span><span class="w">
+</span><span class="p" data-group-id="4838631030-12">%{</span><span class="w">
+  </span><span class="s">&quot;Drahcirius&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="4838631030-13">%</span><span class="nc" data-group-id="4838631030-13">Crux.Structs.User</span><span class="p" data-group-id="4838631030-13">{</span><span class="w">
+    </span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Drahcirius&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1336&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">130175406673231873</span><span class="p">,</span><span class="w">
+    </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;c896aebec82c90f590b08cfebcdc4e3b&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+    </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
+  </span><span class="p" data-group-id="4838631030-13">}</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;space&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="4838631030-14">%</span><span class="nc" data-group-id="4838631030-14">Crux.Structs.User</span><span class="p" data-group-id="4838631030-14">{</span><span class="w">
+    </span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;space&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">discriminator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0001&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p">,</span><span class="w">
+    </span><span class="ss">avatar</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;46a356e237350bf8b8dfde15667dfc4&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">bot</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+    </span><span class="ss">system</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
+  </span><span class="p" data-group-id="4838631030-14">}</span><span class="w">
+</span><span class="p" data-group-id="4838631030-12">}</span><span class="w">
+</span></code></pre>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+  </body>
+</html>
