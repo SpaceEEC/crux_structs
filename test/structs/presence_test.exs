@@ -107,7 +107,8 @@ defmodule Crux.Structs.PresenceTest do
             %{
               "type" => 1,
               "name" => "foo",
-              "application_id" => "474807795183648809"
+              "application_id" => "474807795183648809",
+              "flags" => 2
             }
           ]
         }
@@ -119,7 +120,8 @@ defmodule Crux.Structs.PresenceTest do
                  %{
                    type: 1,
                    name: "foo",
-                   application_id: 474_807_795_183_648_809
+                   application_id: 474_807_795_183_648_809,
+                   flags: 2
                  }
                ],
                status: "online"
