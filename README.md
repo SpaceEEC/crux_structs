@@ -1,4 +1,4 @@
-# Crux.Structs
+# Crux.Structs [![](https://github.com/SpaceEEC/crux_structs/workflows/Tests/badge.svg?event=push&branch=master)](https://github.com/SpaceEEC/crux_structs/actions)
 
 Library providing structures representing objects from the [Discord API](https://discord.com/developers/docs/) and a few utility structs.
 
