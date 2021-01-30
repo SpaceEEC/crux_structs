@@ -48,7 +48,7 @@ defmodule Crux.Structs.Presence do
             match: String.t()
           },
           optional(:instance) => boolean(),
-          optional(:flags) => Presence.ActivityFlags.raw()
+          optional(:flags) => Presence.ActivityFlags.t()
         }
 
   @typedoc since: "0.1.0"
@@ -107,6 +107,13 @@ defmodule Crux.Structs.Presence do
        when not Snowflake.is_snowflake(application_id) do
     activity
     |> Map.update!(:application_id, &Snowflake.to_snowflake/1)
+    |> create_activity()
+  end
+
+  defp create_activity(%{flags: flags} = activity)
+      when not is_integer(flags) do
+    activity
+    |> Map.update!(:flags, &Presence.ActivityFlags.resolve/1)
     |> create_activity()
   end
 

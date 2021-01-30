@@ -30,7 +30,7 @@ defmodule Crux.Structs.Role do
           color: integer(),
           hoist: boolean(),
           position: integer(),
-          permissions: Permissions.raw(),
+          permissions: Permissions.t(),
           managed: boolean(),
           mentionable: boolean(),
           guild_id: Snowflake.t(),
