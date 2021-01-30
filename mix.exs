@@ -55,6 +55,7 @@ defmodule Crux.Structs.MixProject do
     [
       groups_for_modules: [
         Discord: [
+          Crux.Structs.Application,
           Crux.Structs.Attachment,
           Crux.Structs.AuditLog,
           Crux.Structs.AuditLogChange,
@@ -72,6 +73,7 @@ defmodule Crux.Structs.MixProject do
           Crux.Structs.Presence,
           Crux.Structs.Reaction,
           Crux.Structs.Role,
+          Crux.Structs.Sticker,
           Crux.Structs.Template,
           Crux.Structs.User,
           Crux.Structs.VoiceRegion,
