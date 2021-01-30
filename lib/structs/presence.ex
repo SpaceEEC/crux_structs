@@ -111,7 +111,7 @@ defmodule Crux.Structs.Presence do
   end
 
   defp create_activity(%{flags: flags} = activity)
-      when not is_integer(flags) do
+       when not is_integer(flags) do
     activity
     |> Map.update!(:flags, &Presence.ActivityFlags.resolve/1)
     |> create_activity()
