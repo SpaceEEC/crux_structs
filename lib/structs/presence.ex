@@ -10,7 +10,8 @@ defmodule Crux.Structs.Presence do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Emoji, Presence, Snowflake, User, Util}
+  alias Crux.Structs.{Emoji, Snowflake, User, Util}
+  alias Crux.Structs.Presence.ActivityFlags
   require Snowflake
 
   defstruct [
@@ -48,7 +49,7 @@ defmodule Crux.Structs.Presence do
             match: String.t()
           },
           optional(:instance) => boolean(),
-          optional(:flags) => Presence.ActivityFlags.t()
+          optional(:flags) => ActivityFlags.t()
         }
 
   @typedoc since: "0.1.0"
@@ -113,7 +114,7 @@ defmodule Crux.Structs.Presence do
   defp create_activity(%{flags: flags} = activity)
        when not is_integer(flags) do
     activity
-    |> Map.update!(:flags, &Presence.ActivityFlags.resolve/1)
+    |> Map.update!(:flags, &ActivityFlags.resolve/1)
     |> create_activity()
   end
 
