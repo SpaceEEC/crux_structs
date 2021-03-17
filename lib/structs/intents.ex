@@ -1,8 +1,6 @@
 defmodule Crux.Structs.Intents do
   @moduledoc """
-  Custom non discord api struct to help with working with intents.
-
-  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/topics/gateway#gateway-intents).
+  Custom non discord api struct to help with working with [gateway intents](https://discord.com/developers/docs/topics/gateway#gateway-intents).
   """
   @moduledoc since: "0.3.0"
 

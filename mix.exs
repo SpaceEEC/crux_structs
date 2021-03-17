@@ -81,6 +81,7 @@ defmodule Crux.Structs.MixProject do
         ],
         BitFields: [
           Crux.Structs.Guild.SystemChannelFlags,
+          Crux.Structs.Intents,
           Crux.Structs.Message.Flags,
           Crux.Structs.Permissions,
           Crux.Structs.Presence.ActivityFlags,
