@@ -8,7 +8,7 @@
     <meta name="project" content="crux_structs v0.3.0-dev">
     <title>Crux.Structs.Guild — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-    <script src="dist/sidebar_items-d6c2ccf73a.js"></script>
+    <script src="dist/sidebar_items-6b8f72e216.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
   </head>
@@ -269,33 +269,33 @@ Functions          </h1>
           <pre>resolve_id(<a href="#t:id_resolvable/0">id_resolvable</a>()) :: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil</pre>
       </div>
 
-<p>  Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Guild.t/0</code></a>.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#resolve_id/2"><code class="inline">Crux.Structs.resolve_id/2</code></a>.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5758182807-1">%</span><span class="nc" data-group-id="5758182807-1">Crux.Structs.Guild</span><span class="p" data-group-id="5758182807-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">516569101267894284</span><span class="p" data-group-id="5758182807-1">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5758182807-2">(</span><span class="p" data-group-id="5758182807-2">)</span><span class="w">
+<p>  Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Guild.t/0</code></a>.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#resolve_id/2"><code class="inline">Crux.Structs.resolve_id/2</code></a>.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5598002253-1">%</span><span class="nc" data-group-id="5598002253-1">Crux.Structs.Guild</span><span class="p" data-group-id="5598002253-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">516569101267894284</span><span class="p" data-group-id="5598002253-1">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5598002253-2">(</span><span class="p" data-group-id="5598002253-2">)</span><span class="w">
   </span><span class="mi">516569101267894284</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5758182807-3">%</span><span class="nc" data-group-id="5758182807-3">Crux.Structs.Channel</span><span class="p" data-group-id="5758182807-3">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="mi">516569101267894284</span><span class="p" data-group-id="5758182807-3">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5758182807-4">(</span><span class="p" data-group-id="5758182807-4">)</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5598002253-3">%</span><span class="nc" data-group-id="5598002253-3">Crux.Structs.Channel</span><span class="p" data-group-id="5598002253-3">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="mi">516569101267894284</span><span class="p" data-group-id="5598002253-3">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5598002253-4">(</span><span class="p" data-group-id="5598002253-4">)</span><span class="w">
   </span><span class="mi">516569101267894284</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5758182807-5">%</span><span class="nc" data-group-id="5758182807-5">Crux.Structs.Message</span><span class="p" data-group-id="5758182807-5">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="mi">516569101267894284</span><span class="p" data-group-id="5758182807-5">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5758182807-6">(</span><span class="p" data-group-id="5758182807-6">)</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5598002253-5">%</span><span class="nc" data-group-id="5598002253-5">Crux.Structs.Message</span><span class="p" data-group-id="5598002253-5">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="mi">516569101267894284</span><span class="p" data-group-id="5598002253-5">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5598002253-6">(</span><span class="p" data-group-id="5598002253-6">)</span><span class="w">
   </span><span class="mi">516569101267894284</span><span class="w">
 
   </span><span class="gp unselectable">iex&gt; </span><span class="mi">516569101267894284</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5758182807-7">(</span><span class="p" data-group-id="5758182807-7">)</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5598002253-7">(</span><span class="p" data-group-id="5598002253-7">)</span><span class="w">
   </span><span class="mi">516569101267894284</span><span class="w">
 
   </span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;516569101267894284&quot;</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5758182807-8">(</span><span class="p" data-group-id="5758182807-8">)</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5598002253-8">(</span><span class="p" data-group-id="5598002253-8">)</span><span class="w">
   </span><span class="mi">516569101267894284</span><span class="w">
 
   </span><span class="c1"># DMs</span><span class="w">
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5758182807-9">%</span><span class="nc" data-group-id="5758182807-9">Crux.Structs.Channel</span><span class="p" data-group-id="5758182807-9">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="5758182807-9">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5758182807-10">(</span><span class="p" data-group-id="5758182807-10">)</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5598002253-9">%</span><span class="nc" data-group-id="5598002253-9">Crux.Structs.Channel</span><span class="p" data-group-id="5598002253-9">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="5598002253-9">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5598002253-10">(</span><span class="p" data-group-id="5598002253-10">)</span><span class="w">
   </span><span class="no">nil</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5758182807-11">%</span><span class="nc" data-group-id="5758182807-11">Crux.Structs.Message</span><span class="p" data-group-id="5758182807-11">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="5758182807-11">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5758182807-12">(</span><span class="p" data-group-id="5758182807-12">)</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5598002253-11">%</span><span class="nc" data-group-id="5598002253-11">Crux.Structs.Message</span><span class="p" data-group-id="5598002253-11">{</span><span class="ss">guild_id</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="5598002253-11">}</span><span class="w">
+  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Guild</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5598002253-12">(</span><span class="p" data-group-id="5598002253-12">)</span><span class="w">
   </span><span class="no">nil</span><span class="w">
 </span></code></pre>  </section>
 </section>

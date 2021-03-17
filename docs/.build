@@ -12,6 +12,7 @@ Crux.Structs.Guild.SystemChannelFlags.html
 Crux.Structs.Guild.html
 Crux.Structs.GuildPreview.html
 Crux.Structs.Integration.html
+Crux.Structs.Intents.html
 Crux.Structs.Invite.html
 Crux.Structs.Member.html
 Crux.Structs.Message.Flags.html
@@ -40,7 +41,7 @@ dist/html/fonts/icomoon.eot
 dist/html/fonts/icomoon.svg
 dist/html/fonts/icomoon.ttf
 dist/html/fonts/icomoon.woff
-dist/search_items-e7ecdee7c6.js
-dist/sidebar_items-d6c2ccf73a.js
+dist/search_items-a36ee53e05.js
+dist/sidebar_items-6b8f72e216.js
 index.html
 search.html

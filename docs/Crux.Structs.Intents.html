@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.23.0">
     <meta name="project" content="crux_structs v0.3.0-dev">
-    <title>Crux.Structs.User.Flags — crux_structs v0.3.0-dev</title>
+    <title>Crux.Structs.Intents — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
     <script src="dist/sidebar_items-6b8f72e216.js"></script>
       <script src="docs_config.js"></script>
@@ -63,8 +63,8 @@ crux_structs      </a>
     <div id="content" class="content-inner">
 
       <h1>
-        Crux.Structs.User.Flags <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
-          <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L1" title="View Source" class="view-source" rel="help">
+        Crux.Structs.Intents <small class="app-vsn">(crux_structs v0.3.0-dev)</small>
+          <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -72,7 +72,7 @@ crux_structs      </a>
 
 
         <section id="moduledoc">
-<p>Custom non discord API struct helping with the usage of <a href="https://discord.com/developers/docs/resources/user#user-object-user-flags">user flags</a>.</p><p>Discord is only providing a not documented subset of the available flags to bots.</p>        </section>
+<p>Custom non discord api struct to help with working with intents.</p><p>For more information see the <a href="https://discord.com/developers/docs/topics/gateway#gateway-intents">Discord Developer Documentation</a>.</p>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -90,7 +90,7 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#t:name/0">name()</a>
   </div>
-    <div class="summary-synopsis"><p>Union type of all valid user flags.</p></div>
+    <div class="summary-synopsis"><p>Union type of all valid intent name atoms.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -192,33 +192,35 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">name()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L38" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L35" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-      <span class="note">(since 0.2.3)</span>
+      <span class="note">(since 0.3.0)</span>
   </div>
 
   <section class="docstring">
       <h2>Specs</h2>
       <div class="specs">
           <pre>name() ::
-  :discord_employee
-  | :partnered_server_owner
-  | :hypesquad_events
-  | :bug_hunter_level_1
-  | :house_bravery
-  | :house_brilliance
-  | :house_balance
-  | :early_supporter
-  | :team_user
-  | :system
-  | :bug_hunter_level_2
-  | :verified_bot
-  | :verified_bot_developer</pre>
+  :guilds
+  | :guild_members
+  | :guild_bans
+  | :guild_emojis
+  | :guild_integrations
+  | :guild_webhooks
+  | :guild_invites
+  | :guild_voice_states
+  | :guild_presences
+  | :guild_messages
+  | :guild_message_reactions
+  | :guild_message_typing
+  | :direct_messages
+  | :direct_message_reactions
+  | :direct_message_typing</pre>
       </div>
 
-<p>Union type of all valid user flags.</p>  </section>
+<p>Union type of all valid intent name atoms.</p>  </section>
 </section>
 <section class="detail" id="t:raw/0">
   <div class="detail-header">
@@ -227,7 +229,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">raw()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -248,7 +250,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">resolvable()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -269,7 +271,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -300,7 +302,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">add(base, to_add)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -321,7 +323,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">all()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -342,7 +344,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">flags()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -363,7 +365,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">has(have, want)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -384,7 +386,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">missing(have, want)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -405,7 +407,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">names()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -426,7 +428,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">remove(base, to_remove)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -447,7 +449,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">resolve(resolvable)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -468,7 +470,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">to_list(resolvable)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -489,7 +491,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">to_map(resolvable)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/user/flags.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/intents.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
