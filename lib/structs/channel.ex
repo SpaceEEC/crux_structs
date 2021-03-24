@@ -4,26 +4,26 @@ defmodule Crux.Structs.Channel do
 
   List of where every property can be present:
 
-  | Property              | Text (0) | DM (1)               | Voice (2) | Group (3) | Category (4) | News (5) |
-  | :-------------------: | :------: | :------------------: | :-------: | :-------: | :----------: | :------: |
-  | application_id        | no       | no                   | no        | yes       | no           | no       |
-  | bitrate               | no       | no                   | yes       | no        | no           | no       |
-  | guild_id              | yes      | no                   | yes       | no        | yes          | yes      |
-  | icon                  | no       | no                   | no        | yes       | no           | no       |
-  | id                    | yes      | yes                  | yes       | yes       | yes          | yes      |
-  | last_message_id       | yes      | yes                  | no        | yes       | no           | yes      |
-  | last_pin_timestamp    | yes      | yes                  | no        | yes       | no           | yes      |
-  | name                  | yes      | no                   | yes       | yes       | yes          | yes      |
-  | nsfw                  | yes      | no                   | no        | no        | no           | yes      |
-  | owner_id              | no       | no                   | no        | yes       | no           | no       |
-  | parent_id             | yes      | no                   | yes       | no        | no           | yes      |
-  | permission_overwrites | yes      | no                   | yes       | no        | yes          | yes      |
-  | position              | yes      | no                   | yes       | no        | yes          | yes      |
-  | rate_limit_per_user   | yes      | no                   | no       | no         | no           | no       |
-  | recipients            | no       | yes<br>(One Element) | no        | yes       | no           | no       |
-  | topic                 | yes      | no                   | yes       | no        | yes          | yes      |
-  | type                  | `0`      | `1`                  | `2`       | `3`       | `4`          | `5`      |
-  | user_limit            | no       | no                   | yes       | no        | no           | no       |
+  | Property              | Text (0) | DM (1)            | Voice (2) | Group (3) | Category (4) | News (5) |
+  | :-------------------: | :------: | :---------------: | :-------: | :-------: | :----------: | :------: |
+  | application_id        | no       | no                | no        | yes       | no           | no       |
+  | bitrate               | no       | no                | yes       | no        | no           | no       |
+  | guild_id              | yes      | no                | yes       | no        | yes          | yes      |
+  | icon                  | no       | no                | no        | yes       | no           | no       |
+  | id                    | yes      | yes               | yes       | yes       | yes          | yes      |
+  | last_message_id       | yes      | yes               | no        | yes       | no           | yes      |
+  | last_pin_timestamp    | yes      | yes               | no        | yes       | no           | yes      |
+  | name                  | yes      | no                | yes       | yes       | yes          | yes      |
+  | nsfw                  | yes      | no                | no        | no        | no           | yes      |
+  | owner_id              | no       | no                | no        | yes       | no           | no       |
+  | parent_id             | yes      | no                | yes       | no        | no           | yes      |
+  | permission_overwrites | yes      | no                | yes       | no        | yes          | yes      |
+  | position              | yes      | no                | yes       | no        | yes          | yes      |
+  | rate_limit_per_user   | yes      | no                | no       | no         | no           | no       |
+  | recipients            | no       | yes (One Element) | no        | yes       | no           | no       |
+  | topic                 | yes      | no                | yes       | no        | yes          | yes      |
+  | type                  | `0`      | `1`               | `2`       | `3`       | `4`          | `5`      |
+  | user_limit            | no       | no                | yes       | no        | no           | no       |
 
   Differences opposed to the Discord API Object:
     - `:recipients` is a MapSet of user ids
@@ -79,15 +79,17 @@ defmodule Crux.Structs.Channel do
         }
 
   @typedoc """
-  | Type           | ID  | Description                                                                                  |
-  | :------------: | :-: | :------------------------------------------------------------------------------------------: |
-  | GUILD_TEXT     |  0  | A text channel within a guild.                                                               |
-  | DM             |  1  | A direct text channel between two users.                                                     |
-  | GUILD_VOICE    |  2  | A voice channel withing a guild.                                                             |
-  | GROUP_DM       |  3  | A direct channel between multiple users.<br>Bots do not have access to those.                |
-  | GUILD_CATEGORY |  4  | An organizational category.                                                                  |
-  | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.                                   |
-  | GUILD_STORE    |  6  | A channel in which game developers can sell their game.<br>Bots can not interact with those. |
+  The type of a channel.
+
+  | Type           | ID  | Description                                                                               |
+  | :------------: | :-: | :---------------------------------------------------------------------------------------: |
+  | GUILD_TEXT     |  0  | A text channel within a guild.                                                            |
+  | DM             |  1  | A direct text channel between two users.                                                  |
+  | GUILD_VOICE    |  2  | A voice channel withing a guild.                                                          |
+  | GROUP_DM       |  3  | A direct channel between multiple users. Bots do not have access to those.                |
+  | GUILD_CATEGORY |  4  | An organizational category.                                                               |
+  | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.                                |
+  | GUILD_STORE    |  6  | A channel in which game developers can sell their game. Bots can not interact with those. |
 
   For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
   """
