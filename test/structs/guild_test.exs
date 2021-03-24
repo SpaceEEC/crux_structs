@@ -394,6 +394,52 @@ defmodule Crux.Structs.GuildTest do
     end
   end
 
+  test "welcome_screen" do
+    guild =
+      %{
+        "id" => "243175181885898762",
+        "welcome_screen" => %{
+          "description" => "hello there",
+          "welcome_channels" => [
+            %{
+              "channel_id" => "516569101737525249",
+              "description" => "channel 1",
+              "emoji_id" => "264701195573133315",
+              "emoji_name" => nil
+            },
+            %{
+              "channel_id" => "559412396586696706",
+              "description" => "bots",
+              "emoji_id" => nil,
+              "emoji_name" => "🤖"
+            }
+          ]
+        }
+      }
+      |> Structs.create(Guild)
+
+    assert %Guild{
+             id: 243_175_181_885_898_762,
+             welcome_screen: %{
+               description: "hello there",
+               welcome_channels: %{
+                 516_569_101_737_525_249 => %{
+                   channel_id: 516_569_101_737_525_249,
+                   description: "channel 1",
+                   emoji_id: 264_701_195_573_133_315,
+                   emoji_name: nil
+                 },
+                 559_412_396_586_696_706 => %{
+                   channel_id: 559_412_396_586_696_706,
+                   description: "bots",
+                   emoji_id: nil,
+                   emoji_name: "🤖"
+                 }
+               }
+             }
+           } = guild
+  end
+
   test "to_string returns name" do
     stringified =
       %Guild{name: "a cool name"}

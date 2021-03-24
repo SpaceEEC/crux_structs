@@ -57,7 +57,8 @@ defmodule Crux.Structs.Guild do
     :public_updates_channel_id,
     :max_video_channel_users,
     :approximate_member_count,
-    :approximate_presence_count
+    :approximate_presence_count,
+    :welcome_screen
   ]
 
   @typedoc since: "0.1.0"
@@ -103,7 +104,20 @@ defmodule Crux.Structs.Guild do
           public_updates_channel_id: Snowflake.t() | nil,
           max_video_channel_users: non_neg_integer(),
           approximate_member_count: pos_integer(),
-          approximate_presence_count: pos_integer()
+          approximate_presence_count: pos_integer(),
+          welcome_screen: welcome_screen() | nil
+        }
+
+  @type welcome_screen :: %{
+          description: String.t(),
+          welcome_channels: %{
+            required(Snowflake.t()) => %{
+              channel_id: Snowflake.t(),
+              description: String.t(),
+              emoji_id: Snowflake.t() | nil,
+              emoji_name: String.t() | nil
+            }
+          }
         }
 
   @typedoc """
@@ -191,6 +205,7 @@ defmodule Crux.Structs.Guild do
       # :voice_states
       # :members
       |> Map.update(:channels, nil, &MapSet.new(&1, Util.map_to_id()))
+      |> Map.update(:welcome_screen, nil, &create_welcome_screen/1)
 
     # :presences
 
@@ -234,6 +249,24 @@ defmodule Crux.Structs.Guild do
       )
 
     struct(__MODULE__, guild)
+  end
+
+  defp create_welcome_screen(nil), do: nil
+
+  defp create_welcome_screen(welcome_screen) do
+    Map.update!(welcome_screen, :welcome_channels, fn welcome_channels ->
+      Map.new(welcome_channels, fn welcome_channel ->
+        welcome_channel =
+          welcome_channel
+          |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
+          |> Map.update!(:emoji_id, fn
+            nil -> nil
+            id -> Snowflake.to_snowflake(id)
+          end)
+
+        {welcome_channel.channel_id, welcome_channel}
+      end)
+    end)
   end
 
   defimpl String.Chars, for: Crux.Structs.Guild do
