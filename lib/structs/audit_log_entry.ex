@@ -120,8 +120,25 @@ defmodule Crux.Structs.AuditLogEntry do
           changes: %{String.t() => AuditLogChange.t()},
           user_id: Snowflake.t(),
           action_type: non_neg_integer(),
-          options: %{} | nil,
+          options: options() | nil,
           reason: String.t() | nil
+        }
+
+  @typedoc """
+    Additional info for certain action types.
+
+    For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info).
+  """
+  @typedoc since: "0.3.0"
+  @type options :: %{
+          optional(:delete_member_days) => non_neg_integer(),
+          optional(:members_removed) => non_neg_integer(),
+          optional(:channel_id) => Snowflake.t(),
+          optional(:message_id) => Snowflake.t(),
+          optional(:count) => non_neg_integer(),
+          optional(:id) => Snowflake.t(),
+          optional(:type) => non_neg_integer(),
+          optional(:role_name) => String.t()
         }
 
   @doc """
