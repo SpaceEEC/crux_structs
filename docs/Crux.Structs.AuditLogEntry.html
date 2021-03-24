@@ -8,7 +8,7 @@
     <meta name="project" content="crux_structs v0.3.0-dev">
     <title>Crux.Structs.AuditLogEntry — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-    <script src="dist/sidebar_items-cdc122db0a.js"></script>
+    <script src="dist/sidebar_items-08dcea263a.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
   </head>
@@ -91,6 +91,12 @@ crux_structs      </a>
     <a href="#t:event_name/0">event_name()</a>
   </div>
     <div class="summary-synopsis"><p>  Union type of audit log event name atoms.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:options/0">options()</a>
+  </div>
+    <div class="summary-synopsis"><p>  Additional info for certain action types.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -188,6 +194,37 @@ Types          </h1>
 
 <p>  Union type of audit log event name atoms.</p>  </section>
 </section>
+<section class="detail" id="t:options/0">
+  <div class="detail-header">
+    <a href="#t:options/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">options()</h1>
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L133" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <span class="note">(since 0.3.0)</span>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>options() :: %{
+  optional(:delete_member_days) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  optional(:members_removed) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  optional(:channel_id) =&gt; <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+  optional(:message_id) =&gt; <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+  optional(:count) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  optional(:id) =&gt; <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+  optional(:type) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  optional(:role_name) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+}</pre>
+      </div>
+
+<p>  Additional info for certain action types.</p><p>  For more information see the <a href="https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info">Discord Developer Documentation</a>.</p>  </section>
+</section>
 <section class="detail" id="t:t/0">
   <div class="detail-header">
     <a href="#t:t/0" class="detail-link" title="Link to this type">
@@ -209,7 +246,7 @@ Types          </h1>
   action_type: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
   changes: %{required(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) =&gt; <a href="Crux.Structs.AuditLogChange.html#t:t/0">Crux.Structs.AuditLogChange.t</a>()},
   id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
-  options: %{} | nil,
+  options: <a href="#t:options/0">options</a>() | nil,
   reason: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | nil,
   target_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
   user_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()
@@ -235,7 +272,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L134" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L151" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
