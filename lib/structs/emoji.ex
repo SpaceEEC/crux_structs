@@ -20,7 +20,7 @@ defmodule Crux.Structs.Emoji do
     :require_colons,
     :managed,
     :animated,
-    :available,
+    :available
   ]
 
   @typedoc since: "0.1.0"
@@ -32,7 +32,7 @@ defmodule Crux.Structs.Emoji do
           require_colons: boolean() | nil,
           managed: boolean() | nil,
           animated: boolean() | nil,
-          available: boolean() | nil,
+          available: boolean() | nil
         }
 
   @typedoc """

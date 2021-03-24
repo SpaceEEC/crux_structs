@@ -55,17 +55,18 @@ defmodule Crux.Structs.GuildPreviewTest do
                  available: true
                }
              },
-             features: MapSet.new([
-               "DISCOVERABLE",
-               "VANITY_URL",
-               "ANIMATED_ICON",
-               "INVITE_SPLASH",
-               "NEWS",
-               "PUBLIC",
-               "BANNER",
-               "VERIFIED",
-               "MORE_EMOJI"
-             ]),
+             features:
+               MapSet.new([
+                 "DISCOVERABLE",
+                 "VANITY_URL",
+                 "ANIMATED_ICON",
+                 "INVITE_SPLASH",
+                 "NEWS",
+                 "PUBLIC",
+                 "BANNER",
+                 "VERIFIED",
+                 "MORE_EMOJI"
+               ]),
              approximate_member_count: 60814,
              approximate_presence_count: 20034,
              description: "The official place to report Discord Bugs!"
