@@ -254,11 +254,15 @@ defmodule Crux.Structs.Guild do
   defp create_welcome_screen(nil), do: nil
 
   defp create_welcome_screen(welcome_screen) do
-    Map.update!(welcome_screen, :welcome_channels, fn welcome_channels ->
-      Map.new(welcome_channels, fn welcome_channel ->
+    Map.update!(
+      welcome_screen,
+      :welcome_channels,
+      &Map.new(&1, fn welcome_channel ->
         welcome_channel =
           welcome_channel
-          |> Map.update!(:channel_id, &Snowflake.to_snowflake/1)
+          |> Map.update!(:channel_id, fn
+            channel_id -> Snowflake.to_snowflake(channel_id)
+          end)
           |> Map.update!(:emoji_id, fn
             nil -> nil
             id -> Snowflake.to_snowflake(id)
@@ -266,7 +270,7 @@ defmodule Crux.Structs.Guild do
 
         {welcome_channel.channel_id, welcome_channel}
       end)
-    end)
+    )
   end
 
   defimpl String.Chars, for: Crux.Structs.Guild do
