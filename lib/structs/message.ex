@@ -50,7 +50,8 @@ defmodule Crux.Structs.Message do
     :message_reference,
     :flags,
     :stickers,
-    :referenced_message
+    :referenced_message,
+    :interaction
   ]
 
   @typedoc since: "0.2.1"
@@ -78,6 +79,19 @@ defmodule Crux.Structs.Message do
           channel_id: Snowflake.t()
         }
 
+  @typedoc """
+  Additional information for interaction response messages.
+
+  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/interactions/slash-commands#messageinteraction).
+  """
+  @typedoc since: "0.3.0"
+  @type message_interaction :: %{
+          id: Snowflake.t(),
+          type: 1..2,
+          name: String.t(),
+          user: User.t()
+        }
+
   @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
@@ -102,8 +116,9 @@ defmodule Crux.Structs.Message do
           type: integer(),
           activity: message_activity() | nil,
           application: Application.t() | nil,
-          message_reference: message_reference(),
-          flags: Message.Flags.t()
+          message_reference: message_reference() | nil,
+          flags: Message.Flags.t(),
+          interaction: message_interaction() | nil
         }
 
   @typedoc """
@@ -155,6 +170,7 @@ defmodule Crux.Structs.Message do
         nil -> nil
         message -> create(message)
       end)
+      |> Map.update(:interaction, nil, &create_interaction/1)
 
     message = Map.update(data, :member, nil, create_member(data))
 
@@ -186,6 +202,14 @@ defmodule Crux.Structs.Message do
       |> Map.put(:user, %{id: data.author.id})
       |> Structs.create(Member)
     end
+  end
+
+  defp create_interaction(nil), do: nil
+
+  defp create_interaction(interaction) do
+    interaction
+    |> Map.update!(:id, &Snowflake.to_snowflake/1)
+    |> Map.update!(:user, &Structs.create(&1, User))
   end
 
   defimpl String.Chars, for: Crux.Structs.Message do

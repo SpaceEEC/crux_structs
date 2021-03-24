@@ -81,7 +81,18 @@ defmodule Crux.Structs.MessageTest do
             "emoji" => %{"id" => "543171949510000650", "name" => "cirBar"},
             "me" => false
           }
-        ]
+        ],
+        "interaction" => %{
+          "id" => "824254104913575946",
+          "type" => 2,
+          "name" => "ping",
+          "user" => %{
+            "avatar" => "646a356e237350bf8b8dfde15667dfc4",
+            "discriminator" => "0001",
+            "id" => "218348062828003328",
+            "username" => "space"
+          }
+        }
       }
       |> Structs.create(Message)
 
@@ -156,6 +167,19 @@ defmodule Crux.Structs.MessageTest do
                    roles: MapSet.new()
                  },
                  me: false
+               }
+             },
+             interaction: %{
+               id: 824_254_104_913_575_946,
+               type: 2,
+               name: "ping",
+               user: %User{
+                 bot: false,
+                 system: false,
+                 username: "space",
+                 discriminator: "0001",
+                 avatar: "646a356e237350bf8b8dfde15667dfc4",
+                 id: 218_348_062_828_003_328
                }
              }
            }
