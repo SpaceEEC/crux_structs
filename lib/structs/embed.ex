@@ -58,6 +58,7 @@ defmodule Crux.Structs.Embed do
           video:
             %{
               optional(:url) => String.t(),
+              optional(:proxy_url) => String.t(),
               optional(:height) => integer(),
               optional(:width) => integer()
             }
