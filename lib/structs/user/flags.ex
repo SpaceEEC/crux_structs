@@ -1,6 +1,6 @@
 defmodule Crux.Structs.User.Flags do
   @moduledoc """
-  Custom non discord API struct helping with the usage of [user flags](https://discord.com/developers/docs/resources/user#user-object-user-flags).
+  Custom non discord API module helping with the usage of [user flags](https://discord.com/developers/docs/resources/user#user-object-user-flags).
 
   Discord is only providing a not documented subset of the available flags to bots.
   """

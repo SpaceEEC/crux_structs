@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Permissions do
   @moduledoc """
-  Custom non discord api struct to help with working with [permissions](https://discord.com/developers/docs/topics/permissions).
+  Custom non discord api module to help with working with [permissions](https://discord.com/developers/docs/topics/permissions).
   """
   @moduledoc since: "0.1.3"
 

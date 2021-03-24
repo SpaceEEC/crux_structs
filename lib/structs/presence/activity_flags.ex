@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Presence.ActivityFlags do
   @moduledoc """
-  Custom non discord API struct helping with the usage of presence [activity flags](https://discord.com/developers/docs/topics/gateway#activity-object-activity-flags).
+  Custom non discord API module helping with the usage of presence [activity flags](https://discord.com/developers/docs/topics/gateway#activity-object-activity-flags).
   """
   @moduledoc since: "0.2.3"
 

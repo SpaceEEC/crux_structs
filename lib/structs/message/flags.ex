@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Message.Flags do
   @moduledoc """
-  Custom non discord API struct helping with the usage of [message flags](https://discord.com/developers/docs/resources/channel#message-object-message-flags).
+  Custom non discord API module helping with the usage of [message flags](https://discord.com/developers/docs/resources/channel#message-object-message-flags).
 
   Currently it's only possible to edit the `suppress_embeds` flag.
   """

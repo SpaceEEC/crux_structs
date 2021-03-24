@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Guild.SystemChannelFlags do
   @moduledoc """
-  Custom non discord API struct helping with the usage of [system channel flags](https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags).
+  Custom non discord API module helping with the usage of [system channel flags](https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags).
 
   Discord is using flags in an "inverted" way here to allow all new types to be enabled by default.
   Therefore all set flags are actually disabled (as their names suggest).

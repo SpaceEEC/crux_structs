@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Snowflake do
   @moduledoc """
-  Custom non discord api struct to help with working with Discord's snowflakes.
+  Custom non discord api module to help with working with Discord's snowflakes.
 
   For more information see [Discord Docs](https://discord.com/developers/docs/reference#snowflakes).
   """
