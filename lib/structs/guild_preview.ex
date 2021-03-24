@@ -29,7 +29,7 @@ defmodule Crux.Structs.GuildPreview do
           splash: String.t() | nil,
           discovery_splash: String.t() | nil,
           emojis: %{required(Snowflake.t()) => Emoji.t()},
-          features: [String.t()],
+          features: MapSet.t(String.t()),
           approximate_member_count: non_neg_integer(),
           approximate_presence_count: non_neg_integer(),
           description: String.t()
@@ -48,6 +48,7 @@ defmodule Crux.Structs.GuildPreview do
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update(:emojis, %{}, &Util.raw_data_to_map(&1, Emoji))
+      |> Map.update(:features, MapSet.new(), &MapSet.new/1)
 
     struct(__MODULE__, data)
   end
