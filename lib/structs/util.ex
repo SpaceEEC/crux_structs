@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Util do
   @moduledoc """
-    Collection of util functions.
+  Collection of util functions.
   """
   @moduledoc since: "0.1.0"
 
@@ -8,11 +8,11 @@ defmodule Crux.Structs.Util do
   alias Crux.Structs.Snowflake
 
   @doc ~S"""
-    Converts a list of raw api data to structs keyed under the passed key.
+  Converts a list of raw api data to structs keyed under the passed key.
 
   ## Examples
 
-    ```elixir
+  ```elixir
   iex> [
   ...> %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"},
   ...> %{"username" => "Drahcirius", "discriminator" => "1336", "id" => "130175406673231873", "avatar" => "c896aebec82c90f590b08cfebcdc4e3b"}
@@ -61,8 +61,7 @@ defmodule Crux.Structs.Util do
     }
   }
 
-    ```
-
+  ```
   """
   @doc since: "0.1.0"
   @spec raw_data_to_map(data :: list, target :: module(), key :: atom()) :: map()
@@ -73,11 +72,11 @@ defmodule Crux.Structs.Util do
   end
 
   @doc ~S"""
-    Returns a function converting a passed map to an id, using the specified key as key.
+  Returns a function converting a passed map to an id, using the specified key as key.
 
   ## Examples
 
-    ```elixir
+  ```elixir
   # Id is already a number
   iex> Crux.Structs.Util.map_to_id(:foo).(%{foo: 123})
   123
@@ -98,7 +97,7 @@ defmodule Crux.Structs.Util do
   ...> |> Enum.map(Crux.Structs.Util.map_to_id("id"))
   [218348062828003328, 130175406673231873]
 
-    ```
+  ```
   """
   @doc since: "0.2.0"
   @spec map_to_id(key :: term()) :: (map() -> Snowflake.t() | nil)
@@ -110,11 +109,11 @@ defmodule Crux.Structs.Util do
   end
 
   @doc ~S"""
-    Atomifies all keys in a passed list or map to avoid the mess of mixed string and atom keys the gateway sends.
+  Atomifies all keys in a passed list or map to avoid the mess of mixed string and atom keys the gateway sends.
 
   ## Examples
 
-    ```elixir
+  ```elixir
   # A map
   iex> %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"}
   ...> |> Crux.Structs.Util.atomify()
@@ -146,7 +145,7 @@ defmodule Crux.Structs.Util do
   ...> |> Crux.Structs.Util.atomify()
   %{id: 448394877194076161, type: "role", allow: 0, deny: 0}
 
-    ```
+  ```
   """
   @doc since: "0.1.0"
   @spec atomify(input :: map() | list()) :: map() | list()

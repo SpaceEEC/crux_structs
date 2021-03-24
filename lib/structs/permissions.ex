@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Permissions do
   @moduledoc """
-    Custom non discord api struct to help with working with [permissions](https://discord.com/developers/docs/topics/permissions).
+  Custom non discord api struct to help with working with [permissions](https://discord.com/developers/docs/topics/permissions).
   """
   @moduledoc since: "0.1.3"
 
@@ -45,7 +45,7 @@ defmodule Crux.Structs.Permissions do
   use Crux.Structs.BitField, permissions
 
   @typedoc """
-    Union type of all valid permission name atoms.
+  Union type of all valid permission name atoms.
   """
   @typedoc since: "0.2.0"
   @type name ::
@@ -82,7 +82,7 @@ defmodule Crux.Structs.Permissions do
           | :manage_emojis
 
   @doc """
-    Resolves permissions for a user in a guild, optionally including channel permission overwrites.
+  Resolves permissions for a user in a guild, optionally including channel permission overwrites.
 
   > Raises when the member is not cached.
 
@@ -119,7 +119,7 @@ defmodule Crux.Structs.Permissions do
   end
 
   @doc """
-    Resolves permissions for a user in a guild, optionally including channel permission overwrites.
+  Resolves permissions for a user in a guild, optionally including channel permission overwrites.
 
   > Raises when the member is not cached.
 

@@ -1,6 +1,6 @@
 defmodule Crux.Structs.AuditLog do
   @moduledoc """
-    Represents a Discord [Audit Log Object](https://discord.com/developers/docs/resources/audit-log#audit-log-object).
+  Represents a Discord [Audit Log Object](https://discord.com/developers/docs/resources/audit-log#audit-log-object).
   """
   @moduledoc since: "0.1.6"
 
@@ -24,13 +24,13 @@ defmodule Crux.Structs.AuditLog do
         }
 
   @typedoc """
-    All available types that can be resolved into an audit log id.
+  All available types that can be resolved into an audit log id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() :: AuditLog.t() | Snowflake.t() | String.t()
 
   @doc """
-    Creates a `t:Crux.Structs.AuditLog.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.AuditLog.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

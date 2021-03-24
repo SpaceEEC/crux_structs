@@ -1,8 +1,8 @@
 defmodule Crux.Structs.Attachment do
   @moduledoc """
-    Represents a Discord [Attachment Object](https://discord.com/developers/docs/resources/channel#attachment-object)
+  Represents a Discord [Attachment Object](https://discord.com/developers/docs/resources/channel#attachment-object)
 
-    Height and width are only present for images.
+  Height and width are only present for images.
   """
   @moduledoc since: "0.1.0"
 
@@ -32,7 +32,7 @@ defmodule Crux.Structs.Attachment do
         }
 
   @doc """
-    Creates a `t:Crux.Structs.Attachment.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Attachment.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

@@ -1,17 +1,17 @@
 defmodule Crux.Structs.Snowflake.Parts do
   @moduledoc """
-    Custom non discord api struct representing a deconstructed Discord snowflake.
+  Custom non discord api struct representing a deconstructed Discord snowflake.
 
   ## Structure of the Parts
 
-    | Field               | Bits     | Number of Bits | Description                                                                |
-    | :-----------------: | :------: | :------------: | :------------------------------------------------------------------------: |
-    | Timestamp           | 63 to 22 | 42 bits        | Milliseconds since Discord Epoch (1420070400000)                           |
-    | Internal Worker ID  | 21 to 17 |  5 bits        |                                                                            |
-    | Internal Process ID | 16 to 12 |  5 bits        |                                                                            |
-    | Increment           | 11 to  0 | 12 bits        | For every ID that is generated on that process, this number is incremented |
+  | Field               | Bits     | Number of Bits | Description                                                                |
+  | :-----------------: | :------: | :------------: | :------------------------------------------------------------------------: |
+  | Timestamp           | 63 to 22 | 42 bits        | Milliseconds since Discord Epoch (1420070400000)                           |
+  | Internal Worker ID  | 21 to 17 |  5 bits        |                                                                            |
+  | Internal Process ID | 16 to 12 |  5 bits        |                                                                            |
+  | Increment           | 11 to  0 | 12 bits        | For every ID that is generated on that process, this number is incremented |
 
-    For more information see [Discord Docs](https://discord.com/developers/docs/reference#snowflakes).
+  For more information see [Discord Docs](https://discord.com/developers/docs/reference#snowflakes).
   """
   @moduledoc since: "0.2.1"
 
@@ -35,7 +35,7 @@ defmodule Crux.Structs.Snowflake.Parts do
   @increment_bitmask 0xFFF
 
   @typedoc """
-    The parts of a `t:Crux.Structs.Snowflake.t/0`.
+  The parts of a `t:Crux.Structs.Snowflake.t/0`.
   """
   @typedoc since: "0.2.1"
   @type t :: %Snowflake.Parts{

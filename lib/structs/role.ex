@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Role do
   @moduledoc """
-    Represents a Discord [Role Object](https://discord.com/developers/docs/topics/permissions#role-object).
+  Represents a Discord [Role Object](https://discord.com/developers/docs/topics/permissions#role-object).
   """
   @moduledoc since: "0.1.0"
 
@@ -45,13 +45,13 @@ defmodule Crux.Structs.Role do
         }
 
   @typedoc """
-    All available types that can be resolved into a role id.
+  All available types that can be resolved into a role id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() :: Role.t() | Snowflake.t() | String.t() | nil
 
   @typedoc """
-    All available types that can be resolved into a role position.
+  All available types that can be resolved into a role position.
   """
   @typedoc since: "0.2.1"
   @type position_resolvable() ::
@@ -61,36 +61,36 @@ defmodule Crux.Structs.Role do
           | %{id: id_resolvable(), position: integer()}
 
   @doc """
-    Resolves a `t:position_resolvable/0` into a role position.
+  Resolves a `t:position_resolvable/0` into a role position.
 
   ## Examples
 
-    ```elixir
-    iex> {%Crux.Structs.Role{id: 373405430589816834}, 5}
-    ...> |> Crux.Structs.Role.resolve_position()
-    %{id: 373405430589816834, position: 5}
+  ```elixir
+  iex> {%Crux.Structs.Role{id: 373405430589816834}, 5}
+  ...> |> Crux.Structs.Role.resolve_position()
+  %{id: 373405430589816834, position: 5}
 
-    iex> %Crux.Structs.Role{id: 373405430589816834, position: 5}
-    ...> |> Crux.Structs.Role.resolve_position()
-    %{id: 373405430589816834, position: 5}
+  iex> %Crux.Structs.Role{id: 373405430589816834, position: 5}
+  ...> |> Crux.Structs.Role.resolve_position()
+  %{id: 373405430589816834, position: 5}
 
-    iex> %{id: 373405430589816834, position: 5}
-    ...> |> Crux.Structs.Role.resolve_position()
-    %{id: 373405430589816834, position: 5}
+  iex> %{id: 373405430589816834, position: 5}
+  ...> |> Crux.Structs.Role.resolve_position()
+  %{id: 373405430589816834, position: 5}
 
-    iex> %{role: %Crux.Structs.Role{id: 373405430589816834}, position: 5}
-    ...> |> Crux.Structs.Role.resolve_position()
-    %{id: 373405430589816834, position: 5}
+  iex> %{role: %Crux.Structs.Role{id: 373405430589816834}, position: 5}
+  ...> |> Crux.Structs.Role.resolve_position()
+  %{id: 373405430589816834, position: 5}
 
-    iex> {373405430589816834, 5}
-    ...> |> Crux.Structs.Role.resolve_position()
-    %{id: 373405430589816834, position: 5}
+  iex> {373405430589816834, 5}
+  ...> |> Crux.Structs.Role.resolve_position()
+  %{id: 373405430589816834, position: 5}
 
-    iex> {nil, 5}
-    ...> |> Crux.Structs.Role.resolve_position()
-    nil
+  iex> {nil, 5}
+  ...> |> Crux.Structs.Role.resolve_position()
+  nil
 
-    ```
+  ```
   """
   @doc since: "0.2.1"
   @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
@@ -126,7 +126,7 @@ defmodule Crux.Structs.Role do
   end
 
   @doc """
-    Creates a `t:Crux.Structs.Role.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Role.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -165,16 +165,16 @@ defmodule Crux.Structs.Role do
   end
 
   @doc ~S"""
-    Converts a `t:Crux.Structs.Role.t/0` into its discord mention format.
+  Converts a `t:Crux.Structs.Role.t/0` into its discord mention format.
 
   ## Example
 
-    ```elixir
+  ```elixir
   iex> %Crux.Structs.Role{id: 376146940762783746}
   ...> |> Crux.Structs.Role.to_mention()
   "<@&376146940762783746>"
 
-    ```
+  ```
   """
   @doc since: "0.1.1"
   @spec to_mention(user :: Crux.Structs.Role.t()) :: String.t()

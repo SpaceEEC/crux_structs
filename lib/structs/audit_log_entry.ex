@@ -1,6 +1,6 @@
 defmodule Crux.Structs.AuditLogEntry do
   @moduledoc """
-    Represents a Discord [Audit Log Entry Object](https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object).
+  Represents a Discord [Audit Log Entry Object](https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object).
   """
   @moduledoc since: "0.1.6"
 
@@ -47,7 +47,7 @@ defmodule Crux.Structs.AuditLogEntry do
   }
 
   @typedoc """
-    Union type of audit log event name atoms.
+  Union type of audit log event name atoms.
   """
   @typedoc since: "0.1.6"
   @type event_name ::
@@ -90,14 +90,14 @@ defmodule Crux.Structs.AuditLogEntry do
   @audit_log_events_key Map.new(@audit_log_events, fn {k, v} -> {v, k} end)
 
   @doc """
-    Returns a map of all audit log event names with their id
+  Returns a map of all audit log event names with their id
   """
   @doc since: "0.1.6"
   @spec events() :: %{event_name => non_neg_integer()}
   def events(), do: @audit_log_events
 
   @doc """
-    Gets the event name from the action type id
+  Gets the event name from the action type id
   """
   @doc since: "0.1.6"
   @spec event_name(action_type :: non_neg_integer()) :: atom()
@@ -125,9 +125,9 @@ defmodule Crux.Structs.AuditLogEntry do
         }
 
   @typedoc """
-    Additional info for certain action types.
+  Additional info for certain action types.
 
-    For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info).
+  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info).
   """
   @typedoc since: "0.3.0"
   @type options :: %{
@@ -142,7 +142,7 @@ defmodule Crux.Structs.AuditLogEntry do
         }
 
   @doc """
-    Creates a `t:Crux.Structs.AuditLogEntry.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.AuditLogEntry.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

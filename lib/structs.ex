@@ -1,6 +1,6 @@
 defmodule Crux.Structs do
   @moduledoc """
-    Provides a unified function to create one or a list of structs, invoking their `c:create/1` function if available.
+  Provides a unified function to create one or a list of structs, invoking their `c:create/1` function if available.
   """
   @moduledoc since: "0.1.0"
 
@@ -8,71 +8,71 @@ defmodule Crux.Structs do
   require Snowflake
 
   @doc """
-    Can be implemented by structs to transform the inital data.
+  Can be implemented by structs to transform the inital data.
   """
   @callback create(data :: map()) :: struct()
 
   @doc """
-    Can be implemented by structs to provide a mechanism to resolve their id.
+  Can be implemented by structs to provide a mechanism to resolve their id.
   """
   @callback resolve_id(data :: map() | Snowflake.t()) :: Snowflake.t() | nil
 
   @optional_callbacks create: 1, resolve_id: 1
 
   @doc ~S"""
-    Creates a struct or a list of structs invoking their `c:create/1` function if available.
+  Creates a struct or a list of structs invoking their `c:create/1` function if available.
 
   ## Examples
 
-    ```elixir
-    # A single member
-    iex> %{
-    ...>   "nick" => "nick",
-    ...>   "user" => %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "646a356e237350bf8b8dfde15667dfc4"},
-    ...>   "roles" => ["251158405832638465", "373405430589816834"],
-    ...>   "mute" => false,
-    ...>   "deaf" => false,
-    ...>   "joined_at" => "2016-11-02T00:51:21.342000+00:00"
-    ...> }
-    ...> |> Crux.Structs.create(Crux.Structs.Member)
-    %Crux.Structs.Member{
-      nick: "nick",
-      user: 218348062828003328,
-      roles: MapSet.new([251158405832638465, 373405430589816834]),
-      mute: false,
-      deaf: false,
-      joined_at: "2016-11-02T00:51:21.342000+00:00",
-      guild_id: nil
-    }
+  ```elixir
+  # A single member
+  iex> %{
+  ...>   "nick" => "nick",
+  ...>   "user" => %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "646a356e237350bf8b8dfde15667dfc4"},
+  ...>   "roles" => ["251158405832638465", "373405430589816834"],
+  ...>   "mute" => false,
+  ...>   "deaf" => false,
+  ...>   "joined_at" => "2016-11-02T00:51:21.342000+00:00"
+  ...> }
+  ...> |> Crux.Structs.create(Crux.Structs.Member)
+  %Crux.Structs.Member{
+    nick: "nick",
+    user: 218348062828003328,
+    roles: MapSet.new([251158405832638465, 373405430589816834]),
+    mute: false,
+    deaf: false,
+    joined_at: "2016-11-02T00:51:21.342000+00:00",
+    guild_id: nil
+  }
 
-    # A single user
-    iex> %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"}
-    ...> |> Crux.Structs.create(Crux.Structs.User)
-    %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false}
+  # A single user
+  iex> %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"}
+  ...> |> Crux.Structs.create(Crux.Structs.User)
+  %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false}
 
-    # Multiple users
-    iex> [
-    ...>   %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"},
-    ...>   %{"username" => "Drahcirius", "discriminator" => "1336", "id" => "130175406673231873", "avatar" => "c896aebec82c90f590b08cfebcdc4e3b"}
-    ...> ]
-    ...> |> Crux.Structs.create(Crux.Structs.User)
-    [
-      %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false},
-      %Crux.Structs.User{username: "Drahcirius", discriminator: "1336", id: 130175406673231873, avatar: "c896aebec82c90f590b08cfebcdc4e3b", bot: false, system: false}
-    ]
+  # Multiple users
+  iex> [
+  ...>   %{"username" => "space", "discriminator" => "0001", "id" => "218348062828003328", "avatar" => "46a356e237350bf8b8dfde15667dfc4"},
+  ...>   %{"username" => "Drahcirius", "discriminator" => "1336", "id" => "130175406673231873", "avatar" => "c896aebec82c90f590b08cfebcdc4e3b"}
+  ...> ]
+  ...> |> Crux.Structs.create(Crux.Structs.User)
+  [
+    %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false},
+    %Crux.Structs.User{username: "Drahcirius", discriminator: "1336", id: 130175406673231873, avatar: "c896aebec82c90f590b08cfebcdc4e3b", bot: false, system: false}
+  ]
 
-    # Does not alter already structs
-    iex> Crux.Structs.create(
-    ...>   %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false},
-    ...>   Crux.Structs.User
-    ...> )
-    %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false}
+  # Does not alter already structs
+  iex> Crux.Structs.create(
+  ...>   %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false},
+  ...>   Crux.Structs.User
+  ...> )
+  %Crux.Structs.User{username: "space", discriminator: "0001", id: 218348062828003328, avatar: "46a356e237350bf8b8dfde15667dfc4", bot: false, system: false}
 
-    # Fallback
-    iex> Crux.Structs.create(nil, nil)
-    nil
+  # Fallback
+  iex> Crux.Structs.create(nil, nil)
+  nil
 
-    ```
+  ```
   """
   @doc since: "0.1.0"
   @spec create(data :: map(), target :: module()) :: struct()
@@ -98,40 +98,40 @@ defmodule Crux.Structs do
   end
 
   @doc """
-    Resolves the id of a struct invoking their `c:resolve_id/1` function if available.
+  Resolves the id of a struct invoking their `c:resolve_id/1` function if available.
 
-    ```elixir
-    # Struct of the concrete type
-    iex> %Crux.Structs.Webhook{id: 618733351624507394}
-    ...> |> Crux.Structs.resolve_id(Crux.Structs.Webhook)
-    618733351624507394
+  ```elixir
+  # Struct of the concrete type
+  iex> %Crux.Structs.Webhook{id: 618733351624507394}
+  ...> |> Crux.Structs.resolve_id(Crux.Structs.Webhook)
+  618733351624507394
 
-    # Already snowflake
-    iex> 222089067028807682
-    ...> |> Crux.Structs.resolve_id(Crux.Structs.Role)
-    222089067028807682
+  # Already snowflake
+  iex> 222089067028807682
+  ...> |> Crux.Structs.resolve_id(Crux.Structs.Role)
+  222089067028807682
 
-    # Snowflake string
-    iex> "222079895583457280"
-    ...> |> Crux.Structs.resolve_id(Crux.Structs.Channel)
-    222079895583457280
+  # Snowflake string
+  iex> "222079895583457280"
+  ...> |> Crux.Structs.resolve_id(Crux.Structs.Channel)
+  222079895583457280
 
-    # nil
-    iex> nil
-    ...> |> Crux.Structs.resolve_id(Crux.Structs.Guild)
-    nil
+  # nil
+  iex> nil
+  ...> |> Crux.Structs.resolve_id(Crux.Structs.Guild)
+  nil
 
-    # Inexact type that is a resolvable
-    iex> %Crux.Structs.Member{user: 218348062828003328}
-    ...> |> Crux.Structs.resolve_id(Crux.Structs.User)
-    218348062828003328
+  # Inexact type that is a resolvable
+  iex> %Crux.Structs.Member{user: 218348062828003328}
+  ...> |> Crux.Structs.resolve_id(Crux.Structs.User)
+  218348062828003328
 
-    # Incorrect type
-    iex> %Crux.Structs.Role{id: 222079439876390922}
-    ...> |> Crux.Structs.resolve_id(Crux.Structs.Emoji)
-    nil
+  # Incorrect type
+  iex> %Crux.Structs.Role{id: 222079439876390922}
+  ...> |> Crux.Structs.resolve_id(Crux.Structs.Emoji)
+  nil
 
-    ```
+  ```
   """
   @doc since: "0.2.1"
   @spec resolve_id(nil, target :: module()) :: nil

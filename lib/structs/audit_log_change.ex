@@ -1,6 +1,6 @@
 defmodule Crux.Structs.AuditLogChange do
   @moduledoc """
-    Represents a Discord [Audit Log Change Object](https://discord.com/developers/docs/resources/audit-log#audit-log-change-object).
+  Represents a Discord [Audit Log Change Object](https://discord.com/developers/docs/resources/audit-log#audit-log-change-object).
   """
   @moduledoc since: "0.1.6"
 
@@ -16,7 +16,7 @@ defmodule Crux.Structs.AuditLogChange do
   ]
 
   @typedoc """
-    Represents a value before or after a change.
+  Represents a value before or after a change.
 
   > Note that the Role object returned by Discord in audit logs is a partial role that only contains id and name.
   """
@@ -37,7 +37,7 @@ defmodule Crux.Structs.AuditLogChange do
         }
 
   @doc """
-    Creates a `t:Crux.Structs.AuditLogChange.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.AuditLogChange.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

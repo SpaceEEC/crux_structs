@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Member do
   @moduledoc """
-    Represents a Discord [Guild Member Object](https://discord.com/developers/docs/resources/guild#guild-member-object).
+  Represents a Discord [Guild Member Object](https://discord.com/developers/docs/resources/guild#guild-member-object).
 
   Differences opposed to the Discord API Object:
     - `:user` is just the user id
@@ -39,7 +39,7 @@ defmodule Crux.Structs.Member do
         }
 
   @typedoc """
-    All available types that can be resolved into a user id.
+  All available types that can be resolved into a user id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() :: User.id_resolvable()
@@ -62,7 +62,7 @@ defmodule Crux.Structs.Member do
   defdelegate resolve_id(resolvable), to: User
 
   @doc """
-    Creates a `t:Crux.Structs.Member.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Member.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -80,11 +80,11 @@ defmodule Crux.Structs.Member do
   end
 
   @doc ~S"""
-    Converts a `t:Crux.Structs.Member.t/0` into its discord mention format.
+  Converts a `t:Crux.Structs.Member.t/0` into its discord mention format.
 
   ## Examples
 
-    ```elixir
+  ```elixir
   # Without nickname
   iex> %Crux.Structs.Member{user: 218348062828003328, nick: nil}
   ...> |> Crux.Structs.Member.to_mention()
@@ -95,7 +95,7 @@ defmodule Crux.Structs.Member do
   ...> |> Crux.Structs.Member.to_mention()
   "<@!218348062828003328>"
 
-    ```
+  ```
   """
   @doc since: "0.1.1"
   @spec to_mention(user :: Crux.Structs.Member.t()) :: String.t()

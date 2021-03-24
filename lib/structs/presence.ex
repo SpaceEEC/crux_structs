@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Presence do
   @moduledoc """
-    Represents a Discord [Presence Object](https://discord.com/developers/docs/topics/gateway#presence-update-presence-update-event-fields).
+  Represents a Discord [Presence Object](https://discord.com/developers/docs/topics/gateway#presence-update-presence-update-event-fields).
 
   Differences opposed to the Discord API Object:
     - `:user` is just the user id
@@ -62,7 +62,7 @@ defmodule Crux.Structs.Presence do
         }
 
   @typedoc """
-    All available types that can be resolved into a user id.
+  All available types that can be resolved into a user id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable :: User.id_resolvable()
@@ -85,7 +85,7 @@ defmodule Crux.Structs.Presence do
   defdelegate resolve_id(resolvable), to: User
 
   @doc """
-    Creates a `t:Crux.Structs.Presence.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Presence.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

@@ -121,48 +121,48 @@ defmodule Crux.Structs.Guild do
         }
 
   @typedoc """
-    All available types that can be resolved into a guild id.
+  All available types that can be resolved into a guild id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() :: Guild.t() | Channel.t() | Message.t() | Snowflake.t()
 
   @doc """
-    Resolves the id of a `t:Crux.Structs.Guild.t/0`.
+  Resolves the id of a `t:Crux.Structs.Guild.t/0`.
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`.
 
 
-    ```elixir
-    iex> %Crux.Structs.Guild{id: 516569101267894284}
-    ...> |> Crux.Structs.Guild.resolve_id()
-    516569101267894284
+  ```elixir
+  iex> %Crux.Structs.Guild{id: 516569101267894284}
+  ...> |> Crux.Structs.Guild.resolve_id()
+  516569101267894284
 
-    iex> %Crux.Structs.Channel{guild_id: 516569101267894284}
-    ...> |> Crux.Structs.Guild.resolve_id()
-    516569101267894284
+  iex> %Crux.Structs.Channel{guild_id: 516569101267894284}
+  ...> |> Crux.Structs.Guild.resolve_id()
+  516569101267894284
 
-    iex> %Crux.Structs.Message{guild_id: 516569101267894284}
-    ...> |> Crux.Structs.Guild.resolve_id()
-    516569101267894284
+  iex> %Crux.Structs.Message{guild_id: 516569101267894284}
+  ...> |> Crux.Structs.Guild.resolve_id()
+  516569101267894284
 
-    iex> 516569101267894284
-    ...> |> Crux.Structs.Guild.resolve_id()
-    516569101267894284
+  iex> 516569101267894284
+  ...> |> Crux.Structs.Guild.resolve_id()
+  516569101267894284
 
-    iex> "516569101267894284"
-    ...> |> Crux.Structs.Guild.resolve_id()
-    516569101267894284
+  iex> "516569101267894284"
+  ...> |> Crux.Structs.Guild.resolve_id()
+  516569101267894284
 
-    # DMs
-    iex> %Crux.Structs.Channel{guild_id: nil}
-    ...> |> Crux.Structs.Guild.resolve_id()
-    nil
+  # DMs
+  iex> %Crux.Structs.Channel{guild_id: nil}
+  ...> |> Crux.Structs.Guild.resolve_id()
+  nil
 
-    iex> %Crux.Structs.Message{guild_id: nil}
-    ...> |> Crux.Structs.Guild.resolve_id()
-    nil
+  iex> %Crux.Structs.Message{guild_id: nil}
+  ...> |> Crux.Structs.Guild.resolve_id()
+  nil
 
-    ```
+  ```
   """
   @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
@@ -181,7 +181,7 @@ defmodule Crux.Structs.Guild do
   def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
 
   @doc """
-    Creates a `t:Crux.Structs.Guild.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Guild.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

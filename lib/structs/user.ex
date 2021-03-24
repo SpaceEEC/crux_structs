@@ -1,6 +1,6 @@
 defmodule Crux.Structs.User do
   @moduledoc """
-    Represents a Discord [User Object](https://discord.com/developers/docs/resources/user#user-object)
+  Represents a Discord [User Object](https://discord.com/developers/docs/resources/user#user-object)
   """
   @moduledoc since: "0.1.0"
 
@@ -31,7 +31,7 @@ defmodule Crux.Structs.User do
         }
 
   @typedoc """
-    All available types that can be resolved into a user id.
+  All available types that can be resolved into a user id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() ::
@@ -44,40 +44,40 @@ defmodule Crux.Structs.User do
           | String.t()
 
   @doc """
-    Resolves the id of a `t:Crux.Structs.Guild.t/0`.
+  Resolves the id of a `t:Crux.Structs.Guild.t/0`.
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`.
 
-    ```elixir
-    iex> %Crux.Structs.User{id: 218348062828003328}
-    ...> |> Crux.Structs.User.resolve_id()
-    218348062828003328
+  ```elixir
+  iex> %Crux.Structs.User{id: 218348062828003328}
+  ...> |> Crux.Structs.User.resolve_id()
+  218348062828003328
 
-    iex> %Crux.Structs.Member{user: 218348062828003328}
-    ...> |> Crux.Structs.User.resolve_id()
-    218348062828003328
+  iex> %Crux.Structs.Member{user: 218348062828003328}
+  ...> |> Crux.Structs.User.resolve_id()
+  218348062828003328
 
-    iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
-    ...> |> Crux.Structs.User.resolve_id()
-    218348062828003328
+  iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
+  ...> |> Crux.Structs.User.resolve_id()
+  218348062828003328
 
-    iex> %Crux.Structs.Presence{user: 218348062828003328}
-    ...> |> Crux.Structs.User.resolve_id()
-    218348062828003328
+  iex> %Crux.Structs.Presence{user: 218348062828003328}
+  ...> |> Crux.Structs.User.resolve_id()
+  218348062828003328
 
-    iex> %Crux.Structs.VoiceState{user_id: 218348062828003328}
-    ...> |> Crux.Structs.User.resolve_id()
-    218348062828003328
+  iex> %Crux.Structs.VoiceState{user_id: 218348062828003328}
+  ...> |> Crux.Structs.User.resolve_id()
+  218348062828003328
 
-    iex> 218348062828003328
-    ...> |> Crux.Structs.User.resolve_id()
-    218348062828003328
+  iex> 218348062828003328
+  ...> |> Crux.Structs.User.resolve_id()
+  218348062828003328
 
-    iex> "218348062828003328"
-    ...> |> Crux.Structs.User.resolve_id()
-    218348062828003328
+  iex> "218348062828003328"
+  ...> |> Crux.Structs.User.resolve_id()
+  218348062828003328
 
-    ```
+  ```
   """
   @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
@@ -104,7 +104,7 @@ defmodule Crux.Structs.User do
   def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
 
   @doc """
-    Creates a `t:Crux.Structs.User.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.User.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -123,14 +123,14 @@ defmodule Crux.Structs.User do
   end
 
   @doc ~S"""
-    Converts a `t:Crux.Structs.User.t/0` into its discord mention format.
+  Converts a `t:Crux.Structs.User.t/0` into its discord mention format.
 
-    ```elixir
+  ```elixir
   iex> %Crux.Structs.User{id: 218348062828003328}
   ...> |> Crux.Structs.User.to_mention()
   "<@218348062828003328>"
 
-    ```
+  ```
   """
   @doc since: "0.1.1"
   @spec to_mention(user :: Crux.Structs.User.t()) :: String.t()

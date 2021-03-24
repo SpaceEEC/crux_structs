@@ -42,28 +42,28 @@ defmodule Crux.Structs.Emoji do
   @type id_resolvable() :: Reaction.t() | Emoji.t() | Snowflake.t() | String.t()
 
   @doc """
-    Resolves the id of a `t:Crux.Structs.Emoji.t/0`.
+  Resolves the id of a `t:Crux.Structs.Emoji.t/0`.
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`.
 
-    ```elixir
-    iex> %Crux.Structs.Emoji{id: 618731477143912448}
-    ...> |> Crux.Structs.Emoji.resolve_id()
-    618731477143912448
+  ```elixir
+  iex> %Crux.Structs.Emoji{id: 618731477143912448}
+  ...> |> Crux.Structs.Emoji.resolve_id()
+  618731477143912448
 
-    iex> %Crux.Structs.Reaction{emoji: %Crux.Structs.Emoji{id: 618731477143912448}}
-    ...> |> Crux.Structs.Emoji.resolve_id()
-    618731477143912448
+  iex> %Crux.Structs.Reaction{emoji: %Crux.Structs.Emoji{id: 618731477143912448}}
+  ...> |> Crux.Structs.Emoji.resolve_id()
+  618731477143912448
 
-    iex> 618731477143912448
-    ...> |> Crux.Structs.Emoji.resolve_id()
-    618731477143912448
+  iex> 618731477143912448
+  ...> |> Crux.Structs.Emoji.resolve_id()
+  618731477143912448
 
-    iex> "618731477143912448"
-    ...> |> Crux.Structs.Emoji.resolve_id()
-    618731477143912448
+  iex> "618731477143912448"
+  ...> |> Crux.Structs.Emoji.resolve_id()
+  618731477143912448
 
-    ```
+  ```
   """
   @doc since: "0.2.1"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
@@ -78,7 +78,7 @@ defmodule Crux.Structs.Emoji do
   def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
 
   @doc """
-    Creates a `t:Crux.Structs.Emoji.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Emoji.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
@@ -100,7 +100,7 @@ defmodule Crux.Structs.Emoji do
   end
 
   @typedoc """
-    All available types that can be resolved into a discord emoji identifier.
+  All available types that can be resolved into a discord emoji identifier.
 
   > String.t() stands for an already encoded unicode emoji.
   """
@@ -108,13 +108,13 @@ defmodule Crux.Structs.Emoji do
   @type identifier_resolvable() :: Emoji.t() | Reaction.t() | String.t()
 
   @doc ~S"""
-    Converts an `t:Crux.Structs.Emoji.t/0`, a `t:Crux.Structs.Reaction.t/0`, or a `t:String.t/0` to its discord identifier format.
+  Converts an `t:Crux.Structs.Emoji.t/0`, a `t:Crux.Structs.Reaction.t/0`, or a `t:String.t/0` to its discord identifier format.
 
-    > This is automatically done if using a appropriate rest function.
+  > This is automatically done if using a appropriate rest function.
 
   ## Examples
 
-    ```elixir
+  ```elixir
   # A custom emoji
   iex> %Crux.Structs.Emoji{animated: false, id: 396521773216301056, name: "blobwavereverse"}
   ...> |> Crux.Structs.Emoji.to_identifier()
@@ -148,7 +148,7 @@ defmodule Crux.Structs.Emoji do
   ...> |> Crux.Structs.Emoji.to_identifier()
   "eyesRight:271412698267254784"
 
-    ```
+  ```
   """
   @doc since: "0.1.1"
   @spec to_identifier(emoji :: identifier_resolvable()) :: String.t()

@@ -1,6 +1,6 @@
 defmodule Crux.Structs.VoiceState do
   @moduledoc """
-    Represents a Discord [Voice State Object](https://discord.com/developers/docs/resources/voice#voice-state-object)
+  Represents a Discord [Voice State Object](https://discord.com/developers/docs/resources/voice#voice-state-object)
   """
   @moduledoc since: "0.1.0"
 
@@ -40,7 +40,7 @@ defmodule Crux.Structs.VoiceState do
         }
 
   @typedoc """
-    All available types that can be resolved into a user id.
+  All available types that can be resolved into a user id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() :: User.id_resolvable()
@@ -64,7 +64,7 @@ defmodule Crux.Structs.VoiceState do
   defdelegate resolve_id(resolvable), to: User
 
   @doc """
-    Creates a `t:Crux.Structs.VoiceState.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.VoiceState.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

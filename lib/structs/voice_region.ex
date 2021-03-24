@@ -1,6 +1,6 @@
 defmodule Crux.Structs.VoiceRegion do
   @moduledoc """
-    Represents a Discord [Voice Region Object](https://discord.com/developers/docs/resources/voice#voice-region-object).
+  Represents a Discord [Voice Region Object](https://discord.com/developers/docs/resources/voice#voice-region-object).
   """
   @moduledoc since: "0.2.3"
 

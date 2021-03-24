@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Integration do
   @moduledoc """
-    Represents a Discord [Integration Object](https://discord.com/developers/docs/resources/guild#integration-object).
+  Represents a Discord [Integration Object](https://discord.com/developers/docs/resources/guild#integration-object).
   """
   @moduledoc since: "0.2.2"
 
@@ -47,13 +47,13 @@ defmodule Crux.Structs.Integration do
         }
 
   @typedoc """
-    All available types that can be resolved into an integration id.
+  All available types that can be resolved into an integration id.
   """
   @typedoc since: "0.2.3"
   @type id_resolvable() :: Integration.t() | Snowflake.t()
 
   @doc """
-    Creates a `t:Crux.Structs.Integration.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Integration.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

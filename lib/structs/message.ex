@@ -1,9 +1,9 @@
 defmodule Crux.Structs.Message do
   @moduledoc """
-    Represents a Discord [Message Object](https://discord.com/developers/docs/resources/channel#message-object).
+  Represents a Discord [Message Object](https://discord.com/developers/docs/resources/channel#message-object).
 
-    Differences opposed to the Discord API Object:
-    - `:mentions` is a MapSet of user ids
+  Differences opposed to the Discord API Object:
+  - `:mentions` is a MapSet of user ids
   """
   @moduledoc since: "0.1.0"
 
@@ -122,13 +122,13 @@ defmodule Crux.Structs.Message do
         }
 
   @typedoc """
-    All available types that can be resolved into a message id.
+  All available types that can be resolved into a message id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() :: Message.t() | Snowflake.t() | String.t()
 
   @doc """
-    Creates a `t:Crux.Structs.Message.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Message.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

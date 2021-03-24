@@ -79,50 +79,50 @@ defmodule Crux.Structs.Channel do
         }
 
   @typedoc """
-    | Type           | ID  | Description                                                                                  |
-    | :------------: | :-: | :------------------------------------------------------------------------------------------: |
-    | GUILD_TEXT     |  0  | A text channel within a guild.                                                               |
-    | DM             |  1  | A direct text channel between two users.                                                     |
-    | GUILD_VOICE    |  2  | A voice channel withing a guild.                                                             |
-    | GROUP_DM       |  3  | A direct channel between multiple users.<br>Bots do not have access to those.                |
-    | GUILD_CATEGORY |  4  | An organizational category.                                                                  |
-    | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.                                   |
-    | GUILD_STORE    |  6  | A channel in which game developers can sell their game.<br>Bots can not interact with those. |
+  | Type           | ID  | Description                                                                                  |
+  | :------------: | :-: | :------------------------------------------------------------------------------------------: |
+  | GUILD_TEXT     |  0  | A text channel within a guild.                                                               |
+  | DM             |  1  | A direct text channel between two users.                                                     |
+  | GUILD_VOICE    |  2  | A voice channel withing a guild.                                                             |
+  | GROUP_DM       |  3  | A direct channel between multiple users.<br>Bots do not have access to those.                |
+  | GUILD_CATEGORY |  4  | An organizational category.                                                                  |
+  | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.                                   |
+  | GUILD_STORE    |  6  | A channel in which game developers can sell their game.<br>Bots can not interact with those. |
 
-    For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
+  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
   """
   @typedoc since: "0.2.3"
   @type type :: non_neg_integer()
 
   @typedoc """
-    All available types that can be resolved into a channel id.
+  All available types that can be resolved into a channel id.
   """
   @typedoc since: "0.2.1"
   @type id_resolvable() :: Message.t() | Channel.t() | Snowflake.t() | String.t()
 
   @doc """
-    Resolves the id of a `t:Crux.Structs.Channel.t/0`.
+  Resolves the id of a `t:Crux.Structs.Channel.t/0`.
 
   > Automatically invoked by `Crux.Structs.resolve_id/2`.
 
-    ```elixir
-    iex> %Crux.Structs.Message{channel_id: 222079895583457280}
-    ...> |> Crux.Structs.Channel.resolve_id()
-    222079895583457280
+  ```elixir
+  iex> %Crux.Structs.Message{channel_id: 222079895583457280}
+  ...> |> Crux.Structs.Channel.resolve_id()
+  222079895583457280
 
-    iex> %Crux.Structs.Channel{id: 222079895583457280}
-    ...> |> Crux.Structs.Channel.resolve_id()
-    222079895583457280
+  iex> %Crux.Structs.Channel{id: 222079895583457280}
+  ...> |> Crux.Structs.Channel.resolve_id()
+  222079895583457280
 
-    iex> 222079895583457280
-    ...> |> Crux.Structs.Channel.resolve_id()
-    222079895583457280
+  iex> 222079895583457280
+  ...> |> Crux.Structs.Channel.resolve_id()
+  222079895583457280
 
-    iex> "222079895583457280"
-    ...> |> Crux.Structs.Channel.resolve_id()
-    222079895583457280
+  iex> "222079895583457280"
+  ...> |> Crux.Structs.Channel.resolve_id()
+  222079895583457280
 
-    ```
+  ```
   """
   @doc since: "0.2.3"
   @spec resolve_id(id_resolvable()) :: Snowflake.t() | nil
@@ -137,7 +137,7 @@ defmodule Crux.Structs.Channel do
   def resolve_id(resolvable), do: Structs.resolve_id(resolvable)
 
   @typedoc """
-    All available types that can be resolved into a channel position.
+  All available types that can be resolved into a channel position.
   """
   @typedoc since: "0.2.1"
   @type position_resolvable() ::
@@ -147,36 +147,36 @@ defmodule Crux.Structs.Channel do
           | %{id: id_resolvable(), position: integer()}
 
   @doc """
-    Resolves a `t:position_resolvable/0` into a channel position.
+  Resolves a `t:position_resolvable/0` into a channel position.
 
   ## Examples
 
-    ```elixir
-    iex> %Crux.Structs.Channel{id: 222079895583457280, position: 5}
-    ...> |> Crux.Structs.Channel.resolve_position()
-    %{id: 222079895583457280, position: 5}
+  ```elixir
+  iex> %Crux.Structs.Channel{id: 222079895583457280, position: 5}
+  ...> |> Crux.Structs.Channel.resolve_position()
+  %{id: 222079895583457280, position: 5}
 
-    iex> {%Crux.Structs.Channel{id: 222079895583457280}, 5}
-    ...> |> Crux.Structs.Channel.resolve_position()
-    %{id: 222079895583457280, position: 5}
+  iex> {%Crux.Structs.Channel{id: 222079895583457280}, 5}
+  ...> |> Crux.Structs.Channel.resolve_position()
+  %{id: 222079895583457280, position: 5}
 
-    iex> {222079895583457280, 5}
-    ...> |> Crux.Structs.Channel.resolve_position()
-    %{id: 222079895583457280, position: 5}
+  iex> {222079895583457280, 5}
+  ...> |> Crux.Structs.Channel.resolve_position()
+  %{id: 222079895583457280, position: 5}
 
-    iex> %{id: 222079895583457280, position: 5}
-    ...> |> Crux.Structs.Channel.resolve_position()
-    %{id: 222079895583457280, position: 5}
+  iex> %{id: 222079895583457280, position: 5}
+  ...> |> Crux.Structs.Channel.resolve_position()
+  %{id: 222079895583457280, position: 5}
 
-    iex> %{channel: 222079895583457280, position: 5}
-    ...> |> Crux.Structs.Channel.resolve_position()
-    %{id: 222079895583457280, position: 5}
+  iex> %{channel: 222079895583457280, position: 5}
+  ...> |> Crux.Structs.Channel.resolve_position()
+  %{id: 222079895583457280, position: 5}
 
-    iex> {nil, 5}
-    ...> |> Crux.Structs.Channel.resolve_position()
-    nil
+  iex> {nil, 5}
+  ...> |> Crux.Structs.Channel.resolve_position()
+  nil
 
-    ```
+  ```
   """
   @doc since: "0.2.1"
   @spec resolve_position(position_resolvable()) :: %{id: Snowflake.t(), position: integer()} | nil
@@ -212,7 +212,7 @@ defmodule Crux.Structs.Channel do
   end
 
   @doc """
-    Creates a `t:Crux.Structs.Channel.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Channel.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`
   """
@@ -235,11 +235,11 @@ defmodule Crux.Structs.Channel do
   end
 
   @doc ~S"""
-    Converts a `t:Crux.Structs.Channel.t/0` into its discord mention format.
+  Converts a `t:Crux.Structs.Channel.t/0` into its discord mention format.
 
   ## Example
 
-    ```elixir
+  ```elixir
   iex> %Crux.Structs.Channel{id: 316880197314019329}
   ...> |> Crux.Structs.Channel.to_mention()
   "<#316880197314019329>"

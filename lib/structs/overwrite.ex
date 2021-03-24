@@ -1,6 +1,6 @@
 defmodule Crux.Structs.Overwrite do
   @moduledoc """
-    Represents a Discord [Overwrite Object](https://discord.com/developers/docs/resources/channel#overwrite-object).
+  Represents a Discord [Overwrite Object](https://discord.com/developers/docs/resources/channel#overwrite-object).
   """
   @moduledoc since: "0.1.0"
 
@@ -35,56 +35,56 @@ defmodule Crux.Structs.Overwrite do
   @target_member 1
 
   @typedoc """
-    All available types that can be resolved into a target for a permission overwrite
+  All available types that can be resolved into a target for a permission overwrite
   """
   @typedoc since: "0.2.1"
   @type target_resolvable() :: Overwrite.t() | Role.t() | User.id_resolvable()
 
   @doc """
-    Resolves a `t:target_resolvable/0` into an overwrite target.
+  Resolves a `t:target_resolvable/0` into an overwrite target.
 
   > Note that an id or string of it returns `:unknown` as type.
 
   ## Examples
 
-    ```elixir
-    iex> %Crux.Structs.Overwrite{type: #{@target_member}, id: 218348062828003328}
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {#{@target_member}, 218348062828003328}
+  ```elixir
+  iex> %Crux.Structs.Overwrite{type: #{@target_member}, id: 218348062828003328}
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {#{@target_member}, 218348062828003328}
 
-    iex> %Crux.Structs.Role{id: 376146940762783746}
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {#{@target_role}, 376146940762783746}
+  iex> %Crux.Structs.Role{id: 376146940762783746}
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {#{@target_role}, 376146940762783746}
 
-    iex> %Crux.Structs.User{id: 218348062828003328}
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {#{@target_member}, 218348062828003328}
+  iex> %Crux.Structs.User{id: 218348062828003328}
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {#{@target_member}, 218348062828003328}
 
-    iex> %Crux.Structs.Member{user: 218348062828003328}
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {#{@target_member}, 218348062828003328}
+  iex> %Crux.Structs.Member{user: 218348062828003328}
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {#{@target_member}, 218348062828003328}
 
-    iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {#{@target_member}, 218348062828003328}
+  iex> %Crux.Structs.Message{author: %Crux.Structs.User{id: 218348062828003328}}
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {#{@target_member}, 218348062828003328}
 
-    iex> %Crux.Structs.VoiceState{user_id: 218348062828003328}
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {#{@target_member}, 218348062828003328}
+  iex> %Crux.Structs.VoiceState{user_id: 218348062828003328}
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {#{@target_member}, 218348062828003328}
 
-    iex> 218348062828003328
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {:unknown, 218348062828003328}
+  iex> 218348062828003328
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {:unknown, 218348062828003328}
 
-    iex> "218348062828003328"
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    {:unknown, 218348062828003328}
+  iex> "218348062828003328"
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  {:unknown, 218348062828003328}
 
-    iex> nil
-    ...> |> Crux.Structs.Overwrite.resolve_target()
-    nil
+  iex> nil
+  ...> |> Crux.Structs.Overwrite.resolve_target()
+  nil
 
-    ```
+  ```
   """
   @doc since: "0.2.1"
   @spec resolve_target(target_resolvable()) :: {target_type() | :unknown, Snowflake.t()}
@@ -100,7 +100,7 @@ defmodule Crux.Structs.Overwrite do
   end
 
   @doc """
-    Creates a `t:Crux.Structs.Overwrite.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Overwrite.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """

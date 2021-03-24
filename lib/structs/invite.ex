@@ -70,7 +70,7 @@ defmodule Crux.Structs.Invite do
         }
 
   @doc """
-    Creates a `t:Crux.Structs.Invite.t/0` struct from raw data.
+  Creates a `t:Crux.Structs.Invite.t/0` struct from raw data.
 
   > Automatically invoked by `Crux.Structs.create/2`.
   """
