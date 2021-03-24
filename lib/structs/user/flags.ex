@@ -26,7 +26,7 @@ defmodule Crux.Structs.User.Flags do
     bug_hunter_level_2: 1 <<< 14,
     # 15
     verified_bot: 1 <<< 16,
-    verified_bot_developer: 1 <<< 17
+    early_verified_bot_developer: 1 <<< 17
   }
 
   use Crux.Structs.BitField, flags
@@ -48,5 +48,5 @@ defmodule Crux.Structs.User.Flags do
           | :system
           | :bug_hunter_level_2
           | :verified_bot
-          | :verified_bot_developer
+          | :early_verified_bot_developer
 end
