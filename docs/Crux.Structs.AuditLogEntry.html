@@ -72,7 +72,7 @@ crux_structs      </a>
 
 
         <section id="moduledoc">
-<p>  Represents a Discord <a href="https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object">Audit Log Entry Object</a>.</p>        </section>
+<p>Represents a Discord <a href="https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object">Audit Log Entry Object</a>.</p>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -90,13 +90,13 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#t:event_name/0">event_name()</a>
   </div>
-    <div class="summary-synopsis"><p>  Union type of audit log event name atoms.</p></div>
+    <div class="summary-synopsis"><p>Union type of audit log event name atoms.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:options/0">options()</a>
   </div>
-    <div class="summary-synopsis"><p>  Additional info for certain action types.</p></div>
+    <div class="summary-synopsis"><p>Additional info for certain action types.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -112,19 +112,19 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#create/1">create(data)</a>
   </div>
-    <div class="summary-synopsis"><p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.AuditLogEntry.t/0</code></a> struct from raw data.</p></div>
+    <div class="summary-synopsis"><p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.AuditLogEntry.t/0</code></a> struct from raw data.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#event_name/1">event_name(action_type)</a>
   </div>
-    <div class="summary-synopsis"><p>  Gets the event name from the action type id</p></div>
+    <div class="summary-synopsis"><p>Gets the event name from the action type id</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#events/0">events()</a>
   </div>
-    <div class="summary-synopsis"><p>  Returns a map of all audit log event names with their id</p></div>
+    <div class="summary-synopsis"><p>Returns a map of all audit log event names with their id</p></div>
 </div>
   </div>
         </section>
@@ -192,7 +192,7 @@ Types          </h1>
   | :integration_delete</pre>
       </div>
 
-<p>  Union type of audit log event name atoms.</p>  </section>
+<p>Union type of audit log event name atoms.</p>  </section>
 </section>
 <section class="detail" id="t:options/0">
   <div class="detail-header">
@@ -223,7 +223,7 @@ Types          </h1>
 }</pre>
       </div>
 
-<p>  Additional info for certain action types.</p><p>  For more information see the <a href="https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info">Discord Developer Documentation</a>.</p>  </section>
+<p>Additional info for certain action types.</p><p>For more information see the <a href="https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info">Discord Developer Documentation</a>.</p>  </section>
 </section>
 <section class="detail" id="t:t/0">
   <div class="detail-header">
@@ -285,7 +285,7 @@ Functions          </h1>
           <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:t/0">t</a>()</pre>
       </div>
 
-<p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.AuditLogEntry.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
+<p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.AuditLogEntry.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
 </section>
 <section class="detail" id="event_name/1">
   <div class="detail-header">
@@ -307,7 +307,7 @@ Functions          </h1>
           <pre>event_name(action_type :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
       </div>
 
-<p>  Gets the event name from the action type id</p>  </section>
+<p>Gets the event name from the action type id</p>  </section>
 </section>
 <section class="detail" id="events/0">
   <div class="detail-header">
@@ -329,7 +329,7 @@ Functions          </h1>
           <pre>events() :: %{required(<a href="#t:event_name/0">event_name</a>()) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()}</pre>
       </div>
 
-<p>  Returns a map of all audit log event names with their id</p>  </section>
+<p>Returns a map of all audit log event names with their id</p>  </section>
 </section>
           </div>
         </section>

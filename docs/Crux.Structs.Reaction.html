@@ -72,7 +72,7 @@ crux_structs      </a>
 
 
         <section id="moduledoc">
-<p>  Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#reaction-object">Reaction Object</a>.</p>        </section>
+<p>Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#reaction-object">Reaction Object</a>.</p>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -90,7 +90,7 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#t:id_resolvable/0">id_resolvable()</a>
   </div>
-    <div class="summary-synopsis"><p>  All available types that can be resolved into a reaction / emoji id.</p></div>
+    <div class="summary-synopsis"><p>All available types that can be resolved into a reaction / emoji id.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -106,13 +106,13 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#create/1">create(data)</a>
   </div>
-    <div class="summary-synopsis"><p>  Creates a <a href="Crux.Structs.Presence.html#t:t/0"><code class="inline">Crux.Structs.Presence.t/0</code></a> struct from raw data.</p></div>
+    <div class="summary-synopsis"><p>Creates a <a href="Crux.Structs.Presence.html#t:t/0"><code class="inline">Crux.Structs.Presence.t/0</code></a> struct from raw data.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#resolve_id/1">resolve_id(resolvable)</a>
   </div>
-    <div class="summary-synopsis"><p>  Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Reaction.t/0</code></a>.</p></div>
+    <div class="summary-synopsis"><p>Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Reaction.t/0</code></a>.</p></div>
 </div>
   </div>
         </section>
@@ -146,7 +146,7 @@ Types          </h1>
   <a href="#t:t/0">t</a>() | <a href="Crux.Structs.Emoji.html#t:t/0">Crux.Structs.Emoji.t</a>() | <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
       </div>
 
-<p>  All available types that can be resolved into a reaction / emoji id.</p>  </section>
+<p>All available types that can be resolved into a reaction / emoji id.</p>  </section>
 </section>
 <section class="detail" id="t:t/0">
   <div class="detail-header">
@@ -204,7 +204,7 @@ Functions          </h1>
           <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:t/0">t</a>()</pre>
       </div>
 
-<p>  Creates a <a href="Crux.Structs.Presence.html#t:t/0"><code class="inline">Crux.Structs.Presence.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
+<p>Creates a <a href="Crux.Structs.Presence.html#t:t/0"><code class="inline">Crux.Structs.Presence.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
 </section>
 <section class="detail" id="resolve_id/1">
   <div class="detail-header">
@@ -226,21 +226,21 @@ Functions          </h1>
           <pre>resolve_id(<a href="#t:id_resolvable/0">id_resolvable</a>()) :: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil</pre>
       </div>
 
-<p>  Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Reaction.t/0</code></a>.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#resolve_id/2"><code class="inline">Crux.Structs.resolve_id/2</code></a>.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7577577486-1">%</span><span class="nc" data-group-id="7577577486-1">Crux.Structs.Reaction</span><span class="p" data-group-id="7577577486-1">{</span><span class="ss">emoji</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7577577486-2">%</span><span class="nc" data-group-id="7577577486-2">Crux.Structs.Emoji</span><span class="p" data-group-id="7577577486-2">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">618731477143912448</span><span class="p" data-group-id="7577577486-2">}</span><span class="p" data-group-id="7577577486-1">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="7577577486-3">(</span><span class="p" data-group-id="7577577486-3">)</span><span class="w">
-  </span><span class="mi">618731477143912448</span><span class="w">
+<p>Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Reaction.t/0</code></a>.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#resolve_id/2"><code class="inline">Crux.Structs.resolve_id/2</code></a>.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5058839832-1">%</span><span class="nc" data-group-id="5058839832-1">Crux.Structs.Reaction</span><span class="p" data-group-id="5058839832-1">{</span><span class="ss">emoji</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5058839832-2">%</span><span class="nc" data-group-id="5058839832-2">Crux.Structs.Emoji</span><span class="p" data-group-id="5058839832-2">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">618731477143912448</span><span class="p" data-group-id="5058839832-2">}</span><span class="p" data-group-id="5058839832-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5058839832-3">(</span><span class="p" data-group-id="5058839832-3">)</span><span class="w">
+</span><span class="mi">618731477143912448</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7577577486-4">%</span><span class="nc" data-group-id="7577577486-4">Crux.Structs.Emoji</span><span class="p" data-group-id="7577577486-4">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">618731477143912448</span><span class="p" data-group-id="7577577486-4">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="7577577486-5">(</span><span class="p" data-group-id="7577577486-5">)</span><span class="w">
-  </span><span class="mi">618731477143912448</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5058839832-4">%</span><span class="nc" data-group-id="5058839832-4">Crux.Structs.Emoji</span><span class="p" data-group-id="5058839832-4">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">618731477143912448</span><span class="p" data-group-id="5058839832-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5058839832-5">(</span><span class="p" data-group-id="5058839832-5">)</span><span class="w">
+</span><span class="mi">618731477143912448</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="mi">618731477143912448</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="7577577486-6">(</span><span class="p" data-group-id="7577577486-6">)</span><span class="w">
-  </span><span class="mi">618731477143912448</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="mi">618731477143912448</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5058839832-6">(</span><span class="p" data-group-id="5058839832-6">)</span><span class="w">
+</span><span class="mi">618731477143912448</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;618731477143912448&quot;</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="7577577486-7">(</span><span class="p" data-group-id="7577577486-7">)</span><span class="w">
-  </span><span class="mi">618731477143912448</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;618731477143912448&quot;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Reaction</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="5058839832-7">(</span><span class="p" data-group-id="5058839832-7">)</span><span class="w">
+</span><span class="mi">618731477143912448</span><span class="w">
 </span></code></pre>  </section>
 </section>
           </div>

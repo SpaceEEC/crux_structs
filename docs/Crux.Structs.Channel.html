@@ -72,7 +72,7 @@ crux_structs      </a>
 
 
         <section id="moduledoc">
-<p>Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#channel-object">Channel Object</a>.</p><p>List of where every property can be present:</p><table><thead><tr><th style="text-align: center;">Property</th><th style="text-align: center;">Text (0)</th><th style="text-align: center;">DM (1)</th><th style="text-align: center;">Voice (2)</th><th style="text-align: center;">Group (3)</th><th style="text-align: center;">Category (4)</th><th style="text-align: center;">News (5)</th></tr></thead><tbody><tr><td style="text-align: center;">application_id</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">bitrate</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">guild_id</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">icon</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">id</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">last_message_id</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">last_pin_timestamp</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">name</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">nsfw</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">owner_id</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">parent_id</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">permission_overwrites</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">position</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">rate_limit_per_user</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">recipients</td><td style="text-align: center;">no</td><td style="text-align: center;">yes&lt;br&gt;(One Element)</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">topic</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">type</td><td style="text-align: center;"><code class="inline">0</code></td><td style="text-align: center;"><code class="inline">1</code></td><td style="text-align: center;"><code class="inline">2</code></td><td style="text-align: center;"><code class="inline">3</code></td><td style="text-align: center;"><code class="inline">4</code></td><td style="text-align: center;"><code class="inline">5</code></td></tr><tr><td style="text-align: center;">user_limit</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr></tbody></table><p>Differences opposed to the Discord API Object:</p><ul><li><code class="inline">:recipients</code> is a MapSet of user ids</li></ul>        </section>
+<p>Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#channel-object">Channel Object</a>.</p><p>List of where every property can be present:</p><table><thead><tr><th style="text-align: center;">Property</th><th style="text-align: center;">Text (0)</th><th style="text-align: center;">DM (1)</th><th style="text-align: center;">Voice (2)</th><th style="text-align: center;">Group (3)</th><th style="text-align: center;">Category (4)</th><th style="text-align: center;">News (5)</th></tr></thead><tbody><tr><td style="text-align: center;">application_id</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">bitrate</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">guild_id</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">icon</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">id</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">last_message_id</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">last_pin_timestamp</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">name</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">nsfw</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">owner_id</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">parent_id</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">permission_overwrites</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">position</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">rate_limit_per_user</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">recipients</td><td style="text-align: center;">no</td><td style="text-align: center;">yes (One Element)</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr><tr><td style="text-align: center;">topic</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">yes</td></tr><tr><td style="text-align: center;">type</td><td style="text-align: center;"><code class="inline">0</code></td><td style="text-align: center;"><code class="inline">1</code></td><td style="text-align: center;"><code class="inline">2</code></td><td style="text-align: center;"><code class="inline">3</code></td><td style="text-align: center;"><code class="inline">4</code></td><td style="text-align: center;"><code class="inline">5</code></td></tr><tr><td style="text-align: center;">user_limit</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">yes</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td><td style="text-align: center;">no</td></tr></tbody></table><p>Differences opposed to the Discord API Object:</p><ul><li><code class="inline">:recipients</code> is a MapSet of user ids</li></ul>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -90,13 +90,13 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#t:id_resolvable/0">id_resolvable()</a>
   </div>
-    <div class="summary-synopsis"><p>  All available types that can be resolved into a channel id.</p></div>
+    <div class="summary-synopsis"><p>All available types that can be resolved into a channel id.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:position_resolvable/0">position_resolvable()</a>
   </div>
-    <div class="summary-synopsis"><p>  All available types that can be resolved into a channel position.</p></div>
+    <div class="summary-synopsis"><p>All available types that can be resolved into a channel position.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -107,7 +107,7 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#t:type/0">type()</a>
   </div>
-    <div class="summary-synopsis"><table><thead><tr><th style="text-align: center;">Type</th><th style="text-align: center;">ID</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;">GUILD_TEXT</td><td style="text-align: center;">0</td><td style="text-align: center;">A text channel within a guild.</td></tr><tr><td style="text-align: center;">DM</td><td style="text-align: center;">1</td><td style="text-align: center;">A direct text channel between two users.</td></tr><tr><td style="text-align: center;">GUILD_VOICE</td><td style="text-align: center;">2</td><td style="text-align: center;">A voice channel withing a guild.</td></tr><tr><td style="text-align: center;">GROUP_DM</td><td style="text-align: center;">3</td><td style="text-align: center;">A direct channel between multiple users.&lt;br&gt;Bots do not have access to those.</td></tr><tr><td style="text-align: center;">GUILD_CATEGORY</td><td style="text-align: center;">4</td><td style="text-align: center;">An organizational category.</td></tr><tr><td style="text-align: center;">GUILD_NEWS</td><td style="text-align: center;">5</td><td style="text-align: center;">A text channel users can follow and crosspost messages to.</td></tr><tr><td style="text-align: center;">GUILD_STORE</td><td style="text-align: center;">6</td><td style="text-align: center;">A channel in which game developers can sell their game.&lt;br&gt;Bots can not interact with those.</td></tr></tbody></table><p>  For more information see the <a href="https://discord.com/developers/docs/resources/channel#channel-object-channel-types">Discord Developer Documentation</a>.</p></div>
+    <div class="summary-synopsis"><p>The type of a channel.</p></div>
 </div>
   </div>
   <div class="summary-functions summary">
@@ -118,25 +118,25 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#create/1">create(data)</a>
   </div>
-    <div class="summary-synopsis"><p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> struct from raw data.</p></div>
+    <div class="summary-synopsis"><p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> struct from raw data.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#resolve_id/1">resolve_id(resolvable)</a>
   </div>
-    <div class="summary-synopsis"><p>  Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a>.</p></div>
+    <div class="summary-synopsis"><p>Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a>.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#resolve_position/1">resolve_position(resolvable)</a>
   </div>
-    <div class="summary-synopsis"><p>  Resolves a <a href="#t:position_resolvable/0"><code class="inline">position_resolvable/0</code></a> into a channel position.</p></div>
+    <div class="summary-synopsis"><p>Resolves a <a href="#t:position_resolvable/0"><code class="inline">position_resolvable/0</code></a> into a channel position.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#to_mention/1">to_mention(channel)</a>
   </div>
-    <div class="summary-synopsis"><p>  Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> into its discord mention format.</p></div>
+    <div class="summary-synopsis"><p>Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> into its discord mention format.</p></div>
 </div>
   </div>
         </section>
@@ -156,7 +156,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">id_resolvable()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L101" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L103" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -170,7 +170,7 @@ Types          </h1>
   <a href="Crux.Structs.Message.html#t:t/0">Crux.Structs.Message.t</a>() | <a href="#t:t/0">t</a>() | <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
       </div>
 
-<p>  All available types that can be resolved into a channel id.</p>  </section>
+<p>All available types that can be resolved into a channel id.</p>  </section>
 </section>
 <section class="detail" id="t:position_resolvable/0">
   <div class="detail-header">
@@ -179,7 +179,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">position_resolvable()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L143" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L145" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -196,7 +196,7 @@ Types          </h1>
   | %{id: <a href="#t:id_resolvable/0">id_resolvable</a>(), position: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()}</pre>
       </div>
 
-<p>  All available types that can be resolved into a channel position.</p>  </section>
+<p>All available types that can be resolved into a channel position.</p>  </section>
 </section>
 <section class="detail" id="t:t/0">
   <div class="detail-header">
@@ -248,7 +248,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">type()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L95" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L97" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -261,7 +261,7 @@ Types          </h1>
           <pre>type() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
       </div>
 
-<table><thead><tr><th style="text-align: center;">Type</th><th style="text-align: center;">ID</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;">GUILD_TEXT</td><td style="text-align: center;">0</td><td style="text-align: center;">A text channel within a guild.</td></tr><tr><td style="text-align: center;">DM</td><td style="text-align: center;">1</td><td style="text-align: center;">A direct text channel between two users.</td></tr><tr><td style="text-align: center;">GUILD_VOICE</td><td style="text-align: center;">2</td><td style="text-align: center;">A voice channel withing a guild.</td></tr><tr><td style="text-align: center;">GROUP_DM</td><td style="text-align: center;">3</td><td style="text-align: center;">A direct channel between multiple users.&lt;br&gt;Bots do not have access to those.</td></tr><tr><td style="text-align: center;">GUILD_CATEGORY</td><td style="text-align: center;">4</td><td style="text-align: center;">An organizational category.</td></tr><tr><td style="text-align: center;">GUILD_NEWS</td><td style="text-align: center;">5</td><td style="text-align: center;">A text channel users can follow and crosspost messages to.</td></tr><tr><td style="text-align: center;">GUILD_STORE</td><td style="text-align: center;">6</td><td style="text-align: center;">A channel in which game developers can sell their game.&lt;br&gt;Bots can not interact with those.</td></tr></tbody></table><p>  For more information see the <a href="https://discord.com/developers/docs/resources/channel#channel-object-channel-types">Discord Developer Documentation</a>.</p>  </section>
+<p>The type of a channel.</p><table><thead><tr><th style="text-align: center;">Type</th><th style="text-align: center;">ID</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;">GUILD_TEXT</td><td style="text-align: center;">0</td><td style="text-align: center;">A text channel within a guild.</td></tr><tr><td style="text-align: center;">DM</td><td style="text-align: center;">1</td><td style="text-align: center;">A direct text channel between two users.</td></tr><tr><td style="text-align: center;">GUILD_VOICE</td><td style="text-align: center;">2</td><td style="text-align: center;">A voice channel withing a guild.</td></tr><tr><td style="text-align: center;">GROUP_DM</td><td style="text-align: center;">3</td><td style="text-align: center;">A direct channel between multiple users. Bots do not have access to those.</td></tr><tr><td style="text-align: center;">GUILD_CATEGORY</td><td style="text-align: center;">4</td><td style="text-align: center;">An organizational category.</td></tr><tr><td style="text-align: center;">GUILD_NEWS</td><td style="text-align: center;">5</td><td style="text-align: center;">A text channel users can follow and crosspost messages to.</td></tr><tr><td style="text-align: center;">GUILD_STORE</td><td style="text-align: center;">6</td><td style="text-align: center;">A channel in which game developers can sell their game. Bots can not interact with those.</td></tr></tbody></table><p>For more information see the <a href="https://discord.com/developers/docs/resources/channel#channel-object-channel-types">Discord Developer Documentation</a>.</p>  </section>
 </section>
           </div>
         </section>
@@ -280,7 +280,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L221" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L223" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -292,7 +292,7 @@ Functions          </h1>
           <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:t/0">t</a>()</pre>
       </div>
 
-<p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a></p></blockquote>  </section>
+<p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a></p></blockquote>  </section>
 </section>
 <section class="detail" id="resolve_id/1">
   <div class="detail-header">
@@ -301,7 +301,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">resolve_id(resolvable)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L129" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L131" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -314,21 +314,21 @@ Functions          </h1>
           <pre>resolve_id(<a href="#t:id_resolvable/0">id_resolvable</a>()) :: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | nil</pre>
       </div>
 
-<p>  Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a>.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#resolve_id/2"><code class="inline">Crux.Structs.resolve_id/2</code></a>.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="6847766170-1">%</span><span class="nc" data-group-id="6847766170-1">Crux.Structs.Message</span><span class="p" data-group-id="6847766170-1">{</span><span class="ss">channel_id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p" data-group-id="6847766170-1">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="6847766170-2">(</span><span class="p" data-group-id="6847766170-2">)</span><span class="w">
-  </span><span class="mi">222079895583457280</span><span class="w">
+<p>Resolves the id of a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a>.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#resolve_id/2"><code class="inline">Crux.Structs.resolve_id/2</code></a>.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2370738549-1">%</span><span class="nc" data-group-id="2370738549-1">Crux.Structs.Message</span><span class="p" data-group-id="2370738549-1">{</span><span class="ss">channel_id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p" data-group-id="2370738549-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2370738549-2">(</span><span class="p" data-group-id="2370738549-2">)</span><span class="w">
+</span><span class="mi">222079895583457280</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="6847766170-3">%</span><span class="nc" data-group-id="6847766170-3">Crux.Structs.Channel</span><span class="p" data-group-id="6847766170-3">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p" data-group-id="6847766170-3">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="6847766170-4">(</span><span class="p" data-group-id="6847766170-4">)</span><span class="w">
-  </span><span class="mi">222079895583457280</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2370738549-3">%</span><span class="nc" data-group-id="2370738549-3">Crux.Structs.Channel</span><span class="p" data-group-id="2370738549-3">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p" data-group-id="2370738549-3">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2370738549-4">(</span><span class="p" data-group-id="2370738549-4">)</span><span class="w">
+</span><span class="mi">222079895583457280</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="mi">222079895583457280</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="6847766170-5">(</span><span class="p" data-group-id="6847766170-5">)</span><span class="w">
-  </span><span class="mi">222079895583457280</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="mi">222079895583457280</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2370738549-5">(</span><span class="p" data-group-id="2370738549-5">)</span><span class="w">
+</span><span class="mi">222079895583457280</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;222079895583457280&quot;</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="6847766170-6">(</span><span class="p" data-group-id="6847766170-6">)</span><span class="w">
-  </span><span class="mi">222079895583457280</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;222079895583457280&quot;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_id</span><span class="p" data-group-id="2370738549-6">(</span><span class="p" data-group-id="2370738549-6">)</span><span class="w">
+</span><span class="mi">222079895583457280</span><span class="w">
 </span></code></pre>  </section>
 </section>
 <section class="detail" id="resolve_position/1">
@@ -338,7 +338,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">resolve_position(resolvable)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L183" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L185" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -352,33 +352,33 @@ Functions          </h1>
   %{id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(), position: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()} | nil</pre>
       </div>
 
-<p>  Resolves a <a href="#t:position_resolvable/0"><code class="inline">position_resolvable/0</code></a> into a channel position.</p><h2 id="resolve_position/1-examples" class="section-heading">
+<p>Resolves a <a href="#t:position_resolvable/0"><code class="inline">position_resolvable/0</code></a> into a channel position.</p><h2 id="resolve_position/1-examples" class="section-heading">
   <a href="#resolve_position/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8553487494-1">%</span><span class="nc" data-group-id="8553487494-1">Crux.Structs.Channel</span><span class="p" data-group-id="8553487494-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-1">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8553487494-2">(</span><span class="p" data-group-id="8553487494-2">)</span><span class="w">
-  </span><span class="p" data-group-id="8553487494-3">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-3">}</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="0435731932-1">%</span><span class="nc" data-group-id="0435731932-1">Crux.Structs.Channel</span><span class="p" data-group-id="0435731932-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="0435731932-2">(</span><span class="p" data-group-id="0435731932-2">)</span><span class="w">
+</span><span class="p" data-group-id="0435731932-3">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-3">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8553487494-4">{</span><span class="p" data-group-id="8553487494-5">%</span><span class="nc" data-group-id="8553487494-5">Crux.Structs.Channel</span><span class="p" data-group-id="8553487494-5">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p" data-group-id="8553487494-5">}</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-4">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8553487494-6">(</span><span class="p" data-group-id="8553487494-6">)</span><span class="w">
-  </span><span class="p" data-group-id="8553487494-7">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-7">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="0435731932-4">{</span><span class="p" data-group-id="0435731932-5">%</span><span class="nc" data-group-id="0435731932-5">Crux.Structs.Channel</span><span class="p" data-group-id="0435731932-5">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p" data-group-id="0435731932-5">}</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="0435731932-6">(</span><span class="p" data-group-id="0435731932-6">)</span><span class="w">
+</span><span class="p" data-group-id="0435731932-7">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-7">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8553487494-8">{</span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-8">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8553487494-9">(</span><span class="p" data-group-id="8553487494-9">)</span><span class="w">
-  </span><span class="p" data-group-id="8553487494-10">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-10">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="0435731932-8">{</span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-8">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="0435731932-9">(</span><span class="p" data-group-id="0435731932-9">)</span><span class="w">
+</span><span class="p" data-group-id="0435731932-10">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-10">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8553487494-11">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-11">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8553487494-12">(</span><span class="p" data-group-id="8553487494-12">)</span><span class="w">
-  </span><span class="p" data-group-id="8553487494-13">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-13">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="0435731932-11">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-11">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="0435731932-12">(</span><span class="p" data-group-id="0435731932-12">)</span><span class="w">
+</span><span class="p" data-group-id="0435731932-13">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-13">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8553487494-14">%{</span><span class="ss">channel</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-14">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8553487494-15">(</span><span class="p" data-group-id="8553487494-15">)</span><span class="w">
-  </span><span class="p" data-group-id="8553487494-16">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-16">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="0435731932-14">%{</span><span class="ss">channel</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-14">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="0435731932-15">(</span><span class="p" data-group-id="0435731932-15">)</span><span class="w">
+</span><span class="p" data-group-id="0435731932-16">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">222079895583457280</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-16">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8553487494-17">{</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8553487494-17">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8553487494-18">(</span><span class="p" data-group-id="8553487494-18">)</span><span class="w">
-  </span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="0435731932-17">{</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="0435731932-17">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="0435731932-18">(</span><span class="p" data-group-id="0435731932-18">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
 </span></code></pre>  </section>
 </section>
 <section class="detail" id="to_mention/1">
@@ -388,7 +388,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">to_mention(channel)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L251" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/channel.ex#L253" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -401,12 +401,12 @@ Functions          </h1>
           <pre>to_mention(user :: <a href="#t:t/0">t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
       </div>
 
-<p>  Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> into its discord mention format.</p><h2 id="to_mention/1-example" class="section-heading">
+<p>Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Channel.t/0</code></a> into its discord mention format.</p><h2 id="to_mention/1-example" class="section-heading">
   <a href="#to_mention/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Example
 </h2>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2957541894-1">%</span><span class="nc" data-group-id="2957541894-1">Crux.Structs.Channel</span><span class="p" data-group-id="2957541894-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">316880197314019329</span><span class="p" data-group-id="2957541894-1">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">to_mention</span><span class="p" data-group-id="2957541894-2">(</span><span class="p" data-group-id="2957541894-2">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5562331598-1">%</span><span class="nc" data-group-id="5562331598-1">Crux.Structs.Channel</span><span class="p" data-group-id="5562331598-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">316880197314019329</span><span class="p" data-group-id="5562331598-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Channel</span><span class="o">.</span><span class="n">to_mention</span><span class="p" data-group-id="5562331598-2">(</span><span class="p" data-group-id="5562331598-2">)</span><span class="w">
 </span><span class="s">&quot;&lt;#316880197314019329&gt;&quot;</span><span class="w">
 </span></code></pre>  </section>
 </section>

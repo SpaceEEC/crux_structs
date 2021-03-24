@@ -72,7 +72,7 @@ crux_structs      </a>
 
 
         <section id="moduledoc">
-<p>  Represents a Discord <a href="https://discord.com/developers/docs/resources/webhook#webhook-object">Webhook Object</a></p><p>Differences opposed to the Discord API Object:</p><ul><li><code class="inline">:user</code> is just the user id</li></ul>        </section>
+<p>Represents a Discord <a href="https://discord.com/developers/docs/resources/webhook#webhook-object">Webhook Object</a></p><p>Differences opposed to the Discord API Object:</p><ul><li><code class="inline">:user</code> is just the user id</li></ul>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -90,7 +90,7 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#t:id_resolvable/0">id_resolvable()</a>
   </div>
-    <div class="summary-synopsis"><p>  All available types that can be resolved into a webhook id.</p></div>
+    <div class="summary-synopsis"><p>All available types that can be resolved into a webhook id.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -106,13 +106,13 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#create/1">create(data)</a>
   </div>
-    <div class="summary-synopsis"><p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> struct from raw data.</p></div>
+    <div class="summary-synopsis"><p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> struct from raw data.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#to_mention/1">to_mention(webhook)</a>
   </div>
-    <div class="summary-synopsis"><p>  Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> into its discord mention format.</p></div>
+    <div class="summary-synopsis"><p>Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> into its discord mention format.</p></div>
 </div>
   </div>
         </section>
@@ -145,7 +145,7 @@ Types          </h1>
           <pre>id_resolvable() :: <a href="#t:t/0">t</a>() | <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
       </div>
 
-<p>  All available types that can be resolved into a webhook id.</p>  </section>
+<p>All available types that can be resolved into a webhook id.</p>  </section>
 </section>
 <section class="detail" id="t:t/0">
   <div class="detail-header">
@@ -208,7 +208,7 @@ Functions          </h1>
           <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:t/0">t</a>()</pre>
       </div>
 
-<p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
+<p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
 </section>
 <section class="detail" id="to_mention/1">
   <div class="detail-header">
@@ -230,8 +230,8 @@ Functions          </h1>
           <pre>to_mention(webhook :: <a href="#t:t/0">t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
       </div>
 
-<p>  Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> into its discord mention format.</p><blockquote><p>Although the discord client does not autocomplete it for you, mentioning one still works.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4290583241-1">%</span><span class="nc" data-group-id="4290583241-1">Crux.Structs.Webhook</span><span class="p" data-group-id="4290583241-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4290583241-1">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Webhook</span><span class="o">.</span><span class="n">to_mention</span><span class="p" data-group-id="4290583241-2">(</span><span class="p" data-group-id="4290583241-2">)</span><span class="w">
+<p>Converts a <a href="#t:t/0"><code class="inline">Crux.Structs.Webhook.t/0</code></a> into its discord mention format.</p><blockquote><p>Although the discord client does not autocomplete it for you, mentioning one still works.</p></blockquote><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5471884041-1">%</span><span class="nc" data-group-id="5471884041-1">Crux.Structs.Webhook</span><span class="p" data-group-id="5471884041-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="5471884041-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Webhook</span><span class="o">.</span><span class="n">to_mention</span><span class="p" data-group-id="5471884041-2">(</span><span class="p" data-group-id="5471884041-2">)</span><span class="w">
 </span><span class="s">&quot;&lt;@218348062828003328&gt;&quot;</span><span class="w">
 </span></code></pre>  </section>
 </section>

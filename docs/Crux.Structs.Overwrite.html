@@ -72,7 +72,7 @@ crux_structs      </a>
 
 
         <section id="moduledoc">
-<p>  Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#overwrite-object">Overwrite Object</a>.</p>        </section>
+<p>Represents a Discord <a href="https://discord.com/developers/docs/resources/channel#overwrite-object">Overwrite Object</a>.</p>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -95,7 +95,7 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#t:target_resolvable/0">target_resolvable()</a>
   </div>
-    <div class="summary-synopsis"><p>  All available types that can be resolved into a target for a permission overwrite</p></div>
+    <div class="summary-synopsis"><p>All available types that can be resolved into a target for a permission overwrite</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -112,13 +112,13 @@ crux_structs      </a>
   <div class="summary-signature">
     <a href="#create/1">create(data)</a>
   </div>
-    <div class="summary-synopsis"><p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Overwrite.t/0</code></a> struct from raw data.</p></div>
+    <div class="summary-synopsis"><p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Overwrite.t/0</code></a> struct from raw data.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#resolve_target/1">resolve_target(resolvable)</a>
   </div>
-    <div class="summary-synopsis"><p>  Resolves a <a href="#t:target_resolvable/0"><code class="inline">target_resolvable/0</code></a> into an overwrite target.</p></div>
+    <div class="summary-synopsis"><p>Resolves a <a href="#t:target_resolvable/0"><code class="inline">target_resolvable/0</code></a> into an overwrite target.</p></div>
 </div>
   </div>
         </section>
@@ -179,7 +179,7 @@ Types          </h1>
   <a href="#t:t/0">t</a>() | <a href="Crux.Structs.Role.html#t:t/0">Crux.Structs.Role.t</a>() | <a href="Crux.Structs.User.html#t:id_resolvable/0">Crux.Structs.User.id_resolvable</a>()</pre>
       </div>
 
-<p>  All available types that can be resolved into a target for a permission overwrite</p>  </section>
+<p>All available types that can be resolved into a target for a permission overwrite</p>  </section>
 </section>
 <section class="detail" id="t:target_type/0">
   <div class="detail-header">
@@ -233,7 +233,7 @@ Functions          </h1>
           <pre>create(data :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:t/0">t</a>()</pre>
       </div>
 
-<p>  Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Overwrite.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
+<p>Creates a <a href="#t:t/0"><code class="inline">Crux.Structs.Overwrite.t/0</code></a> struct from raw data.</p><blockquote><p>Automatically invoked by <a href="Crux.Structs.html#create/2"><code class="inline">Crux.Structs.create/2</code></a>.</p></blockquote>  </section>
 </section>
 <section class="detail" id="resolve_target/1">
   <div class="detail-header">
@@ -256,45 +256,45 @@ Functions          </h1>
   {<a href="#t:target_type/0">target_type</a>() | :unknown, <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()}</pre>
       </div>
 
-<p>  Resolves a <a href="#t:target_resolvable/0"><code class="inline">target_resolvable/0</code></a> into an overwrite target.</p><blockquote><p>Note that an id or string of it returns <code class="inline">:unknown</code> as type.</p></blockquote><h2 id="resolve_target/1-examples" class="section-heading">
+<p>Resolves a <a href="#t:target_resolvable/0"><code class="inline">target_resolvable/0</code></a> into an overwrite target.</p><blockquote><p>Note that an id or string of it returns <code class="inline">:unknown</code> as type.</p></blockquote><h2 id="resolve_target/1-examples" class="section-heading">
   <a href="#resolve_target/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9905903645-1">%</span><span class="nc" data-group-id="9905903645-1">Crux.Structs.Overwrite</span><span class="p" data-group-id="9905903645-1">{</span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-1">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-2">(</span><span class="p" data-group-id="9905903645-2">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-3">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-3">}</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4562892132-1">%</span><span class="nc" data-group-id="4562892132-1">Crux.Structs.Overwrite</span><span class="p" data-group-id="4562892132-1">{</span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-2">(</span><span class="p" data-group-id="4562892132-2">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-3">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-3">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9905903645-4">%</span><span class="nc" data-group-id="9905903645-4">Crux.Structs.Role</span><span class="p" data-group-id="9905903645-4">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">376146940762783746</span><span class="p" data-group-id="9905903645-4">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-5">(</span><span class="p" data-group-id="9905903645-5">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-6">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">376146940762783746</span><span class="p" data-group-id="9905903645-6">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4562892132-4">%</span><span class="nc" data-group-id="4562892132-4">Crux.Structs.Role</span><span class="p" data-group-id="4562892132-4">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">376146940762783746</span><span class="p" data-group-id="4562892132-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-5">(</span><span class="p" data-group-id="4562892132-5">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-6">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">376146940762783746</span><span class="p" data-group-id="4562892132-6">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9905903645-7">%</span><span class="nc" data-group-id="9905903645-7">Crux.Structs.User</span><span class="p" data-group-id="9905903645-7">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-7">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-8">(</span><span class="p" data-group-id="9905903645-8">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-9">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-9">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4562892132-7">%</span><span class="nc" data-group-id="4562892132-7">Crux.Structs.User</span><span class="p" data-group-id="4562892132-7">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-7">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-8">(</span><span class="p" data-group-id="4562892132-8">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-9">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-9">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9905903645-10">%</span><span class="nc" data-group-id="9905903645-10">Crux.Structs.Member</span><span class="p" data-group-id="9905903645-10">{</span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-10">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-11">(</span><span class="p" data-group-id="9905903645-11">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-12">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-12">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4562892132-10">%</span><span class="nc" data-group-id="4562892132-10">Crux.Structs.Member</span><span class="p" data-group-id="4562892132-10">{</span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-10">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-11">(</span><span class="p" data-group-id="4562892132-11">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-12">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-12">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9905903645-13">%</span><span class="nc" data-group-id="9905903645-13">Crux.Structs.Message</span><span class="p" data-group-id="9905903645-13">{</span><span class="ss">author</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9905903645-14">%</span><span class="nc" data-group-id="9905903645-14">Crux.Structs.User</span><span class="p" data-group-id="9905903645-14">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-14">}</span><span class="p" data-group-id="9905903645-13">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-15">(</span><span class="p" data-group-id="9905903645-15">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-16">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-16">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4562892132-13">%</span><span class="nc" data-group-id="4562892132-13">Crux.Structs.Message</span><span class="p" data-group-id="4562892132-13">{</span><span class="ss">author</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4562892132-14">%</span><span class="nc" data-group-id="4562892132-14">Crux.Structs.User</span><span class="p" data-group-id="4562892132-14">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-14">}</span><span class="p" data-group-id="4562892132-13">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-15">(</span><span class="p" data-group-id="4562892132-15">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-16">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-16">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9905903645-17">%</span><span class="nc" data-group-id="9905903645-17">Crux.Structs.VoiceState</span><span class="p" data-group-id="9905903645-17">{</span><span class="ss">user_id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-17">}</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-18">(</span><span class="p" data-group-id="9905903645-18">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-19">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-19">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4562892132-17">%</span><span class="nc" data-group-id="4562892132-17">Crux.Structs.VoiceState</span><span class="p" data-group-id="4562892132-17">{</span><span class="ss">user_id</span><span class="p">:</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-17">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-18">(</span><span class="p" data-group-id="4562892132-18">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-19">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-19">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="mi">218348062828003328</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-20">(</span><span class="p" data-group-id="9905903645-20">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-21">{</span><span class="ss">:unknown</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-21">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="mi">218348062828003328</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-20">(</span><span class="p" data-group-id="4562892132-20">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-21">{</span><span class="ss">:unknown</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-21">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;218348062828003328&quot;</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-22">(</span><span class="p" data-group-id="9905903645-22">)</span><span class="w">
-  </span><span class="p" data-group-id="9905903645-23">{</span><span class="ss">:unknown</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="9905903645-23">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="s">&quot;218348062828003328&quot;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-22">(</span><span class="p" data-group-id="4562892132-22">)</span><span class="w">
+</span><span class="p" data-group-id="4562892132-23">{</span><span class="ss">:unknown</span><span class="p">,</span><span class="w"> </span><span class="mi">218348062828003328</span><span class="p" data-group-id="4562892132-23">}</span><span class="w">
 
-  </span><span class="gp unselectable">iex&gt; </span><span class="no">nil</span><span class="w">
-  </span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="9905903645-24">(</span><span class="p" data-group-id="9905903645-24">)</span><span class="w">
-  </span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Overwrite</span><span class="o">.</span><span class="n">resolve_target</span><span class="p" data-group-id="4562892132-24">(</span><span class="p" data-group-id="4562892132-24">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
 </span></code></pre>  </section>
 </section>
           </div>
