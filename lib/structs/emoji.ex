@@ -13,26 +13,26 @@ defmodule Crux.Structs.Emoji do
   alias Crux.Structs.{Emoji, Reaction, Snowflake, Util}
 
   defstruct [
-    :animated,
-    :available,
     :id,
     :name,
     :roles,
     :user,
     :require_colons,
-    :managed
+    :managed,
+    :animated,
+    :available,
   ]
 
   @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
-          animated: boolean() | nil,
-          available: boolean() | nil,
           id: Snowflake.t() | nil,
           name: String.t(),
           roles: MapSet.t(Snowflake.t()),
           user: Snowflake.t() | nil,
           require_colons: boolean() | nil,
-          managed: boolean() | nil
+          managed: boolean() | nil,
+          animated: boolean() | nil,
+          available: boolean() | nil,
         }
 
   @typedoc """
