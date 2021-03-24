@@ -89,14 +89,14 @@ defmodule Crux.Structs.Application do
       |> Map.update(:owner, nil, &Structs.create(&1, User))
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:primary_sku_id, nil, &Snowflake.to_snowflake/1)
-      |> Map.update(:team, nil, &transform_team/1)
+      |> Map.update(:team, nil, &create_team/1)
 
     struct(__MODULE__, application)
   end
 
-  defp transform_team(nil), do: nil
+  defp create_team(nil), do: nil
 
-  defp transform_team(team) do
+  defp create_team(team) do
     team
     |> Map.update!(:id, &Snowflake.to_snowflake/1)
     |> Map.update!(:owner_user_id, &Snowflake.to_snowflake/1)

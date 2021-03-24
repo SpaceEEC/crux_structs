@@ -139,12 +139,14 @@ defmodule Crux.Structs.Role do
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:permissions, nil, &Permissions.resolve/1)
-      |> transform_tags()
+      |> Map.update(:tags, nil, &create_tags/1)
 
     struct(__MODULE__, role)
   end
 
-  defp transform_tags(%{tags: %{} = tags} = role) do
+  defp create_tags(nil), do: nil
+
+  defp create_tags(tags) do
     tags =
       if Map.has_key?(tags, :bot_id) do
         Map.update!(tags, :bot_id, &Snowflake.to_snowflake/1)
@@ -159,10 +161,8 @@ defmodule Crux.Structs.Role do
         tags
       end
 
-    %{role | tags: tags}
+    tags
   end
-
-  defp transform_tags(role), do: role
 
   @doc ~S"""
     Converts a `t:Crux.Structs.Role.t/0` into its discord mention format.
