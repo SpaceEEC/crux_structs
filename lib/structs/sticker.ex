@@ -18,8 +18,12 @@ defmodule Crux.Structs.Sticker do
     :description,
     :tags,
     :asset,
-    :preview_asset,
-    :format_type
+    :type,
+    :format_type,
+    :available,
+    :guild_id,
+    :user,
+    :sort_value
   ]
 
   @typedoc since: "0.3.0"
@@ -30,9 +34,19 @@ defmodule Crux.Structs.Sticker do
           description: String.t(),
           tags: String.t(),
           asset: String.t(),
-          preview_asset: String.t() | nil,
-          format_type: 1..3
+          type: 1..2,
+          format_type: 1..3,
+          available: boolean() | nil,
+          guild_id: Snowflake.t() | nil,
+          user: Snowflake.t() | nil,
+          sort_value: integer() | nil
         }
+
+  @typedoc """
+  All available types that can be resolved into a sticker id.
+  """
+  @typedoc since: "0.2.1"
+  @type id_resolvable() :: Role.t() | Snowflake.t() | String.t() | nil
 
   def create(data) do
     sticker =
@@ -40,6 +54,8 @@ defmodule Crux.Structs.Sticker do
       |> Util.atomify()
       |> Map.update!(:id, &Snowflake.to_snowflake/1)
       |> Map.update!(:pack_id, &Snowflake.to_snowflake/1)
+      |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:user, nil, Util.map_to_id())
 
     struct(__MODULE__, sticker)
   end
