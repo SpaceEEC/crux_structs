@@ -3,39 +3,53 @@ name: Tests
 on:
   push:
     branches:
-      - '*'
-      - 'feat/*'
-      - 'docs/*'
-      - 'fix/*'
-      - 'refactor/*'
-      - 'test/*'
-    tags:
-      - '!*'
-      - '!*/**'
-      - '!**/**'
+      - '**'
 
 jobs:
-  test:
-    name: Elixir 1.10
+  tests:
+    name: 1.10 only tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: 22.x
+          elixir-version: 1.10.x
+
+      - name: Install dependencies
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+
+      - name: Test code
+        run: mix test
+
+  everything:
+    name: 1.12 everything
 
     runs-on: ubuntu-latest
 
-    container:
-      image: spaceeec/elixir:1.10-slim
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Install dependencies
-      run: |
-        mix local.rebar --force
-        mix local.hex --force
-        mix deps.get
+      - uses: actions/checkout@v1
 
-    - name: Check formatting
-      run: mix format --check-formatted
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: 22.x
+          elixir-version: 1.12.x
 
-    - name: Run credo
-      run: mix credo --strict
-  
-    - name: Test code
-      run: mix test
+      - name: Install dependencies
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+
+      - name: Check formatting
+        run: mix format --check-formatted
+
+      - name: Run credo
+        run: mix credo --strict
+    
+      - name: Test code
+        run: mix test --cover
