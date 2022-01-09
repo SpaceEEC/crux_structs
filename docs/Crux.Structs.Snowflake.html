@@ -236,14 +236,14 @@ Functions          </h1>
           <pre>construct(<a href="Crux.Structs.Snowflake.Parts.html#t:t/0">Crux.Structs.Snowflake.Parts.t</a>() | <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="#t:t/0">t</a>()</pre>
       </div>
 
-<p>Constructs a <a href="#t:t/0"><code class="inline">t/0</code></a> from its <a href="Crux.Structs.Snowflake.Parts.html#t:t/0"><code class="inline">Crux.Structs.Snowflake.Parts.t/0</code></a> or a keyword of its fields.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7625552804-1">%</span><span class="nc" data-group-id="7625552804-1">Crux.Structs.Snowflake.Parts</span><span class="p" data-group-id="7625552804-1">{</span><span class="ss">increment</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">process_id</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">timestamp</span><span class="p">:</span><span class="w"> </span><span class="mi">1472128634889</span><span class="p">,</span><span class="w"> </span><span class="ss">worker_id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7625552804-1">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">construct</span><span class="p" data-group-id="7625552804-2">(</span><span class="p" data-group-id="7625552804-2">)</span><span class="w">
+<p>Constructs a <a href="#t:t/0"><code class="inline">t/0</code></a> from its <a href="Crux.Structs.Snowflake.Parts.html#t:t/0"><code class="inline">Crux.Structs.Snowflake.Parts.t/0</code></a> or a keyword of its fields.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4552391021-1">%</span><span class="nc" data-group-id="4552391021-1">Crux.Structs.Snowflake.Parts</span><span class="p" data-group-id="4552391021-1">{</span><span class="ss">increment</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">process_id</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">timestamp</span><span class="p">:</span><span class="w"> </span><span class="mi">1472128634889</span><span class="p">,</span><span class="w"> </span><span class="ss">worker_id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4552391021-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">construct</span><span class="p" data-group-id="4552391021-2">(</span><span class="p" data-group-id="4552391021-2">)</span><span class="w">
 </span><span class="mi">218348062828003328</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">construct</span><span class="p" data-group-id="7625552804-3">(</span><span class="ss">increment</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">timestamp</span><span class="p">:</span><span class="w"> </span><span class="mi">1451106635493</span><span class="p" data-group-id="7625552804-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">construct</span><span class="p" data-group-id="4552391021-3">(</span><span class="ss">increment</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">timestamp</span><span class="p">:</span><span class="w"> </span><span class="mi">1451106635493</span><span class="p" data-group-id="4552391021-3">)</span><span class="w">
 </span><span class="mi">130175406673231873</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">construct</span><span class="p" data-group-id="7625552804-4">(</span><span class="ss">timestamp</span><span class="p">:</span><span class="w"> </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">discord_epoch</span><span class="p" data-group-id="7625552804-5">(</span><span class="p" data-group-id="7625552804-5">)</span><span class="p" data-group-id="7625552804-4">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">construct</span><span class="p" data-group-id="4552391021-4">(</span><span class="ss">timestamp</span><span class="p">:</span><span class="w"> </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">discord_epoch</span><span class="p" data-group-id="4552391021-5">(</span><span class="p" data-group-id="4552391021-5">)</span><span class="p" data-group-id="4552391021-4">)</span><span class="w">
 </span><span class="mi">0</span><span class="w">
 </span></code></pre>  </section>
 </section>
@@ -267,13 +267,13 @@ Functions          </h1>
           <pre>deconstruct(<a href="#t:t/0">t</a>()) :: <a href="Crux.Structs.Snowflake.Parts.html#t:t/0">Crux.Structs.Snowflake.Parts.t</a>()</pre>
       </div>
 
-<p>Deconstructs a <a href="#t:t/0"><code class="inline">t/0</code></a> to its <a href="Crux.Structs.Snowflake.Parts.html#t:t/0"><code class="inline">Crux.Structs.Snowflake.Parts.t/0</code></a>.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">deconstruct</span><span class="p" data-group-id="3870902822-1">(</span><span class="mi">218348062828003328</span><span class="p" data-group-id="3870902822-1">)</span><span class="w">
-</span><span class="p" data-group-id="3870902822-2">%</span><span class="nc" data-group-id="3870902822-2">Crux.Structs.Snowflake.Parts</span><span class="p" data-group-id="3870902822-2">{</span><span class="w">
+<p>Deconstructs a <a href="#t:t/0"><code class="inline">t/0</code></a> to its <a href="Crux.Structs.Snowflake.Parts.html#t:t/0"><code class="inline">Crux.Structs.Snowflake.Parts.t/0</code></a>.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">deconstruct</span><span class="p" data-group-id="9718755828-1">(</span><span class="mi">218348062828003328</span><span class="p" data-group-id="9718755828-1">)</span><span class="w">
+</span><span class="p" data-group-id="9718755828-2">%</span><span class="nc" data-group-id="9718755828-2">Crux.Structs.Snowflake.Parts</span><span class="p" data-group-id="9718755828-2">{</span><span class="w">
   </span><span class="ss">increment</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="ss">process_id</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="ss">timestamp</span><span class="p">:</span><span class="w"> </span><span class="mi">1472128634889</span><span class="p">,</span><span class="w">
   </span><span class="ss">worker_id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span><span class="p" data-group-id="3870902822-2">}</span><span class="w">
+</span><span class="p" data-group-id="9718755828-2">}</span><span class="w">
 </span></code></pre>  </section>
 </section>
 <section class="detail" id="discord_epoch/0">
@@ -296,7 +296,7 @@ Functions          </h1>
           <pre>discord_epoch() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
       </div>
 
-<p>The discord epoch, the first second of 2015 or <code class="inline">1420070400000</code>.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">discord_epoch</span><span class="p" data-group-id="2373453446-1">(</span><span class="p" data-group-id="2373453446-1">)</span><span class="w">
+<p>The discord epoch, the first second of 2015 or <code class="inline">1420070400000</code>.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">discord_epoch</span><span class="p" data-group-id="2001638168-1">(</span><span class="p" data-group-id="2001638168-1">)</span><span class="w">
 </span><span class="mi">1_420_070_400_000</span><span class="w">
 </span></code></pre>  </section>
 </section>
@@ -362,14 +362,14 @@ Functions          </h1>
           <pre>parse(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="#t:t/0">t</a>() | :error</pre>
       </div>
 
-<p>Converts a <a href="https://hexdocs.pm/elixir/String.html#t:t/0"><code class="inline">String.t/0</code></a> to a <a href="#t:t/0"><code class="inline">t/0</code></a> while allowing <a href="#t:t/0"><code class="inline">t/0</code></a> to pass through.</p><p>Returns <code class="inline">:error</code> if the provided string is not a <a href="#t:t/0"><code class="inline">t/0</code></a>.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="6726927434-1">(</span><span class="s">&quot;invalid&quot;</span><span class="p" data-group-id="6726927434-1">)</span><span class="w">
+<p>Converts a <a href="https://hexdocs.pm/elixir/String.html#t:t/0"><code class="inline">String.t/0</code></a> to a <a href="#t:t/0"><code class="inline">t/0</code></a> while allowing <a href="#t:t/0"><code class="inline">t/0</code></a> to pass through.</p><p>Returns <code class="inline">:error</code> if the provided string is not a <a href="#t:t/0"><code class="inline">t/0</code></a>.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="2636792892-1">(</span><span class="s">&quot;invalid&quot;</span><span class="p" data-group-id="2636792892-1">)</span><span class="w">
 </span><span class="ss">:error</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="6726927434-2">(</span><span class="mi">218348062828003328</span><span class="p" data-group-id="6726927434-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="2636792892-2">(</span><span class="mi">218348062828003328</span><span class="p" data-group-id="2636792892-2">)</span><span class="w">
 </span><span class="mi">218348062828003328</span><span class="w">
 
 </span><span class="c1"># Fallbacks</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="6726927434-3">(</span><span class="s">&quot;218348062828003328&quot;</span><span class="p" data-group-id="6726927434-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="2636792892-3">(</span><span class="s">&quot;218348062828003328&quot;</span><span class="p" data-group-id="2636792892-3">)</span><span class="w">
 </span><span class="mi">218348062828003328</span><span class="w">
 </span></code></pre>  </section>
 </section>
@@ -417,14 +417,14 @@ Functions          </h1>
           <pre>to_snowflake(nil) :: nil</pre>
       </div>
 
-<p>Converts a <a href="https://hexdocs.pm/elixir/String.html#t:t/0"><code class="inline">String.t/0</code></a> to a <a href="#t:t/0"><code class="inline">t/0</code></a> while allowing <a href="#t:t/0"><code class="inline">t/0</code></a> and <code class="inline">nil</code> to pass through.</p><p>Raises an <a href="https://hexdocs.pm/elixir/ArgumentError.html"><code class="inline">ArgumentError</code></a> if the provided string is not an integer.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">to_snowflake</span><span class="p" data-group-id="0463853571-1">(</span><span class="mi">218348062828003328</span><span class="p" data-group-id="0463853571-1">)</span><span class="w">
+<p>Converts a <a href="https://hexdocs.pm/elixir/String.html#t:t/0"><code class="inline">String.t/0</code></a> to a <a href="#t:t/0"><code class="inline">t/0</code></a> while allowing <a href="#t:t/0"><code class="inline">t/0</code></a> and <code class="inline">nil</code> to pass through.</p><p>Raises an <a href="https://hexdocs.pm/elixir/ArgumentError.html"><code class="inline">ArgumentError</code></a> if the provided string is not an integer.</p><pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">to_snowflake</span><span class="p" data-group-id="0466643445-1">(</span><span class="mi">218348062828003328</span><span class="p" data-group-id="0466643445-1">)</span><span class="w">
 </span><span class="mi">218348062828003328</span><span class="w">
 
 </span><span class="c1"># Fallbacks</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">to_snowflake</span><span class="p" data-group-id="0463853571-2">(</span><span class="s">&quot;218348062828003328&quot;</span><span class="p" data-group-id="0463853571-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">to_snowflake</span><span class="p" data-group-id="0466643445-2">(</span><span class="s">&quot;218348062828003328&quot;</span><span class="p" data-group-id="0466643445-2">)</span><span class="w">
 </span><span class="mi">218348062828003328</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">to_snowflake</span><span class="p" data-group-id="0463853571-3">(</span><span class="no">nil</span><span class="p" data-group-id="0463853571-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Crux.Structs.Snowflake</span><span class="o">.</span><span class="n">to_snowflake</span><span class="p" data-group-id="0466643445-3">(</span><span class="no">nil</span><span class="p" data-group-id="0466643445-3">)</span><span class="w">
 </span><span class="no">nil</span><span class="w">
 </span></code></pre>  </section>
 </section>
