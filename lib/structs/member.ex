@@ -9,18 +9,21 @@ defmodule Crux.Structs.Member do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{Member, Snowflake, User, Util}
+  alias Crux.Structs.{Member, Permissions, Snowflake, User, Util}
   require Util
 
   defstruct [
     :user,
     :nick,
+    :avatar,
     :roles,
     :joined_at,
     :premium_since,
     :deaf,
     :mute,
     :pending,
+    :permissions,
+    :communication_disabled_until,
     # Additional
     :guild_id
   ]
@@ -29,12 +32,15 @@ defmodule Crux.Structs.Member do
   @type t :: %__MODULE__{
           user: Snowflake.t(),
           nick: String.t() | nil,
+          avatar: String.t() | nil,
           roles: MapSet.t(Snowflake.t()),
           joined_at: String.t(),
           premium_since: String.t() | nil,
           deaf: boolean() | nil,
           mute: boolean() | nil,
           pending: boolean() | nil,
+          permissions: Permissions.t() | nil,
+          communication_disabled_until: String.t() | nil,
           guild_id: Snowflake.t() | nil
         }
 
@@ -74,6 +80,7 @@ defmodule Crux.Structs.Member do
       |> Util.atomify()
       |> Map.update!(:user, Util.map_to_id())
       |> Map.update!(:roles, &MapSet.new(&1, fn role_id -> Snowflake.to_snowflake(role_id) end))
+      |> Map.update(:permissions, nil, &Permissions.resolve/1)
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
 
     struct(__MODULE__, member)

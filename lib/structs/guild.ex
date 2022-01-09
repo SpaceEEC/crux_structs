@@ -12,7 +12,21 @@ defmodule Crux.Structs.Guild do
   @behaviour Crux.Structs
 
   alias Crux.Structs
-  alias Crux.Structs.{Channel, Guild, Member, Message, Role, Snowflake, Util, VoiceState}
+
+  alias Crux.Structs.{
+    Channel,
+    Guild,
+    GuildScheduledEvent,
+    Member,
+    Message,
+    Role,
+    Snowflake,
+    StageInstance,
+    Sticker,
+    Util,
+    VoiceState
+  }
+
   alias Guild.SystemChannelFlags
 
   defstruct [
@@ -22,7 +36,6 @@ defmodule Crux.Structs.Guild do
     :splash,
     :discovery_splash,
     :owner_id,
-    :region,
     :afk_channel_id,
     :afk_timeout,
     :widget_enabled,
@@ -45,6 +58,7 @@ defmodule Crux.Structs.Guild do
     :voice_states,
     :members,
     :channels,
+    :threads,
     # :presences,
     :max_presences,
     :max_members,
@@ -58,7 +72,12 @@ defmodule Crux.Structs.Guild do
     :max_video_channel_users,
     :approximate_member_count,
     :approximate_presence_count,
-    :welcome_screen
+    :welcome_screen,
+    :nsfw_level,
+    :stage_instances,
+    :stickers,
+    :guild_scheduled_events,
+    :premium_progress_bar_enabled
   ]
 
   @typedoc since: "0.1.0"
@@ -69,7 +88,6 @@ defmodule Crux.Structs.Guild do
           splash: String.t() | nil,
           discovery_splash: String.t() | nil,
           owner_id: Snowflake.t(),
-          region: String.t(),
           afk_channel_id: Snowflake.t(),
           afk_timeout: non_neg_integer(),
           widget_enabled: boolean() | nil,
@@ -92,6 +110,7 @@ defmodule Crux.Structs.Guild do
           voice_states: %{optional(Snowflake.t()) => VoiceState.t()},
           members: %{required(Snowflake.t()) => Member.t()},
           channels: MapSet.t(Snowflake.t()),
+          threads: %{required(Snowflake.t()) => Channel.t()},
           # presences: %{required(Snowflake.t()) => Presence.t()},
           max_presences: pos_integer() | nil,
           max_members: pos_integer(),
@@ -105,7 +124,12 @@ defmodule Crux.Structs.Guild do
           max_video_channel_users: non_neg_integer(),
           approximate_member_count: pos_integer(),
           approximate_presence_count: pos_integer(),
-          welcome_screen: welcome_screen() | nil
+          welcome_screen: welcome_screen() | nil,
+          nsfw_level: 0..3,
+          stage_instances: %{required(Snowflake.t()) => StageInstance.t()},
+          stickers: %{required(Snowflake.t()) => Sticker.t()},
+          guild_scheduled_events: %{required(Snowflake.t()) => GuildScheduledEvent.t()},
+          premium_progress_bar_enabled: boolean()
         }
 
   @type welcome_screen :: %{
@@ -207,7 +231,11 @@ defmodule Crux.Structs.Guild do
       |> Map.update(:channels, nil, &MapSet.new(&1, Util.map_to_id()))
       |> Map.update(:welcome_screen, nil, &create_welcome_screen/1)
 
+    # :threads
     # :presences
+    # :stage_instances
+    # :stickers
+    # :guild_scheduled_events
 
     guild =
       data
@@ -245,6 +273,54 @@ defmodule Crux.Structs.Guild do
             |> Structs.create(Member)
 
           {member.user, member}
+        end)
+      )
+      |> Map.update(
+        :threads,
+        nil,
+        &Map.new(&1, fn thread ->
+          thread =
+            thread
+            |> Map.put(:guild_id, data.id)
+            |> Structs.create(Channel)
+
+          {thread.id, thread}
+        end)
+      )
+      |> Map.update(
+        :stage_instances,
+        nil,
+        &Map.new(&1, fn stage_instance ->
+          stage_instance =
+            stage_instance
+            |> Map.put(:guild_id, data.id)
+            |> Structs.create(StageInstance)
+
+          {stage_instance.id, stage_instance}
+        end)
+      )
+      |> Map.update(
+        :stickers,
+        nil,
+        &Map.new(&1, fn sticker ->
+          sticker =
+            sticker
+            |> Map.put(:guild_id, data.id)
+            |> Structs.create(Sticker)
+
+          {sticker.id, sticker}
+        end)
+      )
+      |> Map.update(
+        :guild_scheduled_events,
+        nil,
+        &Map.new(&1, fn guild_scheduled_event ->
+          guild_scheduled_event =
+            guild_scheduled_event
+            |> Map.put(:guild_id, data.id)
+            |> Structs.create(GuildScheduledEvent)
+
+          {guild_scheduled_event.id, guild_scheduled_event}
         end)
       )
 

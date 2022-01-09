@@ -13,7 +13,10 @@ defmodule Crux.Structs.Message.Flags do
     is_crosspost: 1 <<< 1,
     suppress_embeds: 1 <<< 2,
     source_message_deleted: 1 <<< 3,
-    urgent: 1 <<< 4
+    urgent: 1 <<< 4,
+    has_thread: 1 <<< 5,
+    ephemeral: 1 <<< 6,
+    loading: 1 <<< 7
   }
 
   use Crux.Structs.BitField, flags
@@ -28,4 +31,7 @@ defmodule Crux.Structs.Message.Flags do
           | :suppress_embeds
           | :source_message_deleted
           | :urgent
+          | :has_thread
+          | :ephemeral
+          | :loading
 end

@@ -21,7 +21,8 @@ defmodule Crux.Structs.VoiceState do
     :self_mute,
     :self_stream,
     :self_video,
-    :suppress
+    :suppress,
+    :request_to_speak_timestamp,
   ]
 
   @typedoc since: "0.1.0"
@@ -36,7 +37,8 @@ defmodule Crux.Structs.VoiceState do
           self_deaf: boolean(),
           self_mute: boolean(),
           self_stream: boolean(),
-          suppress: boolean()
+          suppress: boolean(),
+          request_to_speak_timestamp: String.t() | nil
         }
 
   @typedoc """

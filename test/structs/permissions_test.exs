@@ -126,7 +126,7 @@ defmodule Crux.Structs.PermissionsTest do
     test "no :administrator set" do
       permissions = [:view_channel, :send_messages, :kick_members, :embed_links]
 
-      assert permissions === Permissions.to_list(permissions)
+      assert Enum.sort(permissions) === Enum.sort(Permissions.to_list(permissions))
     end
 
     test ":administrator set, it does not override" do

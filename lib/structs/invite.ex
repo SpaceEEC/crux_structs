@@ -41,6 +41,10 @@ defmodule Crux.Structs.Invite do
     :target_user_type,
     :approximate_presence_count,
     :approximate_member_count,
+    # TODO: Add those to the table above
+    :expires_at,
+    :stage_instance,
+    :guild_scheduled_event,
 
     # Metadata
     :uses,
@@ -54,10 +58,10 @@ defmodule Crux.Structs.Invite do
   @type t :: %__MODULE__{
           code: String.t(),
           guild: Guild.t(),
-          channel: Channel.t(),
+          channel: Channel.t() | nil,
           inviter: User.t() | nil,
           target_user: User.t() | nil,
-          target_user_type: 1 | nil,
+          target_user_type: 1 | 2 | nil,
           approximate_presence_count: integer() | nil,
           approximate_member_count: integer() | nil,
 

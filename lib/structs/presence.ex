@@ -49,7 +49,8 @@ defmodule Crux.Structs.Presence do
             match: String.t()
           },
           optional(:instance) => boolean(),
-          optional(:flags) => ActivityFlags.t()
+          optional(:flags) => ActivityFlags.t(),
+          optional(:buttons) => [%{label: String.t(), url: String.t()}]
         }
 
   @typedoc since: "0.1.0"

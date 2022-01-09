@@ -6,21 +6,35 @@ defmodule Crux.Structs.AuditLog do
 
   @behaviour Crux.Structs
 
-  alias Crux.Structs.{AuditLog, AuditLogEntry, Integration, Snowflake, User, Util, Webhook}
+  alias Crux.Structs.{
+    AuditLog,
+    AuditLogEntry,
+    Channel,
+    GuildScheduledEvent,
+    Integration,
+    Snowflake,
+    User,
+    Util,
+    Webhook
+  }
 
   defstruct [
-    :webhooks,
-    :users,
+    :audit_log_entries,
+    :guild_scheduled_events,
     :integrations,
-    :audit_log_entries
+    :threads,
+    :users,
+    :webhooks
   ]
 
   @typedoc since: "0.1.6"
   @type t :: %__MODULE__{
-          webhooks: %{Snowflake.t() => Webhook.t()},
-          users: %{Snowflake.t() => User.t()},
+          audit_log_entries: %{Snowflake.t() => AuditLogEntry.t()},
+          guild_scheduled_events: %{Snowflake.t() => GuildScheduledEvent.t()},
           integrations: %{Snowflake.t() => Integration.t()},
-          audit_log_entries: %{Snowflake.t() => AuditLogEntry.t()}
+          threads: %{Snowflake.t() => Channel.t()},
+          users: %{Snowflake.t() => User.t()},
+          webhooks: %{Snowflake.t() => Webhook.t()}
         }
 
   @typedoc """
@@ -40,10 +54,12 @@ defmodule Crux.Structs.AuditLog do
     audit_log =
       data
       |> Util.atomify()
-      |> Map.update(:webhooks, %{}, &Util.raw_data_to_map(&1, Webhook))
-      |> Map.update(:users, %{}, &Util.raw_data_to_map(&1, User))
-      |> Map.update(:integrations, %{}, &Util.raw_data_to_map(&1, Integration))
       |> Map.update(:audit_log_entries, %{}, &Util.raw_data_to_map(&1, AuditLogEntry))
+      |> Map.update(:guild_scheduled_events, %{}, &Util.raw_data_to_map(&1, NameOfEventStruct))
+      |> Map.update(:integrations, %{}, &Util.raw_data_to_map(&1, Integration))
+      |> Map.update(:threads, %{}, &Util.raw_data_to_map(&1, Channel))
+      |> Map.update(:users, %{}, &Util.raw_data_to_map(&1, User))
+      |> Map.update(:webhooks, %{}, &Util.raw_data_to_map(&1, Webhook))
 
     struct(__MODULE__, audit_log)
   end

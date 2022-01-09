@@ -21,7 +21,9 @@ defmodule Crux.Structs.Intents do
     guild_message_typing: 1 <<< 11,
     direct_messages: 1 <<< 12,
     direct_message_reactions: 1 <<< 13,
-    direct_message_typing: 1 <<< 14
+    direct_message_typing: 1 <<< 14,
+    # 15
+    guild_scheduled_events: 1 <<< 16,
   }
 
   use Crux.Structs.BitField, intents
@@ -46,4 +48,5 @@ defmodule Crux.Structs.Intents do
           | :direct_messages
           | :direct_message_reactions
           | :direct_message_typing
+          | :guild_scheduled_events
 end

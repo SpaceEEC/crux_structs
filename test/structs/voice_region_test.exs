@@ -10,7 +10,6 @@ defmodule Crux.Structs.VoiceRegionTest do
       %{
         "id" => "us-west",
         "name" => "US West",
-        "vip" => false,
         "custom" => false,
         "deprecated" => false,
         "optimal" => false
@@ -20,7 +19,6 @@ defmodule Crux.Structs.VoiceRegionTest do
     assert voice_region == %VoiceRegion{
              id: "us-west",
              name: "US West",
-             vip: false,
              custom: false,
              deprecated: false,
              optimal: false

@@ -17,7 +17,6 @@ defmodule Crux.Structs.Sticker do
     :name,
     :description,
     :tags,
-    :asset,
     :type,
     :format_type,
     :available,
@@ -33,13 +32,26 @@ defmodule Crux.Structs.Sticker do
           name: String.t(),
           description: String.t(),
           tags: String.t(),
-          asset: String.t(),
           type: 1..2,
           format_type: 1..3,
           available: boolean() | nil,
           guild_id: Snowflake.t() | nil,
           user: Snowflake.t() | nil,
           sort_value: integer() | nil
+        }
+
+  @typedoc """
+  The smallest amount of data required to render a sticker.
+
+  Used in messages.
+
+  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/sticker#sticker-item-object).
+  """
+  @typedoc since: "0.3.0"
+  @type sticker_item :: %{
+          id: Snowflake.t(),
+          name: String.t(),
+          formate_type: 1..3
         }
 
   @typedoc """

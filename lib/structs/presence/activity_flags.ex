@@ -12,7 +12,10 @@ defmodule Crux.Structs.Presence.ActivityFlags do
     spectate: 1 <<< 2,
     join_request: 1 <<< 3,
     sync: 1 <<< 4,
-    play: 1 <<< 5
+    play: 1 <<< 5,
+    party_privacy_friends: 1 <<< 6,
+    part_privacy_voice_channel: 1 <<< 6,
+    embedded: 1 <<< 6,
   }
 
   use Crux.Structs.BitField, flags
@@ -28,4 +31,7 @@ defmodule Crux.Structs.Presence.ActivityFlags do
           | :join_request
           | :sync
           | :play
+          | :party_privacy_friends
+          | :part_privacy_voice_channel
+          | :embedded
 end

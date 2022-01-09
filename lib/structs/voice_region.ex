@@ -9,7 +9,6 @@ defmodule Crux.Structs.VoiceRegion do
   defstruct [
     :id,
     :name,
-    :vip,
     :optimal,
     :deprecated,
     :custom
@@ -19,7 +18,6 @@ defmodule Crux.Structs.VoiceRegion do
   @type t :: %__MODULE__{
           id: String.t(),
           name: String.t(),
-          vip: boolean(),
           optimal: boolean(),
           deprecated: boolean(),
           custom: boolean()

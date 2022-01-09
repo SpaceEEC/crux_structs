@@ -11,7 +11,9 @@ defmodule Crux.Structs.Guild.SystemChannelFlags do
 
   flags = %{
     suppress_join_notifications: 1 <<< 0,
-    suppress_premium_subscriptions: 1 <<< 1
+    suppress_premium_subscriptions: 1 <<< 1,
+    suppress_guild_reminder_notifications: 1 <<< 2,
+    suppress_join_notification_replies: 1 <<< 3
   }
 
   use Crux.Structs.BitField, flags
@@ -20,5 +22,9 @@ defmodule Crux.Structs.Guild.SystemChannelFlags do
   Union type of all valid system channel flags.
   """
   @typedoc since: "0.2.3"
-  @type name :: :suppress_join_notifications | :suppress_premium_subscriptions
+  @type name ::
+          :suppress_join_notifications
+          | :suppress_premium_subscriptions
+          | :suppress_guild_reminder_notifications
+          | :suppress_join_notification_replies
 end

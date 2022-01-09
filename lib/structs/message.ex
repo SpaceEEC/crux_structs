@@ -51,7 +51,10 @@ defmodule Crux.Structs.Message do
     :flags,
     :stickers,
     :referenced_message,
-    :interaction
+    :interaction,
+    :thread,
+    :components,
+    :sticker_items
   ]
 
   @typedoc since: "0.2.1"
@@ -118,7 +121,45 @@ defmodule Crux.Structs.Message do
           application: Application.t() | nil,
           message_reference: message_reference() | nil,
           flags: Message.Flags.t(),
-          interaction: message_interaction() | nil
+          interaction: message_interaction() | nil,
+          thread: Snowflake.t(),
+          components: [component()],
+          sticker_items: %{required(Snowflake.t()) => Sticker.sticker_item()}
+        }
+
+  @typedoc """
+  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/interactions/message-components#component-object-component-structure).
+  """
+  @typedoc since: "0.3.0"
+  @type component :: %{
+          required(:type) => 1..3,
+          optional(:custom_id) => String.t(),
+          optional(:disabled) => boolean(),
+          optional(:style) => 1..5,
+          optional(:label) => String.t(),
+          optional(:emoji) => %{
+            optional(:name) => String.t(),
+            optional(:id) => Snowflake.t(),
+            optional(:animated) => boolean()
+          },
+          optional(:url) => String.t(),
+          optional(:options) => [
+            %{
+              required(:label) => String.t(),
+              required(:value) => String.t(),
+              optional(:description) => String.t(),
+              optional(:emoji) => %{
+                optional(:name) => String.t(),
+                optional(:id) => Snowflake.t(),
+                optional(:animated) => boolean()
+              },
+              optional(:default) => boolean()
+            }
+          ],
+          optional(:placeholder) => String.t(),
+          optional(:min_values) => 0..25,
+          optional(:max_values) => 1..25,
+          optional(:components) => [component()]
         }
 
   @typedoc """
@@ -171,6 +212,11 @@ defmodule Crux.Structs.Message do
         message -> create(message)
       end)
       |> Map.update(:interaction, nil, &create_interaction/1)
+      |> Map.update(:thread, nil, Util.map_to_id())
+      |> Map.update(:components, nil, &create_component/1)
+      |> Map.update(:sticker_items, nil, fn sticker ->
+        Map.update(sticker, :id, nil, &Snowflake.to_snowflake/1)
+      end)
 
     message = Map.update(data, :member, nil, create_member(data))
 
@@ -210,6 +256,52 @@ defmodule Crux.Structs.Message do
     interaction
     |> Map.update!(:id, &Snowflake.to_snowflake/1)
     |> Map.update!(:user, &Structs.create(&1, User))
+  end
+
+  defp create_component(nil), do: nil
+
+  defp create_component(component) do
+    component =
+      case component[:emoji] do
+        nil ->
+          component
+
+        emoji ->
+          %{component | emoji: create_emoji(emoji)}
+      end
+
+    component =
+      case component[:options] do
+        nil ->
+          component
+
+        options ->
+          %{
+            component
+            | options:
+                Enum.map(options, fn option ->
+                  case option[:emoji] do
+                    nil ->
+                      option
+
+                    emoji ->
+                      %{option | emoji: create_emoji(emoji)}
+                  end
+                end)
+          }
+      end
+
+    case component[:components] do
+      nil ->
+        component
+
+      components ->
+        %{component | components: Enum.map(components, &create_component/1)}
+    end
+  end
+
+  defp create_emoji(%{id: id} = emoji) do
+    %{emoji | id: Snowflake.to_snowflake(id)}
   end
 
   defimpl String.Chars, for: Crux.Structs.Message do

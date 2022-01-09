@@ -9,8 +9,7 @@ defmodule Crux.Crux.StickerTest do
         "name" => "Affection",
         "description" => "Wumpus's helmet featuring a heart emote",
         "pack_id" => "755240383084232756",
-        "asset" => "7bf9a060c3eb368992c3ae068faa551a",
-        "preview_asset" => nil,
+        "asset" => "",
         "format_type" => 3,
         "tags" => "wumpus, affection, hug, cuddle, nuzzle, snuggle, ❤️, heart, :heart"
       }
@@ -21,8 +20,6 @@ defmodule Crux.Crux.StickerTest do
              name: "Affection",
              description: "Wumpus's helmet featuring a heart emote",
              pack_id: 755_240_383_084_232_756,
-             asset: "7bf9a060c3eb368992c3ae068faa551a",
-             preview_asset: nil,
              format_type: 3,
              tags: "wumpus, affection, hug, cuddle, nuzzle, snuggle, ❤️, heart, :heart"
            }

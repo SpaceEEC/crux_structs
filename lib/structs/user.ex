@@ -16,6 +16,8 @@ defmodule Crux.Structs.User do
     :avatar,
     :bot,
     :system,
+    :banner,
+    :accent_color,
     :public_flags
   ]
 
@@ -27,6 +29,8 @@ defmodule Crux.Structs.User do
           avatar: String.t() | nil,
           bot: boolean(),
           system: boolean(),
+          banner: String.t() | nil,
+          accent_color: String.t() | nil,
           public_flags: User.Flags.t()
         }
 

@@ -13,22 +13,28 @@ defmodule Crux.Structs.Attachment do
   defstruct [
     :id,
     :filename,
+    :description,
+    :content_type,
     :size,
     :url,
     :proxy_url,
     :height,
-    :width
+    :width,
+    :ephemeral
   ]
 
   @typedoc since: "0.1.0"
   @type t :: %__MODULE__{
           id: Snowflake.t(),
           filename: String.t(),
+          description: String.t() | nil,
+          content_type: String.t() | nil,
           size: integer(),
           url: String.t(),
           proxy_url: String.t(),
           height: integer() | nil,
-          width: integer() | nil
+          width: integer() | nil,
+          ephemeral: boolean() | nil
         }
 
   @doc """

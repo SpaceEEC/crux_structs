@@ -20,7 +20,10 @@ defmodule Crux.Structs.Webhook do
     :name,
     :avatar,
     :token,
-    :application_id
+    :application_id,
+    :source_guild,
+    :source_channel
+    # :url,
   ]
 
   @type t :: %__MODULE__{
@@ -32,7 +35,9 @@ defmodule Crux.Structs.Webhook do
           name: String.t() | nil,
           avatar: String.t() | nil,
           token: String.t() | nil,
-          application_id: Snowflake.t() | nil
+          application_id: Snowflake.t() | nil,
+          source_guild: %{icon: String.t() | nil, id: Snowflake.t(), name: String.t()},
+          source_channel: %{id: String.t(), name: String.t()}
         }
 
   @typedoc """
@@ -57,6 +62,12 @@ defmodule Crux.Structs.Webhook do
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:user, nil, Util.map_to_id())
       |> Map.update(:application_id, nil, &Snowflake.to_snowflake/1)
+      |> Map.update(:source_guild, nil, fn source_guild ->
+        Map.update(source_guild, :id, nil, &Snowflake.to_snowflake/1)
+      end)
+      |> Map.update(:source_channel, nil, fn source_channel ->
+        Map.update(source_channel, :id, nil, &Snowflake.to_snowflake/1)
+      end)
 
     struct(__MODULE__, data)
   end

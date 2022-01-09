@@ -10,17 +10,21 @@ defmodule Crux.Structs.AuditLogTest do
       audit_log =
         %{
           "audit_log_entries" => [],
+          "guild_scheduled_events" => [],
           "integrations" => [],
+          "threads" => [],
           "users" => [],
           "webhooks" => []
         }
         |> Structs.create(AuditLog)
 
       assert audit_log == %AuditLog{
-               webhooks: %{},
-               users: %{},
+               audit_log_entries: %{},
+               guild_scheduled_events: %{},
                integrations: %{},
-               audit_log_entries: %{}
+               threads: %{},
+               users: %{},
+               webhooks: %{}
              }
     end
 

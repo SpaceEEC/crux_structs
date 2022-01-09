@@ -67,6 +67,15 @@ defmodule Crux.Structs.WebhookTest do
             "id" => "218348062828003328",
             "public_flags" => 512,
             "username" => "space"
+          },
+          "source_channel" => %{
+            "id" => "222078108977594368",
+            "name" => "announcements"
+          },
+          "source_guild" => %{
+            "icon" => "881b843eb1d5c3bdb21928079d25549f",
+            "id" => "222078108977594368",
+            "name" => "discord.js - Imagine a bot"
           }
         }
         |> Structs.create(Webhook)
@@ -79,7 +88,16 @@ defmodule Crux.Structs.WebhookTest do
                channel_id: 612_356_602_850_181_161,
                guild_id: 243_175_181_885_898_762,
                token: nil,
-               user: 218_348_062_828_003_328
+               user: 218_348_062_828_003_328,
+               source_channel: %{
+                 id: 222_078_108_977_594_368,
+                 name: "announcements"
+               },
+               source_guild: %{
+                 icon: "881b843eb1d5c3bdb21928079d25549f",
+                 id: 222_078_108_977_594_368,
+                 name: "discord.js - Imagine a bot"
+               }
              }
     end
   end

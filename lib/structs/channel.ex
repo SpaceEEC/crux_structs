@@ -1,32 +1,6 @@
 defmodule Crux.Structs.Channel do
   @moduledoc """
   Represents a Discord [Channel Object](https://discord.com/developers/docs/resources/channel#channel-object).
-
-  List of where every property can be present:
-
-  | Property              | Text (0) | DM (1)            | Voice (2) | Group (3) | Category (4) | News (5) |
-  | :-------------------: | :------: | :---------------: | :-------: | :-------: | :----------: | :------: |
-  | application_id        | no       | no                | no        | yes       | no           | no       |
-  | bitrate               | no       | no                | yes       | no        | no           | no       |
-  | guild_id              | yes      | no                | yes       | no        | yes          | yes      |
-  | icon                  | no       | no                | no        | yes       | no           | no       |
-  | id                    | yes      | yes               | yes       | yes       | yes          | yes      |
-  | last_message_id       | yes      | yes               | no        | yes       | no           | yes      |
-  | last_pin_timestamp    | yes      | yes               | no        | yes       | no           | yes      |
-  | name                  | yes      | no                | yes       | yes       | yes          | yes      |
-  | nsfw                  | yes      | no                | no        | no        | no           | yes      |
-  | owner_id              | no       | no                | no        | yes       | no           | no       |
-  | parent_id             | yes      | no                | yes       | no        | no           | yes      |
-  | permission_overwrites | yes      | no                | yes       | no        | yes          | yes      |
-  | position              | yes      | no                | yes       | no        | yes          | yes      |
-  | rate_limit_per_user   | yes      | no                | no       | no         | no           | no       |
-  | recipients            | no       | yes (One Element) | no        | yes       | no           | no       |
-  | topic                 | yes      | no                | yes       | no        | yes          | yes      |
-  | type                  | `0`      | `1`               | `2`       | `3`       | `4`          | `5`      |
-  | user_limit            | no       | no                | yes       | no        | no           | no       |
-
-  Differences opposed to the Discord API Object:
-    - `:recipients` is a MapSet of user ids
   """
   @moduledoc since: "0.1.0"
 
@@ -53,7 +27,15 @@ defmodule Crux.Structs.Channel do
     :owner_id,
     :application_id,
     :parent_id,
-    :last_pin_timestamp
+    :last_pin_timestamp,
+    :rtc_region,
+    :video_quality_mode,
+    :message_count,
+    :member_count,
+    :thread_metadata,
+    :member,
+    :default_auto_archive_duration
+    # :permissions - Interaction only
   ]
 
   @typedoc since: "0.1.0"
@@ -75,21 +57,63 @@ defmodule Crux.Structs.Channel do
           recipients: MapSet.t(Snowflake.t()),
           topic: String.t(),
           type: type(),
-          user_limit: non_neg_integer()
+          user_limit: non_neg_integer(),
+          rtc_region: String.t(),
+          video_quality_mode: 1 | 2,
+          message_count: 1..50,
+          member_count: 1..50,
+          thread_metadata: thread_metadata(),
+          member: thread_member(),
+          default_auto_archive_duration: 60 | 1440 | 4320 | 10080
+        }
+
+  @typedoc """
+  Additional metadata for threads.
+
+  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/channel#thread-metadata-object-thread-metadata-structure).
+  """
+  @typedoc since: "0.3.0"
+  @type thread_metadata :: %{
+          optional(:invitable) => boolean(),
+          archived: boolean(),
+          auto_archive_duration: 60 | 1440 | 4320 | 10080,
+          archive_timestamp: String.t(),
+          locked: boolean()
+        }
+
+  @typedoc """
+  A thread member.
+
+  Notes:
+  - `:id` -> Id of the thread, not member / user
+  - `:user_id` -> Acutal id of the member / user
+
+  For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/channel#thread-member-object-thread-member-structure).
+  """
+  @typedoc since: "0.3.0"
+  @type thread_member :: %{
+          id: Snowflake.t(),
+          user_id: Snowflake.t(),
+          join_timestamp: String.t(),
+          flags: integer()
         }
 
   @typedoc """
   The type of a channel.
 
-  | Type           | ID  | Description                                                                               |
-  | :------------: | :-: | :---------------------------------------------------------------------------------------: |
-  | GUILD_TEXT     |  0  | A text channel within a guild.                                                            |
-  | DM             |  1  | A direct text channel between two users.                                                  |
-  | GUILD_VOICE    |  2  | A voice channel withing a guild.                                                          |
-  | GROUP_DM       |  3  | A direct channel between multiple users. Bots do not have access to those.                |
-  | GUILD_CATEGORY |  4  | An organizational category.                                                               |
-  | GUILD_NEWS     |  5  | A text channel users can follow and crosspost messages to.                                |
-  | GUILD_STORE    |  6  | A channel in which game developers can sell their game. Bots can not interact with those. |
+  | Type                 | ID  | Description                                                                                                             |
+  | :------------------: | :-: | :---------------------------------------------------------------------------------------------------------------------: |
+  | GUILD_TEXT           |  0  | A text channel within a guild.                                                                                          |
+  | DM                   |  1  | A direct text channel between two users.                                                                                |
+  | GUILD_VOICE          |  2  | A voice channel withing a guild.                                                                                        |
+  | GROUP_DM             |  3  | A direct channel between multiple users. Bots do not have access to those.                                              |
+  | GUILD_CATEGORY       |  4  | An organizational category.                                                                                             |
+  | GUILD_NEWS           |  5  | A text channel users can follow and crosspost messages to.                                                              |
+  | GUILD_STORE          |  6  | A channel in which game developers can sell their game. Bots can not interact with those.                               |
+  | GUILD_NEWS_THREAD    | 10  | A temporary sub-channel within a GUILD_NEWS channel                                                                     |
+  | GUILD_PUBLIC_THREAD  | 11  | A temporay sub-channel within a GUILD_TEXT channel                                                                      |
+  | GUILD_PRIVATE_THREAD | 12  | A temporary sub-channel within a GUILD_TEXT channel only viewable by invited and members with MANAGE_THREADS permission |
+  | GUILD_STAGE_VOICE    | 13  | A voice channel for hosting events with an audience                                                                     |
 
   For more information see the [Discord Developer Documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
   """

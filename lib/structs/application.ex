@@ -23,6 +23,8 @@ defmodule Crux.Structs.Application do
     :rpc_origins,
     :bot_public,
     :bot_require_code_grant,
+    :terms_of_service_url,
+    :privacy_policy_url,
     :owner,
     :summary,
     :verify_key,
@@ -43,6 +45,8 @@ defmodule Crux.Structs.Application do
           rpc_origins: [String.t()] | nil,
           bot_public: boolean(),
           bot_require_code_grant: boolean(),
+          terms_of_service_url: String.t() | nil,
+          privacy_policy_url: String.t() | nil,
           owner: User.t(),
           summary: String.t(),
           team: team() | nil,
@@ -50,7 +54,7 @@ defmodule Crux.Structs.Application do
           primary_sku_id: Snowflake.t(),
           slug: String.t(),
           cover_image: String.t(),
-          flags: non_neg_integer()
+          flags: Application.Flags.t()
         }
 
   @typedoc since: "0.3.0"
@@ -90,6 +94,7 @@ defmodule Crux.Structs.Application do
       |> Map.update(:guild_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:primary_sku_id, nil, &Snowflake.to_snowflake/1)
       |> Map.update(:team, nil, &create_team/1)
+      |> Map.update(:flags, nil, &Application.Flags.resolve/1)
 
     struct(__MODULE__, application)
   end

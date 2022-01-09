@@ -43,7 +43,19 @@ defmodule Crux.Structs.AuditLogEntry do
     message_unpin: 75,
     integration_create: 80,
     integration_update: 81,
-    integration_delete: 82
+    integration_delete: 82,
+    stage_instance_create: 83,
+    stage_instance_update: 84,
+    stage_instance_delete: 85,
+    sticker_create: 90,
+    sticker_update: 91,
+    sticker_delete: 92,
+    guild_scheduled_event_create: 100,
+    guild_scheduled_event_update: 101,
+    guild_scheduled_event_delete: 102,
+    thread_create: 110,
+    thread_update: 111,
+    thread_delete: 112,
   }
 
   @typedoc """
@@ -86,6 +98,18 @@ defmodule Crux.Structs.AuditLogEntry do
           | :integration_create
           | :integration_update
           | :integration_delete
+          | :stage_instance_create
+          | :stage_instance_update
+          | :stage_instance_delete
+          | :sticker_create
+          | :sticker_update
+          | :sticker_delete
+          | :guild_scheduled_event_create
+          | :guild_scheduled_event_update
+          | :guild_scheduled_event_delete
+          | :thread_create
+          | :thread_update
+          | :thread_delete
 
   @audit_log_events_key Map.new(@audit_log_events, fn {k, v} -> {v, k} end)
 

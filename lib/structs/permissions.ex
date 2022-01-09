@@ -39,7 +39,17 @@ defmodule Crux.Structs.Permissions do
     manage_nicknames: 1 <<< 27,
     manage_roles: 1 <<< 28,
     manage_webhooks: 1 <<< 29,
-    manage_emojis: 1 <<< 30
+    manage_emojis_and_stickers: 1 <<< 30,
+    use_application_commands: 1 <<< 31,
+    request_to_speak: 1 <<< 32,
+    manage_events: 1 <<< 33,
+    manage_threads: 1 <<< 34,
+    create_public_threads: 1 <<< 35,
+    create_private_threads: 1 <<< 36,
+    use_external_stickers: 1 <<< 37,
+    send_messages_in_threads: 1 <<< 38,
+    start_embedded_activities: 1 <<< 39,
+    moderate_members: 1 <<< 40,
   }
 
   use Crux.Structs.BitField, permissions
@@ -79,7 +89,17 @@ defmodule Crux.Structs.Permissions do
           | :manage_nicknames
           | :manage_roles
           | :manage_webhooks
-          | :manage_emojis
+          | :manage_emojis_and_stickers
+          | :use_application_commands
+          | :request_to_speak
+          | :manage_events
+          | :manage_threads
+          | :create_public_threads
+          | :create_private_threads
+          | :use_external_stickers
+          | :send_messages_in_threads
+          | :start_embedded_activities
+          | :moderate_members
 
   @doc """
   Resolves permissions for a user in a guild, optionally including channel permission overwrites.
