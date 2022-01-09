@@ -64,7 +64,7 @@ defmodule Crux.Structs.Channel do
           member_count: 1..50,
           thread_metadata: thread_metadata(),
           member: thread_member(),
-          default_auto_archive_duration: 60 | 1440 | 4320 | 10080
+          default_auto_archive_duration: 60 | 1440 | 4320 | 10_080
         }
 
   @typedoc """
@@ -76,7 +76,7 @@ defmodule Crux.Structs.Channel do
   @type thread_metadata :: %{
           optional(:invitable) => boolean(),
           archived: boolean(),
-          auto_archive_duration: 60 | 1440 | 4320 | 10080,
+          auto_archive_duration: 60 | 1440 | 4320 | 10_080,
           archive_timestamp: String.t(),
           locked: boolean()
         }
