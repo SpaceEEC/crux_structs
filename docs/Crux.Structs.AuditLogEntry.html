@@ -8,7 +8,7 @@
     <meta name="project" content="crux_structs v0.3.0-dev">
     <title>Crux.Structs.AuditLogEntry — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-    <script src="dist/sidebar_items-08dcea263a.js"></script>
+    <script src="dist/sidebar_items-506861f07d.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
   </head>
@@ -144,7 +144,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">event_name()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L53" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L65" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -189,7 +189,19 @@ Types          </h1>
   | :message_unpin
   | :integration_create
   | :integration_update
-  | :integration_delete</pre>
+  | :integration_delete
+  | :stage_instance_create
+  | :stage_instance_update
+  | :stage_instance_delete
+  | :sticker_create
+  | :sticker_update
+  | :sticker_delete
+  | :guild_scheduled_event_create
+  | :guild_scheduled_event_update
+  | :guild_scheduled_event_delete
+  | :thread_create
+  | :thread_update
+  | :thread_delete</pre>
       </div>
 
 <p>Union type of audit log event name atoms.</p>  </section>
@@ -201,7 +213,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">options()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L133" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L157" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -232,7 +244,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L117" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L141" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -272,7 +284,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L151" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L175" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -294,7 +306,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">event_name(action_type)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L104" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L128" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -316,7 +328,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">events()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L97" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log_entry.ex#L121" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>

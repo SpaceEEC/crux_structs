@@ -8,7 +8,7 @@
     <meta name="project" content="crux_structs v0.3.0-dev">
     <title>Crux.Structs.Role — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-    <script src="dist/sidebar_items-08dcea263a.js"></script>
+    <script src="dist/sidebar_items-506861f07d.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
   </head>
@@ -149,7 +149,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">id_resolvable()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L51" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L55" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -171,7 +171,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">position_resolvable()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L57" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L61" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -197,7 +197,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L27" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L29" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -211,13 +211,15 @@ Types          </h1>
   color: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
   guild_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
   hoist: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  icon: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | nil,
   id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
   managed: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
   mentionable: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
   name: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
   permissions: <a href="Crux.Structs.Permissions.html#t:t/0">Crux.Structs.Permissions.t</a>(),
   position: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
-  tags: <a href="#t:tags/0">tags</a>()
+  tags: <a href="#t:tags/0">tags</a>(),
+  unicode_emoji: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | nil
 }</pre>
       </div>
 
@@ -230,7 +232,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">tags()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L41" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L45" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -266,7 +268,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L135" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L139" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -288,7 +290,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">resolve_position(resolvable)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L97" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L101" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -306,28 +308,28 @@ Functions          </h1>
   <a href="#resolve_position/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8758166623-1">{</span><span class="p" data-group-id="8758166623-2">%</span><span class="nc" data-group-id="8758166623-2">Crux.Structs.Role</span><span class="p" data-group-id="8758166623-2">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p" data-group-id="8758166623-2">}</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-1">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8758166623-3">(</span><span class="p" data-group-id="8758166623-3">)</span><span class="w">
-</span><span class="p" data-group-id="8758166623-4">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-4">}</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8897323751-1">{</span><span class="p" data-group-id="8897323751-2">%</span><span class="nc" data-group-id="8897323751-2">Crux.Structs.Role</span><span class="p" data-group-id="8897323751-2">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p" data-group-id="8897323751-2">}</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8897323751-3">(</span><span class="p" data-group-id="8897323751-3">)</span><span class="w">
+</span><span class="p" data-group-id="8897323751-4">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-4">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8758166623-5">%</span><span class="nc" data-group-id="8758166623-5">Crux.Structs.Role</span><span class="p" data-group-id="8758166623-5">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-5">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8758166623-6">(</span><span class="p" data-group-id="8758166623-6">)</span><span class="w">
-</span><span class="p" data-group-id="8758166623-7">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-7">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8897323751-5">%</span><span class="nc" data-group-id="8897323751-5">Crux.Structs.Role</span><span class="p" data-group-id="8897323751-5">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-5">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8897323751-6">(</span><span class="p" data-group-id="8897323751-6">)</span><span class="w">
+</span><span class="p" data-group-id="8897323751-7">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-7">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8758166623-8">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-8">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8758166623-9">(</span><span class="p" data-group-id="8758166623-9">)</span><span class="w">
-</span><span class="p" data-group-id="8758166623-10">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-10">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8897323751-8">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-8">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8897323751-9">(</span><span class="p" data-group-id="8897323751-9">)</span><span class="w">
+</span><span class="p" data-group-id="8897323751-10">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-10">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8758166623-11">%{</span><span class="ss">role</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8758166623-12">%</span><span class="nc" data-group-id="8758166623-12">Crux.Structs.Role</span><span class="p" data-group-id="8758166623-12">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p" data-group-id="8758166623-12">}</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-11">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8758166623-13">(</span><span class="p" data-group-id="8758166623-13">)</span><span class="w">
-</span><span class="p" data-group-id="8758166623-14">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-14">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8897323751-11">%{</span><span class="ss">role</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8897323751-12">%</span><span class="nc" data-group-id="8897323751-12">Crux.Structs.Role</span><span class="p" data-group-id="8897323751-12">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p" data-group-id="8897323751-12">}</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-11">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8897323751-13">(</span><span class="p" data-group-id="8897323751-13">)</span><span class="w">
+</span><span class="p" data-group-id="8897323751-14">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-14">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8758166623-15">{</span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-15">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8758166623-16">(</span><span class="p" data-group-id="8758166623-16">)</span><span class="w">
-</span><span class="p" data-group-id="8758166623-17">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-17">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8897323751-15">{</span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-15">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8897323751-16">(</span><span class="p" data-group-id="8897323751-16">)</span><span class="w">
+</span><span class="p" data-group-id="8897323751-17">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">373405430589816834</span><span class="p">,</span><span class="w"> </span><span class="ss">position</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-17">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8758166623-18">{</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8758166623-18">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8758166623-19">(</span><span class="p" data-group-id="8758166623-19">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8897323751-18">{</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8897323751-18">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">resolve_position</span><span class="p" data-group-id="8897323751-19">(</span><span class="p" data-group-id="8897323751-19">)</span><span class="w">
 </span><span class="no">nil</span><span class="w">
 </span></code></pre>  </section>
 </section>
@@ -338,7 +340,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">to_mention(role)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L181" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/role.ex#L185" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -355,8 +357,8 @@ Functions          </h1>
   <a href="#to_mention/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Example
 </h2>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="3431532884-1">%</span><span class="nc" data-group-id="3431532884-1">Crux.Structs.Role</span><span class="p" data-group-id="3431532884-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">376146940762783746</span><span class="p" data-group-id="3431532884-1">}</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">to_mention</span><span class="p" data-group-id="3431532884-2">(</span><span class="p" data-group-id="3431532884-2">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9879648161-1">%</span><span class="nc" data-group-id="9879648161-1">Crux.Structs.Role</span><span class="p" data-group-id="9879648161-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">376146940762783746</span><span class="p" data-group-id="9879648161-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Crux.Structs.Role</span><span class="o">.</span><span class="n">to_mention</span><span class="p" data-group-id="9879648161-2">(</span><span class="p" data-group-id="9879648161-2">)</span><span class="w">
 </span><span class="s">&quot;&lt;@&amp;376146940762783746&gt;&quot;</span><span class="w">
 </span></code></pre>  </section>
 </section>

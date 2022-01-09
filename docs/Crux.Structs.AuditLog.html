@@ -8,7 +8,7 @@
     <meta name="project" content="crux_structs v0.3.0-dev">
     <title>Crux.Structs.AuditLog — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-    <script src="dist/sidebar_items-08dcea263a.js"></script>
+    <script src="dist/sidebar_items-506861f07d.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
   </head>
@@ -126,7 +126,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">id_resolvable()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log.ex#L30" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log.ex#L44" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -148,7 +148,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log.ex#L19" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log.ex#L31" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -162,9 +162,13 @@ Types          </h1>
   audit_log_entries: %{
     required(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) =&gt; <a href="Crux.Structs.AuditLogEntry.html#t:t/0">Crux.Structs.AuditLogEntry.t</a>()
   },
+  guild_scheduled_events: %{
+    required(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) =&gt; <a href="Crux.Structs.GuildScheduledEvent.html#t:t/0">Crux.Structs.GuildScheduledEvent.t</a>()
+  },
   integrations: %{
     required(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) =&gt; <a href="Crux.Structs.Integration.html#t:t/0">Crux.Structs.Integration.t</a>()
   },
+  threads: %{required(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) =&gt; <a href="Crux.Structs.Channel.html#t:t/0">Crux.Structs.Channel.t</a>()},
   users: %{required(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) =&gt; <a href="Crux.Structs.User.html#t:t/0">Crux.Structs.User.t</a>()},
   webhooks: %{required(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) =&gt; <a href="Crux.Structs.Webhook.html#t:t/0">Crux.Structs.Webhook.t</a>()}
 }</pre>
@@ -189,7 +193,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log.ex#L39" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/audit_log.ex#L53" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>

@@ -1,4 +1,5 @@
 404.html
+Crux.Structs.Application.Flags.html
 Crux.Structs.Application.html
 Crux.Structs.Attachment.html
 Crux.Structs.AuditLog.html
@@ -11,6 +12,7 @@ Crux.Structs.Emoji.html
 Crux.Structs.Guild.SystemChannelFlags.html
 Crux.Structs.Guild.html
 Crux.Structs.GuildPreview.html
+Crux.Structs.GuildScheduledEvent.html
 Crux.Structs.Integration.html
 Crux.Structs.Intents.html
 Crux.Structs.Invite.html
@@ -41,7 +43,7 @@ dist/html/fonts/icomoon.eot
 dist/html/fonts/icomoon.svg
 dist/html/fonts/icomoon.ttf
 dist/html/fonts/icomoon.woff
-dist/search_items-f9b246b1a6.js
-dist/sidebar_items-08dcea263a.js
+dist/search_items-9c010ed3d7.js
+dist/sidebar_items-506861f07d.js
 index.html
 search.html

@@ -8,7 +8,7 @@
     <meta name="project" content="crux_structs v0.3.0-dev">
     <title>Crux.Structs.Invite — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-    <script src="dist/sidebar_items-08dcea263a.js"></script>
+    <script src="dist/sidebar_items-506861f07d.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
   </head>
@@ -120,7 +120,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/invite.ex#L54" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/invite.ex#L58" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -133,15 +133,18 @@ Types          </h1>
           <pre>t() :: %Crux.Structs.Invite{
   approximate_member_count: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | nil,
   approximate_presence_count: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | nil,
-  channel: <a href="Crux.Structs.Channel.html#t:t/0">Crux.Structs.Channel.t</a>(),
+  channel: <a href="Crux.Structs.Channel.html#t:t/0">Crux.Structs.Channel.t</a>() | nil,
   code: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
   created_at: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | nil,
+  expires_at: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
   guild: <a href="Crux.Structs.Guild.html#t:t/0">Crux.Structs.Guild.t</a>(),
+  guild_scheduled_event: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
   inviter: <a href="Crux.Structs.User.html#t:t/0">Crux.Structs.User.t</a>() | nil,
   max_age: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | nil,
   max_uses: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | nil,
+  stage_instance: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
   target_user: <a href="Crux.Structs.User.html#t:t/0">Crux.Structs.User.t</a>() | nil,
-  target_user_type: 1 | nil,
+  target_user_type: 1 | 2 | nil,
   temporary: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() | nil,
   uses: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | nil
 }</pre>
@@ -166,7 +169,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/invite.ex#L79" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/invite.ex#L83" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>

@@ -8,7 +8,7 @@
     <meta name="project" content="crux_structs v0.3.0-dev">
     <title>Crux.Structs.Message — crux_structs v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
-    <script src="dist/sidebar_items-08dcea263a.js"></script>
+    <script src="dist/sidebar_items-506861f07d.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
   </head>
@@ -88,6 +88,12 @@ crux_structs      </a>
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#t:component/0">component()</a>
+  </div>
+    <div class="summary-synopsis"><p>For more information see the <a href="https://discord.com/developers/docs/interactions/message-components#component-object-component-structure">Discord Developer Documentation</a>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#t:id_resolvable/0">id_resolvable()</a>
   </div>
     <div class="summary-synopsis"><p>All available types that can be resolved into a message id.</p></div>
@@ -141,6 +147,57 @@ crux_structs      </a>
             </a>
 Types          </h1>
           <div class="types-list">
+<section class="detail" id="t:component/0">
+  <div class="detail-header">
+    <a href="#t:component/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">component()</h1>
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L134" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <span class="note">(since 0.3.0)</span>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>component() :: %{
+  :type =&gt; 1..3,
+  optional(:custom_id) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  optional(:disabled) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  optional(:style) =&gt; 1..5,
+  optional(:label) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  optional(:emoji) =&gt; %{
+    optional(:name) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+    optional(:id) =&gt; <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+    optional(:animated) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+  },
+  optional(:url) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  optional(:options) =&gt; [
+    %{
+      :label =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+      :value =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+      optional(:description) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+      optional(:emoji) =&gt; %{
+        optional(:name) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+        optional(:id) =&gt; <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+        optional(:animated) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+      },
+      optional(:default) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+    }
+  ],
+  optional(:placeholder) =&gt; <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  optional(:min_values) =&gt; 0..25,
+  optional(:max_values) =&gt; 1..25,
+  optional(:components) =&gt; [<a href="#t:component/0">component</a>()]
+}</pre>
+      </div>
+
+<p>For more information see the <a href="https://discord.com/developers/docs/interactions/message-components#component-object-component-structure">Discord Developer Documentation</a>.</p>  </section>
+</section>
 <section class="detail" id="t:id_resolvable/0">
   <div class="detail-header">
     <a href="#t:id_resolvable/0" class="detail-link" title="Link to this type">
@@ -148,7 +205,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">id_resolvable()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L128" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L169" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -170,7 +227,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">mention_channel()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L64" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L67" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -197,7 +254,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">message_activity()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L58" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L61" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -219,7 +276,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">message_interaction()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L88" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L91" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -246,7 +303,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">message_reference()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L76" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L79" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -272,7 +329,7 @@ Types          </h1>
       <span class="sr-only">Link to this type</span>
     </a>
     <h1 class="signature">t()</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L96" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L99" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -288,6 +345,7 @@ Types          </h1>
   attachments: [<a href="Crux.Structs.Attachment.html#t:t/0">Crux.Structs.Attachment.t</a>()],
   author: <a href="Crux.Structs.User.html#t:t/0">Crux.Structs.User.t</a>(),
   channel_id: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
+  components: [<a href="#t:component/0">component</a>()],
   content: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
   edited_timestamp: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | nil,
   embeds: [<a href="Crux.Structs.Embed.html#t:t/0">Crux.Structs.Embed.t</a>()],
@@ -305,7 +363,11 @@ Types          </h1>
   pinned: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
   reactions: %{required(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) =&gt; <a href="Crux.Structs.Reaction.html#t:t/0">Crux.Structs.Reaction.t</a>()},
   referenced_message: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  sticker_items: %{
+    required(<a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>()) =&gt; <a href="Crux.Structs.Sticker.html#t:sticker_item/0">Crux.Structs.Sticker.sticker_item</a>()
+  },
   stickers: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  thread: <a href="Crux.Structs.Snowflake.html#t:t/0">Crux.Structs.Snowflake.t</a>(),
   timestamp: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
   tts: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
   type: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
@@ -332,7 +394,7 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(data)</h1>
-      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L137" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/SpaceEEC/crux_structs/blob/master/lib/structs/message.ex#L178" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
