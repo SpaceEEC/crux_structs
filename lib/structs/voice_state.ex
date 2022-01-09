@@ -22,7 +22,7 @@ defmodule Crux.Structs.VoiceState do
     :self_stream,
     :self_video,
     :suppress,
-    :request_to_speak_timestamp,
+    :request_to_speak_timestamp
   ]
 
   @typedoc since: "0.1.0"

@@ -15,7 +15,7 @@ defmodule Crux.Structs.Presence.ActivityFlags do
     play: 1 <<< 5,
     party_privacy_friends: 1 <<< 6,
     part_privacy_voice_channel: 1 <<< 6,
-    embedded: 1 <<< 6,
+    embedded: 1 <<< 6
   }
 
   use Crux.Structs.BitField, flags

@@ -23,7 +23,7 @@ defmodule Crux.Structs.Intents do
     direct_message_reactions: 1 <<< 13,
     direct_message_typing: 1 <<< 14,
     # 15
-    guild_scheduled_events: 1 <<< 16,
+    guild_scheduled_events: 1 <<< 16
   }
 
   use Crux.Structs.BitField, intents

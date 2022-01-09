@@ -55,7 +55,7 @@ defmodule Crux.Structs.AuditLogEntry do
     guild_scheduled_event_delete: 102,
     thread_create: 110,
     thread_update: 111,
-    thread_delete: 112,
+    thread_delete: 112
   }
 
   @typedoc """

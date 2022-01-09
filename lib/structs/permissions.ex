@@ -49,7 +49,7 @@ defmodule Crux.Structs.Permissions do
     use_external_stickers: 1 <<< 37,
     send_messages_in_threads: 1 <<< 38,
     start_embedded_activities: 1 <<< 39,
-    moderate_members: 1 <<< 40,
+    moderate_members: 1 <<< 40
   }
 
   use Crux.Structs.BitField, permissions
